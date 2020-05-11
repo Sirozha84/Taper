@@ -404,19 +404,19 @@ namespace Taper
         //Кнопка добавления файлов в прокт и выход
         private void button3_Click(object sender, EventArgs e)
         {
-            int blokovdodobavlenia = Project.TAPfile.Count;
+            int blokovdodobavlenia = Project.TAP.Count;
 
             foreach (byte[] block in Blocks) //о как, оказывается можно и так!
                 if (block.Count() > 1)
                     Project.Add(block);
             //Почистим проект от блоков, не содержащих ни заголовка, ни тела
-            for (int i = Project.TAPfile.Count - 1; i >= 0; i--)
+            for (int i = Project.TAP.Count - 1; i >= 0; i--)
             {
-                if (Project.TAPfile[i].FileTitle == null & Project.TAPfile[i].FileData == null)
-                    Project.TAPfile.RemoveAt(i);
+                if (Project.TAP[i].FileTitle == null & Project.TAP[i].FileData == null)
+                    Project.TAP.RemoveAt(i);
             }
 
-            if (Project.TAPfile.Count>blokovdodobavlenia)
+            if (Project.TAP.Count>blokovdodobavlenia)
                 DialogResult = DialogResult.OK;
             this.Close();
         }

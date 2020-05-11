@@ -18,9 +18,9 @@ namespace Taper
         {
             //Пытаемся автоматически понять что за файл просматривается, если непонятно - открываем в виде кода
             tabControl1.SelectedIndex = 5;
-            if (Project.BlockView.FileData.Count() == 6914) tabControl1.SelectedIndex = 1;
-            if (Project.BlockView.FileData.Count() == 770) tabControl1.SelectedIndex = 2;
-            if (Project.BlockView.FileTitle != null && Project.BlockView.FileTitle[1] == 0) tabControl1.SelectedIndex = 0;
+            if (Project.view.FileData.Count() == 6914) tabControl1.SelectedIndex = 1;
+            if (Project.view.FileData.Count() == 770) tabControl1.SelectedIndex = 2;
+            if (Project.view.FileTitle != null && Project.view.FileTitle[1] == 0) tabControl1.SelectedIndex = 0;
             tabControl1_SelectedIndexChanged(null, null);
         }
 
@@ -33,8 +33,8 @@ namespace Taper
                 case 1: ViewScreen(tabControl3.SelectedIndex); break;               //tabControl3_SelectedIndexChanged(null,null); break; //SCREEN$
                 case 2: ViewFont(); break;
                 case 3:
-                    if (Project.BlockView.FileTitle != null)
-                        numericUpDown1.Value = Project.BlockView.FileTitle[14] + Project.BlockView.FileTitle[15] * 256;
+                    if (Project.view.FileTitle != null)
+                        numericUpDown1.Value = Project.view.FileTitle[14] + Project.view.FileTitle[15] * 256;
                     else
                         numericUpDown1.Value = 16384;
                     Assembler(); break;
@@ -64,12 +64,12 @@ namespace Taper
             OnProcess = true;
             string text = "";
             bool newstring = true;
-            for (int i = 1; i < Project.BlockView.FileData.Count() - 1; i++)
+            for (int i = 1; i < Project.view.FileData.Count() - 1; i++)
             {
                 
                 if (newstring)
                 {
-                    int num = (Project.BlockView.FileData[i] * 256 + Project.BlockView.FileData[i + 1]);
+                    int num = (Project.view.FileData[i] * 256 + Project.view.FileData[i + 1]);
                     if (num > 9999) break;
                     if (num < 1000) text += " ";
                     if (num < 100) text += " ";
@@ -80,7 +80,7 @@ namespace Taper
                 }
                 else
                 {
-                    byte b = Project.BlockView.FileData[i];
+                    byte b = Project.view.FileData[i];
                     if (b == 13)
                     {
                         text += (char)13;
@@ -107,9 +107,9 @@ namespace Taper
             OnProcess = true;
             textBox2.Text = "Подготовка. Подождите немножко.";
             string text = "";
-            for (int i = 1; i < Project.BlockView.FileData.Count() - 1; i++)
+            for (int i = 1; i < Project.view.FileData.Count() - 1; i++)
             {
-                byte b = Project.BlockView.FileData[i];
+                byte b = Project.view.FileData[i];
                 if (b == 13 | b == 10 | b >= 32) text += (char)b;
                 else text += "_";
                 if (!OnProcess) break;
@@ -137,7 +137,7 @@ namespace Taper
                   text += "-----+---------------------------------------";
             int x = 0;
             int str = 0;
-            for (int i = 1; i < Project.BlockView.FileData.Count() - 1; i++)
+            for (int i = 1; i < Project.view.FileData.Count() - 1; i++)
             {
                 if (x==0)
                 {
@@ -147,7 +147,7 @@ namespace Taper
                     text += "|";
                     Application.DoEvents();
                 }
-                text += Converter(Project.BlockView.FileData[i], 10, 1, true) + " ";
+                text += Converter(Project.view.FileData[i], 10, 1, true) + " ";
                 x++;
                 if (x > 9) { x = 0; str++; }
                 if (!OnProcess) break;
@@ -164,7 +164,7 @@ namespace Taper
                   text += "-----+-----------------------------------------------";
             int x = 0;
             int str = 0;
-            for (int i = 1; i < Project.BlockView.FileData.Count() - 1; i++)
+            for (int i = 1; i < Project.view.FileData.Count() - 1; i++)
             {
                 if (x == 0)
                 {
@@ -174,7 +174,7 @@ namespace Taper
                     text += " |";
                     Application.DoEvents();
                 }
-                text += Converter(Project.BlockView.FileData[i], 16, 1, true) + " ";
+                text += Converter(Project.view.FileData[i], 16, 1, true) + " ";
                 x++;
                 if (x > 15) { x = 0; str++; }
                 if (!OnProcess) break;
@@ -246,12 +246,12 @@ namespace Taper
             //Подготовка поля (на случай если данных меньше чем входит в видеопамять
             byte[] m = new byte[6912];
             for (int i = 6144; i < 6912; i++) m[i] = 56;
-            int j = Math.Min(Project.BlockView.FileData.Count() - 1, 6913);
+            int j = Math.Min(Project.view.FileData.Count() - 1, 6913);
             for (int i = 0; i < 6912; i++)
             {
                 int a = i + 1 + (int)numericUpDown2.Value;
-                if (a >= 0 & a <= Project.BlockView.FileData.Count() - 2)
-                    m[i] = Project.BlockView.FileData[a];
+                if (a >= 0 & a <= Project.view.FileData.Count() - 2)
+                    m[i] = Project.view.FileData[a];
             }
             //Собственно, рисование
             byte C=0;
@@ -298,8 +298,8 @@ namespace Taper
         //Просмотр в виде шрифта
         void ViewFont()
         {
-            if (Project.BlockView.FileData.Count() <= 770) button3.Enabled = false; //Зачем искать, если файл и так равен или меньше размеру шрифта
-            numericUpDown3.Maximum = Project.BlockView.FileData.Count() - 2;
+            if (Project.view.FileData.Count() <= 770) button3.Enabled = false; //Зачем искать, если файл и так равен или меньше размеру шрифта
+            numericUpDown3.Maximum = Project.view.FileData.Count() - 2;
             Bitmap buffer = new Bitmap(128, 48);
             int a = (int)numericUpDown3.Value + 1;
             byte b;
@@ -309,8 +309,8 @@ namespace Taper
                     for (int s = 0; s < 8; s++)
                     {
                         //try { b = Project.BlockView.FileData[a++]; } catch { b = 0; }
-                        if (a > Project.BlockView.FileData.Count()-2) b = 0;
-                        else b = Project.BlockView.FileData[a++];
+                        if (a > Project.view.FileData.Count()-2) b = 0;
+                        else b = Project.view.FileData[a++];
                         buffer.SetPixel(x * 8, y * 8 + s, Pixel(Pal, (b & 128) == 128));
                         buffer.SetPixel(x * 8+1, y * 8 + s, Pixel(Pal, (b & 64) == 64));
                         buffer.SetPixel(x * 8+2, y * 8 + s, Pixel(Pal, (b & 32) == 32));
@@ -356,10 +356,10 @@ namespace Taper
             byte[] M = new byte[65556]; //Больше 65536 На случай, если в конце стоит команда, требующая "ещё" байтов
             int j = 1;
             int start =(int)numericUpDown1.Value;
-            int end = Math.Min( (int)numericUpDown1.Value + Project.BlockView.FileData.Count() - 2,65535);
-            for (int i = start ; i < 65536 & j < Project.BlockView.FileData.Count() - 1; i++, j++)
+            int end = Math.Min( (int)numericUpDown1.Value + Project.view.FileData.Count() - 2,65535);
+            for (int i = start ; i < 65536 & j < Project.view.FileData.Count() - 1; i++, j++)
             {
-                M[i] = Project.BlockView.FileData[j];
+                M[i] = Project.view.FileData[j];
             }
             //Создание справочника меток
             string[] Labels = new string[65536];

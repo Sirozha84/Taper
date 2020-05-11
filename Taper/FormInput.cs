@@ -8,7 +8,7 @@ namespace Taper
         public FormInput()
         {
             InitializeComponent();
-            textBox1.Text = Project.Rename;
+            textBox1.Text = Project.rename;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -18,7 +18,7 @@ namespace Taper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Project.Rename = textBox1.Text;
+            Project.rename = textBox1.Text;
             DialogResult = DialogResult.OK;
             Close();
         }
