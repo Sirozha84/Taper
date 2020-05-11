@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Taper
@@ -1107,7 +1103,7 @@ namespace Taper
         {
             saveFileDialog1.FileName = "";
             saveFileDialog1.Title = "Сохранение изображения";
-            saveFileDialog1.Filter = Editor.FileTypeBMP;
+            saveFileDialog1.Filter = Program.FileTypeBMP;
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
             try
             {
@@ -1120,7 +1116,7 @@ namespace Taper
                 if (tabControl1.SelectedIndex == 2)
                     pictureBox4.Image.Save(saveFileDialog1.FileName);
             }
-            catch { Editor.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
+            catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
 
         private void FormViewer_FormClosing(object sender, FormClosingEventArgs e) { OnProcess = false; }
@@ -1128,4 +1124,4 @@ namespace Taper
         private void checkBox1_CheckedChanged(object sender, EventArgs e) { ViewBasic(); }
         private void numericUpDown3_ValueChanged(object sender, EventArgs e) { ViewFont(); }
     }
-}
+}//1131

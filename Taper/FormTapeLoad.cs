@@ -24,7 +24,7 @@ namespace Taper
         int GranVR;
         int GranNL;
         int GranNR;
-        //public List<TapBlock> TAPFile = new List<TapBlock>();
+        //public List<Block> TAPFile = new List<Block>();
         public FormTapeLoad()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Taper
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = Editor.FileTypeWAV;
+            openFileDialog1.Filter = Program.FileTypeWAV;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
             //Начинаем загрузку
             button1.Enabled = false;
@@ -91,7 +91,7 @@ namespace Taper
             catch
             {
                 Log("Сбой загрузки");
-                Editor.Error("Произошла ошибка при загрузке WAV-файла.");
+                Program.Error("Произошла ошибка при загрузке WAV-файла.");
                 return false;
             }
             //Обрабатываем то что загрузилось
@@ -502,4 +502,4 @@ namespace Taper
         public static int Sampling;
         public static List<byte> Data = new List<byte>();
     }
-}
+}//505

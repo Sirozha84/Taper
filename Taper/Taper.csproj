@@ -55,7 +55,8 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>48.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -70,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor.cs" />
+    <Compile Include="Block.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +103,7 @@
       <DependentUpon>FormViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
@@ -169,7 +171,6 @@
     <None Include="Resources\Копировать.png" />
     <None Include="Resources\Отменить.png" />
     <None Include="Resources\Повторить.png" />
-    <Content Include="48.ico" />
     <None Include="Resources\Справка.png" />
     <None Include="Resources\128.png" />
     <None Include="Resources\16.png" />
@@ -177,7 +178,6 @@
     <None Include="Resources\Поднять.png" />
     <None Include="Resources\Опустить.png" />
     <None Include="Resources\Удалить.png" />
-    <Content Include="История.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

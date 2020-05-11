@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Taper
@@ -14,19 +8,19 @@ namespace Taper
         public FormInput()
         {
             InitializeComponent();
-            textBox1.Text = Editor.Rename;
+            textBox1.Text = Project.Rename;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Editor.Rename = textBox1.Text;
+            Project.Rename = textBox1.Text;
             DialogResult = DialogResult.OK;
-            this.Close();
+            Close();
         }
     }
 }
