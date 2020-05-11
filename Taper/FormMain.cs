@@ -20,15 +20,10 @@ namespace Taper
         public FormMain()
         {
             InitializeComponent();
-
-            Editor.init();
-            Left = WindowsPosirion.X;
-            Top = WindowsPosirion.Y;
-            Width = WindowsPosirion.Width;
-            Height = WindowsPosirion.Heidht;
-            if (WindowsPosirion.Max) WindowState = FormWindowState.Maximized; else WindowState = FormWindowState.Normal;
-            for (int i = 0; i < Editor.ColumnsCount; i++)
-                listView1.Columns[i].Width = Columns.Tab[i];
+            Left = Properties.Settings.Default.Left;
+            Top = Properties.Settings.Default.Top;
+            Width = Properties.Settings.Default.Width;
+            Height = Properties.Settings.Default.Height;
             menunew_Click(null, null);
         }
         //Сохранение файла как
@@ -42,7 +37,7 @@ namespace Taper
         void SetFormText()
         {
             string star = ""; if (Changed) star = "*";
-            Text = System.IO.Path.GetFileNameWithoutExtension(EditName) + star + " - " + Editor.ProgramName;
+            Text = System.IO.Path.GetFileNameWithoutExtension(EditName) + star + " - " + Program.Name;
         }
         //Регистрация сохранений в файле
         void ChangeReset()
@@ -73,20 +68,11 @@ namespace Taper
         //Закрытие программы
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!SaveQuestion()) e.Cancel = true;
-            if (WindowState == FormWindowState.Maximized)
-                WindowsPosirion.Max = true;
-            else
-                WindowsPosirion.Max = false;
-            for (int i = 0; i < Editor.ColumnsCount; i++)
-                Columns.Tab[i] = listView1.Columns[i].Width;
-            Editor.saveconfig();
-            HelpClose();
-        }
-        private void menuhelp_Click(object sender, EventArgs e)
-        {
-            try { HelpClose(); Help.StartInfo.FileName = "help.chm"; Help.Start(); }
-            catch { Editor.Error("Файл справки не найден."); }
+            Properties.Settings.Default.Left = Left;
+            Properties.Settings.Default.Top = Top;
+            Properties.Settings.Default.Width = Width;
+            Properties.Settings.Default.Height = Height;
+            Properties.Settings.Default.Save();
         }
         private void HelpClose() { try { Help.Kill(); } catch { } }
         private void menuabout_Click(object sender, EventArgs e) { FormAbout form = new FormAbout(); form.ShowDialog(); }
@@ -98,14 +84,6 @@ namespace Taper
         private void toolcut_Click(object sender, EventArgs e) { menucut_Click(null, null); }
         private void toolcopy_Click(object sender, EventArgs e) { menucopy_Click(null, null); }
         private void toolpaste_Click(object sender, EventArgs e) { menupaste_Click(null, null); }
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            WindowsPosirion.X = Left;
-            WindowsPosirion.Y = Top;
-            WindowsPosirion.Width = Width;
-            WindowsPosirion.Heidht = Height;
-            WindowsPosirion.Max = false;
-        }
         //Создание нового документа
         private void menunew_Click(object sender, EventArgs e)
         {

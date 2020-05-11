@@ -13,10 +13,7 @@ namespace Taper
         public FormAbout()
         {
             InitializeComponent();
-            this.Text = "О " + Editor.ProgramName;
-            label1.Text = Editor.ProgramName;
-            label2.Text = "Версия " + Editor.ProgramVersion;
-            label3.Text = "Автор программы: " + Editor.ProgramAutor;
+            label2.Text = "Версия " + Program.Version;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

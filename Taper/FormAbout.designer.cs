@@ -58,7 +58,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(222, 32);
             this.label1.TabIndex = 26;
-            this.label1.Text = "Название программы";
+            this.label1.Text = "Taper";
             // 
             // label2
             // 
@@ -78,7 +78,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(222, 32);
             this.label3.TabIndex = 28;
-            this.label3.Text = "Автор";
+            this.label3.Text = "Автор: Сергей Гордеев";
             // 
             // label4
             // 
@@ -153,7 +153,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormAbout";
+            this.Text = "О программе";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

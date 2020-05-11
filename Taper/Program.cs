@@ -7,6 +7,8 @@ namespace Taper
 {
     static class Program
     {
+        public const string Name = "Taper";
+        public const string Version = "2.1 - 9 июня 2015 года";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

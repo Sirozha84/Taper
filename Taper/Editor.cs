@@ -2,12 +2,10 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Taper;
+
 class Editor
 {
-    //Название программы, версия и автор
-    public const string ProgramName = "Taper";
-    public const string ProgramVersion = "2.1 - 9 июня 2015 года";
-    public const string ProgramAutor = "Сергей Гордеев";
     //Параметры открытия и сохранения файлов
 
     public const string FileUnnamed = "Безымянный";
@@ -16,18 +14,18 @@ class Editor
     public const string FileTypeWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
     public const string FileTypeBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
     //Папка и файл для сохранения параметров программы
-    public static string ParametersFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SG\\Taper";
-    static string ParametersFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SG\\Taper\\config.cfg";
+    //public static string ParametersFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SG\\Taper";
+    //static string ParametersFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SG\\Taper\\config.cfg";
     //Прочее
     public const int ColumnsCount = 6;
     public static string Rename = "";
     //Инициализация параметров
-    public static void init()
+    /*public static void init()
     {
-        try
-        {
+        //try
+        //{
             //Пробуем загрузить настройки, если они были сохранены
-            BinaryReader file = new BinaryReader(new FileStream(ParametersFile, FileMode.Open));
+          //  BinaryReader file = new BinaryReader(new FileStream(ParametersFile, FileMode.Open));
             WindowsPosirion.X = file.ReadInt32();
             WindowsPosirion.Y = file.ReadInt32();
             WindowsPosirion.Width = file.ReadInt32();
@@ -56,7 +54,7 @@ class Editor
             file.Close();
         }
         catch { }
-    }
+    }*/
     //Злобное сообщение об ошибке
     public static void Error(string message)
     {
@@ -65,17 +63,17 @@ class Editor
     //Не злобное сообщение
     public static void Message(string message)
     {
-        MessageBox.Show(message, ProgramName);
+        MessageBox.Show(message, Program.Name);
     }
 }
-public class WindowsPosirion
+/*public class WindowsPosirion
 {
     static public int X = 300;
     static public int Y = 300;
     static public int Width = 600;
     static public int Heidht = 400;
     static public bool Max = false;
-}
+}*/
 public class Columns
 {
     public static int[] Tab = { 100, 100, 100, 100, 120, 40 };

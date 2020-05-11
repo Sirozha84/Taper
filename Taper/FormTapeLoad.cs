@@ -232,10 +232,10 @@ namespace Taper
             GranNL = (int)numericUpDown3.Value;
             GranNR = (int)numericUpDown4.Value;
             const int PilotCount = 100; //Количество волн для пилот-тона
-            System.IO.StreamWriter file = new System.IO.StreamWriter(Editor.ParametersFolder + "tmp", false);
-            if (LOG != "") file = new System.IO.StreamWriter(LOG, false);
+            //System.IO.StreamWriter file = new System.IO.StreamWriter(Editor.ParametersFolder + "tmp", false);
+            //if (LOG != "") file = new System.IO.StreamWriter(LOG, false);
             Log("Распознавание");
-            FullLog(file, "Начато распознавание файла " + FileName, 0);
+            //FullLog(file, "Начато распознавание файла " + FileName, 0);
             int len = 0;
             int storona = 0;
             int firststorona = 0; //Сторона, с которой начинается волна 0_-- или 1--_
@@ -250,9 +250,9 @@ namespace Taper
             {
                 Application.DoEvents();
                 //Поиск пилот-тона
-                if (checkBox1.Checked)
+                /*if (checkBox1.Checked)
                     if (WAV.Data[i] == 1) FullLog(file, "   |", i);
-                                     else FullLog(file, "|", i);
+                                     else FullLog(file, "|", i);*/
                 switch(status)
                 {
                     case 0:
@@ -287,9 +287,9 @@ namespace Taper
                     case 1:
                         if ((firststorona == 0 & WAV.Data[i + 1] == 0) | (firststorona == 1 & WAV.Data[i + 1] == 1))
                         {
-                            FullLog(file, "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *", i);
-                            FullLog(file, "Найден подготовительный сигнал. Длина пилот-тона: " + pilot.ToString(), i);
-                            if (firststorona == 0 && checkBox1.Checked) FullLog(file, "--->", i); else FullLog(file, "<---", i);
+                            //FullLog(file, "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *", i);
+                            //FullLog(file, "Найден подготовительный сигнал. Длина пилот-тона: " + pilot.ToString(), i);
+                            //if (firststorona == 0 && checkBox1.Checked) FullLog(file, "--->", i); else FullLog(file, "<---", i);
                             pilot = 0;
                             Block.Clear();
                             status = 2;
@@ -318,12 +318,12 @@ namespace Taper
                     if (Kat(len) == 0)
                     {
                         //0
-                        FullLog(file, "---- Длина волны " + len.ToString() + ". Бит 0", i);
+                        //FullLog(file, "---- Длина волны " + len.ToString() + ". Бит 0", i);
                     }
                     if (Kat(len) == 1)
                     {
                         //1
-                        FullLog(file, "---- Длина волны " + len.ToString() + ". Бит 1", i);
+                        //FullLog(file, "---- Длина волны " + len.ToString() + ". Бит 1", i);
                         if (bits == 0) Byte += 128;
                         if (bits == 1) Byte += 64;
                         if (bits == 2) Byte += 32;
@@ -338,7 +338,7 @@ namespace Taper
                     {
                         //Байт сформировался
                         Block.Add(Byte);
-                        FullLog(file, "8 Бит прочитано, сформирован байт: " + Byte.ToString(), i);
+                        //FullLog(file, "8 Бит прочитано, сформирован байт: " + Byte.ToString(), i);
                         bits = 0;
                         Byte = 0;
                     }
@@ -350,7 +350,7 @@ namespace Taper
                 {
                     if (Block.Count() > 1)
                     {
-                        FullLog(file, "Сигнал потерян. Данные закончились. Блок в " + Block.Count() + " байт распознан.", i);
+                        //FullLog(file, "Сигнал потерян. Данные закончились. Блок в " + Block.Count() + " байт распознан.", i);
                         if (bits == 0) Log("Блок " + (Block.Count() - 2).ToString() + " байт: OK");
                         else
                         {
@@ -367,8 +367,8 @@ namespace Taper
             }
             Log("Завершено. Блоков найдено: " + Blocks.Count);
             Log("- - - - - - - - - -");
-            FullLog(file, "Завершено. Блоков найдено: " + Blocks.Count.ToString(), position);
-            file.Close();
+            //FullLog(file, "Завершено. Блоков найдено: " + Blocks.Count.ToString(), position);
+            //file.Close();
             ButtonsEnabled(true);
         }
         //Определение к какой категории подходит волна с длиной LEN
