@@ -13,7 +13,8 @@ namespace Taper
         //"Человеческие" данные
         public string FileType;
         public string FileName = "";
-        public bool CRCOK;
+        public bool CRCTitle;
+        public bool CRCData;
         public Block(byte[] Bytes)
         {
             //По полученному массиву байт определяем заголовок это или блок данных
@@ -42,14 +43,14 @@ namespace Taper
             {
                 //Создаём файл с блоком но без имени
                 FileData = Bytes;
-                CRCOK = CRCTest(Bytes);
+                CRCData = CRCTest(Bytes);
             }
         }
         //Добавление блока к файлу у которого есть имя
         public void AddBlock(byte[] Bytes)
         {
             FileData = Bytes;
-            CRCOK = CRCTest(Bytes);
+            CRCData = CRCTest(Bytes);
         }
         //Проверка контрольной суммы
         bool CRCTest(byte[] Bytes)

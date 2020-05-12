@@ -33,7 +33,7 @@ namespace Taper
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = Program.FileTypeWAV;
+            openFileDialog1.Filter = Program.FilterWAV;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
             //Начинаем загрузку
             button1.Enabled = false;
@@ -244,7 +244,7 @@ namespace Taper
             byte Byte = 0; //Последний считанный байт
             int pilot = 0; //Количество гребёнок пилота
             Blocks.Clear();
-            long position = -1;
+            //long position = -1;
             for (int i = 0; i< WAV.Data.Count - 1;i++)
             //foreach (byte b in WAV.Data)
             {

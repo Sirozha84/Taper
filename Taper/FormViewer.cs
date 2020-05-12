@@ -1103,7 +1103,7 @@ namespace Taper
         {
             saveFileDialog1.FileName = "";
             saveFileDialog1.Title = "Сохранение изображения";
-            saveFileDialog1.Filter = Program.FileTypeBMP;
+            saveFileDialog1.Filter = Program.FilterBMP;
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
             try
             {

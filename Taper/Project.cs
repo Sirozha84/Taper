@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Taper
 {
@@ -24,7 +26,52 @@ namespace Taper
             history.Clear();
             hIndex = 0;
             name = Program.FileUnnamed;
-            changed=false;
+            changed = false;
+        }
+
+        public static void Open(string filename, bool add)
+        {
+            if (add) Change(); else New();
+            try
+            {
+                System.IO.BinaryReader file = new System.IO.BinaryReader(new System.IO.FileStream(filename, System.IO.FileMode.Open));
+                while (file.BaseStream.Position < file.BaseStream.Length)
+                {
+                    int LEN = file.ReadUInt16();
+                    byte[] Bytes = file.ReadBytes(LEN);
+                    Add(Bytes);
+                }
+                file.Close();
+                if (!add) name = filename;
+            }
+            catch { Program.Error("Произошла ошибка при открытии файла."); }
+        }
+
+        public static void Save(string filename)
+        {
+            try
+            {
+                System.IO.BinaryWriter file = new System.IO.BinaryWriter(new System.IO.FileStream(filename, System.IO.FileMode.Create));
+                foreach (Block block in TAP)
+                {
+                    //Сохраняем заголовок
+                    if (block.FileTitle != null)
+                    {
+                        file.Write((UInt16)19);
+                        file.Write(block.FileTitle);
+                    }
+                    //Сохраняем блок данных
+                    if (block.FileData != null)
+                    {
+                        file.Write((UInt16)block.FileData.Count());
+                        file.Write(block.FileData);
+                    }
+                }
+                file.Close();
+                name = filename;
+                changed = false;
+            }
+            catch { Program.Error("Произошла ошибка во время сохранения файла. Файл не сохранён."); }
         }
 
         /// <summary>
