@@ -22,7 +22,7 @@ namespace Taper
         {
             if (!SaveQuestion()) return;
             Project.New();
-            DrawTap();
+            DrawProject();
         }
         private void menunNew_Click(object sender, EventArgs e) { FileNew(); }
         private void toolNew_Click(object sender, EventArgs e) { FileNew(); }
@@ -37,7 +37,7 @@ namespace Taper
             dialog.Filter = Program.FilterTAP;
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Open(dialog.FileName, false);
-            DrawTap();
+            DrawProject();
         }
         private void menuOpen_Click(object sender, EventArgs e) { FileOpen(); }
         private void toolOpen_Click(object sender, EventArgs e) { FileOpen(); }
@@ -61,8 +61,12 @@ namespace Taper
 
         private void menuSave_Click(object sender, EventArgs e) { FileSave(false); }
         private void toolSave_Click(object sender, EventArgs e) { FileSave(false); }
-        private void menuSaveAs_Click(object sender, EventArgs e) { FileSave(false); }
+        private void menuSaveAs_Click(object sender, EventArgs e) { FileSave(true); }
+        #endregion
 
+        #region Меню Вид
+        private void menuListFiles_Click(object sender, EventArgs e) { menuListFiles.Checked = true; menuListBlocks.Checked = false ; DrawProject(); }
+        private void menuListBlocks_Click(object sender, EventArgs e) { menuListFiles.Checked = false; menuListBlocks.Checked = true; DrawProject(); }
         #endregion
 
         /// <summary>
@@ -118,7 +122,7 @@ namespace Taper
                 Buffer.Add(Project.TAP[listViewTAP.SelectedIndices[i]]);
             for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0; i--)
                 Project.TAP.RemoveAt(listViewTAP.SelectedIndices[i]);
-            DrawTap();
+            DrawProject();
         }
         //Вставка
         private void menupaste_Click(object sender, EventArgs e)
@@ -140,12 +144,13 @@ namespace Taper
                 for (int i = 0; i < Buffer.Count; i++)
                     Project.TAP[listViewTAP.SelectedIndices[0] + i] = Buffer[i];
             }
-            DrawTap();
+            DrawProject();
         }
         //------------------------------------------------------------------------------------------------------------------------------------------
         //Отображение содержимого файла в листвью
-        void DrawTap()
+        void DrawProject()
         {
+            if (menuListFiles.Checked) Project.ListFiles(); else Project.ListBlocks();
             string NullString = "- - - - -";
             listViewTAP.Items.Clear();
             int files = 0;
@@ -169,7 +174,7 @@ namespace Taper
                     if (block.FileData != null)
                     {
                         listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileData.Count() - 2).ToString());
-                        AddCRC(block.CRCOK);
+                        AddCRC(block.CRCData);
                     }
                     else
                     {
@@ -188,7 +193,7 @@ namespace Taper
                     listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
                     listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
                     listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileData.Count() - 2).ToString());
-                    AddCRC(block.CRCOK);
+                    AddCRC(block.CRCData);
                 }
                 if (block.FileTitle != null) fullbytes += 17;
                 if (block.FileData != null)
@@ -212,57 +217,14 @@ namespace Taper
             else
                 listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add("Failed");
         }
-        //Возврат строки с числом из заголовка с адресом
-        /*string NumInFileTitle(Block block, int adress)
-        {
-            int x = block.FileTitle[adress] + block.FileTitle[adress + 1] * 256;
-            return x.ToString();
-        }*/
-        //Разбивание файлов на отдельные блоки
-        private void разбитьНаБлокиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<Block> tempfile = new List<Block>();
-            foreach (Block block in Project.TAP)
-                tempfile.Add(block);
-            Project.TAP.Clear();
-            foreach (Block block in tempfile)
-            {
-                if (block.FileTitle != null)
-                    Project.TAP.Add(new Block(block.FileTitle));
-                if (block.FileData != null)
-                    Project.TAP.Add(new Block(block.FileData));
-            }
-            DrawTap();
-        }
-        //Собирание отдельных блоков в файлы
-        private void объединитьБлокиВФайлыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<Block> tempfile = new List<Block>();
-            foreach (Block block in Project.TAP)
-                tempfile.Add(block);
-            Project.TAP.Clear();
-            for (int i = 0; i < tempfile.Count(); i++)
-            {
-                if (tempfile[i].FileTitle != null & tempfile[i].FileData == null & i < tempfile.Count() - 1 &&
-                    tempfile[i + 1].FileTitle == null & tempfile[i + 1].FileData != null)
-                {
-                    Project.TAP.Add(new Block(tempfile[i].FileTitle));
-                    Project.TAP[Project.TAP.Count() - 1].AddBlock(tempfile[i + 1].FileData);
-                    i++;
-                }
-                else
-                    Project.TAP.Add(tempfile[i]);
-            }
-            DrawTap();
-        }
         //Удаление выделенного блока
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return; }
+            Project.Change();
             for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0; i--)
                 Project.TAP.RemoveAt(listViewTAP.SelectedIndices[i]);
-            Project.Change();
-            DrawTap();
+            DrawProject();
         }
         //Добавление файла в проект
         private void tAPфайлToolStripMenuItem_Click(object sender, EventArgs e)
@@ -271,8 +233,9 @@ namespace Taper
             dialog.FileName = "";
             dialog.Filter = Program.FilterTAP;
             if (dialog.ShowDialog() != DialogResult.OK) return;
+            Project.Change();
             Project.Open(dialog.FileName, true);
-            DrawTap();
+            DrawProject();
         }
         //Движение блоков вверх
         private void подвинутьВверхToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,7 +255,7 @@ namespace Taper
             foreach (int i in listViewTAP.SelectedIndices)
                 sel.Add(i);
             //Делаем изменения на экране (и в мозгах)
-            DrawTap();
+            DrawProject();
             //Теперь восстанавливаем выделение, но на строчку выше
             foreach (int i in sel)
                 listViewTAP.Items[i - 1].Selected = true;
@@ -326,7 +289,7 @@ namespace Taper
             foreach (int i in listViewTAP.SelectedIndices)
                 sel.Add(i);
             //Делаем изменения на экране (и в мозгах)
-            DrawTap();
+            DrawProject();
             //Теперь восстанавливаем выделение, но на строчку выше
             foreach (int i in sel)
                 listViewTAP.Items[i + 1].Selected = true;
@@ -343,7 +306,7 @@ namespace Taper
             foreach (Block block in Project.history[Project.hIndex - 1])
                 Project.TAP.Add(block);
             Project.changed = true;
-            DrawTap();
+            DrawProject();
         }
         //Повторить
         private void вернутьтожеПокаНеРаботаетToolStripMenuItem_Click(object sender, EventArgs e)
@@ -354,7 +317,7 @@ namespace Taper
             foreach (Block block in Project.history[Project.hIndex - 1])
                 Project.TAP.Add(block);
             Project.changed = true;
-            DrawTap();
+            DrawProject();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e) { отменитьToolStripMenuItem_Click(null, null); }
@@ -366,7 +329,7 @@ namespace Taper
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Project.Change();
-                DrawTap();
+                DrawProject();
             }
         }
 
@@ -522,7 +485,7 @@ namespace Taper
             if (dialog.ShowDialog() != DialogResult.OK) return;
             TZXload(dialog.FileName);
             Project.Change();
-            DrawTap();
+            DrawProject();
         }
 
         void TZXload(string filename)
@@ -593,10 +556,10 @@ namespace Taper
             {
                 if (block.FileTitle != null) if (FixCRC(block.FileTitle)) action = true;
                 if (block.FileData != null) if (FixCRC(block.FileData)) action = true;
-                block.CRCOK = true;
+                block.CRCData = true;
             }
             Project.Change();
-            DrawTap();
+            DrawProject();
             if (action) Program.Message("Контрольные суммы исправлены.");
             else Program.Message("Все контрольные суммы и так в норме.");
         }
@@ -658,7 +621,7 @@ namespace Taper
             //После переименования починим CRC
             FixCRC(Project.TAP[listViewTAP.SelectedIndices[0]].FileTitle);
             Project.Change();
-            DrawTap();
+            DrawProject();
         }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
         private void вырезатьToolStripMenuItem_Click(object sender, EventArgs e) { menucut_Click(null, null); }
@@ -683,7 +646,7 @@ namespace Taper
             if (ext == ".tap" & SaveQuestion())
             {
                 Project.Open(file, false); //Здесь будет зависить от будущего диалога (добавить или открыть)
-                DrawTap();
+                DrawProject();
                 return;
             }
             if (ext == ".tzx" & SaveQuestion())
@@ -692,7 +655,7 @@ namespace Taper
                 SetFormText();
                 Project.New();
                 TZXload(file);
-                DrawTap();
+                DrawProject();
                 return;
             }
             //А здесь добавим файл импортом (которого пока нет) если он не больше 65535 байт
@@ -715,7 +678,7 @@ namespace Taper
             if (ext == ".tap" & SaveQuestion())
             {
                 Project.Open(file, false);
-                DrawTap();
+                DrawProject();
                 return;
             }
             if (ext == ".tzx" & SaveQuestion())
@@ -724,11 +687,11 @@ namespace Taper
                 SetFormText();
                 Project.New();
                 TZXload(file);
-                DrawTap();
+                DrawProject();
                 return;
             }
             MessageBox.Show("Файл не поддерживается", "Taper");
         }
 
     }
-} //846, 820, 759, 734
+} //846, 820, 759, 734, 696

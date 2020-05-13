@@ -38,6 +38,7 @@ namespace Taper
                     for (int i = 2; i < 12; i++)
                         FileName += (char)Bytes[i];
                 }
+                CRCTitle = CRCTest(Bytes);
             }
             else
             {

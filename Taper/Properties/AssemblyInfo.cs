@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("Taper")]
-[assembly: AssemblyDescription("Менеджер TAP-айлов")]
+[assembly: AssemblyDescription("Менеджер TAP-файлов")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SG Software")]
 [assembly: AssemblyProduct("Taper")]

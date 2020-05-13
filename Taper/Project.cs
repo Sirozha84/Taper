@@ -89,7 +89,6 @@ namespace Taper
             changed = true;
         }
 
-
         /// <summary>
         /// Добавление произвольного блока в проект
         /// </summary>
@@ -107,5 +106,47 @@ namespace Taper
                     TAP.Add(new Block(Bytes)); //Создаём блок без имени
             }
         }
+
+        /// <summary>
+        /// Собрать блоки по файлам
+        /// </summary>
+        public static void ListFiles()
+        {
+            List<Block> tempfile = new List<Block>();
+            foreach (Block block in TAP)
+                tempfile.Add(block);
+            TAP.Clear();
+            for (int i = 0; i < tempfile.Count(); i++)
+            {
+                if (tempfile[i].FileTitle != null & tempfile[i].FileData == null & i < tempfile.Count() - 1 &&
+                    tempfile[i + 1].FileTitle == null & tempfile[i + 1].FileData != null)
+                {
+                    TAP.Add(new Block(tempfile[i].FileTitle));
+                    TAP[Project.TAP.Count() - 1].AddBlock(tempfile[i + 1].FileData);
+                    i++;
+                }
+                else
+                    TAP.Add(tempfile[i]);
+            }
+        }
+
+        /// <summary>
+        /// Разбить файлы на блоки
+        /// </summary>
+        public static void ListBlocks()
+        {
+            List<Block> tempfile = new List<Block>();
+            foreach (Block block in TAP)
+                tempfile.Add(block);
+            TAP.Clear();
+            foreach (Block block in tempfile)
+            {
+                if (block.FileTitle != null)
+                    TAP.Add(new Block(block.FileTitle));
+                if (block.FileData != null)
+                    TAP.Add(new Block(block.FileData));
+            }
+        }
+
     }
 }
