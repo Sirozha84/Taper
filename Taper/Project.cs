@@ -90,21 +90,12 @@ namespace Taper
         }
 
         /// <summary>
-        /// Добавление произвольного блока в проект
+        /// Добавление блока в проект
         /// </summary>
         /// <param name="Bytes"></param>
         public static void Add(byte[] Bytes)
         {
-            //Создаём блок с именем но без данных
-            if (Bytes[0] == 0)
-                TAP.Add(new Block(Bytes));
-            else
-            {
-                if (TAP.Count > 0 && TAP[TAP.Count - 1].FileName != null & TAP[TAP.Count - 1].FileData == null)
-                    TAP[TAP.Count - 1].AddBlock(Bytes); //Загружаем блок в последний файл
-                else
-                    TAP.Add(new Block(Bytes)); //Создаём блок без имени
-            }
+            TAP.Add(new Block(Bytes));
         }
 
         /// <summary>
@@ -122,7 +113,7 @@ namespace Taper
                     tempfile[i + 1].FileTitle == null & tempfile[i + 1].FileData != null)
                 {
                     TAP.Add(new Block(tempfile[i].FileTitle));
-                    TAP[Project.TAP.Count() - 1].AddBlock(tempfile[i + 1].FileData);
+                    TAP[TAP.Count() - 1].AddBlock(tempfile[i + 1].FileData);
                     i++;
                 }
                 else

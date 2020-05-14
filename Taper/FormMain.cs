@@ -33,8 +33,7 @@ namespace Taper
         private void FileOpen()
         {
             if (!SaveQuestion()) return;
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = Program.FilterTAP;
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterTAP };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Open(dialog.FileName, false);
             DrawProject();
@@ -50,9 +49,7 @@ namespace Taper
         {
             if (Project.name == Program.FileUnnamed | saveAs)
             {
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.FileName = "";
-                dialog.Filter = Program.FilterTAP;
+                SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterTAP };
                 if (dialog.ShowDialog() == DialogResult.OK) Project.Save(dialog.FileName);
                 else return;
             }
@@ -158,7 +155,14 @@ namespace Taper
             int fullbytes = 0;
             foreach (Block block in Project.TAP)
             {
-                if (block.FileTitle != null)
+                bool nm = block.FileTitle != null;
+                bool dt = block.FileData != null;
+                ListViewItem item = new ListViewItem(nm? block.FileType : "    Блок данных");
+                item.SubItems.Add(nm ? block.FileName : NullString);
+                item.SubItems.Add(nm ? block.Start : NullString);
+                item.SubItems.Add(nm ? block.Len : NullString);
+                item.SubItems.Add(dt ? (block.FileData.Length - 2).ToString() : NullString);
+                /*if (block.FileTitle != null)
                 {
                     //Нормальный файл с именем (но может быть и без самого блока)
                     listViewTAP.Items.Add(block.FileType);
@@ -201,7 +205,8 @@ namespace Taper
                     files++;
                     bytes += block.FileData.Count() - 2;
                     fullbytes += block.FileData.Count() - 2;
-                }
+                }*/
+                listViewTAP.Items.Add(item);
             }
             //Подсчёт количества блоков
             toolStripStatusLabel2.Text = "Файлов в проекте: " + files;
@@ -229,9 +234,7 @@ namespace Taper
         //Добавление файла в проект
         private void tAPфайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.FileName = "";
-            dialog.Filter = Program.FilterTAP;
+            OpenFileDialog dialog = new OpenFileDialog() { Title = "Добавление TAP-файла", Filter = Program.FilterTAP };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Change();
             Project.Open(dialog.FileName, true);
@@ -418,10 +421,7 @@ namespace Taper
         //Сохранение "тапа" в "вавку"
         private void вWAVфайлтожеПокаНеРаботаетToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.FileName = "";
-            dialog.Title = "Экспорт в WAV-файл";
-            dialog.Filter = Program.FilterWAV;
+            SaveFileDialog dialog = new SaveFileDialog() { Title = "Экспорт в WAV-файл", Filter = Program.FilterWAV };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             //Подготовка выборки 54 42 21
             List<byte> Data = new List<byte>();
@@ -479,9 +479,7 @@ namespace Taper
         //Импорт из TZX
         private void tZXфайлпокаНеРаботаетToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.FileName = "";
-            dialog.Filter = Program.FilterTZX;
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterTZX };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             TZXload(dialog.FileName);
             Project.Change();
@@ -510,9 +508,7 @@ namespace Taper
         //Экспорт в TZX
         private void вTZXфайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.FileName = "";
-            dialog.Filter = Program.FilterTZX;
+            SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterTZX };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             try
             {
@@ -694,4 +690,4 @@ namespace Taper
         }
 
     }
-} //846, 820, 759, 734, 696
+} //846, 820, 759, 734, 696, 685
