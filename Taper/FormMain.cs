@@ -7,8 +7,6 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
-        List<Block> Buffer = new List<Block>(); //Буфер обмена
-
         public FormMain()
         {
             InitializeComponent();
@@ -59,6 +57,34 @@ namespace Taper
         private void menuSave_Click(object sender, EventArgs e) { FileSave(false); }
         private void toolSave_Click(object sender, EventArgs e) { FileSave(false); }
         private void menuSaveAs_Click(object sender, EventArgs e) { FileSave(true); }
+
+        /// <summary>
+        /// Импорт блоков из TAP-файла
+        /// </summary>
+        void importTAP()
+        {
+            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TAP-файла", Filter = Program.FilterTAP };
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            Project.Change();
+            Project.Open(dialog.FileName, true);
+            DrawProject();
+        }
+        private void menuImportTap_Click(object sender, EventArgs e) { importTAP(); }
+
+        /// <summary>
+        /// Импорт блоков из TZX-файла
+        /// </summary>
+        void importTZX()
+        {
+            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TZX-файла", Filter = Program.FilterTZX };
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            Project.Change();
+            TZXload(dialog.FileName);
+            DrawProject();
+        }
+        private void menuImportTZX_Click(object sender, EventArgs e) { importTZX(); }
+        private void menuexit_Click(object sender, EventArgs e) { Close(); }
+
         #endregion
 
         #region Меню Вид
@@ -66,6 +92,32 @@ namespace Taper
         private void menuListBlocks_Click(object sender, EventArgs e) { menuListFiles.Checked = false; menuListBlocks.Checked = true; DrawProject(); }
         #endregion
 
+        #region Меню Правка
+        private void menuUndo_Click(object sender, EventArgs e) { Project.Undo(); DrawProject(); }
+        private void toolUndo_Click(object sender, EventArgs e) { Project.Undo(); DrawProject(); }
+        private void menuRedo_Click(object sender, EventArgs e) { Project.Redo(); DrawProject(); }
+        private void toolRedo_Click(object sender, EventArgs e) { Project.Redo(); DrawProject(); }
+        private void menuCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
+        private void toolCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
+        private void cmenuCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
+        private void menuCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
+        private void toolCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
+        private void cmenuCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
+        private void menuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
+        private void toolPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
+        private void cmenuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
+        #endregion
+
+        #region Меню Блоки
+        #endregion
+
+        #region Меню Инструменты
+        #endregion
+
+        #region Меню Справка
+        private void menuabout_Click(object sender, EventArgs e) { FormAbout form = new FormAbout(); form.ShowDialog(); }
+        #endregion
+        
         /// <summary>
         /// Правка заголовка
         /// </summary>
@@ -95,55 +147,9 @@ namespace Taper
             Properties.Settings.Default.Height = Height;
             Properties.Settings.Default.Save();
         }
-        private void menuabout_Click(object sender, EventArgs e) { FormAbout form = new FormAbout(); form.ShowDialog(); }
-        private void toolcut_Click(object sender, EventArgs e) { menucut_Click(null, null); }
-        private void toolcopy_Click(object sender, EventArgs e) { menucopy_Click(null, null); }
-        private void toolpaste_Click(object sender, EventArgs e) { menupaste_Click(null, null); }
 
 
-        //Копирование
-        private void menucopy_Click(object sender, EventArgs e)
-        {
-            if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return; }
-            Buffer.Clear();
-            for (int i = 0; i < listViewTAP.SelectedIndices.Count; i++)
-                Buffer.Add(Project.TAP[listViewTAP.SelectedIndices[i]]);
-        }
-        //Вырезание
-        private void menucut_Click(object sender, EventArgs e)
-        {
-            Project.Change();
-            if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return; }
-            Buffer.Clear();
-            for (int i = 0; i < listViewTAP.SelectedIndices.Count; i++)
-                Buffer.Add(Project.TAP[listViewTAP.SelectedIndices[i]]);
-            for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0; i--)
-                Project.TAP.RemoveAt(listViewTAP.SelectedIndices[i]);
-            DrawProject();
-        }
-        //Вставка
-        private void menupaste_Click(object sender, EventArgs e)
-        {
-            Project.Change();
-            if (Buffer.Count == 0) return;
-            if (listViewTAP.SelectedIndices.Count == 0)
-            {
-                foreach (Block block in Buffer)
-                    Project.TAP.Add(block);
-            }
-            else
-            {
-                //Там-то было легко... только добавить к концу, здесь же сначала надо раздвинуть блоки
-                for (int i = 0; i < Buffer.Count; i++)
-                    Project.TAP.Add(null);
-                for (int i = Project.TAP.Count - 1; i >= listViewTAP.SelectedIndices[0] + Buffer.Count; i--)
-                    Project.TAP[i] = Project.TAP[i - Buffer.Count];
-                for (int i = 0; i < Buffer.Count; i++)
-                    Project.TAP[listViewTAP.SelectedIndices[0] + i] = Buffer[i];
-            }
-            DrawProject();
-        }
-        //------------------------------------------------------------------------------------------------------------------------------------------
+
         //Отображение содержимого файла в листвью
         void DrawProject()
         {
@@ -178,15 +184,6 @@ namespace Taper
             Project.Change();
             for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0; i--)
                 Project.TAP.RemoveAt(listViewTAP.SelectedIndices[i]);
-            DrawProject();
-        }
-        //Добавление файла в проект
-        private void tAPфайлToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Добавление TAP-файла", Filter = Program.FilterTAP };
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            Project.Change();
-            Project.Open(dialog.FileName, true);
             DrawProject();
         }
         //Движение блоков вверх
@@ -246,34 +243,6 @@ namespace Taper
             foreach (int i in sel)
                 listViewTAP.Items[i + 1].Selected = true;
         }
-
-        private void menuexit_Click(object sender, EventArgs e) { this.Close(); }
-
-        //Отменить
-        private void отменитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Project.hIndex < 2) return;
-            Project.hIndex--;
-            Project.TAP.Clear();
-            foreach (Block block in Project.history[Project.hIndex - 1])
-                Project.TAP.Add(block);
-            Project.changed = true;
-            DrawProject();
-        }
-        //Повторить
-        private void вернутьтожеПокаНеРаботаетToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Project.hIndex == Project.history.Count) return;
-            Project.hIndex++;
-            Project.TAP.Clear();
-            foreach (Block block in Project.history[Project.hIndex - 1])
-                Project.TAP.Add(block);
-            Project.changed = true;
-            DrawProject();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e) { отменитьToolStripMenuItem_Click(null, null); }
-        private void toolStripButton2_Click(object sender, EventArgs e) { вернутьтожеПокаНеРаботаетToolStripMenuItem_Click(null, null); }
 
         private void изWAVфайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -425,15 +394,6 @@ namespace Taper
             }
             return false;
         }
-        //Импорт из TZX
-        private void tZXфайлпокаНеРаботаетToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterTZX };
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            TZXload(dialog.FileName);
-            Project.Change();
-            DrawProject();
-        }
 
         void TZXload(string filename)
         {
@@ -569,9 +529,6 @@ namespace Taper
             DrawProject();
         }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
-        private void вырезатьToolStripMenuItem_Click(object sender, EventArgs e) { menucut_Click(null, null); }
-        private void копироватьToolStripMenuItem_Click(object sender, EventArgs e) { menucopy_Click(null, null); }
-        private void вставитьToolStripMenuItem_Click(object sender, EventArgs e) { menupaste_Click(null, null); }
         private void переименоватьToolStripMenuItem1_Click(object sender, EventArgs e) { переименоватьToolStripMenuItem_Click(null, null); }
         private void toolStripButton4_Click(object sender, EventArgs e) { подвинутьВверхToolStripMenuItem_Click(null, null); }
         private void toolStripButton6_Click(object sender, EventArgs e) { подвинутьВнизToolStripMenuItem_Click(null, null); }
@@ -639,4 +596,5 @@ namespace Taper
         }
 
     }
-} //846, 820, 759, 734, 696, 650
+} //846, 820, 759, 734, 696, 642, 598
+

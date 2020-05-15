@@ -73,7 +73,6 @@ namespace Taper
         /// <returns></returns>
         bool CRCTest(byte[] bytes, bool fix)
         {
-            return bytes[8]>32;
             byte sum = 0;
             for (int i = 0; i < bytes.Length - 1; i++) sum ^= bytes[i];
             if (fix) bytes[bytes.Length - 1] = sum;

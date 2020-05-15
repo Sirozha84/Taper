@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Taper
 {
@@ -16,6 +17,7 @@ namespace Taper
         //Временно эти поля публичные, потом перенесу управление историей сюда
         public static List<List<Block>> history = new List<List<Block>>();  //История изменений проекта
         public static int hIndex;                           //Позиция в истории
+        static List<Block> Buffer = new List<Block>(); //Буфер обмена
 
         /// <summary>
         /// Создание нового проекта, запускается так же и перед открытием файла
@@ -136,6 +138,81 @@ namespace Taper
                     TAP.Add(new Block(block.FileTitle));
                 if (block.FileData != null)
                     TAP.Add(new Block(block.FileData));
+            }
+        }
+
+        /// <summary>
+        /// Отменить
+        /// </summary>
+        public static void Undo()
+        {
+            if (hIndex < 2) return;
+            hIndex--;
+            TAP.Clear();
+            foreach (Block block in history[hIndex - 1])
+                TAP.Add(block);
+            changed = true;
+        }
+
+        /// <summary>
+        /// Вернуть
+        /// </summary>
+        public static void Redo()
+        {
+            if (hIndex == history.Count) return;
+            hIndex++;
+            TAP.Clear();
+            foreach (Block block in history[Project.hIndex - 1])
+                TAP.Add(block);
+            changed = true;
+        }
+
+        /// <summary>
+        /// Вырезать
+        /// </summary>
+        public static void Cut(ListView.SelectedIndexCollection selected)
+        {
+            if (selected.Count == 0) return;
+            Change();
+            Buffer.Clear();
+            for (int i = 0; i < selected.Count; i++)
+                Buffer.Add(TAP[selected[i]]);
+            for (int i = selected.Count - 1; i >= 0; i--)
+                TAP.RemoveAt(selected[i]);
+        }
+
+        /// <summary>
+        /// Копирование
+        /// </summary>
+        public static void Copy(ListView.SelectedIndexCollection selected)
+        {
+            if (selected.Count == 0) return;
+            Buffer.Clear();
+            for (int i = 0; i < selected.Count; i++)
+                Buffer.Add(TAP[selected[i]]);
+        }
+
+        /// <summary>
+        /// Вставить
+        /// </summary>
+        public static void Paste(ListView.SelectedIndexCollection selected)
+        {
+            if (Buffer.Count == 0) return;
+            Change();
+            if (selected.Count == 0)
+            {
+                foreach (Block block in Buffer)
+                    TAP.Add(block);
+            }
+            else
+            {
+                //Там-то было легко... только добавить к концу, здесь же сначала надо раздвинуть блоки
+                for (int i = 0; i < Buffer.Count; i++)
+                    TAP.Add(null);
+                for (int i = TAP.Count - 1; i >= selected[0] + Buffer.Count; i--)
+                    TAP[i] = TAP[i - Buffer.Count];
+                for (int i = 0; i < Buffer.Count; i++)
+                    TAP[selected[0] + i] = Buffer[i];
             }
         }
 
