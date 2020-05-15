@@ -33,7 +33,7 @@ namespace Taper
             {
                 //Добавление заголовка
                 FileTitle = Bytes;
-                CRCTitle = CRCTest(Bytes);
+                CRCTitle = CRCTest(Bytes, false);
 
                 //Обрежем лишнее, бывает что заголовок содержит некий мусор выше 19-и байт, прямо после CRC
                 Array.Resize(ref FileTitle, 19);
@@ -62,19 +62,34 @@ namespace Taper
             {
                 //Добавление блока данных
                 FileData = Bytes;
-                CRCData = CRCTest(Bytes);
+                CRCData = CRCTest(Bytes, false);
             }
         }
         /// <summary>
         /// Проверка контрольной суммы
         /// </summary>
-        /// <param name="Bytes">Массив данных</param>
+        /// <param name="bytes">Массив данных</param>
+        /// /// <param name="fix">Массив данных</param>
         /// <returns></returns>
-        private bool CRCTest(byte[] Bytes)
+        bool CRCTest(byte[] bytes, bool fix)
         {
-            byte summ = 0;
-            foreach (byte b in Bytes) summ ^= b;
-            return summ == 0;
+            return bytes[8]>32;
+            byte sum = 0;
+            for (int i = 0; i < bytes.Length - 1; i++) sum ^= bytes[i];
+            if (fix) bytes[bytes.Length - 1] = sum;
+            return bytes[bytes.Length - 1] == sum;
+        }
+
+        /// <summary>
+        /// Вывод информации о контрольных суммах файла/блоков
+        /// </summary>
+        /// <returns></returns>
+        public string CRC()
+        {
+            if (FileTitle != null & FileData != null) return (CRCTitle ? "OK, " : "Fail, ")+(CRCData ? "OK" : "Fail");
+            if (FileTitle != null & FileData == null) return CRCTitle ? "OK" : "Fail";
+            if (FileTitle == null & FileData != null) return CRCData ? "OK" : "Fail";
+            return "";
         }
     }
 }

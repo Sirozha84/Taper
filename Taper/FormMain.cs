@@ -162,50 +162,7 @@ namespace Taper
                 item.SubItems.Add(nm ? block.Start : NullString);
                 item.SubItems.Add(nm ? block.Len : NullString);
                 item.SubItems.Add(dt ? (block.FileData.Length - 2).ToString() : NullString);
-                /*if (block.FileTitle != null)
-                {
-                    //Нормальный файл с именем (но может быть и без самого блока)
-                    listViewTAP.Items.Add(block.FileType);
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(block.FileName);
-                    if (block.FileTitle[1] == 0)
-                        if (block.FileTitle[14] + block.FileTitle[15] * 256 < 10000)
-                            listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add("Basic line " + (block.FileTitle[14] + block.FileTitle[15] * 256).ToString()); //Адрес
-                        else
-                            listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add("No run");
-                    if (block.FileTitle[1] == 3)
-                        listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileTitle[14] + block.FileTitle[15] * 256).ToString()); //Адрес
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileTitle[12] + block.FileTitle[13] * 256).ToString()); //Размер
-                    if (block.FileData != null)
-                    {
-                        listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileData.Count() - 2).ToString());
-                        AddCRC(block.CRCData);
-                    }
-                    else
-                    {
-                        listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
-                        listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
-                    }
-                }
-                else
-                {
-                    //Блок без имени
-                    if (block.FileData[0] == 0)
-                        listViewTAP.Items.Add(block.FileData[0].ToString());
-                    else
-                        listViewTAP.Items.Add("    Блок данных");
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add(NullString);
-                    listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add((block.FileData.Count() - 2).ToString());
-                    AddCRC(block.CRCData);
-                }
-                if (block.FileTitle != null) fullbytes += 17;
-                if (block.FileData != null)
-                {
-                    files++;
-                    bytes += block.FileData.Count() - 2;
-                    fullbytes += block.FileData.Count() - 2;
-                }*/
+                item.SubItems.Add(block.CRC());
                 listViewTAP.Items.Add(item);
             }
             //Подсчёт количества блоков
@@ -213,14 +170,6 @@ namespace Taper
             toolStripStatusLabel3.Text = "Объём: " + bytes + " байт";
             toolStripStatusLabel4.Text = "Полный объём: " + fullbytes + " байт";
             SetFormText();
-        }
-        //Добавление строки со статусом CRC
-        void AddCRC(bool OK)
-        {
-            if (OK)
-                listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add("OK");
-            else
-                listViewTAP.Items[listViewTAP.Items.Count - 1].SubItems.Add("Failed");
         }
         //Удаление выделенного блока
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -690,4 +639,4 @@ namespace Taper
         }
 
     }
-} //846, 820, 759, 734, 696, 685
+} //846, 820, 759, 734, 696, 650

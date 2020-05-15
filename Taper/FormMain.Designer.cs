@@ -54,6 +54,9 @@
             this.menucut = new System.Windows.Forms.ToolStripMenuItem();
             this.menucopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menupaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuListFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuListBlocks = new System.Windows.Forms.ToolStripMenuItem();
             this.блокиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.подвинутьВверхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.подвинутьВнизToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,9 +105,6 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuListFiles = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuListBlocks = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -317,6 +317,31 @@
             this.menupaste.Size = new System.Drawing.Size(181, 22);
             this.menupaste.Text = "Вставить";
             this.menupaste.Click += new System.EventHandler(this.menupaste_Click);
+            // 
+            // menuView
+            // 
+            this.menuView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuListFiles,
+            this.menuListBlocks});
+            this.menuView.Name = "menuView";
+            this.menuView.Size = new System.Drawing.Size(39, 20);
+            this.menuView.Text = "Вид";
+            // 
+            // menuListFiles
+            // 
+            this.menuListFiles.Checked = true;
+            this.menuListFiles.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuListFiles.Name = "menuListFiles";
+            this.menuListFiles.Size = new System.Drawing.Size(160, 22);
+            this.menuListFiles.Text = "Список файлов";
+            this.menuListFiles.Click += new System.EventHandler(this.menuListFiles_Click);
+            // 
+            // menuListBlocks
+            // 
+            this.menuListBlocks.Name = "menuListBlocks";
+            this.menuListBlocks.Size = new System.Drawing.Size(160, 22);
+            this.menuListBlocks.Text = "Список блоков";
+            this.menuListBlocks.Click += new System.EventHandler(this.menuListBlocks_Click);
             // 
             // блокиToolStripMenuItem
             // 
@@ -638,7 +663,6 @@
             // columnCRC
             // 
             this.columnCRC.Text = "CRC";
-            this.columnCRC.Width = 40;
             // 
             // contextMenuStrip1
             // 
@@ -738,31 +762,6 @@
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(160, 19);
             this.toolStripStatusLabel4.Text = "   ";
             this.toolStripStatusLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // menuView
-            // 
-            this.menuView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuListFiles,
-            this.menuListBlocks});
-            this.menuView.Name = "menuView";
-            this.menuView.Size = new System.Drawing.Size(39, 20);
-            this.menuView.Text = "Вид";
-            // 
-            // menuListFiles
-            // 
-            this.menuListFiles.Checked = true;
-            this.menuListFiles.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.menuListFiles.Name = "menuListFiles";
-            this.menuListFiles.Size = new System.Drawing.Size(180, 22);
-            this.menuListFiles.Text = "Список файлов";
-            this.menuListFiles.Click += new System.EventHandler(this.menuListFiles_Click);
-            // 
-            // menuListBlocks
-            // 
-            this.menuListBlocks.Name = "menuListBlocks";
-            this.menuListBlocks.Size = new System.Drawing.Size(180, 22);
-            this.menuListBlocks.Text = "Список блоков";
-            this.menuListBlocks.Click += new System.EventHandler(this.menuListBlocks_Click);
             // 
             // FormMain
             // 
