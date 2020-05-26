@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Taper
 {
@@ -35,46 +36,118 @@ namespace Taper
         public static void Open(string filename, bool add)
         {
             if (add) Change(); else New();
+            bool load = false;
+            string ext = Path.GetExtension(filename).ToLower();
             try
             {
-                System.IO.BinaryReader file = new System.IO.BinaryReader(new System.IO.FileStream(filename, System.IO.FileMode.Open));
-                while (file.BaseStream.Position < file.BaseStream.Length)
+                if (ext == ".tap")
                 {
-                    int LEN = file.ReadUInt16();
-                    byte[] Bytes = file.ReadBytes(LEN);
-                    Add(Bytes);
+                    //Открываем TAP-файл
+                    BinaryReader file = new BinaryReader(new FileStream(filename, FileMode.Open));
+                    while (file.BaseStream.Position < file.BaseStream.Length)
+                    {
+                        int LEN = file.ReadUInt16();
+                        byte[] Bytes = file.ReadBytes(LEN);
+                        Add(Bytes);
+                    }
+                    file.Close();
+                    if (!add) name = filename;
+                    load = true;
                 }
-                file.Close();
-                if (!add) name = filename;
+                if (ext == ".tzx")
+                {
+                    //Открываем TZX-файл
+                    BinaryReader file = new BinaryReader(new FileStream(filename, FileMode.Open));
+                    file.ReadBytes(10); //10 байт какой-то херни в начале файла
+                    while (file.BaseStream.Position < file.BaseStream.Length)
+                    {
+                        file.ReadBytes(3); //3 байта какой-то херни в начале каждого блока
+                        int LEN = file.ReadUInt16();
+                        byte[] Bytes = file.ReadBytes(LEN);
+                        Add(Bytes);
+                    }
+                    file.Close();
+                    if (!add) name = filename;
+                    load = true;
+                }
             }
-            catch { Program.Error("Произошла ошибка при открытии файла."); }
+            catch {  }
+            if (!load)
+            {
+                Program.Error("Произошла ошибка при открытии файла или формат файла не поддерживается.");
+                New();
+            }
         }
 
         public static void Save(string filename)
         {
+            string ext = Path.GetExtension(filename).ToLower();
+            bool save = false;
             try
             {
-                System.IO.BinaryWriter file = new System.IO.BinaryWriter(new System.IO.FileStream(filename, System.IO.FileMode.Create));
-                foreach (Block block in TAP)
+                if (ext == ".tap")
                 {
-                    //Сохраняем заголовок
-                    if (block.FileTitle != null)
+                    //По умолчанию сохраняем в TAP-формате
+                    BinaryWriter file = new BinaryWriter(new FileStream(filename, FileMode.Create));
+                    foreach (Block block in TAP)
                     {
-                        file.Write((UInt16)19);
-                        file.Write(block.FileTitle);
+                        //Сохраняем заголовок
+                        if (block.FileTitle != null)
+                        {
+                            file.Write((UInt16)19);
+                            file.Write(block.FileTitle);
+                        }
+                        //Сохраняем блок данных
+                        if (block.FileData != null)
+                        {
+                            file.Write((UInt16)block.FileData.Count());
+                            file.Write(block.FileData);
+                        }
                     }
-                    //Сохраняем блок данных
-                    if (block.FileData != null)
-                    {
-                        file.Write((UInt16)block.FileData.Count());
-                        file.Write(block.FileData);
-                    }
+                    file.Close();
+                    name = filename;
+                    changed = false;
+                    save = true;
                 }
-                file.Close();
-                name = filename;
-                changed = false;
+                if (ext == ".tzx")
+                {
+                    //Сохраняем в TZX-формат
+                    BinaryWriter file = new BinaryWriter(new FileStream(filename, FileMode.Create));
+                    file.Write('Z');
+                    file.Write('X');
+                    file.Write('T');
+                    file.Write('a');
+                    file.Write('p');
+                    file.Write('e');
+                    file.Write('!');
+                    file.Write((byte)26);
+                    file.Write((byte)1);
+                    file.Write((byte)0);
+                    foreach (Block block in TAP)
+                    {
+                        if (block.FileTitle != null)
+                        {
+                            file.Write((byte)16);
+                            file.Write((Int16)1000);
+                            file.Write((Int16)block.FileTitle.Count());
+                            file.Write(block.FileTitle);
+                        }
+                        if (block.FileData != null)
+                        {
+                            file.Write((byte)16);
+                            file.Write((Int16)1000);
+                            file.Write((Int16)block.FileData.Count());
+                            file.Write(block.FileData);
+                        }
+                    }
+                    file.Close();
+                    name = filename;
+                    changed = false;
+                    save = true;
+                }
             }
             catch { Program.Error("Произошла ошибка во время сохранения файла. Файл не сохранён."); }
+            if (!save) Program.Error("Неизвестный формат файла. Файл не сохранён.");
         }
 
         /// <summary>
@@ -311,7 +384,7 @@ namespace Taper
         {
             //Сначала проверим, нормально ли выделено
             if (!NormalSelection(selected)) return false;
-            if (selected[selected.Count - 1] == selected.Count - 1) return false; //Двигаться некуда...
+            if (selected[selected.Count - 1] == TAP.Count - 1) return false; //Двигаться некуда...
             Change();
             RememberSelection(selected);
             //Теперь мы уверены, что выделено всё правильно, можно двигать

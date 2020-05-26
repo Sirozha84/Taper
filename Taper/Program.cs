@@ -9,8 +9,8 @@ namespace Taper
         public const string Version = "3.0 Beta (12.05.2015)";
         //Параметры открытия и сохранения файлов
         public const string FileUnnamed = "Безымянный";
-        public const string FilterTAP = "Образ ленты (*.tap)|*.tap|Все файлы (*.*)|*.*";
-        public const string FilterTZX = "Образ ленты (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
+        public const string FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
+        public const string FilterSel = "Образ ленты TAP (*.tap)|*.tap|Образ ленты TZX (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
         public const string FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
         public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
 
@@ -41,7 +41,7 @@ namespace Taper
         /// <param name="message">Текст</param>
         public static void Message(string message)
         {
-            MessageBox.Show(message, Program.Name);
+            MessageBox.Show(message, Name);
         }
     }
 }

@@ -40,10 +40,8 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuImport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuImportTap = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuImportTZX = new System.Windows.Forms.ToolStripMenuItem();
             this.изWAVфайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.вTZXфайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,7 +146,7 @@
             this.menuNew.Image = ((System.Drawing.Image)(resources.GetObject("menuNew.Image")));
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(172, 22);
+            this.menuNew.Size = new System.Drawing.Size(180, 22);
             this.menuNew.Text = "Новый";
             this.menuNew.Click += new System.EventHandler(this.menunNew_Click);
             // 
@@ -157,101 +155,85 @@
             this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(172, 22);
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
             this.menuOpen.Text = "Открыть";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuSave
             // 
             this.menuSave.Image = ((System.Drawing.Image)(resources.GetObject("menuSave.Image")));
             this.menuSave.Name = "menuSave";
             this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(172, 22);
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
             this.menuSave.Text = "Сохранить";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(172, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuSaveAs.Text = "Сохранить как";
             this.menuSaveAs.Click += new System.EventHandler(this.menuSaveAs_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuImport
             // 
             this.menuImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuImportTap,
-            this.menuImportTZX,
             this.изWAVфайлаToolStripMenuItem});
             this.menuImport.Name = "menuImport";
-            this.menuImport.Size = new System.Drawing.Size(172, 22);
+            this.menuImport.Size = new System.Drawing.Size(180, 22);
             this.menuImport.Text = "Импорт";
             // 
             // menuImportTap
             // 
             this.menuImportTap.Name = "menuImportTap";
-            this.menuImportTap.Size = new System.Drawing.Size(154, 22);
-            this.menuImportTap.Text = "из TAP-файла";
+            this.menuImportTap.Size = new System.Drawing.Size(237, 22);
+            this.menuImportTap.Text = "Добавление блоков из файла";
             this.menuImportTap.Click += new System.EventHandler(this.menuImportTap_Click);
-            // 
-            // menuImportTZX
-            // 
-            this.menuImportTZX.Name = "menuImportTZX";
-            this.menuImportTZX.Size = new System.Drawing.Size(154, 22);
-            this.menuImportTZX.Text = "из TZX-файл";
-            this.menuImportTZX.Click += new System.EventHandler(this.menuImportTZX_Click);
             // 
             // изWAVфайлаToolStripMenuItem
             // 
             this.изWAVфайлаToolStripMenuItem.Image = global::Taper.Properties.Resources.Ico;
             this.изWAVфайлаToolStripMenuItem.Name = "изWAVфайлаToolStripMenuItem";
-            this.изWAVфайлаToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.изWAVфайлаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.изWAVфайлаToolStripMenuItem.Text = "из WAV-файла";
             this.изWAVфайлаToolStripMenuItem.Click += new System.EventHandler(this.изWAVфайлаToolStripMenuItem_Click);
             // 
             // menuExport
             // 
             this.menuExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.вTZXфайлToolStripMenuItem,
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem});
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(172, 22);
+            this.menuExport.Size = new System.Drawing.Size(180, 22);
             this.menuExport.Text = "Экспорт";
-            // 
-            // вTZXфайлToolStripMenuItem
-            // 
-            this.вTZXфайлToolStripMenuItem.Name = "вTZXфайлToolStripMenuItem";
-            this.вTZXфайлToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.вTZXфайлToolStripMenuItem.Text = "в TZX-файл";
-            this.вTZXфайлToolStripMenuItem.Click += new System.EventHandler(this.вTZXфайлToolStripMenuItem_Click);
             // 
             // вWAVфайлтожеПокаНеРаботаетToolStripMenuItem
             // 
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem.Name = "вWAVфайлтожеПокаНеРаботаетToolStripMenuItem";
-            this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem.Text = "в WAV-файл";
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem.Click += new System.EventHandler(this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(172, 22);
+            this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Выход";
             // 
             // правкаToolStripMenuItem
@@ -623,10 +605,10 @@
             this.listViewTAP.TabIndex = 3;
             this.listViewTAP.UseCompatibleStateImageBehavior = false;
             this.listViewTAP.View = System.Windows.Forms.View.Details;
-            this.listViewTAP.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
-            this.listViewTAP.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
+            this.listViewTAP.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragDrop);
+            this.listViewTAP.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragEnter);
             this.listViewTAP.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
-            this.listViewTAP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
+            this.listViewTAP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewTAP_KeyDown);
             // 
             // columnType
             // 
@@ -827,7 +809,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuMoveDown;
         private System.Windows.Forms.ToolStripMenuItem menuImport;
         private System.Windows.Forms.ToolStripMenuItem menuImportTap;
-        private System.Windows.Forms.ToolStripMenuItem menuImportTZX;
         private System.Windows.Forms.ToolStripMenuItem menuExport;
         private System.Windows.Forms.ToolStripMenuItem вWAVфайлтожеПокаНеРаботаетToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem правкаToolStripMenuItem;
@@ -846,7 +827,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripMenuItem инструментыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрФайлаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem вTZXфайлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuFixCRCs;
         private System.Windows.Forms.ToolStripMenuItem поискДубликатовToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenu;

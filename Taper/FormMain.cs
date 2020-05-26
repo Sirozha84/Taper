@@ -7,10 +7,7 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
-        public FormMain()
-        {
-            InitializeComponent();
-        }
+        public FormMain() { InitializeComponent(); }
 
         #region Меню Файл
         /// <summary>
@@ -31,7 +28,7 @@ namespace Taper
         private void FileOpen()
         {
             if (!SaveQuestion()) return;
-            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterTAP };
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Open(dialog.FileName, false);
             DrawProject();
@@ -47,7 +44,7 @@ namespace Taper
         {
             if (Project.name == Program.FileUnnamed | saveAs)
             {
-                SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterTAP };
+                SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterSel };
                 if (dialog.ShowDialog() == DialogResult.OK) Project.Save(dialog.FileName);
                 else return;
             }
@@ -59,31 +56,17 @@ namespace Taper
         private void menuSaveAs_Click(object sender, EventArgs e) { FileSave(true); }
 
         /// <summary>
-        /// Импорт блоков из TAP-файла
+        /// Добавление блоков
         /// </summary>
         void importTAP()
         {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TAP-файла", Filter = Program.FilterTAP };
+            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TAP-файла", Filter = Program.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Change();
             Project.Open(dialog.FileName, true);
             DrawProject();
         }
         private void menuImportTap_Click(object sender, EventArgs e) { importTAP(); }
-
-        /// <summary>
-        /// Импорт блоков из TZX-файла
-        /// </summary>
-        void importTZX()
-        {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TZX-файла", Filter = Program.FilterTZX };
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            Project.Change();
-            TZXload(dialog.FileName);
-            DrawProject();
-        }
-        private void menuImportTZX_Click(object sender, EventArgs e) { importTZX(); }
-        private void menuexit_Click(object sender, EventArgs e) { Close(); }
 
         #endregion
 
@@ -205,7 +188,7 @@ namespace Taper
             FormTapeLoad form = new FormTapeLoad();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                Project.Change();
+                Project.Change(); //Переместить перед добавлением файлов в проект
                 DrawProject();
             }
         }
@@ -237,7 +220,7 @@ namespace Taper
             просмотрФайлаToolStripMenuItem_Click(null, null);
         }
 
-        private void listView1_KeyDown(object sender, KeyEventArgs e)
+        private void listViewTAP_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter) listView1_DoubleClick(null, null);
         }
@@ -338,77 +321,7 @@ namespace Taper
             }
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
-        //Исправление контрольных сумм в блоке
-        bool FixCRC(byte[] block)
-        {
-            byte crc=0;
-            for (int i = 0; i < block.Count() - 1; i++) crc = (byte)(crc ^ block[i]);
-            if (block[block.Count() - 1] != crc)
-            {
-                block[block.Count() - 1] = crc;
-                return true;
-            }
-            return false;
-        }
 
-        void TZXload(string filename)
-        {
-            try
-            {
-                System.IO.BinaryReader file = new System.IO.BinaryReader(new System.IO.FileStream(filename, System.IO.FileMode.Open));
-                file.ReadBytes(10); //10 байт какой-то херни в начале файла
-                while (file.BaseStream.Position < file.BaseStream.Length)
-                {
-                    file.ReadBytes(3); //3 байта какой-то херни в начале каждого блока
-                    int LEN = file.ReadUInt16();
-                    byte[] Bytes = file.ReadBytes(LEN); //Собственно загрузка, в C# она простая и быстрая
-                    //Добавляем загруженную коллекцию байтов в проект
-                    Project.Add(Bytes);
-                }
-                file.Close();
-            }
-            catch { Program.Error("Произошла ошибка при открытии файла."); }
-        }
-
-        //Экспорт в TZX
-        private void вTZXфайлToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterTZX };
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            try
-            {
-                System.IO.BinaryWriter file = new System.IO.BinaryWriter(new System.IO.FileStream(dialog.FileName, System.IO.FileMode.Create));
-                file.Write('Z');
-                file.Write('X');
-                file.Write('T');
-                file.Write('a');
-                file.Write('p');
-                file.Write('e');
-                file.Write('!');
-                file.Write((byte)26);
-                file.Write((byte)1);
-                file.Write((byte)0);
-                foreach (Block block in Project.TAP)
-                {
-                    if (block.FileTitle != null)
-                    {
-                        file.Write((byte)16);
-                        file.Write((Int16)1000);
-                        file.Write((Int16)block.FileTitle.Count());
-                        file.Write(block.FileTitle);
-                    }
-                    if (block.FileData != null)
-                    {
-                        file.Write((byte)16);
-                        file.Write((Int16)1000);
-                        file.Write((Int16)block.FileData.Count());
-                        file.Write(block.FileData);
-                    }
-                }
-                file.Close();
-            }
-            catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
-        }
         //Поиск дубликатов блоков
         private void поискДубликатовToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -438,34 +351,30 @@ namespace Taper
         }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
 
-        private void listView1_DragEnter(object sender, DragEventArgs e)
+        private void listViewTAP_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
                 e.Effect = DragDropEffects.All;
         }
 
-        private void listView1_DragDrop(object sender, DragEventArgs e)
+        private void listViewTAP_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             string file = files[0];
             string ext = System.IO.Path.GetExtension(file).ToLower();
-            if (ext == ".tap" & SaveQuestion())
+
+            if (ext == ".tap" | ext == ".tzx")
             {
-                Project.Open(file, false); //Здесь будет зависить от будущего диалога (добавить или открыть)
+                if (MessageBox.Show("Добавить файлы в проект? Нет - открыть файл.", Program.Name, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    Project.Open(file, true);
+                else
+                {
+                    SaveQuestion();
+                    Project.Open(file, false);
+                }
                 DrawProject();
-                return;
             }
-            if (ext == ".tzx" & SaveQuestion())
-            {
-                Project.name = Program.FileUnnamed;
-                SetFormText();
-                Project.New();
-                TZXload(file);
-                DrawProject();
-                return;
-            }
-            //А здесь добавим файл импортом (которого пока нет) если он не больше 65535 байт
-            MessageBox.Show("Файл не поддерживается", "Taper");
+            else MessageBox.Show("Файл не поддерживается", "Taper");
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -481,23 +390,12 @@ namespace Taper
             if (args.Count() == 1) return;
             string file = args[1];
             string ext = System.IO.Path.GetExtension(file).ToLower();
-            if (ext == ".tap" & SaveQuestion())
+            if (ext == ".tap" | ext == ".tzx")
             {
                 Project.Open(file, false);
                 DrawProject();
-                return;
             }
-            if (ext == ".tzx" & SaveQuestion())
-            {
-                Project.name = Program.FileUnnamed;
-                SetFormText();
-                Project.New();
-                TZXload(file);
-                DrawProject();
-                return;
-            }
-            MessageBox.Show("Файл не поддерживается", "Taper");
+            else MessageBox.Show("Файл не поддерживается", "Taper");
         }
-
     }
-} //846, 820, 759, 734, 696, 642, 598, 559
+} //846 -> 401
