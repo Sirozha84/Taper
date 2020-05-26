@@ -114,9 +114,18 @@ namespace Taper
         #endregion
 
         #region Меню Блоки
+        private void menuMoveUp_Click(object sender, EventArgs e) { if (Project.MoveUp(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, -1); } }
+        private void toolMoveUp_Click(object sender, EventArgs e) { if (Project.MoveUp(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, -1); } }
+        private void menuMoveDown_Click(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
+        private void toolMoveDown_Click(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
         #endregion
 
         #region Меню Инструменты
+        private void menuFixCRCs_Click(object sender, EventArgs e)
+        {
+            if (Project.FixCRCs()) Program.Message("Контрольные суммы исправлены.");
+            else Program.Message("Все контрольные суммы в порядке.");
+        }
         #endregion
 
         #region Меню Справка
@@ -189,64 +198,6 @@ namespace Taper
             toolStripStatusLabel3.Text = "Объём: " + bytes + " байт";
             toolStripStatusLabel4.Text = "Полный объём: " + fullbytes + " байт";
             SetFormText();
-        }
-        
-        //Движение блоков вверх
-        private void подвинутьВверхToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Project.Change();
-            //Сначала проверим, нормально ли выделено
-            if (!NormalSelection()) return;
-            if (listViewTAP.SelectedIndices[0] == 0) return; //Двигаться некуда...
-            //Теперь мы уверены, что выделено всё правильно, можно двигать
-            //Запоминаем временный блок, который потом появится "снизу"
-            Block temp = Project.TAP[listViewTAP.SelectedIndices[0] - 1];
-            for (int i = 0; i < listViewTAP.SelectedIndices.Count; i++)
-                Project.TAP[listViewTAP.SelectedIndices[i] - 1] = Project.TAP[listViewTAP.SelectedIndices[i]];
-            Project.TAP[listViewTAP.SelectedIndices[listViewTAP.SelectedIndices.Count - 1]] = temp;
-            //Теперь нвдо запомнить какие строчки были выделены
-            List<int> sel = new List<int>();
-            foreach (int i in listViewTAP.SelectedIndices)
-                sel.Add(i);
-            //Делаем изменения на экране (и в мозгах)
-            DrawProject();
-            //Теперь восстанавливаем выделение, но на строчку выше
-            foreach (int i in sel)
-                listViewTAP.Items[i - 1].Selected = true;
-        }
-        //Проверка на "Нормальность" выделения, чтобы, например, избежать "дыр" //Проверить где это надо, и для чего
-        bool NormalSelection()
-        {
-            if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return false; }
-            if (listViewTAP.SelectedIndices.Count == 1) return true; //Если выделен только один - уже хорошо
-            bool Normal = true;
-            for (int i = 0; i < listViewTAP.SelectedIndices.Count - 1; i++)
-                if (listViewTAP.SelectedIndices[i] + 1 != listViewTAP.SelectedIndices[i + 1]) Normal = false;
-            if (!Normal) { Program.Message("Для этого блоки должны быть выделены последовательно"); return false; }
-            return true;
-        }
-
-        private void подвинутьВнизToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Project.Change();
-            //Сначала проверим, нормально ли выделено
-            if (!NormalSelection()) return;
-            if (listViewTAP.SelectedIndices[listViewTAP.SelectedIndices.Count - 1] == listViewTAP.Items.Count - 1) return; //Двигаться некуда...
-            //Теперь мы уверены, что выделено всё правильно, можно двигать
-            //Запоминаем временный блок, который потом появится "снизу"
-            Block temp = Project.TAP[listViewTAP.SelectedIndices[listViewTAP.SelectedIndices.Count - 1] + 1];
-            for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0 ; i--)
-                Project.TAP[listViewTAP.SelectedIndices[i] + 1] = Project.TAP[listViewTAP.SelectedIndices[i]];
-            Project.TAP[listViewTAP.SelectedIndices[0]] = temp;
-            //Теперь нвдо запомнить какие строчки были выделены
-            List<int> sel = new List<int>();
-            foreach (int i in listViewTAP.SelectedIndices)
-                sel.Add(i);
-            //Делаем изменения на экране (и в мозгах)
-            DrawProject();
-            //Теперь восстанавливаем выделение, но на строчку выше
-            foreach (int i in sel)
-                listViewTAP.Items[i + 1].Selected = true;
         }
 
         private void изWAVфайлаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -458,21 +409,6 @@ namespace Taper
             }
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
-        //Исправление контрольных сумм
-        private void проверкаКонтрольныхСуммToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            bool action = false;
-            foreach (Block block in Project.TAP)
-            {
-                if (block.FileTitle != null) if (FixCRC(block.FileTitle)) action = true;
-                if (block.FileData != null) if (FixCRC(block.FileData)) action = true;
-                block.CRCData = true;
-            }
-            Project.Change();
-            DrawProject();
-            if (action) Program.Message("Контрольные суммы исправлены.");
-            else Program.Message("Все контрольные суммы и так в норме.");
-        }
         //Поиск дубликатов блоков
         private void поискДубликатовToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -501,8 +437,6 @@ namespace Taper
             else Program.Message("Дубликаты не обнаружены.");
         }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
-        private void toolStripButton4_Click(object sender, EventArgs e) { подвинутьВверхToolStripMenuItem_Click(null, null); }
-        private void toolStripButton6_Click(object sender, EventArgs e) { подвинутьВнизToolStripMenuItem_Click(null, null); }
 
         private void listView1_DragEnter(object sender, DragEventArgs e)
         {
@@ -566,5 +500,4 @@ namespace Taper
         }
 
     }
-} //846, 820, 759, 734, 696, 642, 598, 577
-
+} //846, 820, 759, 734, 696, 642, 598, 559

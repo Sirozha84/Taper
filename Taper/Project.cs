@@ -13,6 +13,7 @@ namespace Taper
         public static List<Block> TAP = new List<Block>();  //Собственно TAP-файл
         public static Block view;                           //Блок для просмотрщика
         public static string rename = "";                   //Пока не помню сути этой переменной.....
+        private static List<int> lastSelect = new List<int>();     //Буфер запоминания выделения
 
         //Временно эти поля публичные, потом перенесу управление историей сюда
         public static List<List<Block>> history = new List<List<Block>>();  //История изменений проекта
@@ -256,6 +257,105 @@ namespace Taper
             TAP[currentblock].FileName = rename;
             //После переименования починим CRC
             TAP[selected[0]].CRCTest(0, true);
+        }
+        
+        /// <summary>
+        /// Исправление контрольных сумм
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static bool FixCRCs()
+        {
+            //Сначала проверим, будут ли изменения (есть ли несовпадения сумм)
+            bool action = false;
+            foreach (Block block in TAP)
+            {
+                action |= block.FileTitle != null && !block.CRCTitle;
+                action |= block.FileData != null && !block.CRCData;
+            }
+            if (action) Change(); else return false;
+            //Ошибки есть, чиним
+            foreach (Block block in TAP)
+            {
+                if (block.FileTitle != null) block.CRCTest(0, true);
+                if (block.FileData != null) block.CRCTest(1, true);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Перемещение блоков ввеих
+        /// </summary>
+        /// <param name="selected"></param>
+        public static bool MoveUp(ListView.SelectedIndexCollection selected)
+        {
+            //Сначала проверим, нормально ли выделено
+            if (!NormalSelection(selected)) return false;
+            if (selected[0] == 0) return false; //Двигаться некуда...
+            Change();
+            RememberSelection(selected);
+            //Теперь мы уверены, что выделено всё правильно, можно двигать
+            //Запоминаем временный блок, который потом появится "снизу"
+            Block temp = TAP[selected[0] - 1];
+            for (int i = 0; i < selected.Count; i++)
+                TAP[selected[i] - 1] = TAP[selected[i]];
+            TAP[selected[selected.Count - 1]] = temp;
+            return true;
+        }
+        
+        /// <summary>
+        /// Перемещение блоков вниз
+        /// </summary>
+        /// <param name="selected"></param>
+        public static bool MoveDown(ListView.SelectedIndexCollection selected)
+        {
+            //Сначала проверим, нормально ли выделено
+            if (!NormalSelection(selected)) return false;
+            if (selected[selected.Count - 1] == selected.Count - 1) return false; //Двигаться некуда...
+            Change();
+            RememberSelection(selected);
+            //Теперь мы уверены, что выделено всё правильно, можно двигать
+            //Запоминаем временный блок, который потом появится "снизу"
+            Block temp = TAP[selected[selected.Count - 1] + 1];
+            for (int i = selected.Count - 1; i >= 0; i--)
+                TAP[selected[i] + 1] = TAP[selected[i]];
+            TAP[selected[0]] = temp;
+            return true;
+        }
+        /// <summary>
+        /// Проверка на последовательность выделения
+        /// </summary>
+        /// <returns></returns>
+        static bool NormalSelection(ListView.SelectedIndexCollection selected)
+        {
+            if (selected.Count == 0) return false;
+            if (selected.Count == 1) return true; //Если выделен только один - уже хорошо
+            bool Normal = true;
+            for (int i = 0; i < selected.Count - 1; i++)
+                if (selected[i] + 1 != selected[i + 1]) Normal = false;
+            if (!Normal) { Program.Message("Переместить можно только рядом стоящие блоки"); return false; }
+            return true;
+        }
+
+        /// <summary>
+        /// Запомнить выделение
+        /// </summary>
+        /// <returns></returns>
+        static void RememberSelection(ListView.SelectedIndexCollection selected)
+        {
+            lastSelect.Clear();
+            foreach (int i in selected)
+                lastSelect.Add(i);
+        }
+        /// <summary>
+        /// Восстановление выделения
+        /// </summary>
+        /// <param name="list">Листвью</param>
+        /// /// <param name="shift">Сдвиг (-1, +1)</param>
+        public static void RestroreSelection(ListView list, int shift)
+        {
+            foreach (int i in lastSelect)
+                list.Items[i + shift].Selected = true;
         }
 
     }
