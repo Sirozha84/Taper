@@ -106,6 +106,11 @@ namespace Taper
         private void menuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
         private void toolPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
         private void cmenuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
+        private void menuDelete_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
+        private void toolMenu_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
+        private void cmenuDelete_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
+        private void menuRename_Click(object sender, EventArgs e) { Project.Rename(listViewTAP.SelectedIndices); DrawProject(); }
+        private void cmenuRename_Click(object sender, EventArgs e) { Project.Rename(listViewTAP.SelectedIndices); DrawProject(); }
         #endregion
 
         #region Меню Блоки
@@ -119,14 +124,17 @@ namespace Taper
         #endregion
         
         /// <summary>
-        /// Правка заголовка
+        /// Обновление заголовка
         /// </summary>
         void SetFormText()
         {
             string star = ""; if (Project.changed) star = "*";
             Text = System.IO.Path.GetFileNameWithoutExtension(Project.name) + star + " - " + Program.Name;
         }
-        //Задание вопроса перед уничтожением файла
+        
+        /// <summary>
+        /// Задание вопроса перед уничтожением файла
+        /// </summary>
         bool SaveQuestion()
         {
             if (!Project.changed) return true;
@@ -138,7 +146,12 @@ namespace Taper
             }
             return false;
         }
-        //Закрытие программы
+        
+        /// <summary>
+        /// Выход из программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Left = Left;
@@ -148,9 +161,9 @@ namespace Taper
             Properties.Settings.Default.Save();
         }
 
-
-
-        //Отображение содержимого файла в листвью
+        /// <summary>
+        /// Вывод проекта на экран
+        /// </summary>
         void DrawProject()
         {
             if (menuListFiles.Checked) Project.ListFiles(); else Project.ListBlocks();
@@ -168,7 +181,7 @@ namespace Taper
                 item.SubItems.Add(nm ? block.Start : NullString);
                 item.SubItems.Add(nm ? block.Len : NullString);
                 item.SubItems.Add(dt ? (block.FileData.Length - 2).ToString() : NullString);
-                item.SubItems.Add(block.CRC());
+                item.SubItems.Add(block.CRCview());
                 listViewTAP.Items.Add(item);
             }
             //Подсчёт количества блоков
@@ -177,15 +190,7 @@ namespace Taper
             toolStripStatusLabel4.Text = "Полный объём: " + fullbytes + " байт";
             SetFormText();
         }
-        //Удаление выделенного блока
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return; }
-            Project.Change();
-            for (int i = listViewTAP.SelectedIndices.Count - 1; i >= 0; i--)
-                Project.TAP.RemoveAt(listViewTAP.SelectedIndices[i]);
-            DrawProject();
-        }
+        
         //Движение блоков вверх
         private void подвинутьВверхToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -209,7 +214,7 @@ namespace Taper
             foreach (int i in sel)
                 listViewTAP.Items[i - 1].Selected = true;
         }
-        //Проверка на "Нормальность" выделения, чтобы, например, избежать "дыр"
+        //Проверка на "Нормальность" выделения, чтобы, например, избежать "дыр" //Проверить где это надо, и для чего
         bool NormalSelection()
         {
             if (listViewTAP.SelectedIndices.Count == 0) { Program.Message("Ничего не выделено"); return false; }
@@ -495,44 +500,9 @@ namespace Taper
             if (find) Program.Message("Найдены дубликаты файлов. Они отмечены выделением.");
             else Program.Message("Дубликаты не обнаружены.");
         }
-        //Переименование файла
-        private void переименоватьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listViewTAP.SelectedIndices.Count != 1)
-            {
-                Program.Message("Должен быть выделен один блок.");
-                return;
-            }
-            if (Project.TAP[listViewTAP.SelectedIndices[0]].FileTitle == null)
-            {
-                Program.Message("В этом блоке нет заголовка.");
-                return;
-            }
-            //Переименование
-            Project.rename = Project.TAP[listViewTAP.SelectedIndices[0]].FileName;
-            FormInput form = new FormInput();
-            if (form.ShowDialog() != DialogResult.OK) return;
-            //Тут доделать
-            if (Project.rename.Length > 10) Project.rename = Project.rename.Substring(0, 10);
-            char[] str = Project.rename.ToCharArray();
-            int currentblock = listViewTAP.SelectedIndices[0];
-            //Сначала сотрём то что было, чтоб не оставалось артефактов
-            for (int i = 0; i < 10; i++)
-                Project.TAP[currentblock].FileTitle[i + 2] = 32;
-            //Накатываем новое имя
-            for (int i = 0; i < Project.rename.Length; i++)
-                Project.TAP[currentblock].FileTitle[i + 2] = (byte)str[i];
-            Project.TAP[currentblock].FileName = Project.rename;
-            //После переименования починим CRC
-            FixCRC(Project.TAP[listViewTAP.SelectedIndices[0]].FileTitle);
-            Project.Change();
-            DrawProject();
-        }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
-        private void переименоватьToolStripMenuItem1_Click(object sender, EventArgs e) { переименоватьToolStripMenuItem_Click(null, null); }
         private void toolStripButton4_Click(object sender, EventArgs e) { подвинутьВверхToolStripMenuItem_Click(null, null); }
         private void toolStripButton6_Click(object sender, EventArgs e) { подвинутьВнизToolStripMenuItem_Click(null, null); }
-        private void toolStripButton5_Click(object sender, EventArgs e) { удалитьToolStripMenuItem_Click(null, null); }
 
         private void listView1_DragEnter(object sender, DragEventArgs e)
         {
@@ -596,5 +566,5 @@ namespace Taper
         }
 
     }
-} //846, 820, 759, 734, 696, 642, 598
+} //846, 820, 759, 734, 696, 642, 598, 577
 

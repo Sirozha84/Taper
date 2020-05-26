@@ -85,7 +85,7 @@ namespace Taper
                     {
                         text += (char)13;
                         text += (char)10;
-                        if (checkBox1.Checked)
+                        if (checkBoxSpaces.Checked)
                         {
                             text += (char)13;
                             text += (char)10;

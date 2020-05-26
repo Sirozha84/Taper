@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -33,7 +34,7 @@ namespace Taper
             {
                 //Добавление заголовка
                 FileTitle = Bytes;
-                CRCTitle = CRCTest(Bytes, false);
+                CRCTest(0, false);
 
                 //Обрежем лишнее, бывает что заголовок содержит некий мусор выше 19-и байт, прямо после CRC
                 Array.Resize(ref FileTitle, 19);
@@ -62,28 +63,32 @@ namespace Taper
             {
                 //Добавление блока данных
                 FileData = Bytes;
-                CRCData = CRCTest(Bytes, false);
+                CRCTest(1, false);
             }
         }
+
         /// <summary>
         /// Проверка контрольной суммы
         /// </summary>
-        /// <param name="bytes">Массив данных</param>
-        /// /// <param name="fix">Массив данных</param>
+        /// <param name="block">0 - заголовок, 1 - данные</param>
+        /// /// <param name="fix">Чинить?</param>
         /// <returns></returns>
-        bool CRCTest(byte[] bytes, bool fix)
+        public void CRCTest(byte block, bool fix)
         {
+            byte[] d;
+            if (block == 0) d = FileTitle; else d = FileData;
             byte sum = 0;
-            for (int i = 0; i < bytes.Length - 1; i++) sum ^= bytes[i];
-            if (fix) bytes[bytes.Length - 1] = sum;
-            return bytes[bytes.Length - 1] == sum;
+            for (int i = 0; i < d.Length - 1; i++) sum ^= d[i];
+            if (fix) d[d.Length - 1] = sum;
+            bool res = d[d.Length - 1] == sum;
+            if (block == 0) CRCTitle = res; else CRCData = res;
         }
 
         /// <summary>
         /// Вывод информации о контрольных суммах файла/блоков
         /// </summary>
         /// <returns></returns>
-        public string CRC()
+        public string CRCview()
         {
             if (FileTitle != null & FileData != null) return (CRCTitle ? "OK, " : "Fail, ")+(CRCData ? "OK" : "Fail");
             if (FileTitle != null & FileData == null) return CRCTitle ? "OK" : "Fail";

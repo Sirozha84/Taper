@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSpaces = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -46,6 +46,7 @@
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.checkBoxSpaces);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -117,16 +117,16 @@
             this.tabPage1.Text = "Program";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxSpaces
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 15);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(69, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Отступы";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxSpaces.AutoSize = true;
+            this.checkBoxSpaces.Location = new System.Drawing.Point(12, 15);
+            this.checkBoxSpaces.Name = "checkBoxSpaces";
+            this.checkBoxSpaces.Size = new System.Drawing.Size(158, 17);
+            this.checkBoxSpaces.TabIndex = 2;
+            this.checkBoxSpaces.Text = "Промежутки между строк";
+            this.checkBoxSpaces.UseVisualStyleBackColor = true;
+            this.checkBoxSpaces.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // textBox1
             // 
@@ -286,6 +286,16 @@
             this.tabPage11.TabIndex = 6;
             this.tabPage11.Text = "Шрифт";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(243, 10);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(49, 25);
+            this.button4.TabIndex = 7;
+            this.button4.Text = ">>>";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // numericUpDown3
             // 
@@ -486,16 +496,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(243, 10);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(49, 25);
-            this.button4.TabIndex = 7;
-            this.button4.Text = ">>>";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // FormViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,7 +577,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxSpaces;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.NumericUpDown numericUpDown3;

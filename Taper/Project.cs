@@ -170,6 +170,7 @@ namespace Taper
         /// <summary>
         /// Вырезать
         /// </summary>
+        /// <param name="selected">Коллекция выделенных элементов</param>
         public static void Cut(ListView.SelectedIndexCollection selected)
         {
             if (selected.Count == 0) return;
@@ -184,6 +185,7 @@ namespace Taper
         /// <summary>
         /// Копирование
         /// </summary>
+        /// <param name="selected">Коллекция выделенных элементов</param>
         public static void Copy(ListView.SelectedIndexCollection selected)
         {
             if (selected.Count == 0) return;
@@ -195,6 +197,7 @@ namespace Taper
         /// <summary>
         /// Вставить
         /// </summary>
+        /// <param name="selected">Коллекция выделенных элементов</param>
         public static void Paste(ListView.SelectedIndexCollection selected)
         {
             if (Buffer.Count == 0) return;
@@ -214,6 +217,45 @@ namespace Taper
                 for (int i = 0; i < Buffer.Count; i++)
                     TAP[selected[0] + i] = Buffer[i];
             }
+        }
+        
+        /// <summary>
+        /// Удаление
+        /// </summary>
+        /// <param name="selected">Коллекция выделенных элементов</param>
+        public static void Delete(ListView.SelectedIndexCollection selected)
+        {
+            if (selected.Count == 0) return;
+            Change();
+            for (int i = selected.Count - 1; i >= 0; i--)
+                TAP.RemoveAt(selected[i]);
+        }
+
+        /// <summary>
+        /// Переименование файла
+        /// </summary>
+        /// <param name="selected">Коллекция выделенных элементов</param>
+        public static void Rename(ListView.SelectedIndexCollection selected)
+        {
+            if (selected.Count != 1) return;
+            //Переименование
+            rename = TAP[selected[0]].FileName;
+            FormInput form = new FormInput();
+            if (form.ShowDialog() != DialogResult.OK) return;
+            Change();
+            //Тут доделать  //что доделать???
+            if (rename.Length > 10) rename = rename.Substring(0, 10);
+            char[] str = rename.ToCharArray();
+            int currentblock = selected[0];
+            //Сначала сотрём то что было, чтоб не оставалось артефактов
+            for (int i = 0; i < 10; i++)
+                TAP[currentblock].FileTitle[i + 2] = 32;
+            //Накатываем новое имя
+            for (int i = 0; i < rename.Length; i++)
+                TAP[currentblock].FileTitle[i + 2] = (byte)str[i];
+            TAP[currentblock].FileName = rename;
+            //После переименования починим CRC
+            TAP[selected[0]].CRCTest(0, true);
         }
 
     }
