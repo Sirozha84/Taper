@@ -112,7 +112,8 @@ namespace Taper
         #endregion
 
         #region Меню Справка
-        private void menuabout_Click(object sender, EventArgs e) { FormAbout form = new FormAbout(); form.ShowDialog(); }
+        private void menuPage_Click(object sender, EventArgs e) { System.Diagnostics.Process.Start("http://www.sg-software.ru/windows/programs/taper"); }
+        private void menuAbout_Click(object sender, EventArgs e) { FormAbout form = new FormAbout(); form.ShowDialog(); }
         #endregion
         
         /// <summary>
@@ -223,11 +224,6 @@ namespace Taper
         private void listViewTAP_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter) listView1_DoubleClick(null, null);
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.sg-software.ru");
         }
         //Добавление бита в выборку: 0, 1
         void AddBitToWav(ref List<byte> wav, int bit)
@@ -397,5 +393,6 @@ namespace Taper
             }
             else MessageBox.Show("Файл не поддерживается", "Taper");
         }
+
     }
 } //846 -> 401
