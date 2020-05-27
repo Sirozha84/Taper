@@ -13,19 +13,17 @@ namespace Taper
         /// <summary>
         /// Новый файл
         /// </summary>
-        void FileNew()
+        void FileNew(object sender, EventArgs e)
         {
             if (!SaveQuestion()) return;
             Project.New();
             DrawProject();
         }
-        private void menunNew_Click(object sender, EventArgs e) { FileNew(); }
-        private void toolNew_Click(object sender, EventArgs e) { FileNew(); }
 
         /// <summary>
         /// Открыть файл
         /// </summary>
-        private void FileOpen()
+        private void FileOpen(object sender, EventArgs e)
         {
             if (!SaveQuestion()) return;
             OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterAll };
@@ -33,16 +31,14 @@ namespace Taper
             Project.Open(dialog.FileName, false);
             DrawProject();
         }
-        private void menuOpen_Click(object sender, EventArgs e) { FileOpen(); }
-        private void toolOpen_Click(object sender, EventArgs e) { FileOpen(); }
 
         /// <summary>
         /// Сохранение файла
         /// </summary>
         /// <param name="saveAs"></param>
-        void FileSave(bool saveAs)
+        void FileSave(object sender, EventArgs e)
         {
-            if (Project.name == Program.FileUnnamed | saveAs)
+            if (Project.name == Program.FileUnnamed | sender == menuSaveAs)
             {
                 SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterSel };
                 if (dialog.ShowDialog() == DialogResult.OK) Project.Save(dialog.FileName);
@@ -51,14 +47,10 @@ namespace Taper
             else Project.Save(Project.name);
         }
 
-        private void menuSave_Click(object sender, EventArgs e) { FileSave(false); }
-        private void toolSave_Click(object sender, EventArgs e) { FileSave(false); }
-        private void menuSaveAs_Click(object sender, EventArgs e) { FileSave(true); }
-
         /// <summary>
         /// Добавление блоков
         /// </summary>
-        void importTAP()
+        void importTAP(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TAP-файла", Filter = Program.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
@@ -66,57 +58,40 @@ namespace Taper
             Project.Open(dialog.FileName, true);
             DrawProject();
         }
-        private void menuImportTap_Click(object sender, EventArgs e) { importTAP(); }
 
         #endregion
 
         #region Меню Вид
-        private void menuListFiles_Click(object sender, EventArgs e) { menuListFiles.Checked = true; menuListBlocks.Checked = false ; DrawProject(); }
-        private void menuListBlocks_Click(object sender, EventArgs e) { menuListFiles.Checked = false; menuListBlocks.Checked = true; DrawProject(); }
+        private void viewListFiles(object sender, EventArgs e) { menuListFiles.Checked = true; menuListBlocks.Checked = false ; DrawProject(); }
+        private void viewListBlocks(object sender, EventArgs e) { menuListFiles.Checked = false; menuListBlocks.Checked = true; DrawProject(); }
         #endregion
 
         #region Меню Правка
-        private void menuUndo_Click(object sender, EventArgs e) { Project.Undo(); DrawProject(); }
-        private void toolUndo_Click(object sender, EventArgs e) { Project.Undo(); DrawProject(); }
-        private void menuRedo_Click(object sender, EventArgs e) { Project.Redo(); DrawProject(); }
-        private void toolRedo_Click(object sender, EventArgs e) { Project.Redo(); DrawProject(); }
-        private void menuCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
-        private void toolCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
-        private void cmenuCut_Click(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
-        private void menuCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
-        private void toolCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
-        private void cmenuCopy_Click(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
-        private void menuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
-        private void toolPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
-        private void cmenuPaste_Click(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
-        private void menuDelete_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
-        private void toolMenu_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
-        private void cmenuDelete_Click(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
-        private void menuRename_Click(object sender, EventArgs e) { Project.Rename(listViewTAP.SelectedIndices); DrawProject(); }
-        private void cmenuRename_Click(object sender, EventArgs e) { Project.Rename(listViewTAP.SelectedIndices); DrawProject(); }
+        private void Undo(object sender, EventArgs e) { Project.Undo(); DrawProject(); }
+        private void Redo(object sender, EventArgs e) { Project.Redo(); DrawProject(); }
+        private void Cut(object sender, EventArgs e) { Project.Cut(listViewTAP.SelectedIndices); DrawProject(); }
+        private void Copy(object sender, EventArgs e) { Project.Copy(listViewTAP.SelectedIndices); }
+        private void Paste(object sender, EventArgs e) { Project.Paste(listViewTAP.SelectedIndices); DrawProject(); }
+        private void Delete(object sender, EventArgs e) { Project.Delete(listViewTAP.SelectedIndices); DrawProject(); }
+        private void Rename(object sender, EventArgs e) { Project.Rename(listViewTAP.SelectedIndices); DrawProject(); }
         #endregion
 
         #region Меню Блоки
-        private void menuMoveUp_Click(object sender, EventArgs e) { if (Project.MoveUp(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, -1); } }
-        private void toolMoveUp_Click(object sender, EventArgs e) { if (Project.MoveUp(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, -1); } }
-        private void menuMoveDown_Click(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
-        private void toolMoveDown_Click(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
+        private void MoveUp(object sender, EventArgs e) { if (Project.MoveUp(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, -1); } }
+        private void MoveDown(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
         #endregion
 
         #region Меню Инструменты
         /// <summary>
         /// Просмотр файла
         /// </summary>
-        private void View()
+        private void View(object sender, EventArgs e)
         {
             if (listViewTAP.SelectedIndices.Count < 1) return;
             Project.view = Project.TAP[listViewTAP.SelectedIndices[0]];
             FormViewer form = new FormViewer();
             form.ShowDialog();
         }
-        private void menuViewFile_Click(object sender, EventArgs e) { View(); }
-        private void listViewTAP_DoubleClick(object sender, EventArgs e) { View(); }
-        private void cmenuView_Click(object sender, EventArgs e) { View(); }
 
         private void menuFixCRCs_Click(object sender, EventArgs e)
         {
@@ -148,7 +123,7 @@ namespace Taper
             if (!Project.changed) return true;
             switch (MessageBox.Show("Сохранить изменения в файле \"" + System.IO.Path.GetFileNameWithoutExtension(Project.name) + "\"?", "Файл изменён", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
             {
-                case DialogResult.Yes: FileSave(false); return true;
+                case DialogResult.Yes: FileSave(null, null); return true;
                 case DialogResult.No: return true;
                 case DialogResult.Cancel: return false;
             }
@@ -343,7 +318,7 @@ namespace Taper
             Top = Properties.Settings.Default.Top;
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
-            FileNew();
+            FileNew(null, null);
             
             //Загружаем файл, если он был передан через аргумент
             string[] args = Environment.GetCommandLineArgs();
@@ -357,6 +332,5 @@ namespace Taper
             }
             else MessageBox.Show("Файл не поддерживается", "Taper");
         }
-
     }
-} //846 -> 401, 399
+} //846 -> 336

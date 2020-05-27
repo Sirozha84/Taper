@@ -147,44 +147,44 @@
             this.menuNew.Image = ((System.Drawing.Image)(resources.GetObject("menuNew.Image")));
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(172, 22);
+            this.menuNew.Size = new System.Drawing.Size(180, 22);
             this.menuNew.Text = "Новый";
-            this.menuNew.Click += new System.EventHandler(this.menunNew_Click);
+            this.menuNew.Click += new System.EventHandler(this.FileNew);
             // 
             // menuOpen
             // 
             this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(172, 22);
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
             this.menuOpen.Text = "Открыть";
-            this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
+            this.menuOpen.Click += new System.EventHandler(this.FileOpen);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuSave
             // 
             this.menuSave.Image = ((System.Drawing.Image)(resources.GetObject("menuSave.Image")));
             this.menuSave.Name = "menuSave";
             this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(172, 22);
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
             this.menuSave.Text = "Сохранить";
-            this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
+            this.menuSave.Click += new System.EventHandler(this.FileSave);
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(172, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuSaveAs.Text = "Сохранить как";
-            this.menuSaveAs.Click += new System.EventHandler(this.menuSaveAs_Click);
+            this.menuSaveAs.Click += new System.EventHandler(this.FileSave);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuImport
             // 
@@ -192,7 +192,7 @@
             this.menuImportTap,
             this.изWAVфайлаToolStripMenuItem});
             this.menuImport.Name = "menuImport";
-            this.menuImport.Size = new System.Drawing.Size(172, 22);
+            this.menuImport.Size = new System.Drawing.Size(180, 22);
             this.menuImport.Text = "Импорт";
             // 
             // menuImportTap
@@ -200,7 +200,7 @@
             this.menuImportTap.Name = "menuImportTap";
             this.menuImportTap.Size = new System.Drawing.Size(237, 22);
             this.menuImportTap.Text = "Добавление блоков из файла";
-            this.menuImportTap.Click += new System.EventHandler(this.menuImportTap_Click);
+            this.menuImportTap.Click += new System.EventHandler(this.importTAP);
             // 
             // изWAVфайлаToolStripMenuItem
             // 
@@ -215,7 +215,7 @@
             this.menuExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.вWAVфайлтожеПокаНеРаботаетToolStripMenuItem});
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(172, 22);
+            this.menuExport.Size = new System.Drawing.Size(180, 22);
             this.menuExport.Text = "Экспорт";
             // 
             // вWAVфайлтожеПокаНеРаботаетToolStripMenuItem
@@ -228,13 +228,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(172, 22);
+            this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Выход";
             // 
             // правкаToolStripMenuItem
@@ -259,7 +259,7 @@
             this.menuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.menuUndo.Size = new System.Drawing.Size(181, 22);
             this.menuUndo.Text = "Отменить";
-            this.menuUndo.Click += new System.EventHandler(this.menuUndo_Click);
+            this.menuUndo.Click += new System.EventHandler(this.Undo);
             // 
             // menuRedo
             // 
@@ -268,7 +268,7 @@
             this.menuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.menuRedo.Size = new System.Drawing.Size(181, 22);
             this.menuRedo.Text = "Вернуть";
-            this.menuRedo.Click += new System.EventHandler(this.menuRedo_Click);
+            this.menuRedo.Click += new System.EventHandler(this.Redo);
             // 
             // toolStripMenuItem2
             // 
@@ -282,7 +282,7 @@
             this.menuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.menuCut.Size = new System.Drawing.Size(181, 22);
             this.menuCut.Text = "Вырезать";
-            this.menuCut.Click += new System.EventHandler(this.menuCut_Click);
+            this.menuCut.Click += new System.EventHandler(this.Cut);
             // 
             // menuCopy
             // 
@@ -291,7 +291,7 @@
             this.menuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.menuCopy.Size = new System.Drawing.Size(181, 22);
             this.menuCopy.Text = "Копировать";
-            this.menuCopy.Click += new System.EventHandler(this.menuCopy_Click);
+            this.menuCopy.Click += new System.EventHandler(this.Copy);
             // 
             // menuPaste
             // 
@@ -300,7 +300,7 @@
             this.menuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.menuPaste.Size = new System.Drawing.Size(181, 22);
             this.menuPaste.Text = "Вставить";
-            this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
+            this.menuPaste.Click += new System.EventHandler(this.Paste);
             // 
             // menuDelete
             // 
@@ -309,7 +309,7 @@
             this.menuDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.menuDelete.Size = new System.Drawing.Size(181, 22);
             this.menuDelete.Text = "Удалить";
-            this.menuDelete.Click += new System.EventHandler(this.menuDelete_Click);
+            this.menuDelete.Click += new System.EventHandler(this.Delete);
             // 
             // menuRename
             // 
@@ -317,7 +317,7 @@
             this.menuRename.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.menuRename.Size = new System.Drawing.Size(181, 22);
             this.menuRename.Text = "Переименовать";
-            this.menuRename.Click += new System.EventHandler(this.menuRename_Click);
+            this.menuRename.Click += new System.EventHandler(this.Rename);
             // 
             // menuView
             // 
@@ -335,14 +335,14 @@
             this.menuListFiles.Name = "menuListFiles";
             this.menuListFiles.Size = new System.Drawing.Size(160, 22);
             this.menuListFiles.Text = "Список файлов";
-            this.menuListFiles.Click += new System.EventHandler(this.menuListFiles_Click);
+            this.menuListFiles.Click += new System.EventHandler(this.viewListFiles);
             // 
             // menuListBlocks
             // 
             this.menuListBlocks.Name = "menuListBlocks";
             this.menuListBlocks.Size = new System.Drawing.Size(160, 22);
             this.menuListBlocks.Text = "Список блоков";
-            this.menuListBlocks.Click += new System.EventHandler(this.menuListBlocks_Click);
+            this.menuListBlocks.Click += new System.EventHandler(this.viewListBlocks);
             // 
             // блокиToolStripMenuItem
             // 
@@ -360,7 +360,7 @@
             this.menuMoveUp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
             this.menuMoveUp.Size = new System.Drawing.Size(226, 22);
             this.menuMoveUp.Text = "Подвинуть вверх";
-            this.menuMoveUp.Click += new System.EventHandler(this.menuMoveUp_Click);
+            this.menuMoveUp.Click += new System.EventHandler(this.MoveUp);
             // 
             // menuMoveDown
             // 
@@ -369,7 +369,7 @@
             this.menuMoveDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
             this.menuMoveDown.Size = new System.Drawing.Size(226, 22);
             this.menuMoveDown.Text = "Подвинуть вниз";
-            this.menuMoveDown.Click += new System.EventHandler(this.menuMoveDown_Click);
+            this.menuMoveDown.Click += new System.EventHandler(this.MoveDown);
             // 
             // инструментыToolStripMenuItem
             // 
@@ -387,7 +387,7 @@
             this.menuViewFile.ShortcutKeyDisplayString = "Enter";
             this.menuViewFile.Size = new System.Drawing.Size(257, 22);
             this.menuViewFile.Text = "Просмотр файла";
-            this.menuViewFile.Click += new System.EventHandler(this.menuViewFile_Click);
+            this.menuViewFile.Click += new System.EventHandler(this.View);
             // 
             // menuFixCRCs
             // 
@@ -459,7 +459,7 @@
             this.toolNew.Name = "toolNew";
             this.toolNew.Size = new System.Drawing.Size(23, 22);
             this.toolNew.Text = "Новый (Ctrl + N)";
-            this.toolNew.Click += new System.EventHandler(this.toolNew_Click);
+            this.toolNew.Click += new System.EventHandler(this.FileNew);
             // 
             // toolOpen
             // 
@@ -469,7 +469,7 @@
             this.toolOpen.Name = "toolOpen";
             this.toolOpen.Size = new System.Drawing.Size(23, 22);
             this.toolOpen.Text = "Открыть (Ctrl + O)";
-            this.toolOpen.Click += new System.EventHandler(this.toolOpen_Click);
+            this.toolOpen.Click += new System.EventHandler(this.FileOpen);
             // 
             // toolSave
             // 
@@ -479,7 +479,7 @@
             this.toolSave.Name = "toolSave";
             this.toolSave.Size = new System.Drawing.Size(23, 22);
             this.toolSave.Text = "Сохранить (Ctrl + S)";
-            this.toolSave.Click += new System.EventHandler(this.toolSave_Click);
+            this.toolSave.Click += new System.EventHandler(this.FileSave);
             // 
             // toolStripSeparator3
             // 
@@ -494,7 +494,7 @@
             this.toolCut.Name = "toolCut";
             this.toolCut.Size = new System.Drawing.Size(23, 22);
             this.toolCut.Text = "Вырезать (Ctrl + X)";
-            this.toolCut.Click += new System.EventHandler(this.toolCut_Click);
+            this.toolCut.Click += new System.EventHandler(this.Cut);
             // 
             // toolCopy
             // 
@@ -504,7 +504,7 @@
             this.toolCopy.Name = "toolCopy";
             this.toolCopy.Size = new System.Drawing.Size(23, 22);
             this.toolCopy.Text = "Копировать (Ctrl + C)";
-            this.toolCopy.Click += new System.EventHandler(this.toolCopy_Click);
+            this.toolCopy.Click += new System.EventHandler(this.Copy);
             // 
             // toolPaste
             // 
@@ -514,7 +514,7 @@
             this.toolPaste.Name = "toolPaste";
             this.toolPaste.Size = new System.Drawing.Size(23, 22);
             this.toolPaste.Text = "Вставить (Ctrl + V)";
-            this.toolPaste.Click += new System.EventHandler(this.toolPaste_Click);
+            this.toolPaste.Click += new System.EventHandler(this.Paste);
             // 
             // toolMenu
             // 
@@ -524,7 +524,7 @@
             this.toolMenu.Name = "toolMenu";
             this.toolMenu.Size = new System.Drawing.Size(23, 22);
             this.toolMenu.Text = "Удалить (Del)";
-            this.toolMenu.Click += new System.EventHandler(this.toolMenu_Click);
+            this.toolMenu.Click += new System.EventHandler(this.Delete);
             // 
             // toolStripSeparator5
             // 
@@ -539,7 +539,7 @@
             this.toolUndo.Name = "toolUndo";
             this.toolUndo.Size = new System.Drawing.Size(23, 22);
             this.toolUndo.Text = "Отменить (Ctrl +Z)";
-            this.toolUndo.Click += new System.EventHandler(this.toolUndo_Click);
+            this.toolUndo.Click += new System.EventHandler(this.Undo);
             // 
             // toolRedo
             // 
@@ -549,7 +549,7 @@
             this.toolRedo.Name = "toolRedo";
             this.toolRedo.Size = new System.Drawing.Size(23, 22);
             this.toolRedo.Text = "Вернуть (Ctrl + Y)";
-            this.toolRedo.Click += new System.EventHandler(this.toolRedo_Click);
+            this.toolRedo.Click += new System.EventHandler(this.Redo);
             // 
             // toolStripSeparator7
             // 
@@ -564,7 +564,7 @@
             this.toolMoveUp.Name = "toolMoveUp";
             this.toolMoveUp.Size = new System.Drawing.Size(23, 22);
             this.toolMoveUp.Text = "Подвинуть вверх (Ctrl + Up)";
-            this.toolMoveUp.Click += new System.EventHandler(this.toolMoveUp_Click);
+            this.toolMoveUp.Click += new System.EventHandler(this.MoveUp);
             // 
             // toolMoveDown
             // 
@@ -574,7 +574,7 @@
             this.toolMoveDown.Name = "toolMoveDown";
             this.toolMoveDown.Size = new System.Drawing.Size(23, 22);
             this.toolMoveDown.Text = "Подвинуть вниз (Ctrl + Down)";
-            this.toolMoveDown.Click += new System.EventHandler(this.toolMoveDown_Click);
+            this.toolMoveDown.Click += new System.EventHandler(this.MoveDown);
             // 
             // toolStripSeparator6
             // 
@@ -616,7 +616,7 @@
             this.listViewTAP.View = System.Windows.Forms.View.Details;
             this.listViewTAP.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragDrop);
             this.listViewTAP.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragEnter);
-            this.listViewTAP.DoubleClick += new System.EventHandler(this.listViewTAP_DoubleClick);
+            this.listViewTAP.DoubleClick += new System.EventHandler(this.View);
             this.listViewTAP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewTAP_KeyDown);
             // 
             // columnType
@@ -660,65 +660,65 @@
             this.cmenuDelete,
             this.cmenuRename});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(181, 170);
+            this.contextMenu.Size = new System.Drawing.Size(171, 148);
             // 
             // cmenuView
             // 
             this.cmenuView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmenuView.Name = "cmenuView";
             this.cmenuView.ShortcutKeyDisplayString = "";
-            this.cmenuView.Size = new System.Drawing.Size(180, 22);
+            this.cmenuView.Size = new System.Drawing.Size(170, 22);
             this.cmenuView.Text = "Просмотр файла";
-            this.cmenuView.Click += new System.EventHandler(this.cmenuView_Click);
+            this.cmenuView.Click += new System.EventHandler(this.View);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(167, 6);
             // 
             // cmenuCut
             // 
             this.cmenuCut.Image = global::Taper.Properties.Resources.Вырезать;
             this.cmenuCut.Name = "cmenuCut";
-            this.cmenuCut.Size = new System.Drawing.Size(180, 22);
+            this.cmenuCut.Size = new System.Drawing.Size(170, 22);
             this.cmenuCut.Text = "Вырезать";
-            this.cmenuCut.Click += new System.EventHandler(this.cmenuCut_Click);
+            this.cmenuCut.Click += new System.EventHandler(this.Cut);
             // 
             // cmenuCopy
             // 
             this.cmenuCopy.Image = global::Taper.Properties.Resources.Копировать;
             this.cmenuCopy.Name = "cmenuCopy";
-            this.cmenuCopy.Size = new System.Drawing.Size(180, 22);
+            this.cmenuCopy.Size = new System.Drawing.Size(170, 22);
             this.cmenuCopy.Text = "Копировать";
-            this.cmenuCopy.Click += new System.EventHandler(this.cmenuCopy_Click);
+            this.cmenuCopy.Click += new System.EventHandler(this.Copy);
             // 
             // cmenuPaste
             // 
             this.cmenuPaste.Image = global::Taper.Properties.Resources.Вставить;
             this.cmenuPaste.Name = "cmenuPaste";
-            this.cmenuPaste.Size = new System.Drawing.Size(180, 22);
+            this.cmenuPaste.Size = new System.Drawing.Size(170, 22);
             this.cmenuPaste.Text = "Вставить";
-            this.cmenuPaste.Click += new System.EventHandler(this.cmenuPaste_Click);
+            this.cmenuPaste.Click += new System.EventHandler(this.Paste);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(167, 6);
             // 
             // cmenuDelete
             // 
             this.cmenuDelete.Image = global::Taper.Properties.Resources.Удалить;
             this.cmenuDelete.Name = "cmenuDelete";
-            this.cmenuDelete.Size = new System.Drawing.Size(180, 22);
+            this.cmenuDelete.Size = new System.Drawing.Size(170, 22);
             this.cmenuDelete.Text = "Удалить";
-            this.cmenuDelete.Click += new System.EventHandler(this.cmenuDelete_Click);
+            this.cmenuDelete.Click += new System.EventHandler(this.Delete);
             // 
             // cmenuRename
             // 
             this.cmenuRename.Name = "cmenuRename";
-            this.cmenuRename.Size = new System.Drawing.Size(180, 22);
+            this.cmenuRename.Size = new System.Drawing.Size(170, 22);
             this.cmenuRename.Text = "Переименовать";
-            this.cmenuRename.Click += new System.EventHandler(this.cmenuRename_Click);
+            this.cmenuRename.Click += new System.EventHandler(this.Rename);
             // 
             // statusStrip
             // 
