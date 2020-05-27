@@ -104,11 +104,26 @@ namespace Taper
         #endregion
 
         #region Меню Инструменты
+        /// <summary>
+        /// Просмотр файла
+        /// </summary>
+        private void View()
+        {
+            if (listViewTAP.SelectedIndices.Count < 1) return;
+            Project.view = Project.TAP[listViewTAP.SelectedIndices[0]];
+            FormViewer form = new FormViewer();
+            form.ShowDialog();
+        }
+        private void menuViewFile_Click(object sender, EventArgs e) { View(); }
+        private void listViewTAP_DoubleClick(object sender, EventArgs e) { View(); }
+        private void cmenuView_Click(object sender, EventArgs e) { View(); }
+
         private void menuFixCRCs_Click(object sender, EventArgs e)
         {
             if (Project.FixCRCs()) Program.Message("Контрольные суммы исправлены.");
             else Program.Message("Все контрольные суммы в порядке.");
         }
+        private void menuFindDuplicates_Click(object sender, EventArgs e) { Project.FindDuplicates(listViewTAP); }
         #endregion
 
         #region Меню Справка
@@ -147,6 +162,7 @@ namespace Taper
         /// <param name="e"></param>
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!SaveQuestion()) e.Cancel = true;
             Properties.Settings.Default.Left = Left;
             Properties.Settings.Default.Top = Top;
             Properties.Settings.Default.Width = Width;
@@ -184,6 +200,7 @@ namespace Taper
             SetFormText();
         }
 
+
         private void изWAVфайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormTapeLoad form = new FormTapeLoad();
@@ -199,32 +216,8 @@ namespace Taper
             изWAVфайлаToolStripMenuItem_Click(null, null);
         }
 
-        private void просмотрФайлаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listViewTAP.SelectedIndices.Count != 1)
-            {
-                Program.Message("Должен быть выделен один блок.");
-                return;
-            }
-            if (Project.TAP[listViewTAP.SelectedIndices[0]].FileData == null)
-            {
-                Program.Message("В этом блоке только заголовок.");
-                return;
-            }
-            Project.view = Project.TAP[listViewTAP.SelectedIndices[0]];
-            FormViewer form = new FormViewer();
-            form.ShowDialog();
-        }
+        private void listViewTAP_KeyDown(object sender, KeyEventArgs e) { /*if (e.KeyData == Keys.Enter) View();*/ }
 
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            просмотрФайлаToolStripMenuItem_Click(null, null);
-        }
-
-        private void listViewTAP_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter) listView1_DoubleClick(null, null);
-        }
         //Добавление бита в выборку: 0, 1
         void AddBitToWav(ref List<byte> wav, int bit)
         {
@@ -318,35 +311,6 @@ namespace Taper
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
 
-        //Поиск дубликатов блоков
-        private void поискДубликатовToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            //Хрен знает зачем, но Стас попросил сделать такую возможность
-            bool find = false;
-            //УБираем выделения (тупой способ, но не знаю как проще)
-            for (int i = 0; i < listViewTAP.Items.Count; i++) listViewTAP.Items[i].Selected = false;
-            for (int i = 0; i < Project.TAP.Count() - 1; i++)
-            {
-                if (Project.TAP[i].FileData != null)
-                {
-                    //То, с чем будем сравнивать всё остальное
-                    byte[] block = Project.TAP[i].FileData;
-                    for (int j = i + 1; j < Project.TAP.Count(); j++)
-                        if (Project.TAP[j].FileData != null)
-                            if (Project.TAP[i].FileData == Project.TAP[j].FileData)
-                            {
-                                find = true;
-                                listViewTAP.Items[i].Selected = true;
-                                listViewTAP.Items[j].Selected = true;
-                            }
-                    if (find) break;
-                }
-            }
-            if (find) Program.Message("Найдены дубликаты файлов. Они отмечены выделением.");
-            else Program.Message("Дубликаты не обнаружены.");
-        }
-        private void открытьToolStripMenuItem_Click(object sender, EventArgs e) { просмотрФайлаToolStripMenuItem_Click(null, null); }
-
         private void listViewTAP_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
@@ -395,4 +359,4 @@ namespace Taper
         }
 
     }
-} //846 -> 401
+} //846 -> 401, 399

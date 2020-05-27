@@ -431,5 +431,33 @@ namespace Taper
                 list.Items[i + shift].Selected = true;
         }
 
+        /// <summary>
+        /// Поиск дубликатов
+        /// </summary>
+        public static void FindDuplicates(ListView list)
+        {
+            bool find = false;
+            //УБираем выделения (тупой способ, но не знаю как проще)
+            for (int i = 0; i < list.Items.Count; i++) list.Items[i].Selected = false;
+            for (int i = 0; i < TAP.Count() - 1; i++)
+            {
+                if (TAP[i].FileData != null)
+                {
+                    //То, с чем будем сравнивать всё остальное
+                    byte[] block = TAP[i].FileData;
+                    for (int j = i + 1; j < TAP.Count(); j++)
+                        if (TAP[j].FileData != null)
+                            if (TAP[i].FileData == TAP[j].FileData)
+                            {
+                                find = true;
+                                list.Items[i].Selected = true;
+                                list.Items[j].Selected = true;
+                            }
+                    if (find) break;
+                }
+            }
+            if (find) Program.Message("Отмечены найденые дубликаты файлов.");
+            else Program.Message("Дубликатов не обнаружено.");
+        }
     }
 }

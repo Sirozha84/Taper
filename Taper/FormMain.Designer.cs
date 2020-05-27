@@ -61,10 +61,11 @@
             this.menuMoveUp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMoveDown = new System.Windows.Forms.ToolStripMenuItem();
             this.инструментыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.просмотрФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuViewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFixCRCs = new System.Windows.Forms.ToolStripMenuItem();
-            this.поискДубликатовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFindDuplicates = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolNew = new System.Windows.Forms.ToolStripButton();
@@ -91,7 +92,7 @@
             this.columnSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnCRC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.cmenuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,6 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuPage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -374,20 +374,20 @@
             // инструментыToolStripMenuItem
             // 
             this.инструментыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.просмотрФайлаToolStripMenuItem,
+            this.menuViewFile,
             this.menuFixCRCs,
-            this.поискДубликатовToolStripMenuItem});
+            this.menuFindDuplicates});
             this.инструментыToolStripMenuItem.Name = "инструментыToolStripMenuItem";
             this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.инструментыToolStripMenuItem.Text = "Инструменты";
             // 
-            // просмотрФайлаToolStripMenuItem
+            // menuViewFile
             // 
-            this.просмотрФайлаToolStripMenuItem.Name = "просмотрФайлаToolStripMenuItem";
-            this.просмотрФайлаToolStripMenuItem.ShortcutKeyDisplayString = "Enter";
-            this.просмотрФайлаToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.просмотрФайлаToolStripMenuItem.Text = "Просмотр файла";
-            this.просмотрФайлаToolStripMenuItem.Click += new System.EventHandler(this.просмотрФайлаToolStripMenuItem_Click);
+            this.menuViewFile.Name = "menuViewFile";
+            this.menuViewFile.ShortcutKeyDisplayString = "Enter";
+            this.menuViewFile.Size = new System.Drawing.Size(257, 22);
+            this.menuViewFile.Text = "Просмотр файла";
+            this.menuViewFile.Click += new System.EventHandler(this.menuViewFile_Click);
             // 
             // menuFixCRCs
             // 
@@ -396,12 +396,12 @@
             this.menuFixCRCs.Text = "Исправление контрольных сумм";
             this.menuFixCRCs.Click += new System.EventHandler(this.menuFixCRCs_Click);
             // 
-            // поискДубликатовToolStripMenuItem
+            // menuFindDuplicates
             // 
-            this.поискДубликатовToolStripMenuItem.Name = "поискДубликатовToolStripMenuItem";
-            this.поискДубликатовToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.поискДубликатовToolStripMenuItem.Text = "Поиск дубликатов";
-            this.поискДубликатовToolStripMenuItem.Click += new System.EventHandler(this.поискДубликатовToolStripMenuItem_Click_1);
+            this.menuFindDuplicates.Name = "menuFindDuplicates";
+            this.menuFindDuplicates.Size = new System.Drawing.Size(257, 22);
+            this.menuFindDuplicates.Text = "Поиск дубликатов";
+            this.menuFindDuplicates.Click += new System.EventHandler(this.menuFindDuplicates_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -411,6 +411,13 @@
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // menuPage
+            // 
+            this.menuPage.Name = "menuPage";
+            this.menuPage.Size = new System.Drawing.Size(196, 22);
+            this.menuPage.Text = "Страница программы";
+            this.menuPage.Click += new System.EventHandler(this.menuPage_Click);
             // 
             // menuAbout
             // 
@@ -609,7 +616,7 @@
             this.listViewTAP.View = System.Windows.Forms.View.Details;
             this.listViewTAP.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragDrop);
             this.listViewTAP.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewTAP_DragEnter);
-            this.listViewTAP.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.listViewTAP.DoubleClick += new System.EventHandler(this.listViewTAP_DoubleClick);
             this.listViewTAP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewTAP_KeyDown);
             // 
             // columnType
@@ -644,7 +651,7 @@
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьToolStripMenuItem,
+            this.cmenuView,
             this.toolStripMenuItem5,
             this.cmenuCut,
             this.cmenuCopy,
@@ -653,27 +660,27 @@
             this.cmenuDelete,
             this.cmenuRename});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(171, 148);
+            this.contextMenu.Size = new System.Drawing.Size(181, 170);
             // 
-            // открытьToolStripMenuItem
+            // cmenuView
             // 
-            this.открытьToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.открытьToolStripMenuItem.Text = "Просмотр файла";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            this.cmenuView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmenuView.Name = "cmenuView";
+            this.cmenuView.ShortcutKeyDisplayString = "";
+            this.cmenuView.Size = new System.Drawing.Size(180, 22);
+            this.cmenuView.Text = "Просмотр файла";
+            this.cmenuView.Click += new System.EventHandler(this.cmenuView_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(167, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // cmenuCut
             // 
             this.cmenuCut.Image = global::Taper.Properties.Resources.Вырезать;
             this.cmenuCut.Name = "cmenuCut";
-            this.cmenuCut.Size = new System.Drawing.Size(170, 22);
+            this.cmenuCut.Size = new System.Drawing.Size(180, 22);
             this.cmenuCut.Text = "Вырезать";
             this.cmenuCut.Click += new System.EventHandler(this.cmenuCut_Click);
             // 
@@ -681,7 +688,7 @@
             // 
             this.cmenuCopy.Image = global::Taper.Properties.Resources.Копировать;
             this.cmenuCopy.Name = "cmenuCopy";
-            this.cmenuCopy.Size = new System.Drawing.Size(170, 22);
+            this.cmenuCopy.Size = new System.Drawing.Size(180, 22);
             this.cmenuCopy.Text = "Копировать";
             this.cmenuCopy.Click += new System.EventHandler(this.cmenuCopy_Click);
             // 
@@ -689,27 +696,27 @@
             // 
             this.cmenuPaste.Image = global::Taper.Properties.Resources.Вставить;
             this.cmenuPaste.Name = "cmenuPaste";
-            this.cmenuPaste.Size = new System.Drawing.Size(170, 22);
+            this.cmenuPaste.Size = new System.Drawing.Size(180, 22);
             this.cmenuPaste.Text = "Вставить";
             this.cmenuPaste.Click += new System.EventHandler(this.cmenuPaste_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(167, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // cmenuDelete
             // 
             this.cmenuDelete.Image = global::Taper.Properties.Resources.Удалить;
             this.cmenuDelete.Name = "cmenuDelete";
-            this.cmenuDelete.Size = new System.Drawing.Size(170, 22);
+            this.cmenuDelete.Size = new System.Drawing.Size(180, 22);
             this.cmenuDelete.Text = "Удалить";
             this.cmenuDelete.Click += new System.EventHandler(this.cmenuDelete_Click);
             // 
             // cmenuRename
             // 
             this.cmenuRename.Name = "cmenuRename";
-            this.cmenuRename.Size = new System.Drawing.Size(170, 22);
+            this.cmenuRename.Size = new System.Drawing.Size(180, 22);
             this.cmenuRename.Text = "Переименовать";
             this.cmenuRename.Click += new System.EventHandler(this.cmenuRename_Click);
             // 
@@ -748,13 +755,6 @@
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(160, 19);
             this.toolStripStatusLabel4.Text = "   ";
             this.toolStripStatusLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // menuPage
-            // 
-            this.menuPage.Name = "menuPage";
-            this.menuPage.Size = new System.Drawing.Size(196, 22);
-            this.menuPage.Text = "Страница программы";
-            this.menuPage.Click += new System.EventHandler(this.menuPage_Click);
             // 
             // FormMain
             // 
@@ -835,15 +835,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripMenuItem инструментыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem просмотрФайлаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuViewFile;
         private System.Windows.Forms.ToolStripMenuItem menuFixCRCs;
-        private System.Windows.Forms.ToolStripMenuItem поискДубликатовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuFindDuplicates;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem cmenuCut;
         private System.Windows.Forms.ToolStripMenuItem cmenuCopy;
         private System.Windows.Forms.ToolStripMenuItem cmenuPaste;
         private System.Windows.Forms.ToolStripMenuItem cmenuRename;
-        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmenuView;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripButton toolMoveUp;
