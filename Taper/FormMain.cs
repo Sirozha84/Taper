@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,7 +8,7 @@ namespace Taper
     {
         public FormMain() { InitializeComponent(); }
 
-        #region Меню Файл
+        #region Меню Файл (Новый, открыть, добавить, импорт)
         /// <summary>
         /// Новый файл
         /// </summary>
@@ -33,6 +32,35 @@ namespace Taper
         }
 
         /// <summary>
+        /// Добавление блоков
+        /// </summary>
+        void AddTAP(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog() { Title = "Добавление блоков", Filter = Program.FilterAll };
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            Project.Change();
+            Project.Open(dialog.FileName, true);
+            DrawProject();
+        }
+
+        /// <summary>
+        /// Импорт из Wav
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoadFromWav(object sender, EventArgs e)
+        {
+            FormTapeLoad form = new FormTapeLoad();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Project.Change(); //Переместить перед добавлением файлов в проект
+                DrawProject();
+            }
+        }
+        #endregion
+
+        #region Меню Файл (сохранить, экспортировать, выйти)
+        /// <summary>
         /// Сохранение файла
         /// </summary>
         /// <param name="saveAs"></param>
@@ -48,15 +76,13 @@ namespace Taper
         }
 
         /// <summary>
-        /// Добавление блоков
+        /// Сохранение "тапа" в "вавку"
         /// </summary>
-        void importTAP(object sender, EventArgs e)
+        private void SaveToWAV(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт блоков из TAP-файла", Filter = Program.FilterAll };
+            SaveFileDialog dialog = new SaveFileDialog() { Title = "Экспорт в WAV-файл", Filter = Program.FilterWAV };
             if (dialog.ShowDialog() != DialogResult.OK) return;
-            Project.Change();
-            Project.Open(dialog.FileName, true);
-            DrawProject();
+            WAVmaker.Save(dialog.FileName);
         }
 
         #endregion
@@ -169,122 +195,13 @@ namespace Taper
                 listViewTAP.Items.Add(item);
             }
             //Подсчёт количества блоков
-            toolStripStatusLabel2.Text = "Файлов в проекте: " + files;
-            toolStripStatusLabel3.Text = "Объём: " + bytes + " байт";
-            toolStripStatusLabel4.Text = "Полный объём: " + fullbytes + " байт";
+            status1.Text = "Файлов в проекте: " + files;
+            status2.Text = "Объём: " + bytes + " байт";
+            status3.Text = "Полный объём: " + fullbytes + " байт";
             SetFormText();
         }
 
-
-        private void изWAVфайлаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormTapeLoad form = new FormTapeLoad();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Project.Change(); //Переместить перед добавлением файлов в проект
-                DrawProject();
-            }
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            изWAVфайлаToolStripMenuItem_Click(null, null);
-        }
-
-        private void listViewTAP_KeyDown(object sender, KeyEventArgs e) { /*if (e.KeyData == Keys.Enter) View();*/ }
-
-        //Добавление бита в выборку: 0, 1
-        void AddBitToWav(ref List<byte> wav, int bit)
-        {
-            if (bit == 0)
-            {
-                //0
-                for (int j = 0; j < 10; j++) wav.Add(127);
-                for (int j = 0; j < 10; j++) wav.Add(143);
-                wav.Add(135);
-            }
-            else 
-            {
-                //1
-                for (int j = 0; j < 21; j++) wav.Add(127);
-                for (int j = 0; j < 21; j++) wav.Add(143);
-            } 
-        }
-        //Добавление блока в выборку: 0 - заголовок, 1 - блок
-        void AddBlockToWav(List<byte> wav,  byte[] block, byte Type)
-        {
-            //Пишем пилот-тон
-            int ii = 0;
-            if (Type == 0) ii = 3000; else ii = 1500;
-            for (int i = 0; i < ii; i++)
-            {
-                for (int j = 0; j < 27; j++) wav.Add(127);
-                for (int j = 0; j < 27; j++) wav.Add(143);
-            }
-            //Пишем подготовительный сигнал
-            for (int j = 0; j < 8; j++) wav.Add(127);
-            for (int j = 0; j < 8; j++) wav.Add(143);
-            //Пишем блок
-            foreach (byte b in block)
-            {
-                AddBitToWav(ref wav, b & 128);
-                AddBitToWav(ref wav, b & 64);
-                AddBitToWav(ref wav, b & 32);
-                AddBitToWav(ref wav, b & 16);
-                AddBitToWav(ref wav, b & 8);
-                AddBitToWav(ref wav, b & 4);
-                AddBitToWav(ref wav, b & 2);
-                AddBitToWav(ref wav, b & 1);
-            }
-            //Пишем тишину после
-            for (int i = 0; i < 30000; i++) wav.Add(127);
-        }
-        //Сохранение "тапа" в "вавку"
-        private void вWAVфайлтожеПокаНеРаботаетToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog() { Title = "Экспорт в WAV-файл", Filter = Program.FilterWAV };
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            //Подготовка выборки 54 42 21
-            List<byte> Data = new List<byte>();
-            foreach (Block block in Project.TAP)
-            {
-                if (block.FileTitle != null) AddBlockToWav(Data, block.FileTitle, 0);
-                if (block.FileData != null) AddBlockToWav(Data, block.FileData, 1);
-            }
-            //Запись файла
-            try
-            {
-                System.IO.BinaryWriter file = new System.IO.BinaryWriter(new System.IO.FileStream(dialog.FileName, System.IO.FileMode.Create));
-                file.Write('R');
-                file.Write('I');
-                file.Write('F');
-                file.Write('F');
-                file.Write(Data.Count() + 26); //Длина файла (остатка)
-                file.Write('W');
-                file.Write('A');
-                file.Write('V');
-                file.Write('E');
-                file.Write('f');
-                file.Write('m');
-                file.Write('t');
-                file.Write(' ');
-                file.Write(16); //Длина этого кусочка (не знаю зачем, если одинаковая)
-                file.Write((ushort)1); //Формат (1 - это видимо PCM)
-                file.Write((ushort)1); //Количество каналов
-                file.Write(44100); //Дискретизация
-                file.Write(44100); //Выдача байтов (для 8-и битного выглядит так же как частота)
-                file.Write((ushort)2); //Какое-то выравнивание
-                file.Write((ushort)8); //Битность
-                file.Write('d');
-                file.Write('a');
-                file.Write('t');
-                file.Write('a');
-                file.Write(Data.Count()); //Длина выборки
-                file.Write(Data.ToArray());
-                file.Close();
-            }
-            catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
-        }
+        private void listViewTAP_KeyDown(object sender, KeyEventArgs e) { if (e.KeyData == Keys.Enter) View(null, null); }
 
         private void listViewTAP_DragEnter(object sender, DragEventArgs e)
         {
@@ -333,4 +250,4 @@ namespace Taper
             else MessageBox.Show("Файл не поддерживается", "Taper");
         }
     }
-} //846 -> 336
+}
