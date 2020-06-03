@@ -249,5 +249,20 @@ namespace Taper
             }
             else MessageBox.Show("Файл не поддерживается", "Taper");
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Audio.Play();
+        }
+
+        private void стопToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Audio.Stop();
+        }
+
+        private void воспроизведениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Audio.Play();
+        }
     }
 }

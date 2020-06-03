@@ -8,12 +8,12 @@ namespace Taper
 {
     static class WAVmaker
     {
-        static List<byte> wav;
+        public static List<byte> wav;
 
         /// <summary>
-        /// Сохранение в WAV-файл
+        /// Создание WAV
         /// </summary>
-        public static void Save(string filename)
+        public static void Make()
         {
             //Подготовка выборки 54 42 21
             wav = new List<byte>();
@@ -22,6 +22,14 @@ namespace Taper
                 if (block.FileTitle != null) AddBlockToWav(block.FileTitle, 0);
                 if (block.FileData != null) AddBlockToWav(block.FileData, 1);
             }
+        }
+
+        /// <summary>
+        /// Сохранение в WAV-файл
+        /// </summary>
+        public static void Save(string filename)
+        {
+            Make();
             //Запись файла
             try
             {
