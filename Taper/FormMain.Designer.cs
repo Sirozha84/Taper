@@ -101,10 +101,11 @@
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.аудиоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.воспроизведениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.стопToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolPlay = new System.Windows.Forms.ToolStripButton();
+            this.menuAudio = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.записьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -118,7 +119,7 @@
             this.menuEdit,
             this.menuView,
             this.menuBlocks,
-            this.аудиоToolStripMenuItem,
+            this.menuAudio,
             this.menuTools,
             this.menuHelp});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -424,7 +425,7 @@
             this.toolMoveDown,
             this.sep8,
             this.toolLoadWav,
-            this.toolStripButton1});
+            this.toolPlay});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(584, 25);
@@ -736,38 +737,45 @@
             this.status3.Text = "   ";
             this.status3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripButton1
+            // toolPlay
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(64, 22);
-            this.toolStripButton1.Text = "TestAudio";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolPlay.Image = ((System.Drawing.Image)(resources.GetObject("toolPlay.Image")));
+            this.toolPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPlay.Name = "toolPlay";
+            this.toolPlay.Size = new System.Drawing.Size(108, 22);
+            this.toolPlay.Text = "Воспроизведение";
+            this.toolPlay.Click += new System.EventHandler(this.Play);
             // 
-            // аудиоToolStripMenuItem
+            // menuAudio
             // 
-            this.аудиоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.воспроизведениеToolStripMenuItem,
-            this.стопToolStripMenuItem});
-            this.аудиоToolStripMenuItem.Name = "аудиоToolStripMenuItem";
-            this.аудиоToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.аудиоToolStripMenuItem.Text = "Аудио";
+            this.menuAudio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuPlay,
+            this.menuStop,
+            this.записьToolStripMenuItem});
+            this.menuAudio.Name = "menuAudio";
+            this.menuAudio.Size = new System.Drawing.Size(53, 20);
+            this.menuAudio.Text = "Аудио";
             // 
-            // воспроизведениеToolStripMenuItem
+            // menuPlay
             // 
-            this.воспроизведениеToolStripMenuItem.Name = "воспроизведениеToolStripMenuItem";
-            this.воспроизведениеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.воспроизведениеToolStripMenuItem.Text = "Воспроизведение";
-            this.воспроизведениеToolStripMenuItem.Click += new System.EventHandler(this.воспроизведениеToolStripMenuItem_Click);
+            this.menuPlay.Name = "menuPlay";
+            this.menuPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuPlay.Text = "Воспроизведение";
+            this.menuPlay.Click += new System.EventHandler(this.Play);
             // 
-            // стопToolStripMenuItem
+            // menuStop
             // 
-            this.стопToolStripMenuItem.Name = "стопToolStripMenuItem";
-            this.стопToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.стопToolStripMenuItem.Text = "Стоп";
-            this.стопToolStripMenuItem.Click += new System.EventHandler(this.стопToolStripMenuItem_Click);
+            this.menuStop.Name = "menuStop";
+            this.menuStop.Size = new System.Drawing.Size(180, 22);
+            this.menuStop.Text = "Стоп";
+            this.menuStop.Click += new System.EventHandler(this.Stop);
+            // 
+            // записьToolStripMenuItem
+            // 
+            this.записьToolStripMenuItem.Name = "записьToolStripMenuItem";
+            this.записьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.записьToolStripMenuItem.Text = "Запись";
             // 
             // FormMain
             // 
@@ -870,10 +878,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuSaveWAV;
         private System.Windows.Forms.ToolStripMenuItem menuAdd;
         private System.Windows.Forms.ToolStripMenuItem menuLoadWav;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripMenuItem аудиоToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem воспроизведениеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem стопToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolPlay;
+        private System.Windows.Forms.ToolStripMenuItem menuAudio;
+        private System.Windows.Forms.ToolStripMenuItem menuPlay;
+        private System.Windows.Forms.ToolStripMenuItem menuStop;
+        private System.Windows.Forms.ToolStripMenuItem записьToolStripMenuItem;
     }
 }
 

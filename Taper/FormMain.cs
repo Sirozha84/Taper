@@ -107,6 +107,24 @@ namespace Taper
         private void MoveDown(object sender, EventArgs e) { if (Project.MoveDown(listViewTAP.SelectedIndices)) { DrawProject(); Project.RestroreSelection(listViewTAP, 1); } }
         #endregion
 
+        #region Меню Аудио
+        /// <summary>
+        /// Плеер - Воспроизведение
+        /// </summary>
+        void Play(object sender, EventArgs e)
+        {
+            Audio.Play();
+        }
+
+        /// <summary>
+        /// Плеер - Стоп
+        /// </summary>
+        void Stop(object sender, EventArgs e)
+        {
+            Audio.Stop();
+        }
+        #endregion
+
         #region Меню Инструменты
         /// <summary>
         /// Просмотр файла
@@ -248,21 +266,6 @@ namespace Taper
                 DrawProject();
             }
             else MessageBox.Show("Файл не поддерживается", "Taper");
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            Audio.Play();
-        }
-
-        private void стопToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Audio.Stop();
-        }
-
-        private void воспроизведениеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Audio.Play();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Taper
 {
     static class Audio
     {
+        public static bool Plaing = false;
         public static WaveOut waveOut;
         public static Player player;
         public const int SampleRate = 44100;    //Частота дискретизации
@@ -24,16 +25,19 @@ namespace Taper
         }
         public static void Play()
         {
+            if (Plaing) Stop();
             Init();
             WAVmaker.Make();
             Player.s = 0;
             Player.c = WAVmaker.wav.Count();
             waveOut.Play();
+            Plaing = true;
         }
 
         public static void Stop()
         {
             waveOut.Stop();
+            Plaing = false;
         }
     }
 
@@ -67,21 +71,16 @@ namespace Taper
     }
     class Player : WaveProvider32
     {
-        //public enum Modes { Stop, PlayTrack, PlayPattern };
-        //public Sinthesizer[] sinthesizer = new Sinthesizer[Audio.MaxChannels];
-        //Переменные для плеера
-        //public Modes Mode = Modes.Stop;
         public static int s;
         public static int c;
+
         public override int Read(float[] buffer, int offset, int sampleCount)
         {
+            //Заполнение буфера звука
             for (int i = 0; i < sampleCount; i++)
             {
-                //Заполняем буфер микшируя все каналы
-                //buffer[i + offset] = rnd.Next(100);
-                buffer[i + offset] = WAVmaker.wav[s++] == 127 ? 0 : .2f;
-                //if (s < 10) buffer[i + offset] = -10; else buffer[i + offset] = 10;
-                if (s > c) Audio.waveOut.Stop();
+                if (s < c) buffer[i + offset] = WAVmaker.wav[s++] == 127 ? 0 : .2f; //0-1 - громкость
+                else Audio.Stop();
             }
             return sampleCount;
         }
