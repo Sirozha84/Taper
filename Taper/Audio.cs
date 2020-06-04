@@ -27,7 +27,7 @@ namespace Taper
         {
             if (Plaing) Stop();
             Init();
-            WAVmaker.Make();
+            //WAVmaker.Make();
             Player.s = 0;
             Player.c = WAVmaker.wav.Count();
             waveOut.Play();

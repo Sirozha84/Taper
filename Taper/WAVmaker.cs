@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace Taper
@@ -11,26 +9,10 @@ namespace Taper
         public static List<byte> wav;
 
         /// <summary>
-        /// Создание WAV
-        /// </summary>
-        public static void Make()
-        {
-            //Подготовка выборки 54 42 21
-            wav = new List<byte>();
-            foreach (Block block in Project.TAP)
-            {
-                if (block.FileTitle != null) AddBlockToWav(block.FileTitle, 0);
-                if (block.FileData != null) AddBlockToWav(block.FileData, 1);
-            }
-        }
-
-        /// <summary>
         /// Сохранение в WAV-файл
         /// </summary>
         public static void Save(string filename)
         {
-            Make();
-            //Запись файла
             try
             {
                 BinaryWriter file = new BinaryWriter(new FileStream(filename, FileMode.Create));
@@ -38,7 +20,7 @@ namespace Taper
                 file.Write('I');
                 file.Write('F');
                 file.Write('F');
-                file.Write(wav.Count() + 26); //Длина файла (остатка)
+                file.Write((int)0); //Длина, пока пропустим
                 file.Write('W');
                 file.Write('A');
                 file.Write('V');
@@ -58,8 +40,30 @@ namespace Taper
                 file.Write('a');
                 file.Write('t');
                 file.Write('a');
-                file.Write(wav.Count()); //Длина выборки
-                file.Write(wav.ToArray());
+                file.Write((int)0); //Длина, пока пропустим
+
+                int len = 0;
+                foreach (Block block in Project.TAP)
+                {
+                    if (block.FileTitle != null)
+                    {
+                        BlockToWav(block.FileTitle, 0);
+                        file.Write(wav.ToArray());
+                        len += wav.Count();
+                    }
+                    if (block.FileData != null)
+                    {
+                        BlockToWav(block.FileData, 1);
+                        file.Write(wav.ToArray());
+                        len += wav.Count();
+                    }
+                }
+                //Вернёмся в те места, где нужно указать длину файла
+                file.Seek(4, 0);
+                file.Write(len + 26);
+                file.Seek(40, 0);
+                file.Write(len);
+
                 file.Close();
             }
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
@@ -69,8 +73,9 @@ namespace Taper
         /// <summary>
         /// Добавление блока в выборку: 0 - заголовок, 1 - блок
         /// </summary>
-        static void AddBlockToWav(byte[] block, byte Type)
+        static void BlockToWav(byte[] block, byte Type)
         {
+            wav = new List<byte>();
             //Пишем пилот-тон
             int ii = 0;
             if (Type == 0) ii = 3000; else ii = 1500;

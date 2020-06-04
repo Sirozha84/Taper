@@ -32,31 +32,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLoadWav = new System.Windows.Forms.ToolStripMenuItem();
             this.sep5 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveWAV = new System.Windows.Forms.ToolStripMenuItem();
             this.sep2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRedo = new System.Windows.Forms.ToolStripMenuItem();
             this.sep1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuCut = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRename = new System.Windows.Forms.ToolStripMenuItem();
             this.menuView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuListFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.menuListBlocks = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBlocks = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuMoveUp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuMoveDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAudio = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRec = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
             this.menuViewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFixCRCs = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,22 +58,10 @@
             this.menuPage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolNew = new System.Windows.Forms.ToolStripButton();
-            this.toolOpen = new System.Windows.Forms.ToolStripButton();
-            this.toolSave = new System.Windows.Forms.ToolStripButton();
             this.sep6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolCut = new System.Windows.Forms.ToolStripButton();
-            this.toolCopy = new System.Windows.Forms.ToolStripButton();
-            this.toolPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolMenu = new System.Windows.Forms.ToolStripButton();
             this.sep7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolUndo = new System.Windows.Forms.ToolStripButton();
-            this.toolRedo = new System.Windows.Forms.ToolStripButton();
             this.sep9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolMoveUp = new System.Windows.Forms.ToolStripButton();
-            this.toolMoveDown = new System.Windows.Forms.ToolStripButton();
             this.sep8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolLoadWav = new System.Windows.Forms.ToolStripButton();
             this.listViewTAP = new System.Windows.Forms.ListView();
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -91,21 +72,43 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmenuView = new System.Windows.Forms.ToolStripMenuItem();
             this.sep3 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmenuCut = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmenuCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmenuPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.sep4 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuRename = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cmenuCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenuPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolNew = new System.Windows.Forms.ToolStripButton();
+            this.toolOpen = new System.Windows.Forms.ToolStripButton();
+            this.toolSave = new System.Windows.Forms.ToolStripButton();
+            this.toolCut = new System.Windows.Forms.ToolStripButton();
+            this.toolCopy = new System.Windows.Forms.ToolStripButton();
+            this.toolPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolMenu = new System.Windows.Forms.ToolStripButton();
+            this.toolUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolMoveUp = new System.Windows.Forms.ToolStripButton();
+            this.toolMoveDown = new System.Windows.Forms.ToolStripButton();
+            this.toolLoadWav = new System.Windows.Forms.ToolStripButton();
             this.toolPlay = new System.Windows.Forms.ToolStripButton();
-            this.menuAudio = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStop = new System.Windows.Forms.ToolStripMenuItem();
-            this.записьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStop = new System.Windows.Forms.ToolStripButton();
+            this.toolRec = new System.Windows.Forms.ToolStripButton();
+            this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRedo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMoveUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMoveDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -118,8 +121,8 @@
             this.menuFile,
             this.menuEdit,
             this.menuView,
-            this.menuBlocks,
             this.menuAudio,
+            this.menuBlocks,
             this.menuTools,
             this.menuHelp});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -145,76 +148,50 @@
             this.menuFile.Size = new System.Drawing.Size(48, 20);
             this.menuFile.Text = "Файл";
             // 
-            // menuNew
-            // 
-            this.menuNew.Image = ((System.Drawing.Image)(resources.GetObject("menuNew.Image")));
-            this.menuNew.Name = "menuNew";
-            this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(172, 22);
-            this.menuNew.Text = "Новый";
-            this.menuNew.Click += new System.EventHandler(this.FileNew);
-            // 
-            // menuOpen
-            // 
-            this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
-            this.menuOpen.Name = "menuOpen";
-            this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(172, 22);
-            this.menuOpen.Text = "Открыть";
-            this.menuOpen.Click += new System.EventHandler(this.FileOpen);
-            // 
             // menuAdd
             // 
             this.menuAdd.Name = "menuAdd";
-            this.menuAdd.Size = new System.Drawing.Size(172, 22);
+            this.menuAdd.Size = new System.Drawing.Size(180, 22);
             this.menuAdd.Text = "Добавить блоки";
             this.menuAdd.Click += new System.EventHandler(this.AddTAP);
             // 
             // menuLoadWav
             // 
+            this.menuLoadWav.Image = global::Taper.Properties.Resources.Ico;
             this.menuLoadWav.Name = "menuLoadWav";
-            this.menuLoadWav.Size = new System.Drawing.Size(172, 22);
+            this.menuLoadWav.Size = new System.Drawing.Size(180, 22);
             this.menuLoadWav.Text = "Импорт из WAV";
             this.menuLoadWav.Click += new System.EventHandler(this.LoadFromWav);
             // 
             // sep5
             // 
             this.sep5.Name = "sep5";
-            this.sep5.Size = new System.Drawing.Size(169, 6);
-            // 
-            // menuSave
-            // 
-            this.menuSave.Image = ((System.Drawing.Image)(resources.GetObject("menuSave.Image")));
-            this.menuSave.Name = "menuSave";
-            this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(172, 22);
-            this.menuSave.Text = "Сохранить";
-            this.menuSave.Click += new System.EventHandler(this.FileSave);
+            this.sep5.Size = new System.Drawing.Size(177, 6);
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(172, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuSaveAs.Text = "Сохранить как";
             this.menuSaveAs.Click += new System.EventHandler(this.FileSave);
             // 
             // menuSaveWAV
             // 
             this.menuSaveWAV.Name = "menuSaveWAV";
-            this.menuSaveWAV.Size = new System.Drawing.Size(172, 22);
+            this.menuSaveWAV.Size = new System.Drawing.Size(180, 22);
             this.menuSaveWAV.Text = "Экспорт в WAV";
             this.menuSaveWAV.Click += new System.EventHandler(this.SaveToWAV);
             // 
             // sep2
             // 
             this.sep2.Name = "sep2";
-            this.sep2.Size = new System.Drawing.Size(169, 6);
+            this.sep2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(172, 22);
+            this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Выход";
             // 
             // menuEdit
@@ -232,64 +209,10 @@
             this.menuEdit.Size = new System.Drawing.Size(59, 20);
             this.menuEdit.Text = "Правка";
             // 
-            // menuUndo
-            // 
-            this.menuUndo.Image = ((System.Drawing.Image)(resources.GetObject("menuUndo.Image")));
-            this.menuUndo.Name = "menuUndo";
-            this.menuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.menuUndo.Size = new System.Drawing.Size(181, 22);
-            this.menuUndo.Text = "Отменить";
-            this.menuUndo.Click += new System.EventHandler(this.Undo);
-            // 
-            // menuRedo
-            // 
-            this.menuRedo.Image = ((System.Drawing.Image)(resources.GetObject("menuRedo.Image")));
-            this.menuRedo.Name = "menuRedo";
-            this.menuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.menuRedo.Size = new System.Drawing.Size(181, 22);
-            this.menuRedo.Text = "Вернуть";
-            this.menuRedo.Click += new System.EventHandler(this.Redo);
-            // 
             // sep1
             // 
             this.sep1.Name = "sep1";
             this.sep1.Size = new System.Drawing.Size(178, 6);
-            // 
-            // menuCut
-            // 
-            this.menuCut.Image = ((System.Drawing.Image)(resources.GetObject("menuCut.Image")));
-            this.menuCut.Name = "menuCut";
-            this.menuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.menuCut.Size = new System.Drawing.Size(181, 22);
-            this.menuCut.Text = "Вырезать";
-            this.menuCut.Click += new System.EventHandler(this.Cut);
-            // 
-            // menuCopy
-            // 
-            this.menuCopy.Image = ((System.Drawing.Image)(resources.GetObject("menuCopy.Image")));
-            this.menuCopy.Name = "menuCopy";
-            this.menuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuCopy.Size = new System.Drawing.Size(181, 22);
-            this.menuCopy.Text = "Копировать";
-            this.menuCopy.Click += new System.EventHandler(this.Copy);
-            // 
-            // menuPaste
-            // 
-            this.menuPaste.Image = ((System.Drawing.Image)(resources.GetObject("menuPaste.Image")));
-            this.menuPaste.Name = "menuPaste";
-            this.menuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuPaste.Size = new System.Drawing.Size(181, 22);
-            this.menuPaste.Text = "Вставить";
-            this.menuPaste.Click += new System.EventHandler(this.Paste);
-            // 
-            // menuDelete
-            // 
-            this.menuDelete.Image = global::Taper.Properties.Resources.Удалить;
-            this.menuDelete.Name = "menuDelete";
-            this.menuDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.menuDelete.Size = new System.Drawing.Size(181, 22);
-            this.menuDelete.Text = "Удалить";
-            this.menuDelete.Click += new System.EventHandler(this.Delete);
             // 
             // menuRename
             // 
@@ -333,23 +256,38 @@
             this.menuBlocks.Size = new System.Drawing.Size(53, 20);
             this.menuBlocks.Text = "Блоки";
             // 
-            // menuMoveUp
+            // menuAudio
             // 
-            this.menuMoveUp.Image = global::Taper.Properties.Resources.Поднять;
-            this.menuMoveUp.Name = "menuMoveUp";
-            this.menuMoveUp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-            this.menuMoveUp.Size = new System.Drawing.Size(226, 22);
-            this.menuMoveUp.Text = "Подвинуть вверх";
-            this.menuMoveUp.Click += new System.EventHandler(this.MoveUp);
+            this.menuAudio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuPlay,
+            this.menuStop,
+            this.menuRec});
+            this.menuAudio.Name = "menuAudio";
+            this.menuAudio.Size = new System.Drawing.Size(53, 20);
+            this.menuAudio.Text = "Аудио";
             // 
-            // menuMoveDown
+            // menuPlay
             // 
-            this.menuMoveDown.Image = global::Taper.Properties.Resources.Опустить;
-            this.menuMoveDown.Name = "menuMoveDown";
-            this.menuMoveDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-            this.menuMoveDown.Size = new System.Drawing.Size(226, 22);
-            this.menuMoveDown.Text = "Подвинуть вниз";
-            this.menuMoveDown.Click += new System.EventHandler(this.MoveDown);
+            this.menuPlay.Image = global::Taper.Properties.Resources.play;
+            this.menuPlay.Name = "menuPlay";
+            this.menuPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuPlay.Text = "Воспроизведение";
+            this.menuPlay.Click += new System.EventHandler(this.Play);
+            // 
+            // menuStop
+            // 
+            this.menuStop.Image = global::Taper.Properties.Resources.stop;
+            this.menuStop.Name = "menuStop";
+            this.menuStop.Size = new System.Drawing.Size(180, 22);
+            this.menuStop.Text = "Стоп";
+            this.menuStop.Click += new System.EventHandler(this.Stop);
+            // 
+            // menuRec
+            // 
+            this.menuRec.Image = global::Taper.Properties.Resources.record;
+            this.menuRec.Name = "menuRec";
+            this.menuRec.Size = new System.Drawing.Size(180, 22);
+            this.menuRec.Text = "Запись";
             // 
             // menuTools
             // 
@@ -421,156 +359,39 @@
             this.toolUndo,
             this.toolRedo,
             this.sep9,
+            this.toolPlay,
+            this.toolStop,
+            this.toolRec,
+            this.sep8,
             this.toolMoveUp,
             this.toolMoveDown,
-            this.sep8,
-            this.toolLoadWav,
-            this.toolPlay});
+            this.toolStripSeparator1,
+            this.toolLoadWav});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip";
             // 
-            // toolNew
-            // 
-            this.toolNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolNew.Image = ((System.Drawing.Image)(resources.GetObject("toolNew.Image")));
-            this.toolNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolNew.Name = "toolNew";
-            this.toolNew.Size = new System.Drawing.Size(23, 22);
-            this.toolNew.Text = "Новый (Ctrl + N)";
-            this.toolNew.Click += new System.EventHandler(this.FileNew);
-            // 
-            // toolOpen
-            // 
-            this.toolOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolOpen.Image")));
-            this.toolOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolOpen.Name = "toolOpen";
-            this.toolOpen.Size = new System.Drawing.Size(23, 22);
-            this.toolOpen.Text = "Открыть (Ctrl + O)";
-            this.toolOpen.Click += new System.EventHandler(this.FileOpen);
-            // 
-            // toolSave
-            // 
-            this.toolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSave.Image = ((System.Drawing.Image)(resources.GetObject("toolSave.Image")));
-            this.toolSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolSave.Name = "toolSave";
-            this.toolSave.Size = new System.Drawing.Size(23, 22);
-            this.toolSave.Text = "Сохранить (Ctrl + S)";
-            this.toolSave.Click += new System.EventHandler(this.FileSave);
-            // 
             // sep6
             // 
             this.sep6.Name = "sep6";
             this.sep6.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolCut
-            // 
-            this.toolCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolCut.Image = ((System.Drawing.Image)(resources.GetObject("toolCut.Image")));
-            this.toolCut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolCut.Name = "toolCut";
-            this.toolCut.Size = new System.Drawing.Size(23, 22);
-            this.toolCut.Text = "Вырезать (Ctrl + X)";
-            this.toolCut.Click += new System.EventHandler(this.Cut);
-            // 
-            // toolCopy
-            // 
-            this.toolCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolCopy.Image")));
-            this.toolCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolCopy.Name = "toolCopy";
-            this.toolCopy.Size = new System.Drawing.Size(23, 22);
-            this.toolCopy.Text = "Копировать (Ctrl + C)";
-            this.toolCopy.Click += new System.EventHandler(this.Copy);
-            // 
-            // toolPaste
-            // 
-            this.toolPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPaste.Image = ((System.Drawing.Image)(resources.GetObject("toolPaste.Image")));
-            this.toolPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolPaste.Name = "toolPaste";
-            this.toolPaste.Size = new System.Drawing.Size(23, 22);
-            this.toolPaste.Text = "Вставить (Ctrl + V)";
-            this.toolPaste.Click += new System.EventHandler(this.Paste);
-            // 
-            // toolMenu
-            // 
-            this.toolMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolMenu.Image = global::Taper.Properties.Resources.Удалить;
-            this.toolMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolMenu.Name = "toolMenu";
-            this.toolMenu.Size = new System.Drawing.Size(23, 22);
-            this.toolMenu.Text = "Удалить (Del)";
-            this.toolMenu.Click += new System.EventHandler(this.Delete);
             // 
             // sep7
             // 
             this.sep7.Name = "sep7";
             this.sep7.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolUndo
-            // 
-            this.toolUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolUndo.Image = ((System.Drawing.Image)(resources.GetObject("toolUndo.Image")));
-            this.toolUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolUndo.Name = "toolUndo";
-            this.toolUndo.Size = new System.Drawing.Size(23, 22);
-            this.toolUndo.Text = "Отменить (Ctrl +Z)";
-            this.toolUndo.Click += new System.EventHandler(this.Undo);
-            // 
-            // toolRedo
-            // 
-            this.toolRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolRedo.Image = ((System.Drawing.Image)(resources.GetObject("toolRedo.Image")));
-            this.toolRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolRedo.Name = "toolRedo";
-            this.toolRedo.Size = new System.Drawing.Size(23, 22);
-            this.toolRedo.Text = "Вернуть (Ctrl + Y)";
-            this.toolRedo.Click += new System.EventHandler(this.Redo);
-            // 
             // sep9
             // 
             this.sep9.Name = "sep9";
             this.sep9.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolMoveUp
-            // 
-            this.toolMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolMoveUp.Image = global::Taper.Properties.Resources.Поднять;
-            this.toolMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolMoveUp.Name = "toolMoveUp";
-            this.toolMoveUp.Size = new System.Drawing.Size(23, 22);
-            this.toolMoveUp.Text = "Подвинуть вверх (Ctrl + Up)";
-            this.toolMoveUp.Click += new System.EventHandler(this.MoveUp);
-            // 
-            // toolMoveDown
-            // 
-            this.toolMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolMoveDown.Image = global::Taper.Properties.Resources.Опустить;
-            this.toolMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolMoveDown.Name = "toolMoveDown";
-            this.toolMoveDown.Size = new System.Drawing.Size(23, 22);
-            this.toolMoveDown.Text = "Подвинуть вниз (Ctrl + Down)";
-            this.toolMoveDown.Click += new System.EventHandler(this.MoveDown);
-            // 
             // sep8
             // 
             this.sep8.Name = "sep8";
             this.sep8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolLoadWav
-            // 
-            this.toolLoadWav.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolLoadWav.Image = global::Taper.Properties.Resources.Ico;
-            this.toolLoadWav.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolLoadWav.Name = "toolLoadWav";
-            this.toolLoadWav.Size = new System.Drawing.Size(23, 22);
-            this.toolLoadWav.Text = "Импорт из WAV-файла";
-            this.toolLoadWav.Click += new System.EventHandler(this.LoadFromWav);
             // 
             // listViewTAP
             // 
@@ -657,42 +478,10 @@
             this.sep3.Name = "sep3";
             this.sep3.Size = new System.Drawing.Size(167, 6);
             // 
-            // cmenuCut
-            // 
-            this.cmenuCut.Image = global::Taper.Properties.Resources.Вырезать;
-            this.cmenuCut.Name = "cmenuCut";
-            this.cmenuCut.Size = new System.Drawing.Size(170, 22);
-            this.cmenuCut.Text = "Вырезать";
-            this.cmenuCut.Click += new System.EventHandler(this.Cut);
-            // 
-            // cmenuCopy
-            // 
-            this.cmenuCopy.Image = global::Taper.Properties.Resources.Копировать;
-            this.cmenuCopy.Name = "cmenuCopy";
-            this.cmenuCopy.Size = new System.Drawing.Size(170, 22);
-            this.cmenuCopy.Text = "Копировать";
-            this.cmenuCopy.Click += new System.EventHandler(this.Copy);
-            // 
-            // cmenuPaste
-            // 
-            this.cmenuPaste.Image = global::Taper.Properties.Resources.Вставить;
-            this.cmenuPaste.Name = "cmenuPaste";
-            this.cmenuPaste.Size = new System.Drawing.Size(170, 22);
-            this.cmenuPaste.Text = "Вставить";
-            this.cmenuPaste.Click += new System.EventHandler(this.Paste);
-            // 
             // sep4
             // 
             this.sep4.Name = "sep4";
             this.sep4.Size = new System.Drawing.Size(167, 6);
-            // 
-            // cmenuDelete
-            // 
-            this.cmenuDelete.Image = global::Taper.Properties.Resources.Удалить;
-            this.cmenuDelete.Name = "cmenuDelete";
-            this.cmenuDelete.Size = new System.Drawing.Size(170, 22);
-            this.cmenuDelete.Text = "Удалить";
-            this.cmenuDelete.Click += new System.EventHandler(this.Delete);
             // 
             // cmenuRename
             // 
@@ -737,45 +526,290 @@
             this.status3.Text = "   ";
             this.status3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cmenuCut
+            // 
+            this.cmenuCut.Image = global::Taper.Properties.Resources.Вырезать;
+            this.cmenuCut.Name = "cmenuCut";
+            this.cmenuCut.Size = new System.Drawing.Size(170, 22);
+            this.cmenuCut.Text = "Вырезать";
+            this.cmenuCut.Click += new System.EventHandler(this.Cut);
+            // 
+            // cmenuCopy
+            // 
+            this.cmenuCopy.Image = global::Taper.Properties.Resources.Копировать;
+            this.cmenuCopy.Name = "cmenuCopy";
+            this.cmenuCopy.Size = new System.Drawing.Size(170, 22);
+            this.cmenuCopy.Text = "Копировать";
+            this.cmenuCopy.Click += new System.EventHandler(this.Copy);
+            // 
+            // cmenuPaste
+            // 
+            this.cmenuPaste.Image = global::Taper.Properties.Resources.Вставить;
+            this.cmenuPaste.Name = "cmenuPaste";
+            this.cmenuPaste.Size = new System.Drawing.Size(170, 22);
+            this.cmenuPaste.Text = "Вставить";
+            this.cmenuPaste.Click += new System.EventHandler(this.Paste);
+            // 
+            // cmenuDelete
+            // 
+            this.cmenuDelete.Image = global::Taper.Properties.Resources.Удалить;
+            this.cmenuDelete.Name = "cmenuDelete";
+            this.cmenuDelete.Size = new System.Drawing.Size(170, 22);
+            this.cmenuDelete.Text = "Удалить";
+            this.cmenuDelete.Click += new System.EventHandler(this.Delete);
+            // 
+            // toolNew
+            // 
+            this.toolNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolNew.Image = ((System.Drawing.Image)(resources.GetObject("toolNew.Image")));
+            this.toolNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolNew.Name = "toolNew";
+            this.toolNew.Size = new System.Drawing.Size(23, 22);
+            this.toolNew.Text = "Новый (Ctrl + N)";
+            this.toolNew.Click += new System.EventHandler(this.FileNew);
+            // 
+            // toolOpen
+            // 
+            this.toolOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolOpen.Image")));
+            this.toolOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolOpen.Name = "toolOpen";
+            this.toolOpen.Size = new System.Drawing.Size(23, 22);
+            this.toolOpen.Text = "Открыть (Ctrl + O)";
+            this.toolOpen.Click += new System.EventHandler(this.FileOpen);
+            // 
+            // toolSave
+            // 
+            this.toolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolSave.Image = ((System.Drawing.Image)(resources.GetObject("toolSave.Image")));
+            this.toolSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSave.Name = "toolSave";
+            this.toolSave.Size = new System.Drawing.Size(23, 22);
+            this.toolSave.Text = "Сохранить (Ctrl + S)";
+            this.toolSave.Click += new System.EventHandler(this.FileSave);
+            // 
+            // toolCut
+            // 
+            this.toolCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCut.Image = ((System.Drawing.Image)(resources.GetObject("toolCut.Image")));
+            this.toolCut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCut.Name = "toolCut";
+            this.toolCut.Size = new System.Drawing.Size(23, 22);
+            this.toolCut.Text = "Вырезать (Ctrl + X)";
+            this.toolCut.Click += new System.EventHandler(this.Cut);
+            // 
+            // toolCopy
+            // 
+            this.toolCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolCopy.Image")));
+            this.toolCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCopy.Name = "toolCopy";
+            this.toolCopy.Size = new System.Drawing.Size(23, 22);
+            this.toolCopy.Text = "Копировать (Ctrl + C)";
+            this.toolCopy.Click += new System.EventHandler(this.Copy);
+            // 
+            // toolPaste
+            // 
+            this.toolPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPaste.Image = ((System.Drawing.Image)(resources.GetObject("toolPaste.Image")));
+            this.toolPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPaste.Name = "toolPaste";
+            this.toolPaste.Size = new System.Drawing.Size(23, 22);
+            this.toolPaste.Text = "Вставить (Ctrl + V)";
+            this.toolPaste.Click += new System.EventHandler(this.Paste);
+            // 
+            // toolMenu
+            // 
+            this.toolMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolMenu.Image = global::Taper.Properties.Resources.Удалить;
+            this.toolMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolMenu.Name = "toolMenu";
+            this.toolMenu.Size = new System.Drawing.Size(23, 22);
+            this.toolMenu.Text = "Удалить (Del)";
+            this.toolMenu.Click += new System.EventHandler(this.Delete);
+            // 
+            // toolUndo
+            // 
+            this.toolUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolUndo.Image = ((System.Drawing.Image)(resources.GetObject("toolUndo.Image")));
+            this.toolUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolUndo.Name = "toolUndo";
+            this.toolUndo.Size = new System.Drawing.Size(23, 22);
+            this.toolUndo.Text = "Отменить (Ctrl +Z)";
+            this.toolUndo.Click += new System.EventHandler(this.Undo);
+            // 
+            // toolRedo
+            // 
+            this.toolRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolRedo.Image = ((System.Drawing.Image)(resources.GetObject("toolRedo.Image")));
+            this.toolRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRedo.Name = "toolRedo";
+            this.toolRedo.Size = new System.Drawing.Size(23, 22);
+            this.toolRedo.Text = "Вернуть (Ctrl + Y)";
+            this.toolRedo.Click += new System.EventHandler(this.Redo);
+            // 
+            // toolMoveUp
+            // 
+            this.toolMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolMoveUp.Image = global::Taper.Properties.Resources.Поднять;
+            this.toolMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolMoveUp.Name = "toolMoveUp";
+            this.toolMoveUp.Size = new System.Drawing.Size(23, 22);
+            this.toolMoveUp.Text = "Подвинуть вверх (Ctrl + Up)";
+            this.toolMoveUp.Click += new System.EventHandler(this.MoveUp);
+            // 
+            // toolMoveDown
+            // 
+            this.toolMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolMoveDown.Image = global::Taper.Properties.Resources.Опустить;
+            this.toolMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolMoveDown.Name = "toolMoveDown";
+            this.toolMoveDown.Size = new System.Drawing.Size(23, 22);
+            this.toolMoveDown.Text = "Подвинуть вниз (Ctrl + Down)";
+            this.toolMoveDown.Click += new System.EventHandler(this.MoveDown);
+            // 
+            // toolLoadWav
+            // 
+            this.toolLoadWav.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolLoadWav.Image = global::Taper.Properties.Resources.Ico;
+            this.toolLoadWav.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolLoadWav.Name = "toolLoadWav";
+            this.toolLoadWav.Size = new System.Drawing.Size(23, 22);
+            this.toolLoadWav.Text = "Импорт из WAV-файла";
+            this.toolLoadWav.Click += new System.EventHandler(this.LoadFromWav);
+            // 
             // toolPlay
             // 
-            this.toolPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolPlay.Image = ((System.Drawing.Image)(resources.GetObject("toolPlay.Image")));
+            this.toolPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPlay.Image = global::Taper.Properties.Resources.play;
             this.toolPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPlay.Name = "toolPlay";
-            this.toolPlay.Size = new System.Drawing.Size(108, 22);
+            this.toolPlay.Size = new System.Drawing.Size(23, 22);
             this.toolPlay.Text = "Воспроизведение";
             this.toolPlay.Click += new System.EventHandler(this.Play);
             // 
-            // menuAudio
+            // toolStop
             // 
-            this.menuAudio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuPlay,
-            this.menuStop,
-            this.записьToolStripMenuItem});
-            this.menuAudio.Name = "menuAudio";
-            this.menuAudio.Size = new System.Drawing.Size(53, 20);
-            this.menuAudio.Text = "Аудио";
+            this.toolStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStop.Image = global::Taper.Properties.Resources.stop;
+            this.toolStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStop.Name = "toolStop";
+            this.toolStop.Size = new System.Drawing.Size(23, 22);
+            this.toolStop.Text = "Стоп";
+            this.toolStop.Click += new System.EventHandler(this.Stop);
             // 
-            // menuPlay
+            // toolRec
             // 
-            this.menuPlay.Name = "menuPlay";
-            this.menuPlay.Size = new System.Drawing.Size(180, 22);
-            this.menuPlay.Text = "Воспроизведение";
-            this.menuPlay.Click += new System.EventHandler(this.Play);
+            this.toolRec.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolRec.Image = global::Taper.Properties.Resources.record;
+            this.toolRec.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRec.Name = "toolRec";
+            this.toolRec.Size = new System.Drawing.Size(23, 22);
+            this.toolRec.Text = "Запись";
             // 
-            // menuStop
+            // menuNew
             // 
-            this.menuStop.Name = "menuStop";
-            this.menuStop.Size = new System.Drawing.Size(180, 22);
-            this.menuStop.Text = "Стоп";
-            this.menuStop.Click += new System.EventHandler(this.Stop);
+            this.menuNew.Image = ((System.Drawing.Image)(resources.GetObject("menuNew.Image")));
+            this.menuNew.Name = "menuNew";
+            this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.menuNew.Size = new System.Drawing.Size(180, 22);
+            this.menuNew.Text = "Новый";
+            this.menuNew.Click += new System.EventHandler(this.FileNew);
             // 
-            // записьToolStripMenuItem
+            // menuOpen
             // 
-            this.записьToolStripMenuItem.Name = "записьToolStripMenuItem";
-            this.записьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.записьToolStripMenuItem.Text = "Запись";
+            this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
+            this.menuOpen.Name = "menuOpen";
+            this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
+            this.menuOpen.Text = "Открыть";
+            this.menuOpen.Click += new System.EventHandler(this.FileOpen);
+            // 
+            // menuSave
+            // 
+            this.menuSave.Image = ((System.Drawing.Image)(resources.GetObject("menuSave.Image")));
+            this.menuSave.Name = "menuSave";
+            this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
+            this.menuSave.Text = "Сохранить";
+            this.menuSave.Click += new System.EventHandler(this.FileSave);
+            // 
+            // menuUndo
+            // 
+            this.menuUndo.Image = ((System.Drawing.Image)(resources.GetObject("menuUndo.Image")));
+            this.menuUndo.Name = "menuUndo";
+            this.menuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.menuUndo.Size = new System.Drawing.Size(181, 22);
+            this.menuUndo.Text = "Отменить";
+            this.menuUndo.Click += new System.EventHandler(this.Undo);
+            // 
+            // menuRedo
+            // 
+            this.menuRedo.Image = ((System.Drawing.Image)(resources.GetObject("menuRedo.Image")));
+            this.menuRedo.Name = "menuRedo";
+            this.menuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.menuRedo.Size = new System.Drawing.Size(181, 22);
+            this.menuRedo.Text = "Вернуть";
+            this.menuRedo.Click += new System.EventHandler(this.Redo);
+            // 
+            // menuCut
+            // 
+            this.menuCut.Image = ((System.Drawing.Image)(resources.GetObject("menuCut.Image")));
+            this.menuCut.Name = "menuCut";
+            this.menuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.menuCut.Size = new System.Drawing.Size(181, 22);
+            this.menuCut.Text = "Вырезать";
+            this.menuCut.Click += new System.EventHandler(this.Cut);
+            // 
+            // menuCopy
+            // 
+            this.menuCopy.Image = ((System.Drawing.Image)(resources.GetObject("menuCopy.Image")));
+            this.menuCopy.Name = "menuCopy";
+            this.menuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.menuCopy.Size = new System.Drawing.Size(181, 22);
+            this.menuCopy.Text = "Копировать";
+            this.menuCopy.Click += new System.EventHandler(this.Copy);
+            // 
+            // menuPaste
+            // 
+            this.menuPaste.Image = ((System.Drawing.Image)(resources.GetObject("menuPaste.Image")));
+            this.menuPaste.Name = "menuPaste";
+            this.menuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.menuPaste.Size = new System.Drawing.Size(181, 22);
+            this.menuPaste.Text = "Вставить";
+            this.menuPaste.Click += new System.EventHandler(this.Paste);
+            // 
+            // menuDelete
+            // 
+            this.menuDelete.Image = global::Taper.Properties.Resources.Удалить;
+            this.menuDelete.Name = "menuDelete";
+            this.menuDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.menuDelete.Size = new System.Drawing.Size(181, 22);
+            this.menuDelete.Text = "Удалить";
+            this.menuDelete.Click += new System.EventHandler(this.Delete);
+            // 
+            // menuMoveUp
+            // 
+            this.menuMoveUp.Image = global::Taper.Properties.Resources.Поднять;
+            this.menuMoveUp.Name = "menuMoveUp";
+            this.menuMoveUp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
+            this.menuMoveUp.Size = new System.Drawing.Size(226, 22);
+            this.menuMoveUp.Text = "Подвинуть вверх";
+            this.menuMoveUp.Click += new System.EventHandler(this.MoveUp);
+            // 
+            // menuMoveDown
+            // 
+            this.menuMoveDown.Image = global::Taper.Properties.Resources.Опустить;
+            this.menuMoveDown.Name = "menuMoveDown";
+            this.menuMoveDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
+            this.menuMoveDown.Size = new System.Drawing.Size(226, 22);
+            this.menuMoveDown.Text = "Подвинуть вниз";
+            this.menuMoveDown.Click += new System.EventHandler(this.MoveDown);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // FormMain
             // 
@@ -882,7 +916,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuAudio;
         private System.Windows.Forms.ToolStripMenuItem menuPlay;
         private System.Windows.Forms.ToolStripMenuItem menuStop;
-        private System.Windows.Forms.ToolStripMenuItem записьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuRec;
+        private System.Windows.Forms.ToolStripButton toolStop;
+        private System.Windows.Forms.ToolStripButton toolRec;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
