@@ -13,6 +13,7 @@ namespace Taper
         public const string FilterSel = "Образ ленты TAP (*.tap)|*.tap|Образ ленты TZX (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
         public const string FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
         public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
+        public static FormMain mainform;
 
         /// <summary>
         /// Главная точка входа для приложения.
@@ -22,8 +23,9 @@ namespace Taper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
-            //Application.Run(new FormTapeLoad());
+            mainform = new FormMain();
+            //Application.Run(new FormMain());
+            Application.Run(mainform);
         }
 
         /// <summary>

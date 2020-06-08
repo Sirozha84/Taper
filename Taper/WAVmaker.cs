@@ -45,18 +45,9 @@ namespace Taper
                 int len = 0;
                 foreach (Block block in Project.TAP)
                 {
-                    if (block.FileTitle != null)
-                    {
-                        BlockToWav(block.FileTitle, 0);
-                        file.Write(wav.ToArray());
-                        len += wav.Count();
-                    }
-                    if (block.FileData != null)
-                    {
-                        BlockToWav(block.FileData, 1);
-                        file.Write(wav.ToArray());
-                        len += wav.Count();
-                    }
+                    BlockToWav(block);
+                    file.Write(wav.ToArray());
+                    len += wav.Count();
                 }
                 //Вернёмся в те места, где нужно указать длину файла
                 file.Seek(4, 0);
@@ -69,13 +60,29 @@ namespace Taper
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
 
-
         /// <summary>
-        /// Добавление блока в выборку: 0 - заголовок, 1 - блок
+        /// Добавление блока в WAV
         /// </summary>
-        static void BlockToWav(byte[] block, byte Type)
+        /// <param name="block"></param>
+        public static void BlockToWav(Block block)
         {
             wav = new List<byte>();
+            if (block.FileTitle != null)
+            {
+                MakeWav(block.FileTitle, 0);
+            }
+            if (block.FileData != null)
+            {
+                MakeWav(block.FileData, 1);
+            }
+        }
+
+
+        /// <summary>
+        /// Добавление блока в WAV: 0 - заголовок, 1 - блок
+        /// </summary>
+        static void MakeWav(byte[] block, byte Type)
+        {
             //Пишем пилот-тон
             int ii = 0;
             if (Type == 0) ii = 3000; else ii = 1500;

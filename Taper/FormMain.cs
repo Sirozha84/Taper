@@ -113,7 +113,8 @@ namespace Taper
         /// </summary>
         void Play(object sender, EventArgs e)
         {
-            Audio.Play();
+            if (listViewTAP.Items.Count == 0) return;
+            Audio.Play(listViewTAP.SelectedIndices.Count == 0 ? 0 : listViewTAP.SelectedIndices[0]);
         }
 
         /// <summary>
@@ -122,6 +123,13 @@ namespace Taper
         void Stop(object sender, EventArgs e)
         {
             Audio.Stop();
+        }
+
+        public void PlayerIndication(int num)
+        {
+            foreach (ListViewItem item in listViewTAP.Items) item.ImageIndex = -1;
+            if (num >= 0)
+                listViewTAP.Items[num].ImageIndex = 0;
         }
         #endregion
 

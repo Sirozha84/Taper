@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using NAudio.Wave;
 
 namespace Taper
@@ -12,32 +13,40 @@ namespace Taper
         public static WaveOut waveOut;
         public static Player player;
         public const int SampleRate = 44100;    //Частота дискретизации
+        public static int block;
+        
         /// <summary>
-        /// Инициализация звуковой системы
+        /// Вопроизведение
         /// </summary>
-        public static void Init()
+        /// <param name="num">Номер блока, с которого начинать</param>
+        public static void Play(int num)
         {
+            block = num;
+            if (num >= Project.TAP.Count) return;
+            if (Plaing) Stop();
+
+            //Подготовка данных
+            WAVmaker.BlockToWav(Project.TAP[num]);
+            Player.s = 0;
+            Player.c = WAVmaker.wav.Count();
+            
+            //Инициализация звуковой системы
             player = new Player();
             player.SetWaveFormat(SampleRate, 1);
             waveOut = new WaveOut();
             waveOut.DesiredLatency = 200; // длина буфера /2=50 миллисекунд
             waveOut.Init(player);
-        }
-        public static void Play()
-        {
-            if (Plaing) Stop();
-            Init();
-            //WAVmaker.Make();
-            Player.s = 0;
-            Player.c = WAVmaker.wav.Count();
             waveOut.Play();
             Plaing = true;
+            Program.mainform.PlayerIndication(num);
         }
 
         public static void Stop()
         {
+            if (!Plaing) return;
             waveOut.Stop();
             Plaing = false;
+            Program.mainform.PlayerIndication(-1);
         }
     }
 
@@ -78,9 +87,13 @@ namespace Taper
         {
             //Заполнение буфера звука
             for (int i = 0; i < sampleCount; i++)
-            {
                 if (s < c) buffer[i + offset] = WAVmaker.wav[s++] == 127 ? 0 : .2f; //0-1 - громкость
-                else Audio.Stop();
+            
+            //Если блок кончается переходим на следующий
+            if (s >= c)
+            {
+                Audio.Stop();
+                Audio.Play(Audio.block + 1); 
             }
             return sampleCount;
         }
