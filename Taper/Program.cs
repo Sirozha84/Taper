@@ -6,7 +6,7 @@ namespace Taper
     static class Program
     {
         public const string Name = "Taper";
-        public const string Version = "3.0 Beta (03.06.2015)";
+        public const string Version = "3.0 Beta (03.07.2015)";
         //Параметры открытия и сохранения файлов
         public const string FileUnnamed = "Безымянный";
         public const string FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
