@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Xml.Schema;
 
 namespace Taper
 {
@@ -67,15 +60,24 @@ namespace Taper
             {
                 byte[] part = new byte[partLen];
                 Array.Copy(wav, i, part, 0, partLen);
-                Listener.Listen(part);
-                worker.ReportProgress((int)((float)i / Len * 100));
-                System.Threading.Thread.Sleep(1);
+                string res = Listener.Listen(i.ToString(), part);
+                worker.ReportProgress((int)((float)i / Len * 100), res);
+                
+                
+                //Замедлим, чтоб успел вывестись список,
+                //if (res!="") System.Threading.Thread.Sleep(10); //Посмотреть как будет в реальной жизни, может замедление и не понадобится
             }
         }
 
         void ProgressChange(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
+            string[] res = e.UserState.ToString().Split('☺');
+            if (res[0] != "")
+            {
+                //reportrec rec = (reportrec)e.UserState;
+                listView.Items.Add(new ListViewItem(res));
+            }
         }
 
         void Complate(object sender, EventArgs e)
@@ -84,4 +86,5 @@ namespace Taper
             buttonOK.Enabled = true;
         }
     }
+
 }
