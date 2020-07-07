@@ -504,7 +504,6 @@
             this.ClientSize = new System.Drawing.Size(558, 491);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
-            this.MinimizeBox = false;
             this.Name = "FormViewer";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
