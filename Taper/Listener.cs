@@ -120,7 +120,11 @@ namespace Taper
                 len1 += len;
                 if (len1 > avglen)
                 {
-                    result = DateTime.Now.ToString("HH:mm:ss") + "☺" + pos + "☺Блок " + (bytes.Count()-2).ToString();
+                    //Тут надо ещё описать ситуацию когда данные обрываются внезапно, т.е. Tape loading error
+                    //Записать полученный байт и добавить контрольную сумму.
+
+
+                    AddBlock();
                     bytes.Clear();
                     mode = 0;
                     return;
@@ -149,6 +153,12 @@ namespace Taper
             if (bits[6]) b += 2;
             if (bits[7]) b += 1;
             return b;
+        }
+
+        static void AddBlock()
+        {
+            //Block.FileInfo(bytes, 2);
+            result = DateTime.Now.ToString("HH:mm:ss") + "☺" + pos + "☺" + Block.FileInfo(bytes.ToArray(), 2) + "☺OK";
         }
     }
 }

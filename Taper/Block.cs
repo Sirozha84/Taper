@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Taper
@@ -39,6 +40,8 @@ namespace Taper
                 //Обрежем лишнее, бывает что заголовок содержит некий мусор выше 19-и байт, прямо после CRC
                 Array.Resize(ref FileTitle, 19);
 
+                FileInfo....
+
                 //Парсим заголовок
                 switch (Bytes[1])
                 {
@@ -65,6 +68,32 @@ namespace Taper
                 FileData = Bytes;
                 CRCTest(1, false);
             }
+        }
+
+        /// <summary>
+        /// Получение сведений о блоке данных
+        /// </summary>
+        /// <param name="bytes">Блок</param>
+        /// <param name="naming">Что хотим: 0 - тип блока, 1 - имя файла, 2 - Тип: имя</param>
+        /// <returns></returns>
+        public static string FileInfo(byte[] bytes, int naming)
+        {
+            string result = "";
+            if (bytes[0] == 0 & bytes.Length >= 19)
+            {
+                if (naming == 0 | naming == 2)
+                {
+                    if (bytes[1] == 0) result = "Program";
+                    if (bytes[1] == 1) result = "Number array";
+                    if (bytes[1] == 2) result = "Character array";
+                    if (bytes[1] == 3) result = "Bytes:";
+                }
+                if (naming == 2) result += ": ";
+                if (naming == 1 | naming == 2)
+                    for (int i = 2; i < 12; i++)
+                        result += (char)bytes[i];
+            }     
+            return result;
         }
 
         /// <summary>
