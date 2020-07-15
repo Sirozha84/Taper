@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Taper
 {
     class Listener
     {
         const int accuracy = 10;    //Точность (число послдених волн, средняя которых вычисляется для сравнения со следующей)
-        static string pos;  //Позиция в вавке
+        
+        //Анализ волны
         static byte mode;   //Режим, (0 - поиск пилот-тона, 1/2 - ожидание 1/2 части преамбулы, 3/4 - ожидание 1/2 части бита)
         static int cn;      //Нахождение волны (0 - ниже центра, 1 - выше центра)
         static int last;    //Предыдущее нахождение
+        
+        //Анализ длин волн
         static int len;     //Счётчик нахождения волны в одной стороне
         static int len1;    //Длина первой части волны
-        static int avglen;  //Средняя длина пилот-тона (для настройки скорости)
         static List<int> lens = new List<int>(); //Список последних длин
-        //static int firstCn; //С какой стороны волна начинается (0 - снизу вверх, 1 - сверху вниз, 2 - ещё не известно)
-        static string result;   //Результат, отправляемый загрузчику
-        
+        static int avglen;  //Средняя длина пилот-тона (для настройки скорости)
+
         //Собирание данных
-        static bool[] bits = new bool[8];
-        static byte nbyte = 0;
+        static bool[] bits;
+        static byte nbit;
         static List<byte> bytes = new List<byte>();
+        public static List<byte[]> blocks = new List<byte[]>();
+        static string result;   //Результат, отправляемый загрузчику
 
         /// <summary>
         /// Сброс всех данных и начало слушания новых
@@ -33,21 +32,21 @@ namespace Taper
         public static void Init()
         {
             mode = 0;
+            blocks.Clear();
         }
 
         /// <summary>
         /// Слушает кусок записи, возвращает результаты распознания
         /// </summary>
         /// <param name="data"></param>
-        public static string Listen(string position, byte[] data)
+        public static string Listen(byte[] data)
         {
-            pos = position;
             result = "";
 
             //Считаем длину волны
             foreach (byte a in data)
             {
-                cn = a < 128 ? 0 : 1;
+                cn = a < 128 ? 0 : 1; //Вот это "128" надо будет тоже корректировать
                 if (cn == last)
                 {
                     len++;
@@ -62,20 +61,20 @@ namespace Taper
                 }
             }
 
-
-            //result = DateTime.Now.ToString("hh:mm:ss") + "☺" + pos + "☺Hello!☺OK";
-            //Надо понимать, если в один кусочек будет два события, отобразится только последнее
-            //хотя за столь маленький отрезок в теории больше одного события не может быть.
-
             return result;
         }
 
         static void CenterIntersection()
         {
+            double avg = 0;  //Средняя длина волны пилот-тона
+            double percent = 0;
             lens.Add(len);
             if (lens.Count > accuracy) lens.RemoveAt(0);
-            double avg = lens.Average();
-            double percent = Math.Abs(avg - len) / avg;
+            if (lens.Count == accuracy)
+            {
+                avg = lens.Average();
+                percent = Math.Abs(avg - len) / avg;
+            }
 
             // Поиск пилот-тона. Предположим, мы не знаем длину пилот-тона, будем считать среднюю длину поступающих волн.
             // И если следующая длина не будет отходитьи от среднего, допустим больше чем на 10 процентов на протяжении,
@@ -89,11 +88,10 @@ namespace Taper
             // В какую сторону она "повёрнута", ту сторону и будем считать "первой"
             if (mode == 1)
             {
-                avglen = (int)(avg * 2);
                 if (percent > 0.3)
                 {
-                    lens.Clear();
                     mode = 2;
+                    avglen = (int)(avg * 2);
                 }
                 return;
             }
@@ -101,7 +99,10 @@ namespace Taper
             //После того как нашли первую "короткую" волну, ожидаемо, что далее будет короткая
             if (mode == 2)
             {
-                len1 += len;
+                //Ещё нужно проверить длину преамбулы, может первая часть была норм, а на второй всё оборвалось...
+                nbit = 0;
+                bits = new bool[8];
+                bytes.Clear();
                 mode = 3;
                 return;
             }
@@ -110,7 +111,8 @@ namespace Taper
             if (mode == 3)
             {
                 len1 = len;
-                mode = 4;
+                if (len1 > avglen) AddBlock();
+                else mode = 4;
                 return;
             }
 
@@ -118,26 +120,21 @@ namespace Taper
             if (mode == 4)
             {
                 len1 += len;
-                if (len1 > avglen)
+
+                //Данных больше нет, заканчиваем блок
+                if (len1 > avglen) AddBlock();
+                else
                 {
-                    //Тут надо ещё описать ситуацию когда данные обрываются внезапно, т.е. Tape loading error
-                    //Записать полученный байт и добавить контрольную сумму.
-
-
-                    AddBlock();
-                    bytes.Clear();
-                    mode = 0;
-                    return;
+                    bits[nbit++] = len1 > avglen * 0.62;
+                    //Вот это 0.62 нужно постоянно корректировать!
+                    //Ещё нужно поизучать его расчёт, посмотреть как устроены турбо-записи
+                    if (nbit > 7)
+                    {
+                        nbit = 0;
+                        bytes.Add(BitsToByte());
+                    }
+                    mode = 3;
                 }
-                bits[nbyte++] = len1 > avglen * 0.62;
-                if (nbyte > 7)
-                {
-                    nbyte = 0;
-                    bytes.Add(BitsToByte());
-                }
-
-                //48, 19, 40
-                mode = 3;
             }
         }
 
@@ -157,8 +154,16 @@ namespace Taper
 
         static void AddBlock()
         {
-            //Block.FileInfo(bytes, 2);
-            result = DateTime.Now.ToString("HH:mm:ss") + "☺" + pos + "☺" + Block.FileInfo(bytes.ToArray(), 2) + "☺OK";
+            byte crc = 0;
+            foreach (byte b in bytes) crc ^= b;
+            result = Block.FileInfo(bytes.ToArray(), 2) + (crc == 0 ? "☺OK" : "☺Fail");
+            
+            //Добавление блока во временный проект
+            blocks.Add(bytes.ToArray());
+            
+            //Обнуления считывателя и переход обратно в поиск пилот-тона
+            lens.Clear();
+            mode = 0;
         }
     }
 }

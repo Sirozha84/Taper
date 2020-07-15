@@ -28,33 +28,24 @@ namespace Taper
         /// <summary>
         /// Добавление блока к файлу у которого есть имя
         /// </summary>
-        /// <param name="Bytes">Массив данных</param>
-        public void AddBlock(byte[] Bytes)
+        /// <param name="bytes">Массив данных</param>
+        public void AddBlock(byte[] bytes)
         {
-            if (Bytes[0] == 0 & Bytes.Length >= 19)
+            if (bytes[0] == 0 & bytes.Length >= 19)
             {
                 //Добавление заголовка
-                FileTitle = Bytes;
+                FileTitle = bytes;
                 CRCTest(0, false);
 
                 //Обрежем лишнее, бывает что заголовок содержит некий мусор выше 19-и байт, прямо после CRC
                 Array.Resize(ref FileTitle, 19);
 
-                FileInfo....
-
                 //Парсим заголовок
-                switch (Bytes[1])
-                {
-                    case 0: FileType = "Program:"; break;
-                    case 1: FileType = "Number array:"; break;
-                    case 2: FileType = "Character array:"; break;
-                    case 3: FileType = "Bytes:"; break;
-                }
-                for (int i = 2; i < 12; i++)
-                    FileName += (char)Bytes[i];
+                FileType = FileInfo(bytes, 0);
+                FileName = FileInfo(bytes, 1);
                 if (FileTitle[1] == 0)
                     if (FileTitle[14] + FileTitle[15] * 256 < 10000)
-                        Start = "Basic line " + (FileTitle[14] + FileTitle[15] * 256).ToString();
+                        Start = "Basic " + (FileTitle[14] + FileTitle[15] * 256).ToString();
                     else
                         Start = "No run";
                 if (FileTitle[1] == 3)
@@ -65,7 +56,7 @@ namespace Taper
             else
             {
                 //Добавление блока данных
-                FileData = Bytes;
+                FileData = bytes;
                 CRCTest(1, false);
             }
         }
@@ -74,25 +65,26 @@ namespace Taper
         /// Получение сведений о блоке данных
         /// </summary>
         /// <param name="bytes">Блок</param>
-        /// <param name="naming">Что хотим: 0 - тип блока, 1 - имя файла, 2 - Тип: имя</param>
+        /// <param name="format">Формат выходных данных: 0 - тип блока, 1 - имя файла, 2 - Тип: имя</param>
         /// <returns></returns>
-        public static string FileInfo(byte[] bytes, int naming)
+        public static string FileInfo(byte[] bytes, int format)
         {
             string result = "";
-            if (bytes[0] == 0 & bytes.Length >= 19)
+            if (bytes.Length >= 19 && bytes[0] == 0)
             {
-                if (naming == 0 | naming == 2)
+                if (format == 0 | format == 2)
                 {
                     if (bytes[1] == 0) result = "Program";
                     if (bytes[1] == 1) result = "Number array";
                     if (bytes[1] == 2) result = "Character array";
-                    if (bytes[1] == 3) result = "Bytes:";
+                    if (bytes[1] == 3) result = "Bytes";
                 }
-                if (naming == 2) result += ": ";
-                if (naming == 1 | naming == 2)
+                if (format == 2) result += ": ";
+                if (format == 1 | format == 2)
                     for (int i = 2; i < 12; i++)
                         result += (char)bytes[i];
-            }     
+            }
+            else result = "- - - - - " + (bytes.Length - 2).ToString() + " байт";
             return result;
         }
 

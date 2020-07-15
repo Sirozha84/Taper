@@ -53,18 +53,8 @@ namespace Taper
             OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт из WAV-файла блоков", Filter = Program.FilterWAV };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             FormWAVimport form = new FormWAVimport(dialog.FileName);
-            if (form.ShowDialog() == DialogResult.OK)
-            Project.Change();
-            //Добавление файлов...
+            form.ShowDialog();
             DrawProject();
-
-            //Project.Open(dialog.FileName, true);
-            /*FormTapeLoad form = new FormTapeLoad();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Project.Change(); //Переместить перед добавлением файлов в проект
-                DrawProject();
-            }*/
         }
         #endregion
 

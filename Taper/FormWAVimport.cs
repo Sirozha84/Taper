@@ -7,6 +7,7 @@ namespace Taper
 {
     public partial class FormWAVimport : Form
     {
+        const int partLen = 1000;
         string file;
         byte[] wav;
         BackgroundWorker worker = new BackgroundWorker();
@@ -23,7 +24,16 @@ namespace Taper
             worker.RunWorkerAsync();
         }
 
-        private void buttonOK_Click(object sender, EventArgs e) { Close(); }
+        private void buttonOK_Click(object sender, EventArgs e) 
+        {
+            if (Listener.blocks.Count > 0)
+            {
+                Project.Change();
+                foreach (byte[] block in Listener.blocks)
+                    Project.Add(block);
+            }
+            Close(); 
+        }
         private void buttonCancel_Click(object sender, EventArgs e) { Close(); }
 
         void AsynkRead(object sender, EventArgs e)
@@ -41,10 +51,11 @@ namespace Taper
                 WAV.Bits = File.ReadInt16();
                 File.ReadBytes(4);
                 Len = File.ReadInt32();// +44;
-                string Channels = "Моно";
-                if (WAV.Channels == 2) Channels = "Стерео";
                 //Грузим выборку
                 wav = File.ReadBytes(Len);
+                //Искуственно увеличиваем длину данных, на случай если данные обрываются ровно в конце
+                Array.Resize(ref wav, wav.Length + partLen);
+                Len += partLen;
                 File.Close();
             }
             catch
@@ -55,17 +66,24 @@ namespace Taper
             
             //Скармливание данных "слушателю"
             Listener.Init();
-            int partLen = 1000;
-            for (int i = 0; i < Len - partLen; i += partLen)
+            for (int i = 0; i <= Len - partLen; i += partLen)
             {
+                
+                //По умолчанию будем считать что запись 8-и битная
                 byte[] part = new byte[partLen];
                 Array.Copy(wav, i, part, 0, partLen);
-                string res = Listener.Listen(i.ToString(), part);
+                //Но если она 16-и битная, делаем по другому
+                if (WAV.Bits == 16)
+                {
+                    part = new byte[partLen / 2];
+                    for (int j = 0; j < partLen; j += 2)
+                        part[j / 2] = (byte)((wav[i+j] + wav[i+j + 1] * 256) / 256 - 128);
+                }
+                //Здесь же потом попробовать сделать и объединение каналов... только не знаю зачем
+
+                string listen = Listener.Listen(part);
+                string res = listen != "" ? DateTime.Now.ToString("HH.mm:ss☺") + i.ToString() + "☺" + listen : "";
                 worker.ReportProgress((int)((float)i / Len * 100), res);
-                
-                
-                //Замедлим, чтоб успел вывестись список,
-                //if (res!="") System.Threading.Thread.Sleep(10); //Посмотреть как будет в реальной жизни, может замедление и не понадобится
             }
         }
 
@@ -73,11 +91,8 @@ namespace Taper
         {
             progressBar.Value = e.ProgressPercentage;
             string[] res = e.UserState.ToString().Split('☺');
-            if (res[0] != "")
-            {
-                //reportrec rec = (reportrec)e.UserState;
-                listView.Items.Add(new ListViewItem(res));
-            }
+            if (res[0] != "") listView.Items.Add(new ListViewItem(res));
+
         }
 
         void Complate(object sender, EventArgs e)
