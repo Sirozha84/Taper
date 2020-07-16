@@ -46,7 +46,7 @@ namespace Taper
             //Считаем длину волны
             foreach (byte a in data)
             {
-                cn = a < 128 ? 0 : 1; //Вот это "128" надо будет тоже корректировать
+                cn = a < 130 ? 0 : 1; //Вот это "130" надо будет тоже корректировать
                 if (cn == last)
                 {
                     len++;
@@ -85,7 +85,7 @@ namespace Taper
             }
             
             // После пилота найдена волна, значительно короче других, будем считать это преамбулой.
-            // В какую сторону она "повёрнута", ту сторону и будем считать "первой"
+            // В какую сторону она "повёрнута", ту сторону и будем считать "первой" 0.7
             if (mode == 1)
             {
                 if (percent > 0.3)
@@ -93,6 +93,7 @@ namespace Taper
                     mode = 2;
                     avglen = (int)(avg * 2);
                 }
+                
                 return;
             }
 
@@ -154,13 +155,16 @@ namespace Taper
 
         static void AddBlock()
         {
-            byte crc = 0;
-            foreach (byte b in bytes) crc ^= b;
-            result = Block.FileInfo(bytes.ToArray(), 2) + (crc == 0 ? "☺OK" : "☺Fail");
-            
-            //Добавление блока во временный проект
-            blocks.Add(bytes.ToArray());
-            
+            if (bytes.Count > 1)
+            {
+                //Проверяем контрольную сумму
+                byte crc = 0;
+                foreach (byte b in bytes) crc ^= b;
+                result = Block.FileInfo(bytes.ToArray(), 2) + (crc == 0 ? "☺OK" : "☺Fail");
+
+                //Добавление блока во временный проект
+                blocks.Add(bytes.ToArray());
+            }
             //Обнуления считывателя и переход обратно в поиск пилот-тона
             lens.Clear();
             mode = 0;

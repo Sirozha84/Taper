@@ -18,6 +18,12 @@ namespace Taper
         {
             //Пытаемся автоматически понять что за файл просматривается, если непонятно - открываем в виде кода
             tabControl1.SelectedIndex = 5;
+            if (Project.view.FileData == null)
+            {
+                MessageBox.Show("В этом блоке нет данных");
+                Close();
+                return;
+            }
             if (Project.view.FileData.Count() == 6914) tabControl1.SelectedIndex = 1;
             if (Project.view.FileData.Count() == 770) tabControl1.SelectedIndex = 2;
             if (Project.view.FileTitle != null && Project.view.FileTitle[1] == 0) tabControl1.SelectedIndex = 0;
