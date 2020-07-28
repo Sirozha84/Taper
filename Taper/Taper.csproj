@@ -86,12 +86,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTapeLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTapeLoad.Designer.cs">
-      <DependentUpon>FormTapeLoad.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +103,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WAV.cs" />
     <Compile Include="WAVmaker.cs" />
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
@@ -118,9 +113,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTapeLoad.resx">
-      <DependentUpon>FormTapeLoad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.cs</DependentUpon>

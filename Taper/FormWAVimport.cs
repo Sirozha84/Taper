@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using System.IO;
 
 namespace Taper
 {
@@ -9,7 +8,7 @@ namespace Taper
     {
         const int partLen = 1000;
         string file;
-        byte[] wav;
+
         BackgroundWorker worker = new BackgroundWorker();
 
         public FormWAVimport(string file)
@@ -39,31 +38,9 @@ namespace Taper
         void AsynkRead(object sender, EventArgs e)
         {
             //Загрузка файла
-            int Len = 0;
-            try
-            {
-                BinaryReader File = new BinaryReader(new FileStream(file, FileMode.Open));
-                //Прочитаем сперва параметры файла
-                File.ReadBytes(22);
-                WAV.Channels = File.ReadInt16();
-                WAV.Sampling = File.ReadInt32();
-                File.ReadBytes(6);
-                WAV.Bits = File.ReadInt16();
-                File.ReadBytes(4);
-                Len = File.ReadInt32();// +44;
-                //Грузим выборку
-                wav = File.ReadBytes(Len);
-                //Искуственно увеличиваем длину данных, на случай если данные обрываются ровно в конце
-                Array.Resize(ref wav, wav.Length + partLen);
-                Len += partLen;
-                File.Close();
-            }
-            catch
-            {
-                Program.Error("Произошла ошибка при загрузке WAV-файла.");
-                Close();
-            }
-            
+            int Len = WAV.Load(file, partLen);
+            if (Len == 0) Close();
+
             //Скармливание данных "слушателю"
             Listener.Init();
             for (int i = 0; i <= Len - partLen; i += partLen)
@@ -71,18 +48,18 @@ namespace Taper
                 
                 //По умолчанию будем считать что запись 8-и битная
                 byte[] part = new byte[partLen];
-                Array.Copy(wav, i, part, 0, partLen);
+                Array.Copy(WAV.wave, i, part, 0, partLen);
                 //Но если она 16-и битная, делаем по другому
-                if (WAV.Bits == 16)
+                if (WAV.capacity == 16)
                 {
                     part = new byte[partLen / 2];
                     for (int j = 0; j < partLen; j += 2)
-                        part[j / 2] = (byte)((wav[i+j] + wav[i+j + 1] * 256) / 256 - 128);
+                        part[j / 2] = (byte)((WAV.wave[i+j] + WAV.wave[i+j + 1] * 256) / 256 - 128);
                 }
                 //Здесь же потом попробовать сделать и объединение каналов... только не знаю зачем
 
                 string listen = Listener.Listen(part);
-                string res = listen != "" ? DateTime.Now.ToString("HH.mm:ss☺") + i.ToString() + "☺" + listen : "";
+                string res = listen != "" ? DateTime.Now.ToString("HH.mm:ss☺") + WAV.Time(i) + "☺" + listen : "";
                 worker.ReportProgress((int)((float)i / Len * 100), res);
             }
         }
