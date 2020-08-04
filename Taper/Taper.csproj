@@ -86,6 +86,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTapeLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTapeLoader.Designer.cs">
+      <DependentUpon>FormTapeLoader.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTapeLoader.resx">
+      <DependentUpon>FormTapeLoader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.cs</DependentUpon>

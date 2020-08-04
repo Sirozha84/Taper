@@ -82,9 +82,9 @@
             this.labelInfo.AutoSize = true;
             this.labelInfo.Location = new System.Drawing.Point(12, 9);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(108, 13);
+            this.labelInfo.Size = new System.Drawing.Size(120, 13);
             this.labelInfo.TabIndex = 1;
-            this.labelInfo.Text = "Результат импорта:";
+            this.labelInfo.Text = "Загруженные данные:";
             // 
             // buttonOK
             // 

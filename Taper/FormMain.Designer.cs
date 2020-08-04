@@ -105,11 +105,11 @@
             this.sep4 = new System.Windows.Forms.ToolStripSeparator();
             this.cmenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuRename = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -318,14 +318,14 @@
             this.menuListFiles.Checked = true;
             this.menuListFiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuListFiles.Name = "menuListFiles";
-            this.menuListFiles.Size = new System.Drawing.Size(180, 22);
+            this.menuListFiles.Size = new System.Drawing.Size(160, 22);
             this.menuListFiles.Text = "Список файлов";
             this.menuListFiles.Click += new System.EventHandler(this.viewListFiles);
             // 
             // menuListBlocks
             // 
             this.menuListBlocks.Name = "menuListBlocks";
-            this.menuListBlocks.Size = new System.Drawing.Size(180, 22);
+            this.menuListBlocks.Size = new System.Drawing.Size(160, 22);
             this.menuListBlocks.Text = "Список блоков";
             this.menuListBlocks.Click += new System.EventHandler(this.viewListBlocks);
             // 
@@ -343,7 +343,7 @@
             // 
             this.menuPlay.Image = global::Taper.Properties.Resources.play;
             this.menuPlay.Name = "menuPlay";
-            this.menuPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuPlay.Size = new System.Drawing.Size(171, 22);
             this.menuPlay.Text = "Воспроизведение";
             this.menuPlay.Click += new System.EventHandler(this.Play);
             // 
@@ -351,7 +351,7 @@
             // 
             this.menuStop.Image = global::Taper.Properties.Resources.stop;
             this.menuStop.Name = "menuStop";
-            this.menuStop.Size = new System.Drawing.Size(180, 22);
+            this.menuStop.Size = new System.Drawing.Size(171, 22);
             this.menuStop.Text = "Стоп";
             this.menuStop.Click += new System.EventHandler(this.Stop);
             // 
@@ -361,6 +361,7 @@
             this.menuRec.Name = "menuRec";
             this.menuRec.Size = new System.Drawing.Size(180, 22);
             this.menuRec.Text = "Запись";
+            this.menuRec.Click += new System.EventHandler(this.Record);
             // 
             // menuBlocks
             // 
@@ -606,6 +607,7 @@
             this.toolRec.Name = "toolRec";
             this.toolRec.Size = new System.Drawing.Size(23, 22);
             this.toolRec.Text = "Запись";
+            this.toolRec.Click += new System.EventHandler(this.Record);
             // 
             // sep8
             // 
@@ -777,6 +779,12 @@
             this.cmenuRename.Text = "Переименовать";
             this.cmenuRename.Click += new System.EventHandler(this.Rename);
             // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "play.png");
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -812,12 +820,6 @@
             this.status3.Size = new System.Drawing.Size(160, 19);
             this.status3.Text = "   ";
             this.status3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "play.png");
             // 
             // FormMain
             // 

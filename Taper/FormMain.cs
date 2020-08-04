@@ -124,11 +124,16 @@ namespace Taper
             Audio.Stop();
         }
 
-        public void PlayerIndication(int num)
+        /// <summary>
+        /// Загрузка со внешнего источника звука
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Record(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listViewTAP.Items) item.ImageIndex = -1;
-            if (num >= 0)
-                listViewTAP.Items[num].ImageIndex = 0;
+            FormTapeLoader form = new FormTapeLoader();
+            form.ShowDialog();
+            DrawProject();
         }
         #endregion
 
@@ -232,6 +237,12 @@ namespace Taper
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
                 e.Effect = DragDropEffects.All;
+        }
+        public void PlayerIndication(int num)
+        {
+            foreach (ListViewItem item in listViewTAP.Items) item.ImageIndex = -1;
+            if (num >= 0)
+                listViewTAP.Items[num].ImageIndex = 0;
         }
 
         private void listViewTAP_DragDrop(object sender, DragEventArgs e)
