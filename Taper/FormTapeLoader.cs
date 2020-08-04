@@ -15,7 +15,7 @@ namespace Taper
     {
         WaveIn waveIn;
         Bitmap buffer;
-        const int bwidth = 100;
+        const int bwidth = 50;
         public FormTapeLoader()
         {
             InitializeComponent();
@@ -81,30 +81,18 @@ namespace Taper
                     listView.Items.Add(new ListViewItem(s));
                 }
 
-                Color c = Color.White;
-                Color c1 = Color.White;
-                Color c2 = Color.White;
-                if (Listener.mode == 1 | Listener.mode == 2)
-                {
-                    c1 = Color.Red;
-                    c2 = Color.Cyan;
-                }
-                if (Listener.mode == 3 | Listener.mode == 4)
-                {
-                    c1 = Color.Blue;
-                    c2 = Color.Yellow;
-                }
+                Color color = Color.White;
                 for (int i = 0; i < e.Buffer.Length; i++)
                 {
                     if (i < 100)
                     {
                         byte b = e.Buffer[i];
+                        if (Listener.mode == 1 | Listener.mode == 2)
+                            color = b < Program.center ? Color.Red : Color.Cyan;
+                        if (Listener.mode == 3 | Listener.mode == 4)
+                            color = b < Program.center ? Color.Blue : Color.Yellow;
                         for (int j = 0; j < bwidth; j++)
-                        {
-                            c = b < Program.center ? c1 : c2;
-                            buffer.SetPixel(j, i, c);
-                        }
-                        //buffer.SetPixel((int)(b/2.56), i, Color.Black);
+                            buffer.SetPixel(j, i, color);
                     }
                 }
                 //Console.WriteLine(s);
@@ -129,7 +117,7 @@ namespace Taper
         private void buttonClear_Click(object sender, EventArgs e)
         {
             Listener.Init();
-            listView.Clear();
+            listView.Items.Clear();
         }
     }
 }

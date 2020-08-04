@@ -46,7 +46,7 @@
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(357, 276);
+            this.buttonCancel.Location = new System.Drawing.Point(297, 226);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 8;
@@ -56,7 +56,7 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(276, 276);
+            this.buttonOK.Location = new System.Drawing.Point(216, 226);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 7;
@@ -67,7 +67,7 @@
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(129, 39);
+            this.labelInfo.Location = new System.Drawing.Point(68, 39);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(120, 13);
             this.labelInfo.TabIndex = 6;
@@ -84,9 +84,9 @@
             this.columnHeaderCRC});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
-            this.listView.Location = new System.Drawing.Point(129, 55);
+            this.listView.Location = new System.Drawing.Point(68, 55);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(303, 215);
+            this.listView.Size = new System.Drawing.Size(304, 165);
             this.listView.TabIndex = 5;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -110,15 +110,13 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.border.Location = new System.Drawing.Point(12, 39);
             this.border.Name = "border";
-            this.border.Size = new System.Drawing.Size(111, 231);
+            this.border.Size = new System.Drawing.Size(50, 210);
             this.border.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.border.TabIndex = 9;
             this.border.TabStop = false;
             // 
             // comboBoxDevices
             // 
-            this.comboBoxDevices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDevices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDevices.FormattingEnabled = true;
             this.comboBoxDevices.Location = new System.Drawing.Point(108, 12);
@@ -138,7 +136,8 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(129, 276);
+            this.buttonClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonClear.Location = new System.Drawing.Point(68, 226);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
             this.buttonClear.TabIndex = 12;
@@ -152,7 +151,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(444, 311);
+            this.ClientSize = new System.Drawing.Size(384, 261);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxDevices);
@@ -161,8 +160,10 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.listView);
-            this.MinimumSize = new System.Drawing.Size(460, 350);
+            this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "FormTapeLoader";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Запись";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTapeLoader_FormClosing);
