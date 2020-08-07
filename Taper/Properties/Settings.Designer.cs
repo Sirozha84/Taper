@@ -74,12 +74,12 @@ namespace Taper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public byte Sensirivity {
+        public int Filter {
             get {
-                return ((byte)(this["Sensirivity"]));
+                return ((int)(this["Filter"]));
             }
             set {
-                this["Sensirivity"] = value;
+                this["Filter"] = value;
             }
         }
     }

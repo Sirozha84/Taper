@@ -14,5 +14,8 @@
     <Setting Name="Height" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">400</Value>
     </Setting>
+    <Setting Name="Filter" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

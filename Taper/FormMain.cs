@@ -131,7 +131,7 @@ namespace Taper
         /// <param name="e"></param>
         void Record(object sender, EventArgs e)
         {
-            FormTapeLoader form = new FormTapeLoader();
+            FormRec form = new FormRec();
             form.ShowDialog();
             DrawProject();
         }

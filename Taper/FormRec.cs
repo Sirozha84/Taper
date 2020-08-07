@@ -11,20 +11,24 @@ using NAudio.Wave;
 
 namespace Taper
 {
-    public partial class FormTapeLoader : Form
+    public partial class FormRec : Form
     {
         WaveIn waveIn;
         Bitmap buffer;
         const int bwidth = 50;
-        public FormTapeLoader()
+        const int bheight = 600;
+        public FormRec()
         {
             InitializeComponent();
         }
 
         private void FormTapeLoader_Load(object sender, EventArgs e)
         {
+            trackBarFilter.Value = Properties.Settings.Default.Filter;
+            trackBarFilter_Scroll(null, null);
+
             //Подготавливаем графику
-            buffer = new Bitmap(bwidth, 100);
+            buffer = new Bitmap(bwidth, bheight);
 
             //Подготовка "слушателя"
             Listener.Init();
@@ -82,17 +86,27 @@ namespace Taper
                 }
 
                 Color color = Color.Silver;
-                for (int i = 0; i < e.Buffer.Length; i++)
+                float zoom = 256 / (float)bwidth;
+                for (int i = 0; i < e.Buffer.Length & i < bheight; i++)
                 {
-                    if (i < 100)
+                    byte b = e.Buffer[i];
+                    if (radioButtonSpectrum.Checked)
                     {
-                        byte b = e.Buffer[i];
                         if (Listener.mode == 1 | Listener.mode == 2)
                             color = b < Program.center ? Color.Red : Color.Cyan;
                         if (Listener.mode == 3 | Listener.mode == 4)
                             color = b < Program.center ? Color.Blue : Color.Yellow;
                         for (int j = 0; j < bwidth; j++)
+                            if (j > bwidth / 2 & checkBoxAll.Checked)
+                                buffer.SetPixel(j, i, Color.FromArgb(b, b, b));
+                            else
+                                buffer.SetPixel(j, i, color);
+                    }
+                    if (radioButtonWave.Checked)
+                    {
+                        for (int j = 0; j < bwidth; j++)
                             buffer.SetPixel(j, i, color);
+                        buffer.SetPixel((int)(b / zoom), i, Color.Blue);
                     }
                 }
                 border.Image = buffer;
@@ -117,6 +131,12 @@ namespace Taper
         {
             Listener.Init();
             listView.Items.Clear();
+        }
+
+        private void trackBarFilter_Scroll(object sender, EventArgs e)
+        {
+            labelFV.Text = trackBarFilter.Value.ToString();
+            Properties.Settings.Default.Filter = trackBarFilter.Value;
         }
     }
 }
