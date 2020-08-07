@@ -54,7 +54,7 @@ namespace Taper
     {
         private WaveFormat waveFormat;
 
-        public WaveProvider32() : this(8100, 1) { }
+        public WaveProvider32() : this(8000, 1) { }
 
         public WaveProvider32(int sampleRate, int channels) { SetWaveFormat(sampleRate, channels); }
 

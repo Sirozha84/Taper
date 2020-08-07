@@ -51,7 +51,7 @@ namespace Taper
                 waveIn = new WaveIn();
                 waveIn.DeviceNumber = comboBoxDevices.SelectedIndex; //0 - номер устройства (если включен только микрофон - он будет 0)
                 waveIn.DataAvailable += waveIn_DataAvailable;
-                waveIn.WaveFormat = new WaveFormat(8000, 8, 1); //Входной формат
+                waveIn.WaveFormat = new WaveFormat(44100, 8, 1); //Входной формат
                 waveIn.StartRecording();
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace Taper
                     listView.Items.Add(new ListViewItem(s));
                 }
 
-                Color color = Color.White;
+                Color color = Color.Silver;
                 for (int i = 0; i < e.Buffer.Length; i++)
                 {
                     if (i < 100)
@@ -95,7 +95,6 @@ namespace Taper
                             buffer.SetPixel(j, i, color);
                     }
                 }
-                //Console.WriteLine(s);
                 border.Image = buffer;
             }
         }

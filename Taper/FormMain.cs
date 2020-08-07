@@ -272,7 +272,9 @@ namespace Taper
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
             FileNew(null, null);
-            
+            if (Left < 0) Left = 300;
+            if (Top < 0) Top = 300;
+
             //Загружаем файл, если он был передан через аргумент
             string[] args = Environment.GetCommandLineArgs();
             if (args.Count() == 1) return;
