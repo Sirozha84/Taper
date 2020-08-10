@@ -6,7 +6,7 @@ namespace Taper
 {
     class Listener
     {
-        const int accuracy = 10;    //Точность (число послдених волн, средняя которых вычисляется для сравнения со следующей)
+        const int accuracy = 100;    //Точность (число послдених волн, средняя которых вычисляется для сравнения со следующей)
         
         //Анализ волны
         public static byte mode;   //Режим, (0 - поиск пилот-тона, 1/2 - ожидание 1/2 части преамбулы, 3/4 - ожидание 1/2 части бита)
@@ -56,7 +56,7 @@ namespace Taper
                 else
                 {
                     CenterIntersection();
-                    len = 0;
+                    len = 1;
                     last = cn;
                 }
             }
@@ -68,7 +68,13 @@ namespace Taper
         {
             double avg = 0;  //Средняя длина волны пилот-тона
             double percent = 0;
-            lens.Add(len);
+
+            //if (lens.Count == 0 || (len > lens.Average() * 0.8f & len < lens.Average() * 1.2f))
+            if (lens.Count == 0 || len < lens.Average() * 1.2f)
+                lens.Add(len);
+            else
+                lens.Clear();
+            
             if (lens.Count > accuracy) lens.RemoveAt(0);
             if (lens.Count == accuracy)
             {
