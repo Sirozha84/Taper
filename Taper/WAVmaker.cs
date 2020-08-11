@@ -6,6 +6,9 @@ namespace Taper
 {
     static class WAVmaker
     {
+        const byte wc = 126; //127-128
+        const byte w0 = 126; //127-112
+        const byte w1 = 143; //143-143
         public static List<byte> wav;
 
         /// <summary>
@@ -88,12 +91,12 @@ namespace Taper
             if (Type == 0) ii = 3000; else ii = 1500;
             for (int i = 0; i < ii; i++)
             {
-                for (int j = 0; j < 27; j++) wav.Add(127);
-                for (int j = 0; j < 27; j++) wav.Add(143);
+                for (int j = 0; j < 27; j++) wav.Add(w0);
+                for (int j = 0; j < 27; j++) wav.Add(w1);
             }
             //Пишем подготовительный сигнал
-            for (int j = 0; j < 8; j++) wav.Add(127);
-            for (int j = 0; j < 8; j++) wav.Add(143);
+            for (int j = 0; j < 8; j++) wav.Add(w0);
+            for (int j = 0; j < 8; j++) wav.Add(w1);
             //Пишем блок
             foreach (byte b in block)
             {
@@ -107,7 +110,7 @@ namespace Taper
                 AddBitToWav(b & 1);
             }
             //Пишем тишину после
-            for (int i = 0; i < 30000; i++) wav.Add(127);
+            for (int i = 0; i < 30000; i++) wav.Add(wc);
         }
 
         /// <summary>
@@ -119,15 +122,15 @@ namespace Taper
             if (bit == 0)
             {
                 //0
-                for (int j = 0; j < 10; j++) wav.Add(127);
-                for (int j = 0; j < 10; j++) wav.Add(143);
-                wav.Add(135);
+                for (int j = 0; j < 10; j++) wav.Add(w0);
+                for (int j = 0; j < 10; j++) wav.Add(w1);
+                wav.Add(wc);
             }
             else
             {
                 //1
-                for (int j = 0; j < 21; j++) wav.Add(127);
-                for (int j = 0; j < 21; j++) wav.Add(143);
+                for (int j = 0; j < 21; j++) wav.Add(w0);
+                for (int j = 0; j < 21; j++) wav.Add(w1);
             }
         }
     }

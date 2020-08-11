@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
 
@@ -17,6 +11,7 @@ namespace Taper
         Bitmap buffer;
         const int bwidth = 50;
         const int bheight = 600;
+
         public FormRec()
         {
             InitializeComponent();
@@ -24,9 +19,6 @@ namespace Taper
 
         private void FormTapeLoader_Load(object sender, EventArgs e)
         {
-            trackBarFilter.Value = Properties.Settings.Default.Filter;
-            trackBarFilter_Scroll(null, null);
-
             //Подготавливаем графику
             buffer = new Bitmap(bwidth, bheight);
 
@@ -35,17 +27,39 @@ namespace Taper
 
             //Подготавливаем NAudi
             int waveInDevices = WaveIn.DeviceCount;
+            if (waveInDevices == 0) return;
+
             for (int waveInDevice = 0; waveInDevice < waveInDevices; waveInDevice++)
             {
                 WaveInCapabilities deviceInfo = WaveIn.GetCapabilities(waveInDevice);
                 comboBoxDevices.Items.Add(deviceInfo.ProductName);
-                //Console.WriteLine("Device {0}: {1}, {2} channels", waveInDevice, deviceInfo.ProductName, deviceInfo.Channels);
             }
-            comboBoxDevices.SelectedIndex = 0;
+            try
+            {
+                comboBoxDevices.SelectedIndex = Properties.Settings.Default.AudioRec;
+            }
+            catch
+            {
+                comboBoxDevices.SelectedIndex = 0;
+            }
             Start();
         }
 
-        private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e) {  Start(); }
+        private void FormRec_Shown(object sender, EventArgs e)
+        {
+            int waveInDevices = WaveIn.DeviceCount;
+            if (waveInDevices < 1)
+            {
+                MessageBox.Show("Не обнаружено ни одного устройства записи.");
+                Close();
+            }
+        }
+
+        private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AudioRec = comboBoxDevices.SelectedIndex;
+            Start(); 
+        }
 
         void Start()
         {
@@ -63,6 +77,7 @@ namespace Taper
                 MessageBox.Show(ex.Message);
             }
         }
+
         void Stop()
         {
             if (waveIn == null) return;
@@ -92,10 +107,11 @@ namespace Taper
                     byte b = e.Buffer[i];
                     if (radioButtonSpectrum.Checked)
                     {
+                        int cn = b < 128 ? 0 : 1;
                         if (Listener.mode == 1 | Listener.mode == 2)
-                            color = b < Program.center ? Color.Red : Color.Cyan;
+                            color = cn == 0 ? Color.Red : Color.Cyan;
                         if (Listener.mode == 3 | Listener.mode == 4)
-                            color = b < Program.center ? Color.Blue : Color.Yellow;
+                            color = cn == 0 ? Color.Blue : Color.Yellow;
                         for (int j = 0; j < bwidth; j++)
                             if (j > bwidth / 2 & checkBoxAll.Checked)
                                 buffer.SetPixel(j, i, Color.FromArgb(b, b, b));
@@ -131,12 +147,6 @@ namespace Taper
         {
             Listener.Init();
             listView.Items.Clear();
-        }
-
-        private void trackBarFilter_Scroll(object sender, EventArgs e)
-        {
-            labelFV.Text = trackBarFilter.Value.ToString();
-            Properties.Settings.Default.Filter = trackBarFilter.Value;
         }
     }
 }

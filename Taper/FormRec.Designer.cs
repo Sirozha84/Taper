@@ -39,16 +39,11 @@
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.labelFilter = new System.Windows.Forms.Label();
-            this.trackBarFilter = new System.Windows.Forms.TrackBar();
-            this.volume = new System.Windows.Forms.ProgressBar();
-            this.labelFV = new System.Windows.Forms.Label();
             this.radioButtonWave = new System.Windows.Forms.RadioButton();
             this.radioButtonSpectrum = new System.Windows.Forms.RadioButton();
             this.checkBoxAll = new System.Windows.Forms.CheckBox();
             this.groupBoxIndicator = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.border)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFilter)).BeginInit();
             this.groupBoxIndicator.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +51,7 @@
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(297, 376);
+            this.buttonCancel.Location = new System.Drawing.Point(297, 326);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 8;
@@ -66,7 +61,7 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(216, 376);
+            this.buttonOK.Location = new System.Drawing.Point(216, 326);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 7;
@@ -77,7 +72,7 @@
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(68, 173);
+            this.labelInfo.Location = new System.Drawing.Point(68, 110);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(120, 13);
             this.labelInfo.TabIndex = 6;
@@ -94,9 +89,9 @@
             this.columnHeaderCRC});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
-            this.listView.Location = new System.Drawing.Point(68, 189);
+            this.listView.Location = new System.Drawing.Point(68, 126);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(304, 181);
+            this.listView.Size = new System.Drawing.Size(304, 194);
             this.listView.TabIndex = 5;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -120,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.border.Location = new System.Drawing.Point(12, 12);
             this.border.Name = "border";
-            this.border.Size = new System.Drawing.Size(50, 387);
+            this.border.Size = new System.Drawing.Size(50, 337);
             this.border.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.border.TabIndex = 9;
             this.border.TabStop = false;
@@ -147,53 +142,13 @@
             // buttonClear
             // 
             this.buttonClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonClear.Location = new System.Drawing.Point(68, 376);
+            this.buttonClear.Location = new System.Drawing.Point(68, 326);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
             this.buttonClear.TabIndex = 12;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
-            // 
-            // labelFilter
-            // 
-            this.labelFilter.AutoSize = true;
-            this.labelFilter.Location = new System.Drawing.Point(68, 39);
-            this.labelFilter.Name = "labelFilter";
-            this.labelFilter.Size = new System.Drawing.Size(50, 13);
-            this.labelFilter.TabIndex = 13;
-            this.labelFilter.Text = "Фильтр:";
-            // 
-            // trackBarFilter
-            // 
-            this.trackBarFilter.LargeChange = 2;
-            this.trackBarFilter.Location = new System.Drawing.Point(124, 39);
-            this.trackBarFilter.Maximum = 100;
-            this.trackBarFilter.Name = "trackBarFilter";
-            this.trackBarFilter.Size = new System.Drawing.Size(248, 45);
-            this.trackBarFilter.TabIndex = 14;
-            this.trackBarFilter.Value = 5;
-            this.trackBarFilter.Scroll += new System.EventHandler(this.trackBarFilter_Scroll);
-            // 
-            // volume
-            // 
-            this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volume.Location = new System.Drawing.Point(68, 79);
-            this.volume.MarqueeAnimationSpeed = 0;
-            this.volume.Maximum = 127;
-            this.volume.Name = "volume";
-            this.volume.Size = new System.Drawing.Size(304, 17);
-            this.volume.TabIndex = 15;
-            // 
-            // labelFV
-            // 
-            this.labelFV.AutoSize = true;
-            this.labelFV.Location = new System.Drawing.Point(68, 52);
-            this.labelFV.Name = "labelFV";
-            this.labelFV.Size = new System.Drawing.Size(13, 13);
-            this.labelFV.TabIndex = 20;
-            this.labelFV.Text = "0";
             // 
             // radioButtonWave
             // 
@@ -234,7 +189,7 @@
             this.groupBoxIndicator.Controls.Add(this.checkBoxAll);
             this.groupBoxIndicator.Controls.Add(this.radioButtonSpectrum);
             this.groupBoxIndicator.Controls.Add(this.radioButtonWave);
-            this.groupBoxIndicator.Location = new System.Drawing.Point(71, 102);
+            this.groupBoxIndicator.Location = new System.Drawing.Point(71, 39);
             this.groupBoxIndicator.Name = "groupBoxIndicator";
             this.groupBoxIndicator.Size = new System.Drawing.Size(301, 68);
             this.groupBoxIndicator.TabIndex = 19;
@@ -247,12 +202,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(384, 411);
-            this.Controls.Add(this.labelFV);
+            this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.groupBoxIndicator);
-            this.Controls.Add(this.volume);
-            this.Controls.Add(this.trackBarFilter);
-            this.Controls.Add(this.labelFilter);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxDevices);
@@ -261,7 +212,7 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.listView);
-            this.MinimumSize = new System.Drawing.Size(400, 450);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "FormRec";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -269,8 +220,8 @@
             this.Text = "Запись";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTapeLoader_FormClosing);
             this.Load += new System.EventHandler(this.FormTapeLoader_Load);
+            this.Shown += new System.EventHandler(this.FormRec_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.border)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFilter)).EndInit();
             this.groupBoxIndicator.ResumeLayout(false);
             this.groupBoxIndicator.PerformLayout();
             this.ResumeLayout(false);
@@ -291,10 +242,6 @@
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.Label labelFilter;
-        private System.Windows.Forms.TrackBar trackBarFilter;
-        private System.Windows.Forms.ProgressBar volume;
-        private System.Windows.Forms.Label labelFV;
         private System.Windows.Forms.RadioButton radioButtonWave;
         private System.Windows.Forms.RadioButton radioButtonSpectrum;
         private System.Windows.Forms.CheckBox checkBoxAll;

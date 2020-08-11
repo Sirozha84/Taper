@@ -73,13 +73,25 @@ namespace Taper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int Filter {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AudioPlay {
             get {
-                return ((int)(this["Filter"]));
+                return ((int)(this["AudioPlay"]));
             }
             set {
-                this["Filter"] = value;
+                this["AudioPlay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AudioRec {
+            get {
+                return ((int)(this["AudioRec"]));
+            }
+            set {
+                this["AudioRec"] = value;
             }
         }
     }

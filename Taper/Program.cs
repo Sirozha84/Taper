@@ -14,7 +14,7 @@ namespace Taper
         public const string FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
         public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
         public static FormMain mainform;
-        public const int center = 130;
+        
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
