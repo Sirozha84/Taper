@@ -155,6 +155,13 @@ namespace Taper
             else Program.Message("Все контрольные суммы в порядке.");
         }
         private void menuFindDuplicates_Click(object sender, EventArgs e) { Project.FindDuplicates(listViewTAP); }
+
+        private void menuProperties_Click(object sender, EventArgs e)
+        {
+            FormProperties form = new FormProperties();
+            form.ShowDialog();
+        }
+
         #endregion
 
         #region Меню Справка
@@ -287,5 +294,6 @@ namespace Taper
             }
             else MessageBox.Show("Файл не поддерживается", "Taper");
         }
+
     }
 }

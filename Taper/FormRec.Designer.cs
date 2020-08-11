@@ -35,7 +35,6 @@
             this.columnHeaderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderBlock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderCRC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.border = new System.Windows.Forms.PictureBox();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -43,8 +42,9 @@
             this.radioButtonSpectrum = new System.Windows.Forms.RadioButton();
             this.checkBoxAll = new System.Windows.Forms.CheckBox();
             this.groupBoxIndicator = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.border)).BeginInit();
+            this.border = new System.Windows.Forms.PictureBox();
             this.groupBoxIndicator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.border)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -108,17 +108,6 @@
             // columnHeaderCRC
             // 
             this.columnHeaderCRC.Text = "CRC";
-            // 
-            // border
-            // 
-            this.border.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.border.Location = new System.Drawing.Point(12, 12);
-            this.border.Name = "border";
-            this.border.Size = new System.Drawing.Size(50, 337);
-            this.border.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.border.TabIndex = 9;
-            this.border.TabStop = false;
             // 
             // comboBoxDevices
             // 
@@ -196,6 +185,17 @@
             this.groupBoxIndicator.TabStop = false;
             this.groupBoxIndicator.Text = "Индикатор";
             // 
+            // border
+            // 
+            this.border.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.border.Location = new System.Drawing.Point(12, 12);
+            this.border.Name = "border";
+            this.border.Size = new System.Drawing.Size(50, 337);
+            this.border.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.border.TabIndex = 9;
+            this.border.TabStop = false;
+            // 
             // FormRec
             // 
             this.AcceptButton = this.buttonOK;
@@ -221,9 +221,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTapeLoader_FormClosing);
             this.Load += new System.EventHandler(this.FormTapeLoader_Load);
             this.Shown += new System.EventHandler(this.FormRec_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.border)).EndInit();
             this.groupBoxIndicator.ResumeLayout(false);
             this.groupBoxIndicator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.border)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -110,6 +110,8 @@
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sep10 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -154,7 +156,7 @@
             this.menuNew.Image = ((System.Drawing.Image)(resources.GetObject("menuNew.Image")));
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(172, 22);
+            this.menuNew.Size = new System.Drawing.Size(180, 22);
             this.menuNew.Text = "Новый";
             this.menuNew.Click += new System.EventHandler(this.FileNew);
             // 
@@ -163,23 +165,23 @@
             this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(172, 22);
-            this.menuOpen.Text = "Открыть";
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
+            this.menuOpen.Text = "Открыть...";
             this.menuOpen.Click += new System.EventHandler(this.FileOpen);
             // 
             // menuAdd
             // 
             this.menuAdd.Name = "menuAdd";
-            this.menuAdd.Size = new System.Drawing.Size(172, 22);
-            this.menuAdd.Text = "Добавить блоки";
+            this.menuAdd.Size = new System.Drawing.Size(180, 22);
+            this.menuAdd.Text = "Добавить блоки...";
             this.menuAdd.Click += new System.EventHandler(this.AddTAP);
             // 
             // menuLoadWav
             // 
             this.menuLoadWav.Image = global::Taper.Properties.Resources.Ico;
             this.menuLoadWav.Name = "menuLoadWav";
-            this.menuLoadWav.Size = new System.Drawing.Size(172, 22);
-            this.menuLoadWav.Text = "Импорт из WAV";
+            this.menuLoadWav.Size = new System.Drawing.Size(180, 22);
+            this.menuLoadWav.Text = "Импорт из WAV...";
             this.menuLoadWav.Click += new System.EventHandler(this.LoadFromWav);
             // 
             // sep5
@@ -199,15 +201,15 @@
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(172, 22);
-            this.menuSaveAs.Text = "Сохранить как";
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.menuSaveAs.Text = "Сохранить как...";
             this.menuSaveAs.Click += new System.EventHandler(this.FileSave);
             // 
             // menuSaveWAV
             // 
             this.menuSaveWAV.Name = "menuSaveWAV";
-            this.menuSaveWAV.Size = new System.Drawing.Size(172, 22);
-            this.menuSaveWAV.Text = "Экспорт в WAV";
+            this.menuSaveWAV.Size = new System.Drawing.Size(180, 22);
+            this.menuSaveWAV.Text = "Экспорт в WAV...";
             this.menuSaveWAV.Click += new System.EventHandler(this.SaveToWAV);
             // 
             // sep2
@@ -360,7 +362,7 @@
             this.menuRec.Image = global::Taper.Properties.Resources.record;
             this.menuRec.Name = "menuRec";
             this.menuRec.Size = new System.Drawing.Size(180, 22);
-            this.menuRec.Text = "Запись";
+            this.menuRec.Text = "Запись...";
             this.menuRec.Click += new System.EventHandler(this.Record);
             // 
             // menuBlocks
@@ -395,7 +397,9 @@
             this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuViewFile,
             this.menuFixCRCs,
-            this.menuFindDuplicates});
+            this.menuFindDuplicates,
+            this.sep10,
+            this.menuProperties});
             this.menuTools.Name = "menuTools";
             this.menuTools.Size = new System.Drawing.Size(95, 20);
             this.menuTools.Text = "Инструменты";
@@ -405,7 +409,7 @@
             this.menuViewFile.Name = "menuViewFile";
             this.menuViewFile.ShortcutKeyDisplayString = "Enter";
             this.menuViewFile.Size = new System.Drawing.Size(257, 22);
-            this.menuViewFile.Text = "Просмотр файла";
+            this.menuViewFile.Text = "Просмотр файла...";
             this.menuViewFile.Click += new System.EventHandler(this.View);
             // 
             // menuFixCRCs
@@ -821,6 +825,18 @@
             this.status3.Text = "   ";
             this.status3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // sep10
+            // 
+            this.sep10.Name = "sep10";
+            this.sep10.Size = new System.Drawing.Size(254, 6);
+            // 
+            // menuProperties
+            // 
+            this.menuProperties.Name = "menuProperties";
+            this.menuProperties.Size = new System.Drawing.Size(257, 22);
+            this.menuProperties.Text = "Параметры...";
+            this.menuProperties.Click += new System.EventHandler(this.menuProperties_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,6 +948,8 @@
         private System.Windows.Forms.ToolStripButton toolRec;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.ToolStripSeparator sep10;
+        private System.Windows.Forms.ToolStripMenuItem menuProperties;
     }
 }
 
