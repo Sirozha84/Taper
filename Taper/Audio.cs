@@ -29,16 +29,24 @@ namespace Taper
             WAVmaker.BlockToWav(Project.TAP[num]);
             Player.s = 0;
             Player.c = WAVmaker.wav.Count();
-            
+
             //Инициализация звуковой системы
-            player = new Player();
-            player.SetWaveFormat(SampleRate, 1);
-            waveOut = new WaveOut();
-            waveOut.DesiredLatency = 200; // длина буфера /2=50 миллисекунд
-            waveOut.Init(player);
-            waveOut.Play();
-            Plaing = true;
-            Program.mainform.PlayerIndication(num);
+            try
+            {
+                player = new Player();
+                player.SetWaveFormat(SampleRate, 1);
+                waveOut = new WaveOut();
+                waveOut.DeviceNumber = Properties.Settings.Default.AudioPlay;
+                waveOut.DesiredLatency = 200; // длина буфера /2=50 миллисекунд
+                waveOut.Init(player);
+                waveOut.Play();
+                Plaing = true;
+                Program.mainform.PlayerIndication(num);
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка воспроизведения. Проверьте устройство.");
+            }
         }
 
         public static void Stop()
@@ -87,7 +95,7 @@ namespace Taper
         {
             //Заполнение буфера звука
             for (int i = 0; i < sampleCount; i++)
-                if (s < c) buffer[i + offset] = WAVmaker.wav[s++] == 127 ? 0 : .2f; //0-1 - громкость
+                if (s < c) buffer[i + offset] = WAVmaker.wav[s++] < 128 ? 0 : .2f; //0-1 - громкость
             
             //Если блок кончается переходим на следующий
             if (s >= c)

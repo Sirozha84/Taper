@@ -6,7 +6,23 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
-        public FormMain() { InitializeComponent(); }
+        public FormMain() 
+        {
+            InitializeComponent();
+            if (Properties.Settings.Default.StartPosition == 0)
+            {
+                Left = Properties.Settings.Default.Left;
+                Top = Properties.Settings.Default.Top;
+                Width = Properties.Settings.Default.Width;
+                Height = Properties.Settings.Default.Height;
+                if (Left < 0) Left = 300;
+                if (Top < 0) Top = 300;
+            }
+            else
+            {
+                this.StartPosition = FormStartPosition.CenterScreen;
+            }
+        }
 
         #region Меню Файл (Новый, открыть, добавить, импорт)
         /// <summary>
@@ -274,14 +290,7 @@ namespace Taper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            Left = Properties.Settings.Default.Left;
-            Top = Properties.Settings.Default.Top;
-            Width = Properties.Settings.Default.Width;
-            Height = Properties.Settings.Default.Height;
             FileNew(null, null);
-            if (Left < 0) Left = 300;
-            if (Top < 0) Top = 300;
-
             //Загружаем файл, если он был передан через аргумент
             string[] args = Environment.GetCommandLineArgs();
             if (args.Count() == 1) return;

@@ -94,5 +94,17 @@ namespace Taper.Properties {
                 this["AudioRec"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int StartPosition {
+            get {
+                return ((int)(this["StartPosition"]));
+            }
+            set {
+                this["StartPosition"] = value;
+            }
+        }
     }
 }

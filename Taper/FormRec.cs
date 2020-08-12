@@ -29,9 +29,9 @@ namespace Taper
             int waveInDevices = WaveIn.DeviceCount;
             if (waveInDevices == 0) return;
 
-            for (int waveInDevice = 0; waveInDevice < waveInDevices; waveInDevice++)
+            for (int i = 0; i < waveInDevices; i++)
             {
-                WaveInCapabilities deviceInfo = WaveIn.GetCapabilities(waveInDevice);
+                WaveInCapabilities deviceInfo = WaveIn.GetCapabilities(i);
                 comboBoxDevices.Items.Add(deviceInfo.ProductName);
             }
             try
