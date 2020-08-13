@@ -191,7 +191,7 @@ namespace Taper
         void SetFormText()
         {
             string star = ""; if (Project.changed) star = "*";
-            Text = System.IO.Path.GetFileNameWithoutExtension(Project.name) + star + " - " + Program.Name;
+            Text = System.IO.Path.GetFileNameWithoutExtension(Project.name) + star + " - " + Application.ProductName;
         }
         
         /// <summary>
@@ -276,7 +276,7 @@ namespace Taper
 
             if (ext == ".tap" | ext == ".tzx")
             {
-                if (MessageBox.Show("Добавить файлы в проект? Нет - открыть файл.", Program.Name, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Добавить файлы в проект? Нет - открыть файл.", Application.ProductName, MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Project.Open(file, true);
                 else
                 {
