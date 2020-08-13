@@ -42,7 +42,7 @@ namespace Taper
         /// <param name="message">Текст</param>
         public static void Message(string message)
         {
-            MessageBox.Show(message, Name);
+            MessageBox.Show(message, Application.ProductName);
         }
     }
 }

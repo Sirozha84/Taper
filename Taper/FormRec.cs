@@ -50,7 +50,7 @@ namespace Taper
             int waveInDevices = WaveIn.DeviceCount;
             if (waveInDevices < 1)
             {
-                MessageBox.Show("Не обнаружено ни одного устройства записи.");
+                Program.Error("Не обнаружено ни одного устройства записи.");
                 Close();
             }
         }
@@ -74,7 +74,7 @@ namespace Taper
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Program.Error("Ошибка работы с аудио-устройством");
             }
         }
 

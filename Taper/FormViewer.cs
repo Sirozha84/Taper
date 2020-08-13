@@ -20,7 +20,7 @@ namespace Taper
             tabControl1.SelectedIndex = 5;
             if (Project.view.FileData == null)
             {
-                MessageBox.Show("В этом блоке нет данных");
+                Program.Error("В этом блоке нет данных");
                 Close();
                 return;
             }

@@ -285,7 +285,7 @@ namespace Taper
                 }
                 DrawProject();
             }
-            else MessageBox.Show("Файл не поддерживается", "Taper");
+            else Program.Error("Файл не поддерживается");
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -301,7 +301,7 @@ namespace Taper
                 Project.Open(file, false);
                 DrawProject();
             }
-            else MessageBox.Show("Файл не поддерживается", "Taper");
+            else Program.Error("Файл не поддерживается");
         }
 
     }
