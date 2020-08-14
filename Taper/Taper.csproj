@@ -111,6 +111,7 @@
     <Compile Include="FormWAVimport.Designer.cs">
       <DependentUpon>FormWAVimport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lang.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />

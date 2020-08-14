@@ -22,6 +22,8 @@ namespace Taper
             {
                 this.StartPosition = FormStartPosition.CenterScreen;
             }
+            if (Properties.Settings.Default.Language == "")
+                Properties.Settings.Default.Language = System.Globalization.CultureInfo.CurrentCulture.Name;
         }
 
         #region Меню Файл (Новый, открыть, добавить, импорт)
