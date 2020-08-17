@@ -45,7 +45,7 @@ namespace Taper
                 FileName = FileInfo(bytes, 1);
                 if (FileTitle[1] == 0)
                     if (FileTitle[14] + FileTitle[15] * 256 < 10000)
-                        Start = "Basic " + (FileTitle[14] + FileTitle[15] * 256).ToString();
+                        Start = "LINE " + (FileTitle[14] + FileTitle[15] * 256).ToString();
                     else
                         Start = "No run";
                 if (FileTitle[1] == 3)

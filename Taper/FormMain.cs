@@ -94,8 +94,14 @@ namespace Taper
             cmenuPaste.Text = Lang.paste;
             cmenuDelete.Text = Lang.delete;
             cmenuRename.Text = Lang.rename;
-            
-            SetFormText();
+
+            listViewTAP.Columns[0].Text = Lang.typeF;
+            listViewTAP.Columns[1].Text = Lang.name;
+            listViewTAP.Columns[2].Text = Lang.start;
+            listViewTAP.Columns[3].Text = Lang.lenght;
+            listViewTAP.Columns[4].Text = Lang.size;
+
+            DrawProject();
         }
 
         #region Меню Файл (Новый, открыть, добавить, импорт)
@@ -308,25 +314,27 @@ namespace Taper
             if (menuListFiles.Checked) Project.ListFiles(); else Project.ListBlocks();
             string NullString = "- - - - -";
             listViewTAP.Items.Clear();
-            int files = 0;
+            int blocks = 0;
             int bytes = 0;
-            int fullbytes = 0;
             foreach (Block block in Project.TAP)
             {
                 bool nm = block.FileTitle != null;
                 bool dt = block.FileData != null;
-                ListViewItem item = new ListViewItem(nm? block.FileType : "    Блок данных");
+                ListViewItem item = new ListViewItem(nm? block.FileType : "    " + Lang.dataBlock);
                 item.SubItems.Add(nm ? block.FileName : NullString);
                 item.SubItems.Add(nm ? block.Start : NullString);
                 item.SubItems.Add(nm ? block.Len : NullString);
                 item.SubItems.Add(dt ? (block.FileData.Length - 2).ToString() : NullString);
                 item.SubItems.Add(block.CRCview());
                 listViewTAP.Items.Add(item);
+                if (dt)
+                {
+                    blocks++;
+                    bytes += block.FileData.Length - 2;
+                }
             }
-            //Подсчёт количества блоков
-            status1.Text = "Файлов в проекте: " + files;
-            status2.Text = "Объём: " + bytes + " байт";
-            status3.Text = "Полный объём: " + fullbytes + " байт";
+            statusBlocks.Text = Lang.allBlocks + ": " + blocks;
+            statusSize.Text = Lang.allBytes + ": " + bytes.ToString();
             SetFormText();
         }
 

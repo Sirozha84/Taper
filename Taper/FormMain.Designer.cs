@@ -109,9 +109,8 @@
             this.cmenuRename = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBlocks = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolProperties = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -321,14 +320,14 @@
             this.menuListFiles.Checked = true;
             this.menuListFiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuListFiles.Name = "menuListFiles";
-            this.menuListFiles.Size = new System.Drawing.Size(160, 22);
+            this.menuListFiles.Size = new System.Drawing.Size(180, 22);
             this.menuListFiles.Text = "Список файлов";
             this.menuListFiles.Click += new System.EventHandler(this.viewListFiles);
             // 
             // menuListBlocks
             // 
             this.menuListBlocks.Name = "menuListBlocks";
-            this.menuListBlocks.Size = new System.Drawing.Size(160, 22);
+            this.menuListBlocks.Size = new System.Drawing.Size(180, 22);
             this.menuListBlocks.Text = "Список блоков";
             this.menuListBlocks.Click += new System.EventHandler(this.viewListBlocks);
             // 
@@ -705,22 +704,22 @@
             // columnName
             // 
             this.columnName.Text = "Имя";
-            this.columnName.Width = 120;
+            this.columnName.Width = 100;
             // 
             // columnStart
             // 
             this.columnStart.Text = "Старт";
-            this.columnStart.Width = 70;
+            this.columnStart.Width = 100;
             // 
             // columnLen
             // 
             this.columnLen.Text = "Длина";
-            this.columnLen.Width = 70;
+            this.columnLen.Width = 80;
             // 
             // columnSize
             // 
             this.columnSize.Text = "Размер";
-            this.columnSize.Width = 70;
+            this.columnSize.Width = 80;
             // 
             // columnCRC
             // 
@@ -807,38 +806,29 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.status1,
-            this.status2,
-            this.status3});
+            this.statusBlocks,
+            this.statusSize});
             this.statusStrip.Location = new System.Drawing.Point(0, 337);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(584, 24);
             this.statusStrip.TabIndex = 4;
             this.statusStrip.Text = "statusStrip";
             // 
-            // status1
+            // statusBlocks
             // 
-            this.status1.AutoSize = false;
-            this.status1.Name = "status1";
-            this.status1.Size = new System.Drawing.Size(160, 19);
-            this.status1.Text = "   ";
-            this.status1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statusBlocks.AutoSize = false;
+            this.statusBlocks.Name = "statusBlocks";
+            this.statusBlocks.Size = new System.Drawing.Size(160, 19);
+            this.statusBlocks.Text = "   ";
+            this.statusBlocks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // status2
+            // statusSize
             // 
-            this.status2.AutoSize = false;
-            this.status2.Name = "status2";
-            this.status2.Size = new System.Drawing.Size(160, 19);
-            this.status2.Text = "   ";
-            this.status2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // status3
-            // 
-            this.status3.AutoSize = false;
-            this.status3.Name = "status3";
-            this.status3.Size = new System.Drawing.Size(160, 19);
-            this.status3.Text = "   ";
-            this.status3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statusSize.AutoSize = false;
+            this.statusSize.Name = "statusSize";
+            this.statusSize.Size = new System.Drawing.Size(160, 19);
+            this.statusSize.Text = "   ";
+            this.statusSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolProperties
             // 
@@ -939,9 +929,8 @@
         private System.Windows.Forms.ToolStripButton toolMoveDown;
         private System.Windows.Forms.ToolStripButton toolMenu;
         private System.Windows.Forms.ToolStripSeparator sep9;
-        private System.Windows.Forms.ToolStripStatusLabel status1;
-        private System.Windows.Forms.ToolStripStatusLabel status2;
-        private System.Windows.Forms.ToolStripStatusLabel status3;
+        private System.Windows.Forms.ToolStripStatusLabel statusBlocks;
+        private System.Windows.Forms.ToolStripStatusLabel statusSize;
         private System.Windows.Forms.ToolStripMenuItem menuView;
         private System.Windows.Forms.ToolStripMenuItem menuListFiles;
         private System.Windows.Forms.ToolStripMenuItem menuListBlocks;
