@@ -84,7 +84,7 @@ namespace Taper
 				"• Добавлена возможность изменять размер основного окна\n"+
 				"• Исправлено множество ошибок, среди которых неправильное сохранение файла\n\n");
 			history.SelectionFont = fontB;
-			history.AppendText("Версия Beta (17.08.2004)\n\n");
+			history.AppendText("Версия 0.1 Beta (17.08.2004)\n\n");
 			history.SelectionFont = fontR;
 			history.AppendText("• Основная работа с TAP-файлами: простое редактирование, просмотр\n");
 		}

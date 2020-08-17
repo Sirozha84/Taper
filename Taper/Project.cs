@@ -29,7 +29,7 @@ namespace Taper
             TAP.Clear();
             history.Clear();
             hIndex = 0;
-            name = Program.FileUnnamed;
+            name = "";
             changed = false;
         }
 

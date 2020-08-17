@@ -24,6 +24,78 @@ namespace Taper
             }
             if (Properties.Settings.Default.Language == "")
                 Properties.Settings.Default.Language = System.Globalization.CultureInfo.CurrentCulture.Name;
+            InitLang();
+        }
+
+        void InitLang()
+        {
+            Lang.Init();
+            menuFile.Text = Lang.file;
+            menuNew.Text = Lang.newFile;
+            menuOpen.Text = Lang.open + "...";
+            menuAdd.Text = Lang.addb + "...";
+            menuLoadWav.Text = Lang.impWAV + "...";
+            menuSave.Text = Lang.save;
+            menuSaveAs.Text = Lang.saveAs + "...";
+            menuSaveWAV.Text = Lang.expWAV + "...";
+            menuExit.Text = Lang.exit;
+            
+            menuEdit.Text = Lang.edit;
+            menuUndo.Text = Lang.undo;
+            menuRedo.Text = Lang.redo;
+            menuCut.Text = Lang.cut;
+            menuCopy.Text = Lang.copy;
+            menuPaste.Text = Lang.paste;
+            menuDelete.Text = Lang.delete;
+            menuRename.Text = Lang.rename;
+
+            menuView.Text = Lang.view;
+            menuListFiles.Text = Lang.fileList;
+            menuListBlocks.Text = Lang.blockList;
+
+            menuAudio.Text = Lang.audio;
+            menuPlay.Text = Lang.play;
+            menuStop.Text = Lang.stop;
+            menuRec.Text = Lang.record + "...";
+
+            menuBlocks.Text = Lang.blocks;
+            menuMoveUp.Text = Lang.moveUp;
+            menuMoveDown.Text = Lang.moveDown;
+
+            menuTools.Text = Lang.tools;
+            menuViewFile.Text = Lang.fileView;
+            menuFixCRCs.Text = Lang.fixCRC;
+            menuFindDuplicates.Text = Lang.findDupl;
+            menuProperties.Text = Lang.properties + "...";
+
+            menuHelp.Text = Lang.help;
+            menuPage.Text = Lang.website;
+            menuAbout.Text = Lang.about;
+
+            toolNew.Text = Lang.newFile + " (Ctrl+N)";
+            toolOpen.Text = Lang.open + " (Ctrl+S)";
+            toolSave.Text = Lang.save + " (Ctrl+S)";
+            toolLoadWav.Text = Lang.impWAV + "...";
+            toolUndo.Text = Lang.undo + " (Ctrl+Z)";
+            toolRedo.Text = Lang.redo + " (Ctrl+Y)";
+            toolCut.Text = Lang.cut + " (Ctrl+X)";
+            toolCopy.Text = Lang.copy + " (Ctr+C)";
+            toolPaste.Text = Lang.paste + " (Ctrl+V)";
+            toolPlay.Text = Lang.play;
+            toolStop.Text = Lang.stop;
+            toolRec.Text = Lang.record;
+            toolMoveUp.Text = Lang.moveUp;
+            toolMoveDown.Text = Lang.moveDown;
+            toolProperties.Text = Lang.properties;
+
+            cmenuView.Text = Lang.fileView;
+            cmenuCut.Text = Lang.cut;
+            cmenuCopy.Text = Lang.copy;
+            cmenuPaste.Text = Lang.paste;
+            cmenuDelete.Text = Lang.delete;
+            cmenuRename.Text = Lang.rename;
+            
+            SetFormText();
         }
 
         #region Меню Файл (Новый, открыть, добавить, импорт)
@@ -83,7 +155,7 @@ namespace Taper
         /// <param name="saveAs"></param>
         void FileSave(object sender, EventArgs e)
         {
-            if (Project.name == Program.FileUnnamed | sender == menuSaveAs)
+            if (Project.name == "" | sender == menuSaveAs)
             {
                 SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterSel };
                 if (dialog.ShowDialog() == DialogResult.OK) Project.Save(dialog.FileName);
@@ -174,10 +246,11 @@ namespace Taper
         }
         private void menuFindDuplicates_Click(object sender, EventArgs e) { Project.FindDuplicates(listViewTAP); }
 
-        private void menuProperties_Click(object sender, EventArgs e)
+        private void properties(object sender, EventArgs e)
         {
             FormProperties form = new FormProperties();
             form.ShowDialog();
+            InitLang();
         }
 
         #endregion
@@ -192,8 +265,9 @@ namespace Taper
         /// </summary>
         void SetFormText()
         {
-            string star = ""; if (Project.changed) star = "*";
-            Text = System.IO.Path.GetFileNameWithoutExtension(Project.name) + star + " - " + Application.ProductName;
+            string name = Project.name == "" ? Lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
+            name += Project.changed ? "*" : "";
+            Text = name + " - " + Application.ProductName;
         }
         
         /// <summary>

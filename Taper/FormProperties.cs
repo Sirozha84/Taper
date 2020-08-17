@@ -17,9 +17,9 @@ namespace Taper
             comboBoxLanguages.Items.Add("English");
             comboBoxLanguages.Items.Add("Italian");
             comboBoxLanguages.Items.Add("Русский");
-            comboBoxLanguages.SelectedIndex = 0;
-            if (Properties.Settings.Default.Language == "it-IT") comboBoxLanguages.SelectedIndex = 1;
-            if (Properties.Settings.Default.Language == "ru-RU") comboBoxLanguages.SelectedIndex = 2;
+            comboBoxLanguages.Text = "English";
+            if (Properties.Settings.Default.Language == "it-IT") comboBoxLanguages.Text = "Italian";
+            if (Properties.Settings.Default.Language == "ru-RU") comboBoxLanguages.Text = "Русский";
             radioButtonRem.Checked = Properties.Settings.Default.StartPosition == 0;
             radioButtonCenter.Checked = Properties.Settings.Default.StartPosition == 1;
 
@@ -55,8 +55,8 @@ namespace Taper
         private void buttonOK_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Language = "en-US";
-            if (comboBoxLanguages.SelectedIndex == 1) Properties.Settings.Default.Language = "it-IT";
-            if (comboBoxLanguages.SelectedIndex == 2) Properties.Settings.Default.Language = "ru-RU";
+            if (comboBoxLanguages.Text == "Italian") Properties.Settings.Default.Language = "it-IT";
+            if (comboBoxLanguages.Text == "Русский") Properties.Settings.Default.Language = "ru-RU";
             Properties.Settings.Default.StartPosition = radioButtonRem.Checked ? 0 : 1;
             Properties.Settings.Default.AudioPlay = comboBoxPlay.SelectedIndex;
             Properties.Settings.Default.AudioRec = comboBoxRec.SelectedIndex;
