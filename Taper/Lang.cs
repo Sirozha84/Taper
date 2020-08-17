@@ -1,125 +1,159 @@
 ﻿namespace Taper
 {
-    static class Lang
+    public abstract class Lang
     {
-        public static string addb, about, allBlocks, allBytes, audio;
-        public static string blockList, blocks;
-        public static string copy, cut;
-        public static string dataBlock, delete;
-        public static string edit, exit, expWAV;
-        public static string file, fileList, fileView, findDupl, fixCRC;
-        public static string help;
-        public static string impWAV;
-        public static string lenght;
-        public static string moveDown, moveUp;
-        public static string name, newFile;
-        public static string open;
-        public static string paste, play, properties;
-        public static string record, redo, rename;
-        public static string save, saveAs, size, start, stop;
-        public static string tools, typeF;
-        public static string view;
-        public static string website;
-        public static string undo, unnamed;
-        public static void Init()
+        public abstract string addb { get; }
+        public abstract string about { get; }
+        public abstract string allBlocks { get; }
+        public abstract string allBytes { get; }
+        public abstract string audio { get; }
+        public abstract string blockList { get; }
+        public abstract string blocks { get; }
+        public abstract string copy { get; }
+        public abstract string cut { get; }
+        public abstract string dataBlock { get; }
+        public abstract string delete { get; }
+        public abstract string edit { get; }
+        public abstract string exit { get; }
+        public abstract string expWAV { get; }
+        public abstract string file { get; }
+        public abstract string fileList { get; }
+        public abstract string fileView { get; }
+        public abstract string findDupl { get; }
+        public abstract string fixCRC { get; }
+        public abstract string help { get; }
+        public abstract string impWAV { get; }
+        public abstract string lenght { get; }
+        public abstract string moveDown { get; }
+        public abstract string moveUp { get; }
+        public abstract string name { get; }
+        public abstract string newFile { get; }
+        public abstract string open { get; }
+        public abstract string paste { get; }
+        public abstract string play { get; }
+        public abstract string properties { get; }
+        public abstract string record { get; }
+        public abstract string redo { get; }
+        public abstract string rename { get; }
+        public abstract string save { get; }
+        public abstract string saveAs { get; }
+        public abstract string size { get; }
+        public abstract string start { get; }
+        public abstract string stop { get; }
+        public abstract string tools { get; }
+        public abstract string typeF { get; }
+        public abstract string view { get; }
+        public abstract string website { get; }
+        public abstract string undo { get; }
+        public abstract string unnamed { get; }
+
+        public static Lang GetCurrentLanguage()
         {
             if (Properties.Settings.Default.Language == "")
                 Properties.Settings.Default.Language = System.Globalization.CultureInfo.CurrentCulture.Name;
             switch (Properties.Settings.Default.Language)
             {
                 case "ru-RU":
-                    addb = "Добавить блоки";
-                    about = "О программе";
-                    allBlocks = "Количество блоков";
-                    allBytes = "Размер данных";
-                    audio = "Аудио";
-                    blockList = "Список блоков";
-                    blocks = "Блоки";
-                    copy = "Копировать";
-                    cut = "Вырезать";
-                    dataBlock = "Блок данных";
-                    delete = "Удалить";
-                    edit = "Правка";
-                    exit = "Закрыть";
-                    expWAV = "Экспорт в WAV-файл";
-                    file = "Файл";
-                    fileList = "Список файлов";
-                    fileView = "Просмотр файла";
-                    findDupl = "Поиск дубликатов";
-                    fixCRC = "Исправление байтов чётности";
-                    help = "Справка";
-                    impWAV = "Импорт из WAV-файла";
-                    lenght = "Длина";
-                    moveDown = "Переместить вниз";
-                    moveUp = "Переместить вверх";
-                    name = "Имя";
-                    newFile = "Новый";
-                    open = "Открыть";
-                    paste = "Вставить";
-                    play = "Вопроизведение";
-                    properties = "Параметры";
-                    record = "Запись";
-                    redo = "Вернуть";
-                    rename = "Переименовать";
-                    save = "Сохранить";
-                    saveAs = "Сохранить как";
-                    size = "Размер";
-                    start = "Старт";
-                    stop = "Стоп";
-                    tools = "Инструменты";
-                    typeF = "Тип";
-                    view = "Вид";
-                    website = "Страница программы";
-                    undo = "Отменить";
-                    unnamed = "Безымянный";
-                    break;
+                    return new RussianLanguage();
                 default:
-                    addb = "Add blocks";
-                    about = "About";
-                    allBlocks = "Blocks count";
-                    allBytes = "Data size";
-                    audio = "Audio";
-                    blockList = "Block list";
-                    blocks = "Blocks";
-                    copy = "Copy";
-                    cut = "Cut";
-                    dataBlock = "Data block";
-                    delete = "Delete";
-                    edit = "Edit";
-                    exit = "Exit";
-                    expWAV = "Export to WAV file";
-                    file = "File";
-                    fileList = "File list";
-                    fileView = "File view";
-                    findDupl = "Find duplicates";
-                    fixCRC = "Fix CRCs";
-                    help = "Help";
-                    impWAV = "Import from WAV file";
-                    lenght = "Lenght";
-                    moveDown = "Move down";
-                    moveUp = "Move up";
-                    name = "Name";
-                    newFile = "New";
-                    open = "Open";
-                    paste = "Paste";
-                    play = "Play";
-                    properties = "Properties";
-                    record = "Record";
-                    redo = "Redo";
-                    rename = "Rename";
-                    save = "Save";
-                    saveAs = "Save as";
-                    size = "Size";
-                    start = "Start";
-                    stop = "Stop";
-                    tools = "Tools";
-                    typeF = "Type";
-                    view = "View";
-                    website = "Website page of program";
-                    undo = "Undo";
-                    unnamed = "Unnamed";
-                    break;
+                    return new EnglishLanguage();
             }
         }
+    }
+
+    public class RussianLanguage : Lang
+    {
+        public override string addb => "Добавить блоки";
+        public override string about => "О программе";
+        public override string allBlocks => "Количество блоков";
+        public override string allBytes => "Размер данных";
+        public override string audio => "Аудио";
+        public override string blockList => "Список блоков";
+        public override string blocks => "Блоки";
+        public override string copy => "Копировать";
+        public override string cut => "Вырезать";
+        public override string dataBlock => "Блок данных";
+        public override string delete => "Удалить";
+        public override string edit => "Правка";
+        public override string exit => "Закрыть";
+        public override string expWAV => "Экспорт в WAV-файл";
+        public override string file => "Файл";
+        public override string fileList => "Список файлов";
+        public override string fileView => "Просмотр файла";
+        public override string findDupl => "Поиск дубликатов";
+        public override string fixCRC => "Исправление байтов чётности";
+        public override string help => "Справка";
+        public override string impWAV => "Импорт из WAV-файла";
+        public override string lenght => "Длина";
+        public override string moveDown => "Переместить вниз";
+        public override string moveUp => "Переместить вверх";
+        public override string name => "Имя";
+        public override string newFile => "Новый";
+        public override string open => "Открыть";
+        public override string paste => "Вставить";
+        public override string play => "Вопроизведение";
+        public override string properties => "Параметры";
+        public override string record => "Запись";
+        public override string redo => "Вернуть";
+        public override string rename => "Переименовать";
+        public override string save => "Сохранить";
+        public override string saveAs => "Сохранить как";
+        public override string size => "Размер";
+        public override string start => "Старт";
+        public override string stop => "Стоп";
+        public override string tools => "Инструменты";
+        public override string typeF => "Тип";
+        public override string view => "Вид";
+        public override string website => "Страница программы";
+        public override string undo => "Отменить";
+        public override string unnamed => "Безымянный";
+    }
+
+    public class EnglishLanguage : Lang
+    {
+        public override string addb => "Add blocks";
+        public override string about => "About";
+        public override string allBlocks => "Blocks count";
+        public override string allBytes => "Data size";
+        public override string audio => "Audio";
+        public override string blockList => "Block list";
+        public override string blocks => "Blocks";
+        public override string copy => "Copy";
+        public override string cut => "Cut";
+        public override string dataBlock => "Data block";
+        public override string delete => "Delete";
+        public override string edit => "Edit";
+        public override string exit => "Exit";
+        public override string expWAV => "Export to WAV file";
+        public override string file => "File";
+        public override string fileList => "File list";
+        public override string fileView => "File view";
+        public override string findDupl => "Find duplicates";
+        public override string fixCRC => "Fix CRCs";
+        public override string help => "Help";
+        public override string impWAV => "Import from WAV file";
+        public override string lenght => "Lenght";
+        public override string moveDown => "Move down";
+        public override string moveUp => "Move up";
+        public override string name => "Name";
+        public override string newFile => "New";
+        public override string open => "Open";
+        public override string paste => "Paste";
+        public override string play => "Play";
+        public override string properties => "Properties";
+        public override string record => "Record";
+        public override string redo => "Redo";
+        public override string rename => "Rename";
+        public override string save => "Save";
+        public override string saveAs => "Save as";
+        public override string size => "Size";
+        public override string start => "Start";
+        public override string stop => "Stop";
+        public override string tools => "Tools";
+        public override string typeF => "Type";
+        public override string view => "View";
+        public override string website => "Website page of program";
+        public override string undo => "Undo";
+        public override string unnamed => "Unnamed";
     }
 }

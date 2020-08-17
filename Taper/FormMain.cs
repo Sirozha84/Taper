@@ -6,6 +6,7 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
+        private Lang Lang;
         public FormMain() 
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Taper
 
         void InitLang()
         {
-            Lang.Init();
+            Lang = Lang.GetCurrentLanguage();
             menuFile.Text = Lang.file;
             menuNew.Text = Lang.newFile;
             menuOpen.Text = Lang.open + "...";
