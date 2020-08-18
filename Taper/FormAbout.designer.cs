@@ -31,7 +31,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageAbout = new System.Windows.Forms.TabPage();
             this.linkLabelSite = new System.Windows.Forms.LinkLabel();
-            this.labelHelp = new System.Windows.Forms.Label();
+            this.labelNewVersions = new System.Windows.Forms.Label();
             this.labelAutor = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
@@ -63,22 +63,21 @@
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(460, 237);
+            this.tabControl.Size = new System.Drawing.Size(460, 208);
             this.tabControl.TabIndex = 1;
             // 
             // tabPageAbout
             // 
             this.tabPageAbout.Controls.Add(this.linkLabelSite);
-            this.tabPageAbout.Controls.Add(this.labelHelp);
+            this.tabPageAbout.Controls.Add(this.labelNewVersions);
             this.tabPageAbout.Controls.Add(this.labelAutor);
             this.tabPageAbout.Controls.Add(this.labelVersion);
             this.tabPageAbout.Controls.Add(this.labelName);
-            this.tabPageAbout.Controls.Add(this.buttonClose);
             this.tabPageAbout.Controls.Add(this.logo);
             this.tabPageAbout.Location = new System.Drawing.Point(4, 22);
             this.tabPageAbout.Name = "tabPageAbout";
             this.tabPageAbout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAbout.Size = new System.Drawing.Size(452, 211);
+            this.tabPageAbout.Size = new System.Drawing.Size(452, 182);
             this.tabPageAbout.TabIndex = 0;
             this.tabPageAbout.Text = "О программе";
             this.tabPageAbout.UseVisualStyleBackColor = true;
@@ -94,13 +93,13 @@
             this.linkLabelSite.Text = "www.sg-software.ru";
             this.linkLabelSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSite_LinkClicked_1);
             // 
-            // labelHelp
+            // labelNewVersions
             // 
-            this.labelHelp.Location = new System.Drawing.Point(182, 118);
-            this.labelHelp.Name = "labelHelp";
-            this.labelHelp.Size = new System.Drawing.Size(226, 30);
-            this.labelHelp.TabIndex = 5;
-            this.labelHelp.Text = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
+            this.labelNewVersions.Location = new System.Drawing.Point(182, 118);
+            this.labelNewVersions.Name = "labelNewVersions";
+            this.labelNewVersions.Size = new System.Drawing.Size(226, 30);
+            this.labelNewVersions.TabIndex = 5;
+            this.labelNewVersions.Text = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
             // 
             // labelAutor
             // 
@@ -134,7 +133,7 @@
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonClose.Location = new System.Drawing.Point(371, 182);
+            this.buttonClose.Location = new System.Drawing.Point(397, 226);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 1;
@@ -147,7 +146,7 @@
             this.tabPageHistory.Location = new System.Drawing.Point(4, 22);
             this.tabPageHistory.Name = "tabPageHistory";
             this.tabPageHistory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHistory.Size = new System.Drawing.Size(452, 211);
+            this.tabPageHistory.Size = new System.Drawing.Size(452, 182);
             this.tabPageHistory.TabIndex = 1;
             this.tabPageHistory.Text = "История версий";
             this.tabPageHistory.UseVisualStyleBackColor = true;
@@ -160,7 +159,7 @@
             this.history.Location = new System.Drawing.Point(3, 3);
             this.history.Name = "history";
             this.history.ReadOnly = true;
-            this.history.Size = new System.Drawing.Size(446, 205);
+            this.history.Size = new System.Drawing.Size(446, 176);
             this.history.TabIndex = 0;
             this.history.Text = "";
             // 
@@ -172,6 +171,7 @@
             this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(484, 261);
             this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.buttonClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -196,7 +196,7 @@
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.LinkLabel linkLabelSite;
-        private System.Windows.Forms.Label labelHelp;
+        private System.Windows.Forms.Label labelNewVersions;
         private System.Windows.Forms.Label labelAutor;
         private System.Windows.Forms.RichTextBox history;
 
