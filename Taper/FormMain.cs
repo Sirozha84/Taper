@@ -6,7 +6,7 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
-        private Lang Lang;
+        private Lang lang;
         public FormMain() 
         {
             InitializeComponent();
@@ -28,82 +28,84 @@ namespace Taper
             InitLang();
         }
 
+        #region Применение языка
         void InitLang()
         {
-            Lang = Lang.GetCurrentLanguage();
-            menuFile.Text = Lang.file;
-            menuNew.Text = Lang.newFile;
-            menuOpen.Text = Lang.open + "...";
-            menuAdd.Text = Lang.addb + "...";
-            menuLoadWav.Text = Lang.impWAV + "...";
-            menuSave.Text = Lang.save;
-            menuSaveAs.Text = Lang.saveAs + "...";
-            menuSaveWAV.Text = Lang.expWAV + "...";
-            menuExit.Text = Lang.exit;
+            lang = Lang.GetCurrentLanguage();
+            menuFile.Text = lang.file;
+            menuNew.Text = lang.newFile;
+            menuOpen.Text = lang.open + "...";
+            menuAdd.Text = lang.addBlock + "...";
+            menuLoadWav.Text = lang.impWAV + "...";
+            menuSave.Text = lang.save;
+            menuSaveAs.Text = lang.saveAs + "...";
+            menuSaveWAV.Text = lang.expWAV + "...";
+            menuExit.Text = lang.exit;
             
-            menuEdit.Text = Lang.edit;
-            menuUndo.Text = Lang.undo;
-            menuRedo.Text = Lang.redo;
-            menuCut.Text = Lang.cut;
-            menuCopy.Text = Lang.copy;
-            menuPaste.Text = Lang.paste;
-            menuDelete.Text = Lang.delete;
-            menuRename.Text = Lang.rename;
+            menuEdit.Text = lang.edit;
+            menuUndo.Text = lang.undo;
+            menuRedo.Text = lang.redo;
+            menuCut.Text = lang.cut;
+            menuCopy.Text = lang.copy;
+            menuPaste.Text = lang.paste;
+            menuDelete.Text = lang.delete;
+            menuRename.Text = lang.rename;
 
-            menuView.Text = Lang.view;
-            menuListFiles.Text = Lang.fileList;
-            menuListBlocks.Text = Lang.blockList;
+            menuView.Text = lang.view;
+            menuListFiles.Text = lang.fileList;
+            menuListBlocks.Text = lang.blockList;
 
-            menuAudio.Text = Lang.audio;
-            menuPlay.Text = Lang.play;
-            menuStop.Text = Lang.stop;
-            menuRec.Text = Lang.record + "...";
+            menuAudio.Text = lang.audio;
+            menuPlay.Text = lang.play;
+            menuStop.Text = lang.stop;
+            menuRec.Text = lang.record + "...";
 
-            menuBlocks.Text = Lang.blocks;
-            menuMoveUp.Text = Lang.moveUp;
-            menuMoveDown.Text = Lang.moveDown;
+            menuBlocks.Text = lang.blocks;
+            menuMoveUp.Text = lang.moveUp;
+            menuMoveDown.Text = lang.moveDown;
 
-            menuTools.Text = Lang.tools;
-            menuViewFile.Text = Lang.fileView;
-            menuFixCRCs.Text = Lang.fixCRC;
-            menuFindDuplicates.Text = Lang.findDupl;
-            menuProperties.Text = Lang.properties + "...";
+            menuTools.Text = lang.tools;
+            menuViewFile.Text = lang.fileView;
+            menuFixCRCs.Text = lang.fixCRC;
+            menuFindDuplicates.Text = lang.findDupl;
+            menuProperties.Text = lang.properties + "...";
 
-            menuHelp.Text = Lang.help;
-            menuPage.Text = Lang.website;
-            menuAbout.Text = Lang.about;
+            menuHelp.Text = lang.help;
+            menuPage.Text = lang.website;
+            menuAbout.Text = lang.about;
 
-            toolNew.Text = Lang.newFile + " (Ctrl+N)";
-            toolOpen.Text = Lang.open + " (Ctrl+S)";
-            toolSave.Text = Lang.save + " (Ctrl+S)";
-            toolLoadWav.Text = Lang.impWAV + "...";
-            toolUndo.Text = Lang.undo + " (Ctrl+Z)";
-            toolRedo.Text = Lang.redo + " (Ctrl+Y)";
-            toolCut.Text = Lang.cut + " (Ctrl+X)";
-            toolCopy.Text = Lang.copy + " (Ctr+C)";
-            toolPaste.Text = Lang.paste + " (Ctrl+V)";
-            toolPlay.Text = Lang.play;
-            toolStop.Text = Lang.stop;
-            toolRec.Text = Lang.record;
-            toolMoveUp.Text = Lang.moveUp;
-            toolMoveDown.Text = Lang.moveDown;
-            toolProperties.Text = Lang.properties;
+            toolNew.Text = lang.newFile + " (Ctrl+N)";
+            toolOpen.Text = lang.open + " (Ctrl+S)";
+            toolSave.Text = lang.save + " (Ctrl+S)";
+            toolLoadWav.Text = lang.impWAV + "...";
+            toolUndo.Text = lang.undo + " (Ctrl+Z)";
+            toolRedo.Text = lang.redo + " (Ctrl+Y)";
+            toolCut.Text = lang.cut + " (Ctrl+X)";
+            toolCopy.Text = lang.copy + " (Ctr+C)";
+            toolPaste.Text = lang.paste + " (Ctrl+V)";
+            toolPlay.Text = lang.play;
+            toolStop.Text = lang.stop;
+            toolRec.Text = lang.record;
+            toolMoveUp.Text = lang.moveUp;
+            toolMoveDown.Text = lang.moveDown;
+            toolProperties.Text = lang.properties;
 
-            cmenuView.Text = Lang.fileView;
-            cmenuCut.Text = Lang.cut;
-            cmenuCopy.Text = Lang.copy;
-            cmenuPaste.Text = Lang.paste;
-            cmenuDelete.Text = Lang.delete;
-            cmenuRename.Text = Lang.rename;
+            cmenuView.Text = lang.fileView;
+            cmenuCut.Text = lang.cut;
+            cmenuCopy.Text = lang.copy;
+            cmenuPaste.Text = lang.paste;
+            cmenuDelete.Text = lang.delete;
+            cmenuRename.Text = lang.rename;
 
-            listViewTAP.Columns[0].Text = Lang.typeF;
-            listViewTAP.Columns[1].Text = Lang.name;
-            listViewTAP.Columns[2].Text = Lang.start;
-            listViewTAP.Columns[3].Text = Lang.lenght;
-            listViewTAP.Columns[4].Text = Lang.size;
+            listViewTAP.Columns[0].Text = lang.typeF;
+            listViewTAP.Columns[1].Text = lang.name;
+            listViewTAP.Columns[2].Text = lang.start;
+            listViewTAP.Columns[3].Text = lang.lenght;
+            listViewTAP.Columns[4].Text = lang.size;
 
             DrawProject();
         }
+        #endregion
 
         #region Меню Файл (Новый, открыть, добавить, импорт)
         /// <summary>
@@ -272,7 +274,7 @@ namespace Taper
         /// </summary>
         void SetFormText()
         {
-            string name = Project.name == "" ? Lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
+            string name = Project.name == "" ? lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
             name += Project.changed ? "*" : "";
             Text = name + " - " + Application.ProductName;
         }
@@ -321,7 +323,7 @@ namespace Taper
             {
                 bool nm = block.FileTitle != null;
                 bool dt = block.FileData != null;
-                ListViewItem item = new ListViewItem(nm? block.FileType : "    " + Lang.dataBlock);
+                ListViewItem item = new ListViewItem(nm? block.FileType : "    " + lang.dataBlock);
                 item.SubItems.Add(nm ? block.FileName : NullString);
                 item.SubItems.Add(nm ? block.Start : NullString);
                 item.SubItems.Add(nm ? block.Len : NullString);
@@ -334,8 +336,8 @@ namespace Taper
                     bytes += block.FileData.Length - 2;
                 }
             }
-            statusBlocks.Text = Lang.allBlocks + ": " + blocks;
-            statusSize.Text = Lang.allBytes + ": " + bytes.ToString();
+            statusBlocks.Text = lang.blockCount + ": " + blocks;
+            statusSize.Text = lang.allBytes + ": " + bytes.ToString();
             SetFormText();
         }
 

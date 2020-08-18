@@ -2,14 +2,17 @@
 {
     public abstract class Lang
     {
-        public abstract string addb { get; }
+        public abstract string language { get; }
+        public abstract string addBlock { get; }
         public abstract string about { get; }
-        public abstract string allBlocks { get; }
         public abstract string allBytes { get; }
         public abstract string audio { get; }
+        public abstract string autor { get; }
+        public abstract string blockCount { get; }
         public abstract string blockList { get; }
         public abstract string blocks { get; }
         public abstract string copy { get; }
+        public abstract string close { get; }
         public abstract string cut { get; }
         public abstract string dataBlock { get; }
         public abstract string delete { get; }
@@ -42,10 +45,15 @@
         public abstract string stop { get; }
         public abstract string tools { get; }
         public abstract string typeF { get; }
+        public abstract string version { get; }
+        public abstract string versionHistory { get; }
         public abstract string view { get; }
         public abstract string website { get; }
         public abstract string undo { get; }
         public abstract string unnamed { get; }
+
+        public abstract string msgNewVersions { get; }
+        public abstract string msgOnlyRusVersion { get; }
 
         public static Lang GetCurrentLanguage()
         {
@@ -63,14 +71,17 @@
 
     public class RussianLanguage : Lang
     {
-        public override string addb => "Добавить блоки";
+        public override string language => "ru";
+        public override string addBlock => "Добавить блоки";
         public override string about => "О программе";
-        public override string allBlocks => "Количество блоков";
         public override string allBytes => "Размер данных";
         public override string audio => "Аудио";
+        public override string autor => "Автор";
+        public override string blockCount => "Количество блоков";
         public override string blockList => "Список блоков";
         public override string blocks => "Блоки";
         public override string copy => "Копировать";
+        public override string close => "Закрыть";
         public override string cut => "Вырезать";
         public override string dataBlock => "Блок данных";
         public override string delete => "Удалить";
@@ -103,22 +114,30 @@
         public override string stop => "Стоп";
         public override string tools => "Инструменты";
         public override string typeF => "Тип";
+        public override string version => "Версия";
+        public override string versionHistory => "История версий";
         public override string view => "Вид";
         public override string website => "Страница программы";
         public override string undo => "Отменить";
         public override string unnamed => "Безымянный";
+
+        public override string msgNewVersions => "Новую версию этой и других моих программ Вы можете загрузить на сайте";
+        public override string msgOnlyRusVersion => "";
     }
 
     public class EnglishLanguage : Lang
     {
-        public override string addb => "Add blocks";
+        public override string language => "en";
+        public override string addBlock => "Add blocks";
         public override string about => "About";
-        public override string allBlocks => "Blocks count";
         public override string allBytes => "Data size";
         public override string audio => "Audio";
+        public override string autor => "Autor";
+        public override string blockCount => "Blocks count";
         public override string blockList => "Block list";
         public override string blocks => "Blocks";
         public override string copy => "Copy";
+        public override string close => "Close";
         public override string cut => "Cut";
         public override string dataBlock => "Data block";
         public override string delete => "Delete";
@@ -151,9 +170,14 @@
         public override string stop => "Stop";
         public override string tools => "Tools";
         public override string typeF => "Type";
+        public override string version => "Version";
+        public override string versionHistory => "Versions history";
         public override string view => "View";
         public override string website => "Website page of program";
         public override string undo => "Undo";
         public override string unnamed => "Unnamed";
+
+        public override string msgNewVersions => "New version this and other my programs you can download on website";
+        public override string msgOnlyRusVersion => "Sorry! This text is only available in Russian yet :-(";
     }
 }
