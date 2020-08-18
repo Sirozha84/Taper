@@ -7,10 +7,10 @@ namespace Taper
     {
         //public const string Name = "Taper";
         //Параметры открытия и сохранения файлов
-        public const string FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
+        /*public const string FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
         public const string FilterSel = "Образ ленты TAP (*.tap)|*.tap|Образ ленты TZX (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
         public const string FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
-        public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
+        public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";*/
         public static FormMain mainform;
         
         /// <summary>
@@ -22,7 +22,6 @@ namespace Taper
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             mainform = new FormMain();
-            //Application.Run(new FormMain());
             Application.Run(mainform);
         }
 
@@ -32,7 +31,7 @@ namespace Taper
         /// <param name="message">Текст</param>
         public static void Error(string message)
         {
-            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /// <summary>

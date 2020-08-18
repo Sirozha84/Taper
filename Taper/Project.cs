@@ -456,7 +456,7 @@ namespace Taper
                     if (find) break;
                 }
             }
-            if (find) Program.Message("Отмечены найденые дубликаты файлов.");
+            if (find) Program.Message(Lang.msgFoundDuplicatesSelected);
             else Program.Message("Дубликатов не обнаружено.");
         }
     }

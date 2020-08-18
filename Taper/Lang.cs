@@ -1,183 +1,215 @@
 ﻿namespace Taper
 {
-    public abstract class Lang
+    static class Lang
     {
-        public abstract string language { get; }
-        public abstract string addBlock { get; }
-        public abstract string about { get; }
-        public abstract string allBytes { get; }
-        public abstract string audio { get; }
-        public abstract string autor { get; }
-        public abstract string blockCount { get; }
-        public abstract string blockList { get; }
-        public abstract string blocks { get; }
-        public abstract string copy { get; }
-        public abstract string close { get; }
-        public abstract string cut { get; }
-        public abstract string dataBlock { get; }
-        public abstract string delete { get; }
-        public abstract string edit { get; }
-        public abstract string exit { get; }
-        public abstract string expWAV { get; }
-        public abstract string file { get; }
-        public abstract string fileList { get; }
-        public abstract string fileView { get; }
-        public abstract string findDupl { get; }
-        public abstract string fixCRC { get; }
-        public abstract string help { get; }
-        public abstract string impWAV { get; }
-        public abstract string lenght { get; }
-        public abstract string moveDown { get; }
-        public abstract string moveUp { get; }
-        public abstract string name { get; }
-        public abstract string newFile { get; }
-        public abstract string open { get; }
-        public abstract string paste { get; }
-        public abstract string play { get; }
-        public abstract string properties { get; }
-        public abstract string record { get; }
-        public abstract string redo { get; }
-        public abstract string rename { get; }
-        public abstract string save { get; }
-        public abstract string saveAs { get; }
-        public abstract string size { get; }
-        public abstract string start { get; }
-        public abstract string stop { get; }
-        public abstract string tools { get; }
-        public abstract string typeF { get; }
-        public abstract string version { get; }
-        public abstract string versionHistory { get; }
-        public abstract string view { get; }
-        public abstract string website { get; }
-        public abstract string undo { get; }
-        public abstract string unnamed { get; }
+        public static string language;
 
-        public abstract string msgNewVersions { get; }
-        public abstract string msgOnlyRusVersion { get; }
+        public static string addBlock;
+        public static string about;
+        public static string allBytes;
+        public static string audio;
+        public static string autor;
+        public static string blockCount;
+        public static string blockList;
+        public static string blocks;
+        public static string close;
+        public static string copy;
+        public static string cut;
+        public static string dataBlock;
+        public static string delete;
+        public static string edit;
+        public static string exit;
+        public static string expWAV;
+        public static string file;
+        public static string fileList;
+        public static string fileView;
+        public static string findDupl;
+        public static string fixCRC;
+        public static string help;
+        public static string impWAV;
+        public static string lenght;
+        public static string moveDown;
+        public static string moveUp;
+        public static string name;
+        public static string newFile;
+        public static string open;
+        public static string paste;
+        public static string play;
+        public static string properties;
+        public static string record;
+        public static string redo;
+        public static string rename;
+        public static string save;
+        public static string saveAs;
+        public static string size;
+        public static string start;
+        public static string stop;
+        public static string tools;
+        public static string typeF;
+        public static string version;
+        public static string versionHistory;
+        public static string view;
+        public static string website;
+        public static string undo;
+        public static string unnamed;
 
-        public static Lang GetCurrentLanguage()
+        public static string msgAddBlocks;
+        public static string msgAllCRCsIsOK;
+        public static string msgCRCsFixed;
+        public static string msgFileNotSupport;
+        public static string msgFoundDuplicatesSelected;
+        public static string msgNewVersions;
+        public static string msgOnlyRusVersion;
+        public static string msgSaveChange;
+
+        public static string FilterAll;
+        public static string FilterBMP;
+        public static string FilterSel;
+        public static string FilterWAV;
+
+        public static void Init()
         {
             if (Properties.Settings.Default.Language == "")
                 Properties.Settings.Default.Language = System.Globalization.CultureInfo.CurrentCulture.Name;
             switch (Properties.Settings.Default.Language)
             {
                 case "ru-RU":
-                    return new RussianLanguage();
+
+                    language = "ru";
+
+                    addBlock = "Добавить блоки";
+                    about = "О программе";
+                    allBytes = "Размер данных";
+                    audio = "Аудио";
+                    autor = "Автор";
+                    blockCount = "Количество блоков";
+                    blockList = "Список блоков";
+                    blocks = "Блоки";
+                    close = "Закрыть";
+                    copy = "Копировать";
+                    cut = "Вырезать";
+                    dataBlock = "Блок данных";
+                    delete = "Удалить";
+                    edit = "Правка";
+                    exit = "Закрыть";
+                    expWAV = "Экспорт в WAV-файл";
+                    file = "Файл";
+                    fileList = "Список файлов";
+                    fileView = "Просмотр файла";
+                    findDupl = "Поиск дубликатов";
+                    fixCRC = "Исправление контрольных сумм";
+                    help = "Справка";
+                    impWAV = "Импорт из WAV-файла";
+                    lenght = "Длина";
+                    moveDown = "Переместить вниз";
+                    moveUp = "Переместить вверх";
+                    name = "Имя";
+                    newFile = "Новый";
+                    open = "Открыть";
+                    paste = "Вставить";
+                    play = "Вопроизведение";
+                    properties = "Параметры";
+                    record = "Запись";
+                    redo = "Вернуть";
+                    rename = "Переименовать";
+                    save = "Сохранить";
+                    saveAs = "Сохранить как";
+                    size = "Размер";
+                    start = "Старт";
+                    stop = "Стоп";
+                    tools = "Инструменты";
+                    typeF = "Тип";
+                    version = "Версия";
+                    versionHistory = "История версий";
+                    view = "Вид";
+                    website = "Страница программы";
+                    undo = "Отменить";
+                    unnamed = "Безымянный";
+
+                    msgAddBlocks = "Добавить блоки в проект? Нет - открыть файл.";
+                    msgAllCRCsIsOK = "Все контрольные суммы в порядке";
+                    msgCRCsFixed = "Контрольные суммы исправлены";
+                    msgFileNotSupport = "Файл не поддерживается";
+                    msgFoundDuplicatesSelected = "Отмечены найденые дубликаты файлов";
+                    msgNewVersions = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
+                    msgOnlyRusVersion = "";
+                    msgSaveChange = "Сохранить изменения в файле";
+
+                    FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
+                    FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
+                    FilterSel = "Образ ленты TAP (*.tap)|*.tap|Образ ленты TZX (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
+                    FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
+
+                    break;
                 default:
-                    return new EnglishLanguage();
+
+                    language = "en";
+
+                    addBlock = "Add blocks";
+                    about = "About";
+                    allBytes = "Data size";
+                    audio = "Audio";
+                    autor = "Autor";
+                    blockCount = "Blocks count";
+                    blockList = "Block list";
+                    blocks = "Blocks";
+                    close = "Close";
+                    copy = "Copy";
+                    cut = "Cut";
+                    dataBlock = "Data block";
+                    delete = "Delete";
+                    edit = "Edit";
+                    exit = "Exit";
+                    expWAV = "Export to WAV file";
+                    file = "File";
+                    fileList = "File list";
+                    fileView = "File view";
+                    findDupl = "Find duplicates";
+                    fixCRC = "Fix CRCs";
+                    help = "Help";
+                    impWAV = "Import from WAV file";
+                    lenght = "Lenght";
+                    moveDown = "Move down";
+                    moveUp = "Move up";
+                    name = "Name";
+                    newFile = "New";
+                    open = "Open";
+                    paste = "Paste";
+                    play = "Play";
+                    properties = "Properties";
+                    record = "Record";
+                    redo = "Redo";
+                    rename = "Rename";
+                    save = "Save";
+                    saveAs = "Save as";
+                    size = "Size";
+                    start = "Start";
+                    stop = "Stop";
+                    tools = "Tools";
+                    typeF = "Type";
+                    version = "Version";
+                    versionHistory = "Version history";
+                    view = "View";
+                    website = "Website page of program";
+                    undo = "Undo";
+                    unnamed = "Unnamed";
+
+                    msgAddBlocks = "Add blocks to project? No - open file.";
+                    msgAllCRCsIsOK = "All CRCs is OK";
+                    msgCRCsFixed = "CRCs fixed";
+                    msgFileNotSupport = "File not support";
+                    msgFoundDuplicatesSelected = "Found duplicates are selected";
+                    msgNewVersions = "New version this and other my programs you can download on website";
+                    msgOnlyRusVersion = "Sorry! This text is only available in Russian yet :-(";
+                    msgSaveChange = "Save change in file";
+
+                    FilterAll = "Tape image (*.tap, *.tzx)|*.tap;*.tzx|All files (*.*)|*.*";
+                    FilterBMP = "Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*";
+                    FilterSel = "Tape image TAP (*.tap)|*.tap|Tape image TZX (*.tzx)|*.tzx|All files (*.*)|*.*";
+                    FilterWAV = "Audio file (*.wav)|*.wav|All files (*.*)|*.*";
+
+                    break;
             }
         }
-    }
-
-    public class RussianLanguage : Lang
-    {
-        public override string language => "ru";
-        public override string addBlock => "Добавить блоки";
-        public override string about => "О программе";
-        public override string allBytes => "Размер данных";
-        public override string audio => "Аудио";
-        public override string autor => "Автор";
-        public override string blockCount => "Количество блоков";
-        public override string blockList => "Список блоков";
-        public override string blocks => "Блоки";
-        public override string copy => "Копировать";
-        public override string close => "Закрыть";
-        public override string cut => "Вырезать";
-        public override string dataBlock => "Блок данных";
-        public override string delete => "Удалить";
-        public override string edit => "Правка";
-        public override string exit => "Закрыть";
-        public override string expWAV => "Экспорт в WAV-файл";
-        public override string file => "Файл";
-        public override string fileList => "Список файлов";
-        public override string fileView => "Просмотр файла";
-        public override string findDupl => "Поиск дубликатов";
-        public override string fixCRC => "Исправление байтов чётности";
-        public override string help => "Справка";
-        public override string impWAV => "Импорт из WAV-файла";
-        public override string lenght => "Длина";
-        public override string moveDown => "Переместить вниз";
-        public override string moveUp => "Переместить вверх";
-        public override string name => "Имя";
-        public override string newFile => "Новый";
-        public override string open => "Открыть";
-        public override string paste => "Вставить";
-        public override string play => "Вопроизведение";
-        public override string properties => "Параметры";
-        public override string record => "Запись";
-        public override string redo => "Вернуть";
-        public override string rename => "Переименовать";
-        public override string save => "Сохранить";
-        public override string saveAs => "Сохранить как";
-        public override string size => "Размер";
-        public override string start => "Старт";
-        public override string stop => "Стоп";
-        public override string tools => "Инструменты";
-        public override string typeF => "Тип";
-        public override string version => "Версия";
-        public override string versionHistory => "История версий";
-        public override string view => "Вид";
-        public override string website => "Страница программы";
-        public override string undo => "Отменить";
-        public override string unnamed => "Безымянный";
-
-        public override string msgNewVersions => "Новую версию этой и других моих программ Вы можете загрузить на сайте";
-        public override string msgOnlyRusVersion => "";
-    }
-
-    public class EnglishLanguage : Lang
-    {
-        public override string language => "en";
-        public override string addBlock => "Add blocks";
-        public override string about => "About";
-        public override string allBytes => "Data size";
-        public override string audio => "Audio";
-        public override string autor => "Autor";
-        public override string blockCount => "Blocks count";
-        public override string blockList => "Block list";
-        public override string blocks => "Blocks";
-        public override string copy => "Copy";
-        public override string close => "Close";
-        public override string cut => "Cut";
-        public override string dataBlock => "Data block";
-        public override string delete => "Delete";
-        public override string edit => "Edit";
-        public override string exit => "Exit";
-        public override string expWAV => "Export to WAV file";
-        public override string file => "File";
-        public override string fileList => "File list";
-        public override string fileView => "File view";
-        public override string findDupl => "Find duplicates";
-        public override string fixCRC => "Fix CRCs";
-        public override string help => "Help";
-        public override string impWAV => "Import from WAV file";
-        public override string lenght => "Lenght";
-        public override string moveDown => "Move down";
-        public override string moveUp => "Move up";
-        public override string name => "Name";
-        public override string newFile => "New";
-        public override string open => "Open";
-        public override string paste => "Paste";
-        public override string play => "Play";
-        public override string properties => "Properties";
-        public override string record => "Record";
-        public override string redo => "Redo";
-        public override string rename => "Rename";
-        public override string save => "Save";
-        public override string saveAs => "Save as";
-        public override string size => "Size";
-        public override string start => "Start";
-        public override string stop => "Stop";
-        public override string tools => "Tools";
-        public override string typeF => "Type";
-        public override string version => "Version";
-        public override string versionHistory => "Versions history";
-        public override string view => "View";
-        public override string website => "Website page of program";
-        public override string undo => "Undo";
-        public override string unnamed => "Unnamed";
-
-        public override string msgNewVersions => "New version this and other my programs you can download on website";
-        public override string msgOnlyRusVersion => "Sorry! This text is only available in Russian yet :-(";
     }
 }

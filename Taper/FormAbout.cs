@@ -5,28 +5,27 @@ namespace Taper
 {
     partial class FormAbout : Form
     {
-		Lang lang;
 		public FormAbout()
 		{
 			InitializeComponent();
-			lang = Lang.GetCurrentLanguage();
+			Lang.Init();
 
-			Text = lang.about;
-			tabPageAbout.Text = lang.about;
-			labelVersion.Text = lang.version + ": " + Application.ProductVersion;
+			Text = Lang.about;
+			tabPageAbout.Text = Lang.about;
+			labelVersion.Text = Lang.version + ": " + Application.ProductVersion;
 			labelName.Text = Application.ProductName;
-			labelAutor.Text = lang.autor + (lang.language == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
-			labelNewVersions.Text = lang.msgNewVersions;
-			tabPageHistory.Text = lang.versionHistory;
-			buttonClose.Text = lang.close;
+			labelAutor.Text = Lang.autor + (Lang.language == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
+			labelNewVersions.Text = Lang.msgNewVersions;
+			tabPageHistory.Text = Lang.versionHistory;
+			buttonClose.Text = Lang.close;
 
 			Font fontR = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Regular);
 			Font fontB = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Bold);
 
-			if (lang.language != "ru")
+			if (Lang.language != "ru")
 			{
 				history.SelectionFont = fontR;
-				history.AppendText(lang.msgOnlyRusVersion);
+				history.AppendText(Lang.msgOnlyRusVersion);
 				return;
 			}
 

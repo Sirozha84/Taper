@@ -6,7 +6,6 @@ namespace Taper
 {
     public partial class FormMain : Form
     {
-        private Lang lang;
         public FormMain() 
         {
             InitializeComponent();
@@ -31,83 +30,84 @@ namespace Taper
         #region Применение языка
         void InitLang()
         {
-            lang = Lang.GetCurrentLanguage();
-            menuFile.Text = lang.file;
-            menuNew.Text = lang.newFile;
-            menuOpen.Text = lang.open + "...";
-            menuAdd.Text = lang.addBlock + "...";
-            menuLoadWav.Text = lang.impWAV + "...";
-            menuSave.Text = lang.save;
-            menuSaveAs.Text = lang.saveAs + "...";
-            menuSaveWAV.Text = lang.expWAV + "...";
-            menuExit.Text = lang.exit;
+            Lang.Init();
+
+            menuFile.Text = Lang.file;
+            menuNew.Text = Lang.newFile;
+            menuOpen.Text = Lang.open + "...";
+            menuAdd.Text = Lang.addBlock + "...";
+            menuLoadWav.Text = Lang.impWAV + "...";
+            menuSave.Text = Lang.save;
+            menuSaveAs.Text = Lang.saveAs + "...";
+            menuSaveWAV.Text = Lang.expWAV + "...";
+            menuExit.Text = Lang.exit;
             
-            menuEdit.Text = lang.edit;
-            menuUndo.Text = lang.undo;
-            menuRedo.Text = lang.redo;
-            menuCut.Text = lang.cut;
-            menuCopy.Text = lang.copy;
-            menuPaste.Text = lang.paste;
-            menuDelete.Text = lang.delete;
-            menuRename.Text = lang.rename;
+            menuEdit.Text = Lang.edit;
+            menuUndo.Text = Lang.undo;
+            menuRedo.Text = Lang.redo;
+            menuCut.Text = Lang.cut;
+            menuCopy.Text = Lang.copy;
+            menuPaste.Text = Lang.paste;
+            menuDelete.Text = Lang.delete;
+            menuRename.Text = Lang.rename;
 
-            menuView.Text = lang.view;
-            menuListFiles.Text = lang.fileList;
-            menuListBlocks.Text = lang.blockList;
+            menuView.Text = Lang.view;
+            menuListFiles.Text = Lang.fileList;
+            menuListBlocks.Text = Lang.blockList;
 
-            menuAudio.Text = lang.audio;
-            menuPlay.Text = lang.play;
-            menuStop.Text = lang.stop;
-            menuRec.Text = lang.record + "...";
+            menuAudio.Text = Lang.audio;
+            menuPlay.Text = Lang.play;
+            menuStop.Text = Lang.stop;
+            menuRec.Text = Lang.record + "...";
 
-            menuBlocks.Text = lang.blocks;
-            menuMoveUp.Text = lang.moveUp;
-            menuMoveDown.Text = lang.moveDown;
+            menuBlocks.Text = Lang.blocks;
+            menuMoveUp.Text = Lang.moveUp;
+            menuMoveDown.Text = Lang.moveDown;
 
-            menuTools.Text = lang.tools;
-            menuViewFile.Text = lang.fileView;
-            menuFixCRCs.Text = lang.fixCRC;
-            menuFindDuplicates.Text = lang.findDupl;
-            menuProperties.Text = lang.properties + "...";
+            menuTools.Text = Lang.tools;
+            menuViewFile.Text = Lang.fileView;
+            menuFixCRCs.Text = Lang.fixCRC;
+            menuFindDuplicates.Text = Lang.findDupl;
+            menuProperties.Text = Lang.properties + "...";
 
-            menuHelp.Text = lang.help;
-            menuPage.Text = lang.website;
-            menuAbout.Text = lang.about;
+            menuHelp.Text = Lang.help;
+            menuPage.Text = Lang.website;
+            menuAbout.Text = Lang.about;
 
-            toolNew.Text = lang.newFile + " (Ctrl+N)";
-            toolOpen.Text = lang.open + " (Ctrl+S)";
-            toolSave.Text = lang.save + " (Ctrl+S)";
-            toolLoadWav.Text = lang.impWAV + "...";
-            toolUndo.Text = lang.undo + " (Ctrl+Z)";
-            toolRedo.Text = lang.redo + " (Ctrl+Y)";
-            toolCut.Text = lang.cut + " (Ctrl+X)";
-            toolCopy.Text = lang.copy + " (Ctr+C)";
-            toolPaste.Text = lang.paste + " (Ctrl+V)";
-            toolPlay.Text = lang.play;
-            toolStop.Text = lang.stop;
-            toolRec.Text = lang.record;
-            toolMoveUp.Text = lang.moveUp;
-            toolMoveDown.Text = lang.moveDown;
-            toolProperties.Text = lang.properties;
+            toolNew.Text = Lang.newFile + " (Ctrl+N)";
+            toolOpen.Text = Lang.open + " (Ctrl+S)";
+            toolSave.Text = Lang.save + " (Ctrl+S)";
+            toolLoadWav.Text = Lang.impWAV + "...";
+            toolUndo.Text = Lang.undo + " (Ctrl+Z)";
+            toolRedo.Text = Lang.redo + " (Ctrl+Y)";
+            toolCut.Text = Lang.cut + " (Ctrl+X)";
+            toolCopy.Text = Lang.copy + " (Ctr+C)";
+            toolPaste.Text = Lang.paste + " (Ctrl+V)";
+            toolPlay.Text = Lang.play;
+            toolStop.Text = Lang.stop;
+            toolRec.Text = Lang.record;
+            toolMoveUp.Text = Lang.moveUp;
+            toolMoveDown.Text = Lang.moveDown;
+            toolProperties.Text = Lang.properties;
 
-            cmenuView.Text = lang.fileView;
-            cmenuCut.Text = lang.cut;
-            cmenuCopy.Text = lang.copy;
-            cmenuPaste.Text = lang.paste;
-            cmenuDelete.Text = lang.delete;
-            cmenuRename.Text = lang.rename;
+            cmenuView.Text = Lang.fileView;
+            cmenuCut.Text = Lang.cut;
+            cmenuCopy.Text = Lang.copy;
+            cmenuPaste.Text = Lang.paste;
+            cmenuDelete.Text = Lang.delete;
+            cmenuRename.Text = Lang.rename;
 
-            listViewTAP.Columns[0].Text = lang.typeF;
-            listViewTAP.Columns[1].Text = lang.name;
-            listViewTAP.Columns[2].Text = lang.start;
-            listViewTAP.Columns[3].Text = lang.lenght;
-            listViewTAP.Columns[4].Text = lang.size;
+            listViewTAP.Columns[0].Text = Lang.typeF;
+            listViewTAP.Columns[1].Text = Lang.name;
+            listViewTAP.Columns[2].Text = Lang.start;
+            listViewTAP.Columns[3].Text = Lang.lenght;
+            listViewTAP.Columns[4].Text = Lang.size;
 
             DrawProject();
         }
         #endregion
 
-        #region Меню Файл (Новый, открыть, добавить, импорт)
+        #region Меню Файл
         /// <summary>
         /// Новый файл
         /// </summary>
@@ -124,7 +124,7 @@ namespace Taper
         private void FileOpen(object sender, EventArgs e)
         {
             if (!SaveQuestion()) return;
-            OpenFileDialog dialog = new OpenFileDialog() { Filter = Program.FilterAll };
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Lang.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Open(dialog.FileName, false);
             DrawProject();
@@ -135,7 +135,7 @@ namespace Taper
         /// </summary>
         void AddTAP(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Добавление блоков", Filter = Program.FilterAll };
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Lang.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             Project.Change();
             Project.Open(dialog.FileName, true);
@@ -149,15 +149,13 @@ namespace Taper
         /// <param name="e"></param>
         private void LoadFromWav(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog() { Title = "Импорт из WAV-файла блоков", Filter = Program.FilterWAV };
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = Lang.FilterWAV };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             FormWAVimport form = new FormWAVimport(dialog.FileName);
             form.ShowDialog();
             DrawProject();
         }
-        #endregion
 
-        #region Меню Файл (сохранить, экспортировать, выйти)
         /// <summary>
         /// Сохранение файла
         /// </summary>
@@ -166,7 +164,7 @@ namespace Taper
         {
             if (Project.name == "" | sender == menuSaveAs)
             {
-                SaveFileDialog dialog = new SaveFileDialog() { Filter = Program.FilterSel };
+                SaveFileDialog dialog = new SaveFileDialog() { Filter = Lang.FilterSel };
                 if (dialog.ShowDialog() == DialogResult.OK) Project.Save(dialog.FileName);
                 else return;
             }
@@ -178,7 +176,7 @@ namespace Taper
         /// </summary>
         private void SaveToWAV(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog() { Title = "Экспорт в WAV-файл", Filter = Program.FilterWAV };
+            SaveFileDialog dialog = new SaveFileDialog() { Filter = Lang.FilterWAV };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             WAVmaker.Save(dialog.FileName);
         }
@@ -250,8 +248,8 @@ namespace Taper
 
         private void menuFixCRCs_Click(object sender, EventArgs e)
         {
-            if (Project.FixCRCs()) Program.Message("Контрольные суммы исправлены.");
-            else Program.Message("Все контрольные суммы в порядке.");
+            if (Project.FixCRCs()) Program.Message(Lang.msgCRCsFixed);
+            else Program.Message(Lang.msgAllCRCsIsOK);
         }
         private void menuFindDuplicates_Click(object sender, EventArgs e) { Project.FindDuplicates(listViewTAP); }
 
@@ -274,7 +272,7 @@ namespace Taper
         /// </summary>
         void SetFormText()
         {
-            string name = Project.name == "" ? lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
+            string name = Project.name == "" ? Lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
             name += Project.changed ? "*" : "";
             Text = name + " - " + Application.ProductName;
         }
@@ -285,7 +283,8 @@ namespace Taper
         bool SaveQuestion()
         {
             if (!Project.changed) return true;
-            switch (MessageBox.Show("Сохранить изменения в файле \"" + System.IO.Path.GetFileNameWithoutExtension(Project.name) + "\"?", "Файл изменён", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
+            switch (MessageBox.Show(Lang.msgSaveChange+" \"" + System.IO.Path.GetFileNameWithoutExtension(Project.name) + 
+                "\"?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: FileSave(null, null); return true;
                 case DialogResult.No: return true;
@@ -323,7 +322,7 @@ namespace Taper
             {
                 bool nm = block.FileTitle != null;
                 bool dt = block.FileData != null;
-                ListViewItem item = new ListViewItem(nm? block.FileType : "    " + lang.dataBlock);
+                ListViewItem item = new ListViewItem(nm? block.FileType : "    " + Lang.dataBlock);
                 item.SubItems.Add(nm ? block.FileName : NullString);
                 item.SubItems.Add(nm ? block.Start : NullString);
                 item.SubItems.Add(nm ? block.Len : NullString);
@@ -336,8 +335,8 @@ namespace Taper
                     bytes += block.FileData.Length - 2;
                 }
             }
-            statusBlocks.Text = lang.blockCount + ": " + blocks;
-            statusSize.Text = lang.allBytes + ": " + bytes.ToString();
+            statusBlocks.Text = Lang.blockCount + ": " + blocks;
+            statusSize.Text = Lang.allBytes + ": " + bytes.ToString();
             SetFormText();
         }
 
@@ -363,7 +362,7 @@ namespace Taper
 
             if (ext == ".tap" | ext == ".tzx")
             {
-                if (MessageBox.Show("Добавить файлы в проект? Нет - открыть файл.", Application.ProductName, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Lang.msgAddBlocks, Application.ProductName, MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Project.Open(file, true);
                 else
                 {
@@ -372,7 +371,7 @@ namespace Taper
                 }
                 DrawProject();
             }
-            else Program.Error("Файл не поддерживается");
+            else Program.Error(Lang.msgFileNotSupport);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -388,7 +387,7 @@ namespace Taper
                 Project.Open(file, false);
                 DrawProject();
             }
-            else Program.Error("Файл не поддерживается");
+            else Program.Error(Lang.msgFileNotSupport);
         }
 
     }
