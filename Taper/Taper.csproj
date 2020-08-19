@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembler.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
@@ -112,6 +113,7 @@
     </Compile>
     <Compile Include="Lang.cs" />
     <Compile Include="Listener.cs" />
+    <Compile Include="Misc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

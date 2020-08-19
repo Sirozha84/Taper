@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageProgram = new System.Windows.Forms.TabPage();
             this.checkBoxSpaces = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageScreen = new System.Windows.Forms.TabPage();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl3 = new System.Windows.Forms.TabControl();
@@ -45,20 +45,20 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tabPageFont = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPageAssembler = new System.Windows.Forms.TabPage();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPageText = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPageBytes = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -66,9 +66,10 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabPageTitle = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPageProgram.SuspendLayout();
+            this.tabPageScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tabControl3.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -78,13 +79,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.tabPage11.SuspendLayout();
+            this.tabPageFont.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabPageAssembler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tabPageText.SuspendLayout();
+            this.tabPageBytes.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -92,12 +93,13 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPageTitle);
+            this.tabControl1.Controls.Add(this.tabPageProgram);
+            this.tabControl1.Controls.Add(this.tabPageScreen);
+            this.tabControl1.Controls.Add(this.tabPageFont);
+            this.tabControl1.Controls.Add(this.tabPageAssembler);
+            this.tabControl1.Controls.Add(this.tabPageText);
+            this.tabControl1.Controls.Add(this.tabPageBytes);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -106,16 +108,16 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tabPageProgram
             // 
-            this.tabPage1.Controls.Add(this.checkBoxSpaces);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(550, 465);
-            this.tabPage1.TabIndex = 5;
-            this.tabPage1.Text = "Program";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageProgram.Controls.Add(this.checkBoxSpaces);
+            this.tabPageProgram.Controls.Add(this.textBox1);
+            this.tabPageProgram.Location = new System.Drawing.Point(4, 22);
+            this.tabPageProgram.Name = "tabPageProgram";
+            this.tabPageProgram.Size = new System.Drawing.Size(550, 465);
+            this.tabPageProgram.TabIndex = 5;
+            this.tabPageProgram.Text = "Program";
+            this.tabPageProgram.UseVisualStyleBackColor = true;
             // 
             // checkBoxSpaces
             // 
@@ -141,18 +143,18 @@
             this.textBox1.Size = new System.Drawing.Size(550, 424);
             this.textBox1.TabIndex = 1;
             // 
-            // tabPage2
+            // tabPageScreen
             // 
-            this.tabPage2.Controls.Add(this.numericUpDown2);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.tabControl3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(550, 465);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "SCREEN$";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageScreen.Controls.Add(this.numericUpDown2);
+            this.tabPageScreen.Controls.Add(this.label2);
+            this.tabPageScreen.Controls.Add(this.tabControl3);
+            this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
+            this.tabPageScreen.Name = "tabPageScreen";
+            this.tabPageScreen.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageScreen.Size = new System.Drawing.Size(550, 465);
+            this.tabPageScreen.TabIndex = 1;
+            this.tabPageScreen.Text = "SCREEN$";
+            this.tabPageScreen.UseVisualStyleBackColor = true;
             // 
             // numericUpDown2
             // 
@@ -272,20 +274,20 @@
             this.pictureBox3.TabIndex = 1;
             this.pictureBox3.TabStop = false;
             // 
-            // tabPage11
+            // tabPageFont
             // 
-            this.tabPage11.Controls.Add(this.button4);
-            this.tabPage11.Controls.Add(this.numericUpDown3);
-            this.tabPage11.Controls.Add(this.label3);
-            this.tabPage11.Controls.Add(this.button3);
-            this.tabPage11.Controls.Add(this.pictureBox4);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(550, 465);
-            this.tabPage11.TabIndex = 6;
-            this.tabPage11.Text = "Шрифт";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.tabPageFont.Controls.Add(this.button4);
+            this.tabPageFont.Controls.Add(this.numericUpDown3);
+            this.tabPageFont.Controls.Add(this.label3);
+            this.tabPageFont.Controls.Add(this.button3);
+            this.tabPageFont.Controls.Add(this.pictureBox4);
+            this.tabPageFont.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFont.Name = "tabPageFont";
+            this.tabPageFont.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFont.Size = new System.Drawing.Size(550, 465);
+            this.tabPageFont.TabIndex = 6;
+            this.tabPageFont.Text = "Шрифт";
+            this.tabPageFont.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -342,18 +344,18 @@
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             // 
-            // tabPage3
+            // tabPageAssembler
             // 
-            this.tabPage3.Controls.Add(this.numericUpDown1);
-            this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.textBox5);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(550, 465);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Ассемблер";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPageAssembler.Controls.Add(this.numericUpDown1);
+            this.tabPageAssembler.Controls.Add(this.label1);
+            this.tabPageAssembler.Controls.Add(this.button2);
+            this.tabPageAssembler.Controls.Add(this.textBox5);
+            this.tabPageAssembler.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAssembler.Name = "tabPageAssembler";
+            this.tabPageAssembler.Size = new System.Drawing.Size(550, 465);
+            this.tabPageAssembler.TabIndex = 2;
+            this.tabPageAssembler.Text = "Ассемблер";
+            this.tabPageAssembler.UseVisualStyleBackColor = true;
             // 
             // numericUpDown1
             // 
@@ -399,15 +401,15 @@
             this.textBox5.Size = new System.Drawing.Size(550, 424);
             this.textBox5.TabIndex = 0;
             // 
-            // tabPage4
+            // tabPageText
             // 
-            this.tabPage4.Controls.Add(this.textBox2);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(550, 465);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Текст";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPageText.Controls.Add(this.textBox2);
+            this.tabPageText.Location = new System.Drawing.Point(4, 22);
+            this.tabPageText.Name = "tabPageText";
+            this.tabPageText.Size = new System.Drawing.Size(550, 465);
+            this.tabPageText.TabIndex = 3;
+            this.tabPageText.Text = "Текст";
+            this.tabPageText.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -420,15 +422,15 @@
             this.textBox2.Size = new System.Drawing.Size(550, 465);
             this.textBox2.TabIndex = 0;
             // 
-            // tabPage5
+            // tabPageBytes
             // 
-            this.tabPage5.Controls.Add(this.tabControl2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(550, 465);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Bytes";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPageBytes.Controls.Add(this.tabControl2);
+            this.tabPageBytes.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBytes.Name = "tabPageBytes";
+            this.tabPageBytes.Size = new System.Drawing.Size(550, 465);
+            this.tabPageBytes.TabIndex = 4;
+            this.tabPageBytes.Text = "Bytes";
+            this.tabPageBytes.UseVisualStyleBackColor = true;
             // 
             // tabControl2
             // 
@@ -496,6 +498,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tabPageTitle
+            // 
+            this.tabPageTitle.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTitle.Name = "tabPageTitle";
+            this.tabPageTitle.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTitle.Size = new System.Drawing.Size(550, 465);
+            this.tabPageTitle.TabIndex = 7;
+            this.tabPageTitle.Text = "Заголовок";
+            this.tabPageTitle.UseVisualStyleBackColor = true;
+            // 
             // FormViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,10 +524,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormViewer_FormClosing);
             this.Shown += new System.EventHandler(this.FormViewer_Shown);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPageProgram.ResumeLayout(false);
+            this.tabPageProgram.PerformLayout();
+            this.tabPageScreen.ResumeLayout(false);
+            this.tabPageScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tabControl3.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
@@ -525,16 +537,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
+            this.tabPageFont.ResumeLayout(false);
+            this.tabPageFont.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPageAssembler.ResumeLayout(false);
+            this.tabPageAssembler.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
+            this.tabPageText.ResumeLayout(false);
+            this.tabPageText.PerformLayout();
+            this.tabPageBytes.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
@@ -547,12 +559,12 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPageScreen;
+        private System.Windows.Forms.TabPage tabPageAssembler;
+        private System.Windows.Forms.TabPage tabPageText;
+        private System.Windows.Forms.TabPage tabPageBytes;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPageProgram;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage6;
@@ -577,11 +589,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxSpaces;
-        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage tabPageFont;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TabPage tabPageTitle;
     }
 }
