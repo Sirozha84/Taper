@@ -35,8 +35,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Taper.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -209,6 +208,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="128.ico" />
+    <Content Include="Taper.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

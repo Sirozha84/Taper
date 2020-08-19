@@ -182,6 +182,13 @@ namespace Taper
             WAVmaker.Save(dialog.FileName);
         }
 
+        /// <summary>
+        /// Выход
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuExit_Click(object sender, EventArgs e) { Close(); }
+
         #endregion
 
         #region Меню Вид
@@ -354,6 +361,7 @@ namespace Taper
             foreach (ListViewItem item in listViewTAP.Items) item.ImageIndex = -1;
             if (num >= 0)
                 listViewTAP.Items[num].ImageIndex = 0;
+            listViewTAP.Refresh();
         }
 
         private void listViewTAP_DragDrop(object sender, DragEventArgs e)
@@ -391,6 +399,5 @@ namespace Taper
             }
             else Program.Error(Lang.msgFileNotSupport);
         }
-
     }
 }

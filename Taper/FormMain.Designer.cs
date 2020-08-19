@@ -74,6 +74,7 @@
             this.toolNew = new System.Windows.Forms.ToolStripButton();
             this.toolOpen = new System.Windows.Forms.ToolStripButton();
             this.toolSave = new System.Windows.Forms.ToolStripButton();
+            this.toolLoadWav = new System.Windows.Forms.ToolStripButton();
             this.sep6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolCut = new System.Windows.Forms.ToolStripButton();
             this.toolCopy = new System.Windows.Forms.ToolStripButton();
@@ -90,7 +91,7 @@
             this.toolMoveUp = new System.Windows.Forms.ToolStripButton();
             this.toolMoveDown = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolLoadWav = new System.Windows.Forms.ToolStripButton();
+            this.toolProperties = new System.Windows.Forms.ToolStripButton();
             this.listViewTAP = new System.Windows.Forms.ListView();
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -111,7 +112,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusBlocks = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusSize = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolProperties = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -223,6 +223,7 @@
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Выход";
+            this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
             // menuEdit
             // 
@@ -320,14 +321,14 @@
             this.menuListFiles.Checked = true;
             this.menuListFiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuListFiles.Name = "menuListFiles";
-            this.menuListFiles.Size = new System.Drawing.Size(180, 22);
+            this.menuListFiles.Size = new System.Drawing.Size(160, 22);
             this.menuListFiles.Text = "Список файлов";
             this.menuListFiles.Click += new System.EventHandler(this.viewListFiles);
             // 
             // menuListBlocks
             // 
             this.menuListBlocks.Name = "menuListBlocks";
-            this.menuListBlocks.Size = new System.Drawing.Size(180, 22);
+            this.menuListBlocks.Size = new System.Drawing.Size(160, 22);
             this.menuListBlocks.Text = "Список блоков";
             this.menuListBlocks.Click += new System.EventHandler(this.viewListBlocks);
             // 
@@ -522,6 +523,16 @@
             this.toolSave.Text = "Сохранить (Ctrl + S)";
             this.toolSave.Click += new System.EventHandler(this.FileSave);
             // 
+            // toolLoadWav
+            // 
+            this.toolLoadWav.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolLoadWav.Image = global::Taper.Properties.Resources.Ico;
+            this.toolLoadWav.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolLoadWav.Name = "toolLoadWav";
+            this.toolLoadWav.Size = new System.Drawing.Size(23, 22);
+            this.toolLoadWav.Text = "Импорт из WAV-файла";
+            this.toolLoadWav.Click += new System.EventHandler(this.LoadFromWav);
+            // 
             // sep6
             // 
             this.sep6.Name = "sep6";
@@ -657,15 +668,15 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolLoadWav
+            // toolProperties
             // 
-            this.toolLoadWav.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolLoadWav.Image = global::Taper.Properties.Resources.Ico;
-            this.toolLoadWav.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolLoadWav.Name = "toolLoadWav";
-            this.toolLoadWav.Size = new System.Drawing.Size(23, 22);
-            this.toolLoadWav.Text = "Импорт из WAV-файла";
-            this.toolLoadWav.Click += new System.EventHandler(this.LoadFromWav);
+            this.toolProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolProperties.Image = global::Taper.Properties.Resources.properties;
+            this.toolProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolProperties.Name = "toolProperties";
+            this.toolProperties.Size = new System.Drawing.Size(23, 22);
+            this.toolProperties.Text = "Параметры";
+            this.toolProperties.Click += new System.EventHandler(this.properties);
             // 
             // listViewTAP
             // 
@@ -829,16 +840,6 @@
             this.statusSize.Size = new System.Drawing.Size(160, 19);
             this.statusSize.Text = "   ";
             this.statusSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolProperties
-            // 
-            this.toolProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolProperties.Image = global::Taper.Properties.Resources.properties;
-            this.toolProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolProperties.Name = "toolProperties";
-            this.toolProperties.Size = new System.Drawing.Size(23, 22);
-            this.toolProperties.Text = "Параметры";
-            this.toolProperties.Click += new System.EventHandler(this.properties);
             // 
             // FormMain
             // 

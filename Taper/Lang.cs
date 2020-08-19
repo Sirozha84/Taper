@@ -2,7 +2,7 @@
 {
     static class Lang
     {
-        public static string language;
+        public static string langCode;
 
         public static string addBlock;
         public static string about;
@@ -20,6 +20,7 @@
         public static string copy;
         public static string cut;
         public static string dataBlock;
+        public static string defaultDevices;
         public static string delete;
         public static string edit;
         public static string exit;
@@ -31,12 +32,15 @@
         public static string fixCRC;
         public static string help;
         public static string impWAV;
+        public static string language;
         public static string lenght;
         public static string loadedData;
+        public static string main;
         public static string moveDown;
         public static string moveUp;
         public static string name;
         public static string newFile;
+        public static string olwaysCenter;
         public static string open;
         public static string paste;
         public static string play;
@@ -44,12 +48,14 @@
         public static string properties;
         public static string record;
         public static string redo;
+        public static string rememberLastPosition;
         public static string rename;
         public static string save;
         public static string saveAs;
         public static string size;
         public static string soundSource;
         public static string start;
+        public static string startPosition;
         public static string stop;
         public static string time;
         public static string tools;
@@ -83,7 +89,7 @@
             {
                 case "ru-RU":
 
-                    language = "ru";
+                    langCode = "ru";
 
                     addBlock = "Добавить блоки";
                     about = "О программе";
@@ -101,6 +107,7 @@
                     copy = "Копировать";
                     cut = "Вырезать";
                     dataBlock = "Блок данных";
+                    defaultDevices = "Устройства по умолчанию";
                     delete = "Удалить";
                     edit = "Правка";
                     exit = "Закрыть";
@@ -112,12 +119,15 @@
                     fixCRC = "Исправление контрольных сумм";
                     help = "Справка";
                     impWAV = "Импорт из WAV-файла";
+                    language = "Язык (Language)";
                     lenght = "Длина";
                     loadedData = "Загруженные данные";
+                    main = "Основные";
                     moveDown = "Переместить вниз";
                     moveUp = "Переместить вверх";
                     name = "Имя";
                     newFile = "Новый";
+                    olwaysCenter = "Всегда в центре экрана";
                     open = "Открыть";
                     paste = "Вставить";
                     play = "Вопроизведение";
@@ -125,12 +135,14 @@
                     properties = "Параметры";
                     record = "Запись";
                     redo = "Вернуть";
+                    rememberLastPosition = "Запоминать последнее положение";
                     rename = "Переименовать";
                     save = "Сохранить";
                     saveAs = "Сохранить как";
                     size = "Размер";
                     soundSource = "Источник звука";
                     start = "Старт";
+                    startPosition = "Начальная позиция окна";
                     stop = "Стоп";
                     time = "Время";
                     tools = "Инструменты";
@@ -159,7 +171,7 @@
                     break;
                 default:
 
-                    language = "en";
+                    langCode = "en";
 
                     addBlock = "Add blocks";
                     about = "About";
@@ -177,6 +189,7 @@
                     copy = "Copy";
                     cut = "Cut";
                     dataBlock = "Data block";
+                    defaultDevices = "Default devices";
                     delete = "Delete";
                     edit = "Edit";
                     exit = "Exit";
@@ -188,12 +201,15 @@
                     fixCRC = "Fix CRCs";
                     help = "Help";
                     impWAV = "Import from WAV file";
+                    language = "Language";
                     lenght = "Lenght";
                     loadedData = "Loaded data";
+                    main = "Main";
                     moveDown = "Move down";
                     moveUp = "Move up";
                     name = "Name";
                     newFile = "New";
+                    olwaysCenter = "Olways in center screen";
                     open = "Open";
                     paste = "Paste";
                     play = "Play";
@@ -201,12 +217,14 @@
                     properties = "Properties";
                     record = "Record";
                     redo = "Redo";
+                    rememberLastPosition = "Remember last position";
                     rename = "Rename";
                     save = "Save";
                     saveAs = "Save as";
                     size = "Size";
                     soundSource = "Sound source";
                     start = "Start";
+                    startPosition = "Start position";
                     stop = "Stop";
                     time = "Time";
                     tools = "Tools";

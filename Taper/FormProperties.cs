@@ -9,6 +9,19 @@ namespace Taper
         public FormProperties()
         {
             InitializeComponent();
+
+            Text = Lang.properties;
+            tabPageMain.Text = Lang.main;
+            groupBoxLang.Text = Lang.language;
+            labelLanguage.Text = Lang.language + ":";
+            groupBoxPosition.Text = Lang.startPosition;
+            radioButtonRem.Text = Lang.rememberLastPosition;
+            radioButtonCenter.Text = Lang.olwaysCenter;
+            tabPageAudio.Text = Lang.audio;
+            groupBoxAudio.Text = Lang.defaultDevices;
+            labelPlay.Text = Lang.play + ":";
+            labelRec.Text = Lang.record + ":";
+            buttonCancel.Text = Lang.cancel;
         }
 
         private void FormProperties_Load(object sender, EventArgs e)

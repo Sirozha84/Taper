@@ -14,7 +14,7 @@ namespace Taper
 			tabPageAbout.Text = Lang.about;
 			labelVersion.Text = Lang.version + ": " + Application.ProductVersion;
 			labelName.Text = Application.ProductName;
-			labelAutor.Text = Lang.autor + (Lang.language == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
+			labelAutor.Text = Lang.autor + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
 			labelNewVersions.Text = Lang.msgNewVersions;
 			tabPageHistory.Text = Lang.versionHistory;
 			buttonClose.Text = Lang.close;
@@ -22,15 +22,16 @@ namespace Taper
 			Font fontR = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Regular);
 			Font fontB = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Bold);
 
-			if (Lang.language != "ru")
+			if (Lang.langCode != "ru")
 			{
 				history.SelectionFont = fontR;
-				history.AppendText(Lang.msgOnlyRusVersion);
+				history.SelectionAlignment = HorizontalAlignment.Center;
+				history.AppendText("\n\n\n\n\n\n" + Lang.msgOnlyRusVersion);
 				return;
 			}
 
 			history.SelectionFont = fontB;
-			history.AppendText("Версия 3.0 Beta (18.08.2020)\n\n");
+			history.AppendText("Версия 3.0 Beta (19.08.2020)\n\n");
 			history.SelectionFont = fontR;
 			history.AppendText("• Ещё в разработке\n\n");
 			history.SelectionFont = fontB;
