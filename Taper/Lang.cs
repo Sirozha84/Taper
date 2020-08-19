@@ -9,9 +9,13 @@
         public static string allBytes;
         public static string audio;
         public static string autor;
+        public static string block;
         public static string blockCount;
         public static string blockList;
         public static string blocks;
+        public static string bytes;
+        public static string cancel;
+        public static string clear;
         public static string close;
         public static string copy;
         public static string cut;
@@ -28,6 +32,7 @@
         public static string help;
         public static string impWAV;
         public static string lenght;
+        public static string loadedData;
         public static string moveDown;
         public static string moveUp;
         public static string name;
@@ -35,6 +40,7 @@
         public static string open;
         public static string paste;
         public static string play;
+        public static string position;
         public static string properties;
         public static string record;
         public static string redo;
@@ -42,8 +48,10 @@
         public static string save;
         public static string saveAs;
         public static string size;
+        public static string soundSource;
         public static string start;
         public static string stop;
+        public static string time;
         public static string tools;
         public static string typeF;
         public static string version;
@@ -82,9 +90,13 @@
                     allBytes = "Размер данных";
                     audio = "Аудио";
                     autor = "Автор";
+                    block = "Блок";
                     blockCount = "Количество блоков";
                     blockList = "Список блоков";
                     blocks = "Блоки";
+                    bytes = "Байт";
+                    cancel = "Отмена";
+                    clear = "Очистить";
                     close = "Закрыть";
                     copy = "Копировать";
                     cut = "Вырезать";
@@ -101,6 +113,7 @@
                     help = "Справка";
                     impWAV = "Импорт из WAV-файла";
                     lenght = "Длина";
+                    loadedData = "Загруженные данные";
                     moveDown = "Переместить вниз";
                     moveUp = "Переместить вверх";
                     name = "Имя";
@@ -108,6 +121,7 @@
                     open = "Открыть";
                     paste = "Вставить";
                     play = "Вопроизведение";
+                    position = "Позиция";
                     properties = "Параметры";
                     record = "Запись";
                     redo = "Вернуть";
@@ -115,8 +129,10 @@
                     save = "Сохранить";
                     saveAs = "Сохранить как";
                     size = "Размер";
+                    soundSource = "Источник звука";
                     start = "Старт";
                     stop = "Стоп";
+                    time = "Время";
                     tools = "Инструменты";
                     typeF = "Тип";
                     version = "Версия";
@@ -150,9 +166,13 @@
                     allBytes = "Data size";
                     audio = "Audio";
                     autor = "Autor";
+                    block = "Block";
                     blockCount = "Blocks count";
                     blockList = "Block list";
                     blocks = "Blocks";
+                    bytes = "Bytes";
+                    cancel = "Cancel";
+                    clear = "Clear";
                     close = "Close";
                     copy = "Copy";
                     cut = "Cut";
@@ -169,6 +189,7 @@
                     help = "Help";
                     impWAV = "Import from WAV file";
                     lenght = "Lenght";
+                    loadedData = "Loaded data";
                     moveDown = "Move down";
                     moveUp = "Move up";
                     name = "Name";
@@ -176,6 +197,7 @@
                     open = "Open";
                     paste = "Paste";
                     play = "Play";
+                    position = "Position";
                     properties = "Properties";
                     record = "Record";
                     redo = "Redo";
@@ -183,8 +205,10 @@
                     save = "Save";
                     saveAs = "Save as";
                     size = "Size";
+                    soundSource = "Sound source";
                     start = "Start";
                     stop = "Stop";
+                    time = "Time";
                     tools = "Tools";
                     typeF = "Type";
                     version = "Version";

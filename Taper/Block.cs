@@ -84,7 +84,7 @@ namespace Taper
                     for (int i = 2; i < 12; i++)
                         result += (char)bytes[i];
             }
-            else result = "- - - - - " + (bytes.Length - 2).ToString() + " байт";
+            else result = "- - - - - " + (bytes.Length - 2).ToString() + " " + Lang.bytes;
             return result;
         }
 

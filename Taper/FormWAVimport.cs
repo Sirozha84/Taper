@@ -14,6 +14,14 @@ namespace Taper
         public FormWAVimport(string file)
         {
             InitializeComponent();
+            
+            Text = Lang.impWAV;
+            labelInfo.Text = Lang.loadedData;
+            listView.Columns[0].Text = Lang.time;
+            listView.Columns[1].Text = Lang.position;
+            listView.Columns[2].Text = Lang.block;
+            buttonCancel.Text = Lang.cancel;
+
             this.file = file;
             worker.DoWork += new DoWorkEventHandler(AsynkRead);
             worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChange);

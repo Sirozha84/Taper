@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Taper
 {
@@ -272,19 +273,20 @@ namespace Taper
         /// </summary>
         void SetFormText()
         {
-            string name = Project.name == "" ? Lang.unnamed : System.IO.Path.GetFileNameWithoutExtension(Project.name);
+            string name = Project.name == "" ? Lang.unnamed : Path.GetFileNameWithoutExtension(Project.name);
             name += Project.changed ? "*" : "";
             Text = name + " - " + Application.ProductName;
         }
-        
+
         /// <summary>
         /// Задание вопроса перед уничтожением файла
         /// </summary>
         bool SaveQuestion()
         {
             if (!Project.changed) return true;
-            switch (MessageBox.Show(Lang.msgSaveChange+" \"" + System.IO.Path.GetFileNameWithoutExtension(Project.name) + 
-                "\"?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
+            string name = Path.GetFileNameWithoutExtension(Project.name);
+            switch (MessageBox.Show(Lang.msgSaveChange + (name == "" ? "" : " \"" + name + "\"") + "?",
+                Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: FileSave(null, null); return true;
                 case DialogResult.No: return true;
@@ -358,7 +360,7 @@ namespace Taper
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             string file = files[0];
-            string ext = System.IO.Path.GetExtension(file).ToLower();
+            string ext = Path.GetExtension(file).ToLower();
 
             if (ext == ".tap" | ext == ".tzx")
             {
@@ -381,7 +383,7 @@ namespace Taper
             string[] args = Environment.GetCommandLineArgs();
             if (args.Count() == 1) return;
             string file = args[1];
-            string ext = System.IO.Path.GetExtension(file).ToLower();
+            string ext = Path.GetExtension(file).ToLower();
             if (ext == ".tap" | ext == ".tzx")
             {
                 Project.Open(file, false);

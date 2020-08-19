@@ -30,7 +30,7 @@ namespace Taper
 			}
 
 			history.SelectionFont = fontB;
-			history.AppendText("Версия 3.0 Beta (27.05.2020)\n\n");
+			history.AppendText("Версия 3.0 Beta (18.08.2020)\n\n");
 			history.SelectionFont = fontR;
 			history.AppendText("• Ещё в разработке\n\n");
 			history.SelectionFont = fontB;

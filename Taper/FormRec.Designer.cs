@@ -36,15 +36,12 @@
             this.columnHeaderBlock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderCRC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelSound = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.radioButtonWave = new System.Windows.Forms.RadioButton();
-            this.radioButtonSpectrum = new System.Windows.Forms.RadioButton();
-            this.checkBoxAll = new System.Windows.Forms.CheckBox();
-            this.groupBoxIndicator = new System.Windows.Forms.GroupBox();
-            this.border = new System.Windows.Forms.PictureBox();
-            this.groupBoxIndicator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.border)).BeginInit();
+            this.pictureBorder = new System.Windows.Forms.PictureBox();
+            this.pictureWave = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBorder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureWave)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -119,14 +116,14 @@
             this.comboBoxDevices.TabIndex = 10;
             this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
             // 
-            // label1
+            // labelSound
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Источник звука:";
+            this.labelSound.AutoSize = true;
+            this.labelSound.Location = new System.Drawing.Point(68, 15);
+            this.labelSound.Name = "labelSound";
+            this.labelSound.Size = new System.Drawing.Size(90, 13);
+            this.labelSound.TabIndex = 11;
+            this.labelSound.Text = "Источник звука:";
             // 
             // buttonClear
             // 
@@ -139,62 +136,27 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // radioButtonWave
+            // pictureBorder
             // 
-            this.radioButtonWave.AutoSize = true;
-            this.radioButtonWave.Location = new System.Drawing.Point(6, 42);
-            this.radioButtonWave.Name = "radioButtonWave";
-            this.radioButtonWave.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonWave.TabIndex = 18;
-            this.radioButtonWave.Text = "Волна";
-            this.radioButtonWave.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSpectrum
-            // 
-            this.radioButtonSpectrum.AutoSize = true;
-            this.radioButtonSpectrum.Checked = true;
-            this.radioButtonSpectrum.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonSpectrum.Name = "radioButtonSpectrum";
-            this.radioButtonSpectrum.Size = new System.Drawing.Size(124, 17);
-            this.radioButtonSpectrum.TabIndex = 16;
-            this.radioButtonSpectrum.TabStop = true;
-            this.radioButtonSpectrum.Text = "Как на ZX Spectrum";
-            this.radioButtonSpectrum.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAll
-            // 
-            this.checkBoxAll.AutoSize = true;
-            this.checkBoxAll.Checked = true;
-            this.checkBoxAll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAll.Location = new System.Drawing.Point(136, 20);
-            this.checkBoxAll.Name = "checkBoxAll";
-            this.checkBoxAll.Size = new System.Drawing.Size(89, 17);
-            this.checkBoxAll.TabIndex = 19;
-            this.checkBoxAll.Text = "Все частоты";
-            this.checkBoxAll.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxIndicator
-            // 
-            this.groupBoxIndicator.Controls.Add(this.checkBoxAll);
-            this.groupBoxIndicator.Controls.Add(this.radioButtonSpectrum);
-            this.groupBoxIndicator.Controls.Add(this.radioButtonWave);
-            this.groupBoxIndicator.Location = new System.Drawing.Point(71, 39);
-            this.groupBoxIndicator.Name = "groupBoxIndicator";
-            this.groupBoxIndicator.Size = new System.Drawing.Size(301, 68);
-            this.groupBoxIndicator.TabIndex = 19;
-            this.groupBoxIndicator.TabStop = false;
-            this.groupBoxIndicator.Text = "Индикатор";
-            // 
-            // border
-            // 
-            this.border.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pictureBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.border.Location = new System.Drawing.Point(12, 12);
-            this.border.Name = "border";
-            this.border.Size = new System.Drawing.Size(50, 337);
-            this.border.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.border.TabIndex = 9;
-            this.border.TabStop = false;
+            this.pictureBorder.Location = new System.Drawing.Point(12, 12);
+            this.pictureBorder.Name = "pictureBorder";
+            this.pictureBorder.Size = new System.Drawing.Size(50, 337);
+            this.pictureBorder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBorder.TabIndex = 9;
+            this.pictureBorder.TabStop = false;
+            // 
+            // pictureWave
+            // 
+            this.pictureWave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureWave.Location = new System.Drawing.Point(68, 39);
+            this.pictureWave.Name = "pictureWave";
+            this.pictureWave.Size = new System.Drawing.Size(304, 64);
+            this.pictureWave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureWave.TabIndex = 20;
+            this.pictureWave.TabStop = false;
             // 
             // FormRec
             // 
@@ -203,11 +165,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(384, 361);
-            this.Controls.Add(this.groupBoxIndicator);
+            this.Controls.Add(this.pictureWave);
             this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelSound);
             this.Controls.Add(this.comboBoxDevices);
-            this.Controls.Add(this.border);
+            this.Controls.Add(this.pictureBorder);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.labelInfo);
@@ -221,9 +183,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTapeLoader_FormClosing);
             this.Load += new System.EventHandler(this.FormTapeLoader_Load);
             this.Shown += new System.EventHandler(this.FormRec_Shown);
-            this.groupBoxIndicator.ResumeLayout(false);
-            this.groupBoxIndicator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.border)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBorder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureWave)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,13 +199,10 @@
         private System.Windows.Forms.ColumnHeader columnHeaderTime;
         private System.Windows.Forms.ColumnHeader columnHeaderBlock;
         private System.Windows.Forms.ColumnHeader columnHeaderCRC;
-        private System.Windows.Forms.PictureBox border;
+        private System.Windows.Forms.PictureBox pictureBorder;
         private System.Windows.Forms.ComboBox comboBoxDevices;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelSound;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.RadioButton radioButtonWave;
-        private System.Windows.Forms.RadioButton radioButtonSpectrum;
-        private System.Windows.Forms.CheckBox checkBoxAll;
-        private System.Windows.Forms.GroupBox groupBoxIndicator;
+        private System.Windows.Forms.PictureBox pictureWave;
     }
 }

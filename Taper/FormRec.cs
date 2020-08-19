@@ -8,19 +8,30 @@ namespace Taper
     public partial class FormRec : Form
     {
         WaveIn waveIn;
-        Bitmap buffer;
-        const int bwidth = 50;
-        const int bheight = 600;
+        Bitmap bBuffer;
+        Bitmap wBuffer;
+        const int bWidth = 50;
+        const int bHeight = 600;
+        const int wWidth = 300;
+        const int wHeight = 64;
 
         public FormRec()
         {
             InitializeComponent();
+            Text = Lang.record;
+            labelSound.Text = Lang.soundSource + ":";
+            labelInfo.Text = Lang.loadedData + ":";
+            listView.Columns[0].Text = Lang.time;
+            listView.Columns[1].Text = Lang.block;
+            buttonClear.Text = Lang.clear;
+            buttonCancel.Text = Lang.cancel;
         }
 
         private void FormTapeLoader_Load(object sender, EventArgs e)
         {
             //Подготавливаем графику
-            buffer = new Bitmap(bwidth, bheight);
+            bBuffer = new Bitmap(bWidth, bHeight);
+            wBuffer = new Bitmap(wWidth, wHeight);
 
             //Подготовка "слушателя"
             Listener.Init();
@@ -101,31 +112,31 @@ namespace Taper
                 }
 
                 Color color = Color.Silver;
-                float zoom = 256 / (float)bwidth;
-                for (int i = 0; i < e.Buffer.Length & i < bheight; i++)
+                float zoom = 256 / (float)wHeight;
+                for (int i = 0; i < e.Buffer.Length & i < bHeight; i++)
                 {
                     byte b = e.Buffer[i];
-                    if (radioButtonSpectrum.Checked)
-                    {
-                        int cn = b < 128 ? 0 : 1;
-                        if (Listener.mode == 1 | Listener.mode == 2)
-                            color = cn == 0 ? Color.Red : Color.Cyan;
-                        if (Listener.mode == 3 | Listener.mode == 4)
-                            color = cn == 0 ? Color.Blue : Color.Yellow;
-                        for (int j = 0; j < bwidth; j++)
-                            if (j > bwidth / 2 & checkBoxAll.Checked)
-                                buffer.SetPixel(j, i, Color.FromArgb(b, b, b));
-                            else
-                                buffer.SetPixel(j, i, color);
-                    }
-                    if (radioButtonWave.Checked)
-                    {
-                        for (int j = 0; j < bwidth; j++)
-                            buffer.SetPixel(j, i, color);
-                        buffer.SetPixel((int)(b / zoom), i, Color.Blue);
-                    }
+                    int cn = b < 128 ? 0 : 1;
+                    if (Listener.mode == 1 | Listener.mode == 2)
+                        color = cn == 0 ? Color.Red : Color.Cyan;
+                    if (Listener.mode == 3 | Listener.mode == 4)
+                        color = cn == 0 ? Color.Blue : Color.Yellow;
+                    for (int j = 0; j < bWidth; j++)
+                        if (j > bWidth *0.7f)
+                            bBuffer.SetPixel(j, i, Color.FromArgb(b, b, b));
+                        else
+                            bBuffer.SetPixel(j, i, color);
                 }
-                border.Image = buffer;
+                for (int i = 0; i < e.Buffer.Length & i < wWidth; i++)
+                {
+                    byte b = e.Buffer[i];
+                    for (int j = 0; j < wHeight; j++)
+                        wBuffer.SetPixel(i, j, Color.Silver);
+                    wBuffer.SetPixel(i, (int)(b / zoom), Color.Blue);
+                }
+
+                pictureBorder.Image = bBuffer;
+                pictureWave.Image = wBuffer;
             }
         }
 
