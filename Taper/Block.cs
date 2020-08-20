@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Taper
 {
-    class Block
+    public class Block
     {
         //Описание
         public string FileType;

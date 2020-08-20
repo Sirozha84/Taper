@@ -12,7 +12,6 @@ namespace Taper
         public static string name = "";                     //Имя проекта
         public static bool changed;                         //Флаг изменения
         public static List<Block> TAP = new List<Block>();  //Собственно TAP-файл
-        public static Block view;                           //Блок для просмотрщика
         public static string rename = "";                   //Пока не помню сути этой переменной.....
         private static List<int> lastSelect = new List<int>();     //Буфер запоминания выделения
 

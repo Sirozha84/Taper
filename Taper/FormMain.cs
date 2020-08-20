@@ -249,8 +249,7 @@ namespace Taper
         private void View(object sender, EventArgs e)
         {
             if (listViewTAP.SelectedIndices.Count < 1) return;
-            Project.view = Project.TAP[listViewTAP.SelectedIndices[0]];
-            FormViewer form = new FormViewer();
+            FormViewer form = new FormViewer(Project.TAP[listViewTAP.SelectedIndices[0]]);
             form.ShowDialog();
         }
 
