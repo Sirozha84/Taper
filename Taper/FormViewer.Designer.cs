@@ -35,10 +35,11 @@
             this.checkBoxSpaces = new System.Windows.Forms.CheckBox();
             this.textBoxProgram = new System.Windows.Forms.TextBox();
             this.tabPageScreen = new System.Windows.Forms.TabPage();
-            this.numericUpDownScreen = new System.Windows.Forms.NumericUpDown();
-            this.labelStartAdressScreen = new System.Windows.Forms.Label();
+            this.pictureBoxScreen = new System.Windows.Forms.PictureBox();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmSaveBitmap = new System.Windows.Forms.ToolStripMenuItem();
+            this.numericUpDownScreen = new System.Windows.Forms.NumericUpDown();
+            this.labelStartAdressScreen = new System.Windows.Forms.Label();
             this.tabPageFont = new System.Windows.Forms.TabPage();
             this.buttonFontPgDown = new System.Windows.Forms.Button();
             this.numericUpDownFont = new System.Windows.Forms.NumericUpDown();
@@ -54,12 +55,15 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.tabPageBytes = new System.Windows.Forms.TabPage();
             this.textBoxBytes = new System.Windows.Forms.TextBox();
-            this.pictureBoxScreen = new System.Windows.Forms.PictureBox();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelStart = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
+            this.tabPageTitle.SuspendLayout();
             this.tabPageProgram.SuspendLayout();
             this.tabPageScreen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreen)).BeginInit();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScreen)).BeginInit();
             this.tabPageFont.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFont)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFont)).BeginInit();
@@ -67,7 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownASM)).BeginInit();
             this.tabPageText.SuspendLayout();
             this.tabPageBytes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -89,6 +92,8 @@
             // 
             // tabPageTitle
             // 
+            this.tabPageTitle.Controls.Add(this.labelStart);
+            this.tabPageTitle.Controls.Add(this.labelTitle);
             this.tabPageTitle.Location = new System.Drawing.Point(4, 22);
             this.tabPageTitle.Name = "tabPageTitle";
             this.tabPageTitle.Padding = new System.Windows.Forms.Padding(3);
@@ -145,6 +150,34 @@
             this.tabPageScreen.Text = "SCREEN$";
             this.tabPageScreen.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxScreen
+            // 
+            this.pictureBoxScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxScreen.ContextMenuStrip = this.contextMenu;
+            this.pictureBoxScreen.Location = new System.Drawing.Point(3, 32);
+            this.pictureBoxScreen.Name = "pictureBoxScreen";
+            this.pictureBoxScreen.Size = new System.Drawing.Size(544, 430);
+            this.pictureBoxScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxScreen.TabIndex = 3;
+            this.pictureBoxScreen.TabStop = false;
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmSaveBitmap});
+            this.contextMenu.Name = "contextMenuStrip1";
+            this.contextMenu.Size = new System.Drawing.Size(210, 26);
+            // 
+            // cmSaveBitmap
+            // 
+            this.cmSaveBitmap.Image = global::Taper.Properties.Resources.Сохранить;
+            this.cmSaveBitmap.Name = "cmSaveBitmap";
+            this.cmSaveBitmap.Size = new System.Drawing.Size(209, 22);
+            this.cmSaveBitmap.Text = "Сохранить изображение";
+            this.cmSaveBitmap.Click += new System.EventHandler(this.SaveBitmap);
+            // 
             // numericUpDownScreen
             // 
             this.numericUpDownScreen.Location = new System.Drawing.Point(114, 6);
@@ -166,21 +199,6 @@
             this.labelStartAdressScreen.Size = new System.Drawing.Size(100, 13);
             this.labelStartAdressScreen.TabIndex = 1;
             this.labelStartAdressScreen.Text = "Начальный адрес:";
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmSaveBitmap});
-            this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(210, 26);
-            // 
-            // cmSaveBitmap
-            // 
-            this.cmSaveBitmap.Image = global::Taper.Properties.Resources.Сохранить;
-            this.cmSaveBitmap.Name = "cmSaveBitmap";
-            this.cmSaveBitmap.Size = new System.Drawing.Size(209, 22);
-            this.cmSaveBitmap.Text = "Сохранить изображение";
-            this.cmSaveBitmap.Click += new System.EventHandler(this.SaveBitmap);
             // 
             // tabPageFont
             // 
@@ -355,18 +373,25 @@
             this.textBoxBytes.Size = new System.Drawing.Size(544, 459);
             this.textBoxBytes.TabIndex = 1;
             // 
-            // pictureBoxScreen
+            // labelTitle
             // 
-            this.pictureBoxScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxScreen.ContextMenuStrip = this.contextMenu;
-            this.pictureBoxScreen.Location = new System.Drawing.Point(3, 32);
-            this.pictureBoxScreen.Name = "pictureBoxScreen";
-            this.pictureBoxScreen.Size = new System.Drawing.Size(544, 430);
-            this.pictureBoxScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxScreen.TabIndex = 3;
-            this.pictureBoxScreen.TabStop = false;
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTitle.Location = new System.Drawing.Point(8, 106);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(77, 37);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "Title";
+            // 
+            // labelStart
+            // 
+            this.labelStart.AutoSize = true;
+            this.labelStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStart.Location = new System.Drawing.Point(8, 157);
+            this.labelStart.Name = "labelStart";
+            this.labelStart.Size = new System.Drawing.Size(85, 37);
+            this.labelStart.TabIndex = 1;
+            this.labelStart.Text = "Start";
             // 
             // FormViewer
             // 
@@ -381,12 +406,15 @@
             this.Text = "Просмотр файла";
             this.Shown += new System.EventHandler(this.FormViewer_Shown);
             this.tabControl.ResumeLayout(false);
+            this.tabPageTitle.ResumeLayout(false);
+            this.tabPageTitle.PerformLayout();
             this.tabPageProgram.ResumeLayout(false);
             this.tabPageProgram.PerformLayout();
             this.tabPageScreen.ResumeLayout(false);
             this.tabPageScreen.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreen)).EndInit();
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScreen)).EndInit();
             this.tabPageFont.ResumeLayout(false);
             this.tabPageFont.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFont)).EndInit();
@@ -398,7 +426,6 @@
             this.tabPageText.PerformLayout();
             this.tabPageBytes.ResumeLayout(false);
             this.tabPageBytes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +458,7 @@
         private System.Windows.Forms.Button buttonFontPgDown;
         private System.Windows.Forms.TabPage tabPageTitle;
         private System.Windows.Forms.PictureBox pictureBoxScreen;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelStart;
     }
 }

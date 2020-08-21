@@ -11,6 +11,7 @@ namespace Taper
     {
         public static Image Screen(byte[] data, int start, byte mode)
         {
+            if (data == null) return null;
             int Mode = 0;
             int[] Adresses = {16384,16640,16896,17152,17408,17664,17920,18176,
                               16416,16672,16928,17184,17440,17696,17952,18208,
@@ -77,6 +78,7 @@ namespace Taper
 
         public static Image Font(byte[] data, int start)
         {
+            if (data == null) return null;
             //if (data.Count() <= 770) buttonFontPgUp.Enabled = false; //Зачем искать, если файл и так равен или меньше размеру шрифта
             //numericUpDownFont.Maximum = data.Count() - 2;
             Bitmap buffer = new Bitmap(128, 48);

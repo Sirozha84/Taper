@@ -6,12 +6,14 @@ namespace Taper
 {
     public partial class FormViewer : Form
     {
+        Block block;
         byte[] title;
         byte[] data;
         
         public FormViewer(Block block)
         {
             InitializeComponent();
+            this.block = block;
             title = block.FileTitle;
             data = block.FileData;
         }
@@ -20,15 +22,28 @@ namespace Taper
         {
             //Пытаемся автоматически понять что за файл просматривается, если непонятно - открываем в виде кода
             tabControl.SelectedIndex = 5;
+            if (title == null)
+                tabPageTitle.Enabled = false;
+            else
+            {
+                if (title != null) labelTitle.Text = block.FileType + ": " + block.FileName;
+            }
             if (data == null)
             {
-                Program.Error("В этом блоке нет данных"); //Тут ащще всё надо переделать
-                Close();
-                return;
+                tabPageProgram.Enabled = false;
+                tabPageScreen.Enabled = false;
+                tabPageFont.Enabled = false;
+                tabPageAssembler.Enabled = false;
+                tabPageText.Enabled = false;
+                tabPageBytes.Enabled = false;
+                tabControl.SelectedIndex = 0;
             }
-            if (data.Count() == 6914) tabControl.SelectedIndex = 2;
-            if (data.Count() == 770) tabControl.SelectedIndex = 3;
-            if (title != null && title[1] == 0) tabControl.SelectedIndex = 1;
+            else
+            {
+                if (data.Count() == 6914) tabControl.SelectedIndex = 2;
+                if (data.Count() == 770) tabControl.SelectedIndex = 3;
+                if (title != null && title[1] == 0) tabControl.SelectedIndex = 1;
+            }
             tabChange(null, null);
         }
 

@@ -9,6 +9,8 @@ namespace Taper
         static bool OnProcess = false;
         public static string Disassembler(byte[] data, int start, byte Sys)
         {
+            if (data == null) return "N";
+
             //Загрузка программы в указанный адрес
             byte[] m = new byte[65556]; //Больше 65536 На случай, если в конце стоит команда, требующая "ещё" байтов
             int end = Math.Min(start + data.Count() - 2, 65535);

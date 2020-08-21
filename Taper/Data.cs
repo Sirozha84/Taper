@@ -10,6 +10,7 @@ namespace Taper
     {
         public static string Text(byte[] data)
         {
+            if (data == null) return "";
             string text = "";
             for (int i = 1; i < data.Count() - 1; i++)
             {
@@ -22,6 +23,7 @@ namespace Taper
 
         public static string Bytes(byte[] data, int Sys)
         {
+            if (data == null) return "";
             string text;
             if (Sys == 10)
             {
