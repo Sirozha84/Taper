@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageTitle = new System.Windows.Forms.TabPage();
+            this.labelStart = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.tabPageProgram = new System.Windows.Forms.TabPage();
             this.checkBoxSpaces = new System.Windows.Forms.CheckBox();
             this.textBoxProgram = new System.Windows.Forms.TextBox();
@@ -39,24 +41,27 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmSaveBitmap = new System.Windows.Forms.ToolStripMenuItem();
             this.numericUpDownScreen = new System.Windows.Forms.NumericUpDown();
-            this.labelStartAdressScreen = new System.Windows.Forms.Label();
+            this.labelStartScreen = new System.Windows.Forms.Label();
             this.tabPageFont = new System.Windows.Forms.TabPage();
             this.buttonFontPgDown = new System.Windows.Forms.Button();
             this.numericUpDownFont = new System.Windows.Forms.NumericUpDown();
-            this.labelStartAdressFont = new System.Windows.Forms.Label();
+            this.labelStartFont = new System.Windows.Forms.Label();
             this.buttonFontPgUp = new System.Windows.Forms.Button();
             this.pictureBoxFont = new System.Windows.Forms.PictureBox();
             this.tabPageAssembler = new System.Windows.Forms.TabPage();
             this.numericUpDownASM = new System.Windows.Forms.NumericUpDown();
-            this.labelStartAdressASM = new System.Windows.Forms.Label();
+            this.labelStartASM = new System.Windows.Forms.Label();
             this.buttonRefreshASM = new System.Windows.Forms.Button();
             this.textBoxASM = new System.Windows.Forms.TextBox();
             this.tabPageText = new System.Windows.Forms.TabPage();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.tabPageBytes = new System.Windows.Forms.TabPage();
             this.textBoxBytes = new System.Windows.Forms.TextBox();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelStart = new System.Windows.Forms.Label();
+            this.labelLenght = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.labelStartBin = new System.Windows.Forms.Label();
+            this.radioButtonHEX = new System.Windows.Forms.RadioButton();
+            this.radioButtonDEC = new System.Windows.Forms.RadioButton();
             this.tabControl.SuspendLayout();
             this.tabPageTitle.SuspendLayout();
             this.tabPageProgram.SuspendLayout();
@@ -71,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownASM)).BeginInit();
             this.tabPageText.SuspendLayout();
             this.tabPageBytes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -86,12 +92,13 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(558, 491);
+            this.tabControl.Size = new System.Drawing.Size(624, 521);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabChange);
             // 
             // tabPageTitle
             // 
+            this.tabPageTitle.Controls.Add(this.labelLenght);
             this.tabPageTitle.Controls.Add(this.labelStart);
             this.tabPageTitle.Controls.Add(this.labelTitle);
             this.tabPageTitle.Location = new System.Drawing.Point(4, 22);
@@ -101,6 +108,26 @@
             this.tabPageTitle.TabIndex = 7;
             this.tabPageTitle.Text = "Заголовок";
             this.tabPageTitle.UseVisualStyleBackColor = true;
+            // 
+            // labelStart
+            // 
+            this.labelStart.AutoSize = true;
+            this.labelStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStart.Location = new System.Drawing.Point(20, 197);
+            this.labelStart.Name = "labelStart";
+            this.labelStart.Size = new System.Drawing.Size(57, 25);
+            this.labelStart.TabIndex = 1;
+            this.labelStart.Text = "Start";
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTitle.Location = new System.Drawing.Point(18, 142);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(77, 37);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "Title";
             // 
             // tabPageProgram
             // 
@@ -141,7 +168,7 @@
             // 
             this.tabPageScreen.Controls.Add(this.pictureBoxScreen);
             this.tabPageScreen.Controls.Add(this.numericUpDownScreen);
-            this.tabPageScreen.Controls.Add(this.labelStartAdressScreen);
+            this.tabPageScreen.Controls.Add(this.labelStartScreen);
             this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
             this.tabPageScreen.Name = "tabPageScreen";
             this.tabPageScreen.Padding = new System.Windows.Forms.Padding(3);
@@ -191,20 +218,20 @@
             this.numericUpDownScreen.TabIndex = 2;
             this.numericUpDownScreen.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
-            // labelStartAdressScreen
+            // labelStartScreen
             // 
-            this.labelStartAdressScreen.AutoSize = true;
-            this.labelStartAdressScreen.Location = new System.Drawing.Point(8, 8);
-            this.labelStartAdressScreen.Name = "labelStartAdressScreen";
-            this.labelStartAdressScreen.Size = new System.Drawing.Size(100, 13);
-            this.labelStartAdressScreen.TabIndex = 1;
-            this.labelStartAdressScreen.Text = "Начальный адрес:";
+            this.labelStartScreen.AutoSize = true;
+            this.labelStartScreen.Location = new System.Drawing.Point(8, 8);
+            this.labelStartScreen.Name = "labelStartScreen";
+            this.labelStartScreen.Size = new System.Drawing.Size(100, 13);
+            this.labelStartScreen.TabIndex = 1;
+            this.labelStartScreen.Text = "Начальный адрес:";
             // 
             // tabPageFont
             // 
             this.tabPageFont.Controls.Add(this.buttonFontPgDown);
             this.tabPageFont.Controls.Add(this.numericUpDownFont);
-            this.tabPageFont.Controls.Add(this.labelStartAdressFont);
+            this.tabPageFont.Controls.Add(this.labelStartFont);
             this.tabPageFont.Controls.Add(this.buttonFontPgUp);
             this.tabPageFont.Controls.Add(this.pictureBoxFont);
             this.tabPageFont.Location = new System.Drawing.Point(4, 22);
@@ -238,14 +265,14 @@
             this.numericUpDownFont.TabIndex = 6;
             this.numericUpDownFont.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
-            // labelStartAdressFont
+            // labelStartFont
             // 
-            this.labelStartAdressFont.AutoSize = true;
-            this.labelStartAdressFont.Location = new System.Drawing.Point(8, 16);
-            this.labelStartAdressFont.Name = "labelStartAdressFont";
-            this.labelStartAdressFont.Size = new System.Drawing.Size(100, 13);
-            this.labelStartAdressFont.TabIndex = 5;
-            this.labelStartAdressFont.Text = "Начальный адрес:";
+            this.labelStartFont.AutoSize = true;
+            this.labelStartFont.Location = new System.Drawing.Point(8, 16);
+            this.labelStartFont.Name = "labelStartFont";
+            this.labelStartFont.Size = new System.Drawing.Size(100, 13);
+            this.labelStartFont.TabIndex = 5;
+            this.labelStartFont.Text = "Начальный адрес:";
             // 
             // buttonFontPgUp
             // 
@@ -273,7 +300,7 @@
             // tabPageAssembler
             // 
             this.tabPageAssembler.Controls.Add(this.numericUpDownASM);
-            this.tabPageAssembler.Controls.Add(this.labelStartAdressASM);
+            this.tabPageAssembler.Controls.Add(this.labelStartASM);
             this.tabPageAssembler.Controls.Add(this.buttonRefreshASM);
             this.tabPageAssembler.Controls.Add(this.textBoxASM);
             this.tabPageAssembler.Location = new System.Drawing.Point(4, 22);
@@ -295,14 +322,14 @@
             this.numericUpDownASM.Size = new System.Drawing.Size(68, 20);
             this.numericUpDownASM.TabIndex = 3;
             // 
-            // labelStartAdressASM
+            // labelStartASM
             // 
-            this.labelStartAdressASM.AutoSize = true;
-            this.labelStartAdressASM.Location = new System.Drawing.Point(8, 16);
-            this.labelStartAdressASM.Name = "labelStartAdressASM";
-            this.labelStartAdressASM.Size = new System.Drawing.Size(100, 13);
-            this.labelStartAdressASM.TabIndex = 2;
-            this.labelStartAdressASM.Text = "Начальный адрес:";
+            this.labelStartASM.AutoSize = true;
+            this.labelStartASM.Location = new System.Drawing.Point(8, 16);
+            this.labelStartASM.Name = "labelStartASM";
+            this.labelStartASM.Size = new System.Drawing.Size(100, 13);
+            this.labelStartASM.TabIndex = 2;
+            this.labelStartASM.Text = "Начальный адрес:";
             // 
             // buttonRefreshASM
             // 
@@ -352,10 +379,14 @@
             // 
             // tabPageBytes
             // 
+            this.tabPageBytes.Controls.Add(this.radioButtonDEC);
+            this.tabPageBytes.Controls.Add(this.radioButtonHEX);
+            this.tabPageBytes.Controls.Add(this.numericUpDown1);
+            this.tabPageBytes.Controls.Add(this.labelStartBin);
             this.tabPageBytes.Controls.Add(this.textBoxBytes);
             this.tabPageBytes.Location = new System.Drawing.Point(4, 22);
             this.tabPageBytes.Name = "tabPageBytes";
-            this.tabPageBytes.Size = new System.Drawing.Size(550, 465);
+            this.tabPageBytes.Size = new System.Drawing.Size(616, 495);
             this.tabPageBytes.TabIndex = 4;
             this.tabPageBytes.Text = "Bytes";
             this.tabPageBytes.UseVisualStyleBackColor = true;
@@ -366,39 +397,74 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBytes.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBytes.Location = new System.Drawing.Point(3, 3);
+            this.textBoxBytes.Location = new System.Drawing.Point(3, 38);
             this.textBoxBytes.Multiline = true;
             this.textBoxBytes.Name = "textBoxBytes";
             this.textBoxBytes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxBytes.Size = new System.Drawing.Size(544, 459);
+            this.textBoxBytes.Size = new System.Drawing.Size(610, 454);
             this.textBoxBytes.TabIndex = 1;
             // 
-            // labelTitle
+            // labelLenght
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTitle.Location = new System.Drawing.Point(8, 106);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(77, 37);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Title";
+            this.labelLenght.AutoSize = true;
+            this.labelLenght.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLenght.Location = new System.Drawing.Point(20, 234);
+            this.labelLenght.Name = "labelLenght";
+            this.labelLenght.Size = new System.Drawing.Size(78, 25);
+            this.labelLenght.TabIndex = 2;
+            this.labelLenght.Text = "Lenght";
             // 
-            // labelStart
+            // numericUpDown1
             // 
-            this.labelStart.AutoSize = true;
-            this.labelStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStart.Location = new System.Drawing.Point(8, 157);
-            this.labelStart.Name = "labelStart";
-            this.labelStart.Size = new System.Drawing.Size(85, 37);
-            this.labelStart.TabIndex = 1;
-            this.labelStart.Text = "Start";
+            this.numericUpDown1.Location = new System.Drawing.Point(111, 12);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(68, 20);
+            this.numericUpDown1.TabIndex = 5;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // labelStartBin
+            // 
+            this.labelStartBin.AutoSize = true;
+            this.labelStartBin.Location = new System.Drawing.Point(5, 14);
+            this.labelStartBin.Name = "labelStartBin";
+            this.labelStartBin.Size = new System.Drawing.Size(100, 13);
+            this.labelStartBin.TabIndex = 4;
+            this.labelStartBin.Text = "Начальный адрес:";
+            // 
+            // radioButtonHEX
+            // 
+            this.radioButtonHEX.AutoSize = true;
+            this.radioButtonHEX.Checked = true;
+            this.radioButtonHEX.Location = new System.Drawing.Point(185, 10);
+            this.radioButtonHEX.Name = "radioButtonHEX";
+            this.radioButtonHEX.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonHEX.TabIndex = 6;
+            this.radioButtonHEX.Text = "HEX";
+            this.radioButtonHEX.UseVisualStyleBackColor = true;
+            this.radioButtonHEX.CheckedChanged += new System.EventHandler(this.radioButtonHEX_CheckedChanged);
+            // 
+            // radioButtonDEC
+            // 
+            this.radioButtonDEC.AutoSize = true;
+            this.radioButtonDEC.Location = new System.Drawing.Point(238, 12);
+            this.radioButtonDEC.Name = "radioButtonDEC";
+            this.radioButtonDEC.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonDEC.TabIndex = 7;
+            this.radioButtonDEC.Text = "DEC";
+            this.radioButtonDEC.UseVisualStyleBackColor = true;
             // 
             // FormViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 491);
+            this.ClientSize = new System.Drawing.Size(624, 521);
             this.Controls.Add(this.tabControl);
+            this.MinimumSize = new System.Drawing.Size(640, 200);
             this.Name = "FormViewer";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -426,6 +492,7 @@
             this.tabPageText.PerformLayout();
             this.tabPageBytes.ResumeLayout(false);
             this.tabPageBytes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,22 +510,27 @@
         private System.Windows.Forms.TextBox textBoxBytes;
         private System.Windows.Forms.TextBox textBoxASM;
         private System.Windows.Forms.NumericUpDown numericUpDownASM;
-        private System.Windows.Forms.Label labelStartAdressASM;
+        private System.Windows.Forms.Label labelStartASM;
         private System.Windows.Forms.Button buttonRefreshASM;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem cmSaveBitmap;
         private System.Windows.Forms.NumericUpDown numericUpDownScreen;
-        private System.Windows.Forms.Label labelStartAdressScreen;
+        private System.Windows.Forms.Label labelStartScreen;
         private System.Windows.Forms.CheckBox checkBoxSpaces;
         private System.Windows.Forms.TabPage tabPageFont;
         private System.Windows.Forms.PictureBox pictureBoxFont;
         private System.Windows.Forms.NumericUpDown numericUpDownFont;
-        private System.Windows.Forms.Label labelStartAdressFont;
+        private System.Windows.Forms.Label labelStartFont;
         private System.Windows.Forms.Button buttonFontPgUp;
         private System.Windows.Forms.Button buttonFontPgDown;
         private System.Windows.Forms.TabPage tabPageTitle;
         private System.Windows.Forms.PictureBox pictureBoxScreen;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Label labelStart;
+        private System.Windows.Forms.Label labelLenght;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label labelStartBin;
+        private System.Windows.Forms.RadioButton radioButtonDEC;
+        private System.Windows.Forms.RadioButton radioButtonHEX;
     }
 }

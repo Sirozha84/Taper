@@ -38,7 +38,7 @@ namespace Taper
         /// <param name="System">Система исчесления, 10 или 16</param>
         /// <param name="Probels"></param>
         /// <returns></returns>
-        public static string BTS(byte b1, byte b2, byte System, bool Probels)
+        public static string BTS(int b1, int b2, byte System, bool Probels)
         {
             int i = b1 + b2 * 256;
             if (System == 10)
