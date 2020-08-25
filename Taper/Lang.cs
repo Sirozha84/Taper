@@ -157,7 +157,7 @@
                     msgAddBlocks = "Добавить блоки в проект? Нет - открыть файл.";
                     msgAllCRCsIsOK = "Все контрольные суммы в порядке";
                     msgCRCsFixed = "Контрольные суммы исправлены";
-                    msgFileNotSupport = "Файл не поддерживается";
+                    msgFileNotSupport = "Произошла ошибка при открытии файла или формат файла не поддерживается.";
                     msgFoundDuplicatesSelected = "Отмечены найденые дубликаты файлов";
                     msgNewVersions = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
                     msgOnlyRusVersion = "";
@@ -239,7 +239,7 @@
                     msgAddBlocks = "Add blocks to project? No - open file.";
                     msgAllCRCsIsOK = "All CRCs is OK";
                     msgCRCsFixed = "CRCs fixed";
-                    msgFileNotSupport = "File not support";
+                    msgFileNotSupport = "Error open file of file not support";
                     msgFoundDuplicatesSelected = "Found duplicates are selected";
                     msgNewVersions = "New version this and other my programs you can download on website";
                     msgOnlyRusVersion = "Sorry! This text is only available in Russian yet :-(";

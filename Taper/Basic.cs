@@ -4,7 +4,7 @@ namespace Taper
 {
     static class Basic
     {
-        public static string Program(byte[] data, bool spaces)
+        public static string Program(byte[] data)
         {
             if (data == null) return "";
             string[] Symbols = {"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","", //0-29
@@ -47,11 +47,6 @@ namespace Taper
                     {
                         text += (char)13;
                         text += (char)10;
-                        if (spaces)
-                        {
-                            text += (char)13;
-                            text += (char)10;
-                        }
                         newstring = true;
                     }
                     if (b == 14) i += 5;

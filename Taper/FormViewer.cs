@@ -9,7 +9,6 @@ namespace Taper
         Block block;
         byte[] title;
         byte[] data;
-        
         public FormViewer(Block block)
         {
             InitializeComponent();
@@ -20,132 +19,143 @@ namespace Taper
 
         private void FormViewer_Shown(object sender, EventArgs e)
         {
-            //Пытаемся автоматически понять что за файл просматривается, если непонятно - открываем в виде кода
-            int tab = 6;
-            
-            if (title == null)
+            if (title != null)
             {
-                tabPageTitle.Enabled = false;
+                labelTitle.Text = block.FileType + ": " + block.FileName + " (" + block.Start.ToString() + ", " + block.Len.ToString() + ")";
+            }
+            else
+            {
                 labelTitle.Text = Lang.dataBlock;
-                labelStart.Text = Lang.start + ":";
-                labelLenght.Text = Lang.lenght + ":";
+            }
+
+            if (data != null)
+            {
+                comboBoxViewAs.Items.Add("Basic");
+                comboBoxViewAs.Items.Add("Bytes");
+                comboBoxViewAs.Items.Add("Screen");
+                comboBoxViewAs.Items.Add("Font");
+                comboBoxViewAs.Items.Add("Assembler");
+                comboBoxViewAs.Items.Add("Text");
+                int i = 1;
+                if (data.Count() == 6914) i = 2;
+                if (data.Count() == 770) i = 3;
+                if (title != null && title[1] == 0) i = 0;
+                comboBoxViewAs.SelectedIndex = i;
             }
             else
             {
-                labelTitle.Text = block.FileType + ": " + block.FileName;
-                labelStart.Text = Lang.start + ": " + block.Start.ToString();
-                labelLenght.Text = Lang.lenght + ": " + block.Len.ToString();
             }
-
-            if (data == null)
-            {
-                tabPageProgram.Enabled = false;
-                tabPageScreen.Enabled = false;
-                tabPageFont.Enabled = false;
-                tabPageAssembler.Enabled = false;
-                tabPageText.Enabled = false;
-                tabPageBytes.Enabled = false;
-                tab = 0;
-            }
-            else
-            {
-                if (data.Count() == 6914) tab = 2;
-                if (data.Count() == 770) tab = 3;
-                if (title != null && title[1] == 0) tab = 1;
-            }
-
-            tabControl.SelectedIndex = tab;
-            tabChange(null, null);
         }
-
-        private void tabChange(object sender, EventArgs e)
+        private void viewChange(object sender, EventArgs e)
         {
-            switch (tabControl.SelectedIndex)
+            switch (comboBoxViewAs.SelectedIndex)
             {
-                case 1: ViewBasic(); break;
-                case 2: ViewScreen(); break;
-                case 3: ViewFont(); break;
-                case 4: ViewAssembler(); break;
-                case 5: ViewText(); break;
-                case 6: ViewBytes(); break;
+                case 0:
+                    comboBoxModes.Enabled = false;
+                    comboBoxModes.Items.Clear();
+                    numericLoadTo.Enabled = false;
+                    numericFind.Enabled = false;
+                    ViewBasic();
+                    break;
+                case 1:
+                    comboBoxModes.Enabled = true;
+                    numericLoadTo.Enabled = true;
+                    numericFind.Enabled = false;
+                    comboBoxModes.Items.Clear();
+                    comboBoxModes.Items.Add("HEX");
+                    comboBoxModes.Items.Add("DEC");
+                    comboBoxModes.SelectedIndex = 0;
+                    break;
+                case 2:
+                    comboBoxModes.Enabled = true;
+                    numericLoadTo.Enabled = false;
+                    numericFind.Enabled = true;
+                    comboBoxModes.Items.Clear();
+                    comboBoxModes.Items.Add("Цветной");
+                    comboBoxModes.Items.Add("B/W");
+                    comboBoxModes.Items.Add("W/B");
+                    comboBoxModes.SelectedIndex = 0;
+                    break;
+                case 3:
+                    comboBoxModes.Enabled = false;
+                    numericLoadTo.Enabled = false;
+                    numericFind.Enabled = true;
+                    comboBoxModes.Items.Clear();
+                    ViewFont();
+                    break;
+                case 4:
+                    comboBoxModes.Enabled = false;
+                    numericLoadTo.Enabled = true;
+                    numericFind.Enabled = false;
+                    comboBoxModes.Items.Clear();
+                    ViewAssembler();
+                    break;
+                case 5:
+                    comboBoxModes.Enabled = false;
+                    numericLoadTo.Enabled = false;
+                    numericFind.Enabled = false;
+                    comboBoxModes.Items.Clear();
+                    ViewText();
+                    break;
             }
         }
 
-        #region Basic
+        private void modeChange(object sender, EventArgs e)
+        {
+            switch (comboBoxViewAs.SelectedIndex)
+            {
+                case 1: ViewBytes(); break;
+                case 2: ViewScreen(); break;
+            }
+        }
+
         void ViewBasic()
         {
-            textBoxProgram.Text = Basic.Program(data, checkBoxSpaces.Checked);
-        }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e) { ViewBasic(); }
-        #endregion
-
-        #region Screen
-        void ViewScreen()
-        {
-            pictureBoxScreen.Image = Graphics.Screen(data, (int)numericUpDownScreen.Value, 0);
+            textBox.Visible = true;
+            pictureBox.Visible = false;
+            textBox.Text = Basic.Program(data);
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e) { ViewScreen(); }
-        #endregion
-
-        #region Font
-        void ViewFont()
-        {
-            pictureBoxFont.Image = Graphics.Font(data, (int)numericUpDownFont.Value);
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e) { ViewFont(); }
-        
-        private void FontPgUp(object sender, EventArgs e)
-        {
-            int i = (int)numericUpDownFont.Value - 768;
-            if (i >= 0)
-                numericUpDownFont.Value = i;
-            else
-                numericUpDownFont.Value = 0;
-        }
-        private void FontPgDown(object sender, EventArgs e)
-        {
-            int i = (int)numericUpDownFont.Value + 768;
-            if (i <= numericUpDownFont.Maximum)
-                numericUpDownFont.Value = i;
-            else
-                numericUpDownFont.Value = numericUpDownFont.Maximum;
-        }
-        #endregion
-
-        #region Assembler
-        void ViewAssembler()
-        {
-            numericUpDownASM.Value = title != null ? title [14] + title [15] * 256 : 16384;
-            textBoxASM.Text = Assembler.Disassembler(data, (int) numericUpDownASM.Value, 16);
-        }
-        private void RefreshASM(object sender, EventArgs e)
-        {
-            textBoxASM.Text = "Секунду...";
-            Refresh();
-            textBoxASM.Text = Assembler.Disassembler(data, (int)numericUpDownASM.Value, 16);
-        }
-        #endregion
-        
-        #region Text
-        void ViewText()
-        {
-            textBoxText.Text = Data.Text(data);
-        }
-        #endregion
-
-        #region Bytes
-        //Вкладка просмотра кодов
+        #region Обновление просмотрщиков
         private void ViewBytes()
         {
-            textBoxBytes.Text = "Секунду...";
+            textBox.Visible = true;
+            pictureBox.Visible = false;
+            textBox.Text = "Секунду...";
             Refresh();
-            textBoxBytes.Text = Data.Bytes(data, (int)numericUpDown1.Value, radioButtonHEX.Checked ? (byte)16 : (byte)10);
+            textBox.Text = Data.Bytes(data, (int)numericLoadTo.Value, comboBoxModes.SelectedIndex == 0 ? (byte)16 : (byte)10);
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e) { ViewBytes(); }
-        private void radioButtonHEX_CheckedChanged(object sender, EventArgs e) { ViewBytes(); }
+        void ViewScreen()
+        {
+            pictureBox.Visible = true;
+            textBox.Visible = false;
+            pictureBox.Image = Graphics.Screen(data, (int)numericFind.Value, comboBoxModes.SelectedIndex);
+        }
+
+        void ViewFont()
+        {
+            pictureBox.Visible = true;
+            textBox.Visible = false;
+            pictureBox.Image = Graphics.Font(data, (int)numericFind.Value);
+        }
+
+        void ViewAssembler()
+        {
+            textBox.Visible = true;
+            pictureBox.Visible = false;
+            textBox.Text = "Секунду...";
+            Refresh();
+            numericLoadTo.Value = title != null ? title [14] + title [15] * 256 : 16384;
+            textBox.Text = Assembler.Disassembler(data, (int)numericFind.Value, 16);
+        }
+
+        void ViewText()
+        {
+            textBox.Visible = true;
+            pictureBox.Visible = false;
+            textBox.Text = Data.Text(data);
+        }
         #endregion
 
         private void SaveBitmap(object sender, EventArgs e)
@@ -153,13 +163,7 @@ namespace Taper
             SaveFileDialog dialog = new SaveFileDialog() { Filter = Lang.FilterBMP };
             if (dialog.ShowDialog() != DialogResult.OK) return;
             string file = dialog.FileName;
-            try
-            {
-                if (tabControl.SelectedIndex == 2)
-                    pictureBoxScreen.Image.Save(file);
-                if (tabControl.SelectedIndex == 3)
-                    pictureBoxFont.Image.Save(file);
-            }
+            try { pictureBox.Image.Save(file); }
             catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
         }
 

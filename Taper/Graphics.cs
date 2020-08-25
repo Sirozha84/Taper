@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Taper
 {
     static class Graphics
     {
-        public static Image Screen(byte[] data, int start, byte mode)
+        public static Image Screen(byte[] data, int start, int mode)
         {
             if (data == null) return null;
-            int Mode = 0;
             int[] Adresses = {16384,16640,16896,17152,17408,17664,17920,18176,
                               16416,16672,16928,17184,17440,17696,17952,18208,
                               16448,16704,16960,17216,17472,17728,17984,18240,
@@ -54,14 +50,14 @@ namespace Taper
 
             //Собственно, рисование
             byte C = 0;
-            for (int y = 0; y < 191; y++)
+            for (int y = 0; y < 192; y++)
             {
                 for (int x = 0; x < 32; x++)
                 {
                     byte B = m[Adresses[y] - 16384 + x];
-                    if (Mode == 0) C = m[6144 + x + (y / 8) * 32];
-                    if (Mode == 1) C = 56;
-                    if (Mode == 2) C = 7;
+                    if (mode == 0) C = m[6144 + x + (y / 8) * 32];
+                    if (mode == 1) C = 56;
+                    if (mode == 2) C = 7;
                     screen.SetPixel(x * 8, y, Pixel(C, (B & 128) == 128));
                     screen.SetPixel(x * 8 + 1, y, Pixel(C, (B & 64) == 64));
                     screen.SetPixel(x * 8 + 2, y, Pixel(C, (B & 32) == 32));
@@ -79,8 +75,6 @@ namespace Taper
         public static Image Font(byte[] data, int start)
         {
             if (data == null) return null;
-            //if (data.Count() <= 770) buttonFontPgUp.Enabled = false; //Зачем искать, если файл и так равен или меньше размеру шрифта
-            //numericUpDownFont.Maximum = data.Count() - 2;
             Bitmap buffer = new Bitmap(128, 48);
             int a = start + 1;
             byte b;
@@ -89,7 +83,6 @@ namespace Taper
                 for (int x = 0; x < 16; x++)
                     for (int s = 0; s < 8; s++)
                     {
-                        //try { b = Project.BlockView.FileData[a++]; } catch { b = 0; }
                         if (a > data.Count() - 2) b = 0;
                         else b = data[a++];
                         buffer.SetPixel(x * 8, y * 8 + s, Pixel(Pal, (b & 128) == 128));
