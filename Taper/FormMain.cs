@@ -380,7 +380,7 @@ namespace Taper
                 }
                 DrawProject();
             }
-            else Program.Error(Lang.msgFileNotSupport);
+            else Program.Error(Lang.msgErrorLoad);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -396,7 +396,7 @@ namespace Taper
                 Project.Open(file, false);
                 DrawProject();
             }
-            else Program.Error(Lang.msgFileNotSupport);
+            else Program.Error(Lang.msgErrorLoad);
         }
     }
 }

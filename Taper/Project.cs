@@ -73,7 +73,7 @@ namespace Taper
             catch {  }
             if (!load)
             {
-                Program.Error(Lang.msgFileNotSupport);
+                Program.Error(Lang.msgErrorLoad);
                 New();
             }
         }

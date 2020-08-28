@@ -17,6 +17,7 @@
         public static string cancel;
         public static string clear;
         public static string close;
+        public static string colored;
         public static string copy;
         public static string cut;
         public static string dataBlock;
@@ -28,6 +29,7 @@
         public static string file;
         public static string fileList;
         public static string fileView;
+        public static string find;
         public static string findDupl;
         public static string fixCRC;
         public static string help;
@@ -35,6 +37,7 @@
         public static string language;
         public static string lenght;
         public static string loadedData;
+        public static string loadTo;
         public static string main;
         public static string moveDown;
         public static string moveUp;
@@ -52,6 +55,7 @@
         public static string rename;
         public static string save;
         public static string saveAs;
+        public static string saveImage;
         public static string size;
         public static string soundSource;
         public static string start;
@@ -70,10 +74,12 @@
         public static string msgAddBlocks;
         public static string msgAllCRCsIsOK;
         public static string msgCRCsFixed;
-        public static string msgFileNotSupport;
+        public static string msgErrorLoad;
+        public static string msgErrorSave;
         public static string msgFoundDuplicatesSelected;
         public static string msgNewVersions;
         public static string msgOnlyRusVersion;
+        public static string msgPleaseWait;
         public static string msgSaveChange;
 
         public static string FilterAll;
@@ -104,6 +110,7 @@
                     cancel = "Отмена";
                     clear = "Очистить";
                     close = "Закрыть";
+                    colored = "Цветной";
                     copy = "Копировать";
                     cut = "Вырезать";
                     dataBlock = "Блок данных";
@@ -115,6 +122,7 @@
                     file = "Файл";
                     fileList = "Список файлов";
                     fileView = "Просмотр файла";
+                    find = "Поиск";
                     findDupl = "Поиск дубликатов";
                     fixCRC = "Исправление контрольных сумм";
                     help = "Справка";
@@ -122,6 +130,7 @@
                     language = "Язык (Language)";
                     lenght = "Длина";
                     loadedData = "Загруженные данные";
+                    loadTo = "Адрес загрузки";
                     main = "Основные";
                     moveDown = "Переместить вниз";
                     moveUp = "Переместить вверх";
@@ -139,6 +148,7 @@
                     rename = "Переименовать";
                     save = "Сохранить";
                     saveAs = "Сохранить как";
+                    saveImage = "Сохранить изображение";
                     size = "Размер";
                     soundSource = "Источник звука";
                     start = "Старт";
@@ -157,10 +167,12 @@
                     msgAddBlocks = "Добавить блоки в проект? Нет - открыть файл.";
                     msgAllCRCsIsOK = "Все контрольные суммы в порядке";
                     msgCRCsFixed = "Контрольные суммы исправлены";
-                    msgFileNotSupport = "Произошла ошибка при открытии файла или формат файла не поддерживается.";
+                    msgErrorLoad = "Произошла ошибка при открытии файла или формат файла не поддерживается.";
+                    msgErrorSave = "Произошла ошибка при сохранении файла. Файл не сохранён.";
                     msgFoundDuplicatesSelected = "Отмечены найденые дубликаты файлов";
                     msgNewVersions = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
                     msgOnlyRusVersion = "";
+                    msgPleaseWait = "Минутку...";
                     msgSaveChange = "Сохранить изменения в файле";
 
                     FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
@@ -186,6 +198,7 @@
                     cancel = "Cancel";
                     clear = "Clear";
                     close = "Close";
+                    colored = "Colored";
                     copy = "Copy";
                     cut = "Cut";
                     dataBlock = "Data block";
@@ -197,6 +210,7 @@
                     file = "File";
                     fileList = "File list";
                     fileView = "File view";
+                    find = "Find";
                     findDupl = "Find duplicates";
                     fixCRC = "Fix CRCs";
                     help = "Help";
@@ -204,6 +218,7 @@
                     language = "Language";
                     lenght = "Lenght";
                     loadedData = "Loaded data";
+                    loadTo = "Load to";
                     main = "Main";
                     moveDown = "Move down";
                     moveUp = "Move up";
@@ -221,6 +236,7 @@
                     rename = "Rename";
                     save = "Save";
                     saveAs = "Save as";
+                    saveImage = "Save image";
                     size = "Size";
                     soundSource = "Sound source";
                     start = "Start";
@@ -239,10 +255,12 @@
                     msgAddBlocks = "Add blocks to project? No - open file.";
                     msgAllCRCsIsOK = "All CRCs is OK";
                     msgCRCsFixed = "CRCs fixed";
-                    msgFileNotSupport = "Error open file of file not support";
+                    msgErrorLoad = "Error open file of file not support.";
+                    msgErrorSave = "Error save file. File not saved.";
                     msgFoundDuplicatesSelected = "Found duplicates are selected";
                     msgNewVersions = "New version this and other my programs you can download on website";
                     msgOnlyRusVersion = "Sorry! This text is only available in Russian yet :-(";
+                    msgPleaseWait = "Please wait...";
                     msgSaveChange = "Save change in file";
 
                     FilterAll = "Tape image (*.tap, *.tzx)|*.tap;*.tzx|All files (*.*)|*.*";

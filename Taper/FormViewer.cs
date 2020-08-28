@@ -6,27 +6,23 @@ namespace Taper
 {
     public partial class FormViewer : Form
     {
-        Block block;
         byte[] title;
         byte[] data;
         public FormViewer(Block block)
         {
             InitializeComponent();
-            this.block = block;
+            Text = Lang.fileView;
+            labelLoadTo.Text = Lang.loadTo + ":";
+            labelFind.Text = Lang.find + ":";
+            cmSaveBitmap.Text = Lang.saveImage;
+
             title = block.FileTitle;
             data = block.FileData;
-        }
 
-        private void FormViewer_Shown(object sender, EventArgs e)
-        {
             if (title != null)
-            {
                 labelTitle.Text = block.FileType + ": " + block.FileName + " (" + block.Start.ToString() + ", " + block.Len.ToString() + ")";
-            }
             else
-            {
                 labelTitle.Text = Lang.dataBlock;
-            }
 
             if (data != null)
             {
@@ -41,11 +37,12 @@ namespace Taper
                 if (data.Count() == 770) i = 3;
                 if (title != null && title[1] == 0) i = 0;
                 comboBoxViewAs.SelectedIndex = i;
-            }
-            else
-            {
+
+                numericLoadTo.Value = title != null ? title[14] + title[15] * 256 : 16384;
+                if (i == 0) numericLoadTo.Value = 0;
             }
         }
+
         private void viewChange(object sender, EventArgs e)
         {
             switch (comboBoxViewAs.SelectedIndex)
@@ -71,7 +68,7 @@ namespace Taper
                     numericLoadTo.Enabled = false;
                     numericFind.Enabled = true;
                     comboBoxModes.Items.Clear();
-                    comboBoxModes.Items.Add("Цветной");
+                    comboBoxModes.Items.Add(Lang.colored);
                     comboBoxModes.Items.Add("B/W");
                     comboBoxModes.Items.Add("W/B");
                     comboBoxModes.SelectedIndex = 0;
@@ -109,6 +106,7 @@ namespace Taper
             }
         }
 
+        #region Обновление просмотрщиков
         void ViewBasic()
         {
             textBox.Visible = true;
@@ -116,12 +114,11 @@ namespace Taper
             textBox.Text = Basic.Program(data);
         }
 
-        #region Обновление просмотрщиков
         private void ViewBytes()
         {
             textBox.Visible = true;
             pictureBox.Visible = false;
-            textBox.Text = "Секунду...";
+            textBox.Text = Lang.msgPleaseWait;
             Refresh();
             textBox.Text = Data.Bytes(data, (int)numericLoadTo.Value, comboBoxModes.SelectedIndex == 0 ? (byte)16 : (byte)10);
         }
@@ -144,10 +141,9 @@ namespace Taper
         {
             textBox.Visible = true;
             pictureBox.Visible = false;
-            textBox.Text = "Секунду...";
+            textBox.Text = Lang.msgPleaseWait;
             Refresh();
-            numericLoadTo.Value = title != null ? title [14] + title [15] * 256 : 16384;
-            textBox.Text = Assembler.Disassembler(data, (int)numericFind.Value, 16);
+            textBox.Text = Assembler.Disassembler(data, (int)numericLoadTo.Value, 16);
         }
 
         void ViewText()
@@ -164,8 +160,7 @@ namespace Taper
             if (dialog.ShowDialog() != DialogResult.OK) return;
             string file = dialog.FileName;
             try { pictureBox.Image.Save(file); }
-            catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
+            catch { Program.Error(Lang.msgErrorSave); }
         }
-
     }
 }

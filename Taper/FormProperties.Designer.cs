@@ -84,7 +84,7 @@
             this.groupBoxLang.Location = new System.Drawing.Point(6, 6);
             this.groupBoxLang.Name = "groupBoxLang";
             this.groupBoxLang.Size = new System.Drawing.Size(340, 55);
-            this.groupBoxLang.TabIndex = 3;
+            this.groupBoxLang.TabIndex = 0;
             this.groupBoxLang.TabStop = false;
             this.groupBoxLang.Text = "Язык (Language)";
             // 
@@ -95,7 +95,7 @@
             this.comboBoxLanguages.Location = new System.Drawing.Point(117, 19);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxLanguages.TabIndex = 13;
+            this.comboBoxLanguages.TabIndex = 0;
             // 
             // labelLanguage
             // 
@@ -115,7 +115,7 @@
             this.groupBoxPosition.Location = new System.Drawing.Point(6, 68);
             this.groupBoxPosition.Name = "groupBoxPosition";
             this.groupBoxPosition.Size = new System.Drawing.Size(340, 69);
-            this.groupBoxPosition.TabIndex = 2;
+            this.groupBoxPosition.TabIndex = 1;
             this.groupBoxPosition.TabStop = false;
             this.groupBoxPosition.Text = "Начальная позиция окна";
             // 
@@ -183,7 +183,7 @@
             this.comboBoxRec.Location = new System.Drawing.Point(117, 46);
             this.comboBoxRec.Name = "comboBoxRec";
             this.comboBoxRec.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxRec.TabIndex = 14;
+            this.comboBoxRec.TabIndex = 1;
             // 
             // labelPlay
             // 
@@ -201,7 +201,7 @@
             this.comboBoxPlay.Location = new System.Drawing.Point(117, 19);
             this.comboBoxPlay.Name = "comboBoxPlay";
             this.comboBoxPlay.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxPlay.TabIndex = 12;
+            this.comboBoxPlay.TabIndex = 0;
             // 
             // buttonOK
             // 

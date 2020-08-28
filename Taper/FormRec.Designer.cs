@@ -51,7 +51,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(297, 326);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 8;
+            this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -61,7 +61,7 @@
             this.buttonOK.Location = new System.Drawing.Point(216, 326);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 7;
+            this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
@@ -90,6 +90,7 @@
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(304, 194);
             this.listView.TabIndex = 5;
+            this.listView.TabStop = false;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
@@ -113,7 +114,7 @@
             this.comboBoxDevices.Location = new System.Drawing.Point(164, 12);
             this.comboBoxDevices.Name = "comboBoxDevices";
             this.comboBoxDevices.Size = new System.Drawing.Size(208, 21);
-            this.comboBoxDevices.TabIndex = 10;
+            this.comboBoxDevices.TabIndex = 0;
             this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
             // 
             // labelSound
@@ -131,7 +132,7 @@
             this.buttonClear.Location = new System.Drawing.Point(68, 326);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
-            this.buttonClear.TabIndex = 12;
+            this.buttonClear.TabIndex = 1;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);

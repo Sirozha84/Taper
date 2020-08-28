@@ -111,7 +111,7 @@ namespace Taper
                     listView.Items.Add(new ListViewItem(s));
                 }
 
-                Color color = Color.Silver;
+                Color color = Color.LightGray;
                 float zoom = 256 / (float)wHeight;
                 for (int i = 0; i < e.Buffer.Length & i < bHeight; i++)
                 {
@@ -131,7 +131,7 @@ namespace Taper
                 {
                     byte b = e.Buffer[i];
                     for (int j = 0; j < wHeight; j++)
-                        wBuffer.SetPixel(i, j, Color.Silver);
+                        wBuffer.SetPixel(i, j, Color.LightGray);
                     wBuffer.SetPixel(i, (int)(b / zoom), Color.Blue);
                 }
 

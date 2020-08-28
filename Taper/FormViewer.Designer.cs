@@ -51,8 +51,8 @@
             // 
             this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTitle.BackColor = System.Drawing.Color.Silver;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTitle.BackColor = System.Drawing.Color.LightGray;
+            this.labelTitle.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelTitle.Location = new System.Drawing.Point(0, 0);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(624, 37);
@@ -107,7 +107,7 @@
             // 
             // numericLoadTo
             // 
-            this.numericLoadTo.Location = new System.Drawing.Point(325, 45);
+            this.numericLoadTo.Location = new System.Drawing.Point(397, 47);
             this.numericLoadTo.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -115,22 +115,23 @@
             0});
             this.numericLoadTo.Name = "numericLoadTo";
             this.numericLoadTo.Size = new System.Drawing.Size(68, 20);
-            this.numericLoadTo.TabIndex = 5;
+            this.numericLoadTo.TabIndex = 2;
+            this.numericLoadTo.ValueChanged += new System.EventHandler(this.viewChange);
             // 
             // labelLoadTo
             // 
-            this.labelLoadTo.AutoSize = true;
-            this.labelLoadTo.Location = new System.Drawing.Point(229, 47);
+            this.labelLoadTo.Location = new System.Drawing.Point(224, 49);
             this.labelLoadTo.Name = "labelLoadTo";
-            this.labelLoadTo.Size = new System.Drawing.Size(90, 13);
+            this.labelLoadTo.Size = new System.Drawing.Size(167, 13);
             this.labelLoadTo.TabIndex = 4;
             this.labelLoadTo.Text = "Адрес загрузки:";
+            this.labelLoadTo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonClose.Location = new System.Drawing.Point(539, 6);
+            this.buttonClose.Location = new System.Drawing.Point(537, 0);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 10;
@@ -140,7 +141,7 @@
             // 
             // numericFind
             // 
-            this.numericFind.Location = new System.Drawing.Point(444, 45);
+            this.numericFind.Location = new System.Drawing.Point(544, 47);
             this.numericFind.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -148,16 +149,17 @@
             0});
             this.numericFind.Name = "numericFind";
             this.numericFind.Size = new System.Drawing.Size(68, 20);
-            this.numericFind.TabIndex = 12;
+            this.numericFind.TabIndex = 3;
+            this.numericFind.ValueChanged += new System.EventHandler(this.viewChange);
             // 
             // labelFind
             // 
-            this.labelFind.AutoSize = true;
-            this.labelFind.Location = new System.Drawing.Point(399, 47);
+            this.labelFind.Location = new System.Drawing.Point(471, 49);
             this.labelFind.Name = "labelFind";
-            this.labelFind.Size = new System.Drawing.Size(42, 13);
+            this.labelFind.Size = new System.Drawing.Size(67, 13);
             this.labelFind.TabIndex = 11;
             this.labelFind.Text = "Поиск:";
+            this.labelFind.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBoxViewAs
             // 
@@ -166,7 +168,7 @@
             this.comboBoxViewAs.Location = new System.Drawing.Point(12, 44);
             this.comboBoxViewAs.Name = "comboBoxViewAs";
             this.comboBoxViewAs.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxViewAs.TabIndex = 14;
+            this.comboBoxViewAs.TabIndex = 0;
             this.comboBoxViewAs.SelectedIndexChanged += new System.EventHandler(this.viewChange);
             // 
             // comboBoxModes
@@ -176,7 +178,7 @@
             this.comboBoxModes.Location = new System.Drawing.Point(118, 44);
             this.comboBoxModes.Name = "comboBoxModes";
             this.comboBoxModes.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxModes.TabIndex = 15;
+            this.comboBoxModes.TabIndex = 1;
             this.comboBoxModes.SelectedIndexChanged += new System.EventHandler(this.modeChange);
             // 
             // FormViewer
@@ -201,7 +203,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Просмотр файла";
-            this.Shown += new System.EventHandler(this.FormViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericLoadTo)).EndInit();
