@@ -99,7 +99,7 @@
             // 
             // cmSaveBitmap
             // 
-            this.cmSaveBitmap.Image = global::Taper.Properties.Resources.Сохранить;
+            this.cmSaveBitmap.Image = global::Taper.Properties.Resources.save;
             this.cmSaveBitmap.Name = "cmSaveBitmap";
             this.cmSaveBitmap.Size = new System.Drawing.Size(209, 22);
             this.cmSaveBitmap.Text = "Сохранить изображение";
