@@ -216,17 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="128.ico" />
-    <None Include="Resources\new.png" />
-    <None Include="Resources\open.png" />
-    <None Include="Resources\save.png" />
-    <None Include="Resources\cut.png" />
-    <None Include="Resources\copy.png" />
-    <None Include="Resources\insert.png" />
-    <None Include="Resources\delete.png" />
-    <None Include="Resources\cancel.png" />
-    <None Include="Resources\back.png" />
-    <None Include="Resources\up.png" />
-    <None Include="Resources\down.png" />
     <Content Include="Taper.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
