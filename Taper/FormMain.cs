@@ -36,11 +36,11 @@ namespace Taper
             menuFile.Text = Lang.file;
             menuNew.Text = Lang.newFile;
             menuOpen.Text = Lang.open + "...";
-            menuAdd.Text = Lang.addBlock + "...";
-            menuLoadWav.Text = Lang.impWAV + "...";
+            menuAdd.Text = Lang.addBlocks + "...";
+            menuLoadWav.Text = Lang.importFromWAV + "...";
             menuSave.Text = Lang.save;
             menuSaveAs.Text = Lang.saveAs + "...";
-            menuSaveWAV.Text = Lang.expWAV + "...";
+            menuSaveWAV.Text = Lang.exportToWAV + "...";
             menuExit.Text = Lang.exit;
             
             menuEdit.Text = Lang.edit;
@@ -68,7 +68,7 @@ namespace Taper
             menuTools.Text = Lang.tools;
             menuViewFile.Text = Lang.fileView;
             menuFixCRCs.Text = Lang.fixCRC;
-            menuFindDuplicates.Text = Lang.findDupl;
+            menuFindDuplicates.Text = Lang.findDuplicates;
             menuProperties.Text = Lang.properties + "...";
 
             menuHelp.Text = Lang.help;
@@ -78,7 +78,7 @@ namespace Taper
             toolNew.Text = Lang.newFile + " (Ctrl+N)";
             toolOpen.Text = Lang.open + " (Ctrl+S)";
             toolSave.Text = Lang.save + " (Ctrl+S)";
-            toolLoadWav.Text = Lang.impWAV + "...";
+            toolLoadWav.Text = Lang.importFromWAV + "...";
             toolUndo.Text = Lang.undo + " (Ctrl+Z)";
             toolRedo.Text = Lang.redo + " (Ctrl+Y)";
             toolCut.Text = Lang.cut + " (Ctrl+X)";
@@ -291,7 +291,7 @@ namespace Taper
         {
             if (!Project.changed) return true;
             string name = Path.GetFileNameWithoutExtension(Project.name);
-            switch (MessageBox.Show(Lang.msgSaveChange + (name == "" ? "" : " \"" + name + "\"") + "?",
+            switch (MessageBox.Show(Lang.askSaveChange + (name == "" ? "" : " \"" + name + "\"") + "?",
                 Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: FileSave(null, null); return true;
@@ -343,8 +343,8 @@ namespace Taper
                     bytes += block.FileData.Length - 2;
                 }
             }
-            statusBlocks.Text = Lang.blockCount + ": " + blocks;
-            statusSize.Text = Lang.allBytes + ": " + bytes.ToString();
+            statusBlocks.Text = Lang.numberOfBlocks + ": " + blocks;
+            statusSize.Text = Lang.dataSize + ": " + bytes.ToString();
             SetFormText();
         }
 
@@ -380,7 +380,7 @@ namespace Taper
                 }
                 DrawProject();
             }
-            else Program.Error(Lang.msgErrorLoad);
+            else Program.Error(Lang.errorLoad);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -396,7 +396,7 @@ namespace Taper
                 Project.Open(file, false);
                 DrawProject();
             }
-            else Program.Error(Lang.msgErrorLoad);
+            else Program.Error(Lang.errorLoad);
         }
     }
 }

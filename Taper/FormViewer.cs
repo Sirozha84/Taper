@@ -160,7 +160,7 @@ namespace Taper
             if (dialog.ShowDialog() != DialogResult.OK) return;
             string file = dialog.FileName;
             try { pictureBox.Image.Save(file); }
-            catch { Program.Error(Lang.msgErrorSave); }
+            catch { Program.Error(Lang.errorSave); }
         }
     }
 }

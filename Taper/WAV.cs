@@ -33,7 +33,7 @@ namespace Taper
             }
             catch
             {
-                Program.Error("Произошла ошибка при загрузке WAV-файла.");
+                Program.Error(Lang.errorLoad);
             }
             return Len;
         }

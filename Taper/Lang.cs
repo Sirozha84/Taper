@@ -4,13 +4,11 @@
     {
         public static string langCode;
 
-        public static string addBlock;
+        public static string addBlocks;
         public static string about;
-        public static string allBytes;
         public static string audio;
         public static string author;
         public static string block;
-        public static string blockCount;
         public static string blockList;
         public static string blocks;
         public static string bytes;
@@ -21,19 +19,21 @@
         public static string copy;
         public static string cut;
         public static string dataBlock;
+        public static string dataSize;
         public static string defaultDevices;
         public static string delete;
         public static string edit;
+        public static string enterNewName;
         public static string exit;
-        public static string expWAV;
+        public static string exportToWAV;
         public static string file;
         public static string fileList;
         public static string fileView;
         public static string find;
-        public static string findDupl;
+        public static string findDuplicates;
         public static string fixCRC;
         public static string help;
-        public static string impWAV;
+        public static string importFromWAV;
         public static string language;
         public static string lenght;
         public static string loadedData;
@@ -43,6 +43,8 @@
         public static string moveUp;
         public static string name;
         public static string newFile;
+        public static string newVersions;
+        public static string numberOfBlocks;
         public static string olwaysCenter;
         public static string open;
         public static string paste;
@@ -71,16 +73,22 @@
         public static string undo;
         public static string unnamed;
 
+        public static string askSaveChange;
+
         public static string msgAddBlocks;
         public static string msgAllCRCsIsOK;
+        public static string msgAudioDeviceError;
         public static string msgCRCsFixed;
-        public static string msgErrorLoad;
-        public static string msgErrorSave;
+        public static string msgDuplicatesNotFound;
         public static string msgFoundDuplicatesSelected;
-        public static string msgNewVersions;
+        public static string msgNoDeviceIsFound;
         public static string msgOnlyRusVersion;
         public static string msgPleaseWait;
-        public static string msgSaveChange;
+        public static string msgSelectionMustBeContinuous;
+
+        public static string errorCommandNotExist;
+        public static string errorLoad;
+        public static string errorSave;
 
         public static string FilterAll;
         public static string FilterBMP;
@@ -97,13 +105,13 @@
 
                     langCode = "ru";
 
-                    addBlock = "Добавить блоки";
+                    addBlocks = "Добавить блоки";
                     about = "О программе";
-                    allBytes = "Размер данных";
+                    dataSize = "Размер данных";
                     audio = "Аудио";
                     author = "Автор";
                     block = "Блок";
-                    blockCount = "Количество блоков";
+                    numberOfBlocks = "Количество блоков";
                     blockList = "Список блоков";
                     blocks = "Блоки";
                     bytes = "Байт";
@@ -117,16 +125,17 @@
                     defaultDevices = "Устройства по умолчанию";
                     delete = "Удалить";
                     edit = "Правка";
+                    enterNewName = "Введите новое имя:";
                     exit = "Закрыть";
-                    expWAV = "Экспорт в WAV-файл";
+                    exportToWAV = "Экспорт в WAV-файл";
                     file = "Файл";
                     fileList = "Список файлов";
                     fileView = "Просмотр файла";
                     find = "Поиск";
-                    findDupl = "Поиск дубликатов";
+                    findDuplicates = "Поиск дубликатов";
                     fixCRC = "Исправление контрольных сумм";
                     help = "Справка";
-                    impWAV = "Импорт из WAV-файла";
+                    importFromWAV = "Импорт из WAV-файла";
                     language = "Язык (Language)";
                     lenght = "Длина";
                     loadedData = "Загруженные данные";
@@ -136,6 +145,7 @@
                     moveUp = "Переместить вверх";
                     name = "Имя";
                     newFile = "Новый";
+                    newVersions = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
                     olwaysCenter = "Всегда в центре экрана";
                     open = "Открыть";
                     paste = "Вставить";
@@ -164,16 +174,22 @@
                     undo = "Отменить";
                     unnamed = "Безымянный";
 
+                    askSaveChange = "Сохранить изменения в файле";
+                    
                     msgAddBlocks = "Добавить блоки в проект? Нет - открыть файл.";
-                    msgAllCRCsIsOK = "Все контрольные суммы в порядке";
-                    msgCRCsFixed = "Контрольные суммы исправлены";
-                    msgErrorLoad = "Произошла ошибка при открытии файла или формат файла не поддерживается.";
-                    msgErrorSave = "Произошла ошибка при сохранении файла. Файл не сохранён.";
-                    msgFoundDuplicatesSelected = "Отмечены найденые дубликаты файлов";
-                    msgNewVersions = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
+                    msgAllCRCsIsOK = "Все контрольные суммы в порядке.";
+                    msgAudioDeviceError = "Ошибка работы с аудио устройством.";
+                    msgCRCsFixed = "Контрольные суммы исправлены.";
+                    msgDuplicatesNotFound = "Дубликаты не обнаружены.";
+                    msgFoundDuplicatesSelected = "Отмечены найденые дубликаты файлов.";
+                    msgNoDeviceIsFound = "Не обнаружено ни одного аудио устройства.";
                     msgOnlyRusVersion = "";
                     msgPleaseWait = "Минутку...";
-                    msgSaveChange = "Сохранить изменения в файле";
+                    msgSelectionMustBeContinuous = "Выделение должно быть непрерывным";
+
+                    errorCommandNotExist = "Ошибка! Команда не существует.";
+                    errorLoad = "Произошла ошибка при открытии файла или формат файла не поддерживается.";
+                    errorSave = "Произошла ошибка при сохранении файла. Файл не сохранён.";
 
                     FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
                     FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";
@@ -186,13 +202,11 @@
 
                     langCode = "it";
 
-                    addBlock = "Aggiungi Blocchi";
+                    addBlocks = "Aggiungi Blocchi";
                     about = "Info";
-                    allBytes = "Dimensione";
                     audio = "Audio";
                     author = "Autore";
                     block = "Blocco";
-                    blockCount = "Conta Blocchi";
                     blockList = "Lista Blocchi";
                     blocks = "Blocchi";
                     bytes = "Bytes";
@@ -203,19 +217,21 @@
                     copy = "Copias";
                     cut = "Taglia";
                     dataBlock = "Blocco Dati";
+                    dataSize = "Dimensione";
                     defaultDevices = "Periferiche Default";
                     delete = "Cancella";
                     edit = "Edita";
+                    enterNewName = "Enter new name:";
                     exit = "Esci";
-                    expWAV = "Esporta in file .WAV";
+                    exportToWAV = "Esporta in file .WAV";
                     file = "File";
                     fileList = "Lista File";
                     fileView = "Esamina File";
                     find = "Cerca";
-                    findDupl = "Cerca duplicati";
+                    findDuplicates = "Cerca duplicati";
                     fixCRC = "Ripara CRC";
                     help = "Aiuto";
-                    impWAV = "Importa da file .WAV";
+                    importFromWAV = "Importa da file .WAV";
                     language = "Lingua (Language)";
                     lenght = "Lunghezza";
                     loadedData = "Dati Caricati";
@@ -225,6 +241,8 @@
                     moveUp = "Muovi su'";
                     name = "Nome";
                     newFile = "Nuovo";
+                    newVersions = "Puoi scaricare questo ed altri programmi dal sito Web.";
+                    numberOfBlocks = "Conta Blocchi";
                     olwaysCenter = "Sempre a centro schermo";
                     open = "Apri";
                     paste = "Incolla";
@@ -253,16 +271,22 @@
                     undo = "Annulla";
                     unnamed = "Senza nome";
 
+                    askSaveChange = "Salva modifiche in file";
+
                     msgAddBlocks = "Aggiungi blocchi al progetto? No - Apri File.";
                     msgAllCRCsIsOK = "Tutti i CRCs sono OK.";
+                    msgAudioDeviceError = "Audio device error.";
                     msgCRCsFixed = "CRCs Corretti.";
-                    msgErrorLoad = "Errore apertura file o file non supportato.";
-                    msgErrorSave = "Errore Salvataggio File. File non salvato.";
-                    msgFoundDuplicatesSelected = "Trovati File duplicati e selezionati";
-                    msgNewVersions = "Puoi scaricare questo ed altri programmi dal sito Web.";
+                    msgDuplicatesNotFound = "Duplicates not found.";
+                    msgFoundDuplicatesSelected = "Trovati File duplicati e selezionati.";
+                    msgNoDeviceIsFound = "No audio device is found.";
                     msgOnlyRusVersion = "Scusa! Questo testo e' disponibile solo in lingua Russa :-(";
                     msgPleaseWait = "Prego Attendi...";
-                    msgSaveChange = "Salva modifiche in file";
+                    msgSelectionMustBeContinuous = "Selection must be continuous.";
+
+                    errorCommandNotExist = "Error! Command Not Exist.";
+                    errorLoad = "Errore apertura file o file non supportato.";
+                    errorSave = "Errore Salvataggio File. File non salvato.";
 
                     FilterAll = "Immagine Tape (*.tap, *.tzx)|*.tap;*.tzx|All files (*.*)|*.*";
                     FilterBMP = "Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*";
@@ -275,13 +299,11 @@
 
                     langCode = "en";
 
-                    addBlock = "Add blocks";
+                    addBlocks = "Add blocks";
                     about = "About";
-                    allBytes = "Data size";
                     audio = "Audio";
                     author = "Author";
                     block = "Block";
-                    blockCount = "Blocks count";
                     blockList = "Block list";
                     blocks = "Blocks";
                     bytes = "Bytes";
@@ -292,19 +314,21 @@
                     copy = "Copy";
                     cut = "Cut";
                     dataBlock = "Data block";
+                    dataSize = "Data size";
                     defaultDevices = "Default devices";
                     delete = "Delete";
                     edit = "Edit";
+                    enterNewName = "Enter new name:";
                     exit = "Exit";
-                    expWAV = "Export to WAV file";
+                    exportToWAV = "Export to WAV file";
                     file = "File";
                     fileList = "File list";
                     fileView = "File view";
                     find = "Find";
-                    findDupl = "Find duplicates";
+                    findDuplicates = "Find duplicates";
                     fixCRC = "Fix CRCs";
                     help = "Help";
-                    impWAV = "Import from WAV file";
+                    importFromWAV = "Import from WAV file";
                     language = "Language";
                     lenght = "Lenght";
                     loadedData = "Loaded data";
@@ -314,6 +338,8 @@
                     moveUp = "Move up";
                     name = "Name";
                     newFile = "New";
+                    newVersions = "New version this and other my programs you can download on website";
+                    numberOfBlocks = "Number of blocks";
                     olwaysCenter = "Olways in center screen";
                     open = "Open";
                     paste = "Paste";
@@ -344,14 +370,19 @@
 
                     msgAddBlocks = "Add blocks to project? No - open file.";
                     msgAllCRCsIsOK = "All CRCs is OK";
+                    msgAudioDeviceError = "Audio device error.";
                     msgCRCsFixed = "CRCs fixed";
-                    msgErrorLoad = "Error open file of file not support.";
-                    msgErrorSave = "Error save file. File not saved.";
+                    msgDuplicatesNotFound = "Duplicates not found";
                     msgFoundDuplicatesSelected = "Found duplicates are selected";
-                    msgNewVersions = "New version this and other my programs you can download on website";
+                    msgNoDeviceIsFound = "No audio device is found";
                     msgOnlyRusVersion = "Sorry! This text is only available in Russian yet :-(";
                     msgPleaseWait = "Please wait...";
-                    msgSaveChange = "Save change in file";
+                    askSaveChange = "Save change in file";
+                    msgSelectionMustBeContinuous = "Selection must be continuous";
+
+                    errorCommandNotExist = "Error! Command Not Exist";
+                    errorLoad = "Error open file of file not support.";
+                    errorSave = "Error save file. File not saved.";
 
                     FilterAll = "Tape image (*.tap, *.tzx)|*.tap;*.tzx|All files (*.*)|*.*";
                     FilterBMP = "Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*";

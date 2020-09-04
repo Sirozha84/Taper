@@ -73,7 +73,7 @@ namespace Taper
             catch {  }
             if (!load)
             {
-                Program.Error(Lang.msgErrorLoad);
+                Program.Error(Lang.errorLoad);
                 New();
             }
         }
@@ -145,8 +145,8 @@ namespace Taper
                     save = true;
                 }
             }
-            catch { Program.Error("Произошла ошибка во время сохранения файла. Файл не сохранён."); }
-            if (!save) Program.Error("Неизвестный формат файла. Файл не сохранён.");
+            catch { }
+            if (!save) Program.Error(Lang.errorSave);
         }
 
         /// <summary>
@@ -405,7 +405,7 @@ namespace Taper
             bool Normal = true;
             for (int i = 0; i < selected.Count - 1; i++)
                 if (selected[i] + 1 != selected[i + 1]) Normal = false;
-            if (!Normal) { Program.Message("Переместить можно только рядом стоящие блоки"); return false; }
+            if (!Normal) { Program.Message(Lang.msgSelectionMustBeContinuous); return false; }
             return true;
         }
 
@@ -456,7 +456,7 @@ namespace Taper
                 }
             }
             if (find) Program.Message(Lang.msgFoundDuplicatesSelected);
-            else Program.Message("Дубликатов не обнаружено.");
+            else Program.Message(Lang.errorCommandNotExist);
         }
     }
 }

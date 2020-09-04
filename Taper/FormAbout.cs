@@ -15,7 +15,7 @@ namespace Taper
 			labelVersion.Text = Lang.version + ": " + Application.ProductVersion;
 			labelName.Text = Application.ProductName;
 			labelAutor.Text = Lang.author + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
-			labelNewVersions.Text = Lang.msgNewVersions;
+			labelNewVersions.Text = Lang.newVersions;
 			tabPageHistory.Text = Lang.versionHistory;
 			buttonClose.Text = Lang.close;
 

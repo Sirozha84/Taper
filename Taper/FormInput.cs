@@ -8,17 +8,14 @@ namespace Taper
         public FormInput()
         {
             InitializeComponent();
-            textBox1.Text = Project.rename;
+            Text = Lang.rename;
+            labelEnterNewName.Text = Lang.enterNewName;
+            textBoxName.Text = Project.rename;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void OK(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Project.rename = textBox1.Text;
+            Project.rename = textBoxName.Text;
             DialogResult = DialogResult.OK;
             Close();
         }

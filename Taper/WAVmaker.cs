@@ -60,7 +60,7 @@ namespace Taper
 
                 file.Close();
             }
-            catch { Program.Error("Произошла ошибка при сохранении файла. Файл не сохранён."); }
+            catch { Program.Error(Lang.errorSave); }
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Taper
         {
             InitializeComponent();
             
-            Text = Lang.impWAV;
+            Text = Lang.importFromWAV;
             labelInfo.Text = Lang.loadedData + ":";
             listView.Columns[0].Text = Lang.time;
             listView.Columns[1].Text = Lang.position;

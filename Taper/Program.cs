@@ -5,12 +5,6 @@ namespace Taper
 {
     static class Program
     {
-        //public const string Name = "Taper";
-        //Параметры открытия и сохранения файлов
-        /*public const string FilterAll = "Образ ленты (*.tap, *.tzx)|*.tap;*.tzx|Все файлы (*.*)|*.*";
-        public const string FilterSel = "Образ ленты TAP (*.tap)|*.tap|Образ ленты TZX (*.tzx)|*.tzx|Все файлы (*.*)|*.*";
-        public const string FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
-        public const string FilterBMP = "Точечный рисунок (*.bmp)|*.bmp|Все файлы (*.*)|*.*";*/
         public static FormMain mainform;
         
         /// <summary>

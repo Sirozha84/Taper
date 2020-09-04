@@ -580,7 +580,7 @@ namespace Taper
                             case 253: C = "SET 7, L"; break;
                             case 254: C = "SET 7, (HL)"; break;
                             case 255: C = "SET 7, A"; break;
-                            default: C = "Ошибка, несуществующая команда [" + m[i - 1] + "][" + m[i] + "]"; break;
+                            default: C = Lang.errorCommandNotExist+ " [" + m[i - 1] + "][" + m[i] + "]"; break;
                         }
                         break;
                     case 237: //После ED
@@ -642,7 +642,7 @@ namespace Taper
                             case 185: C = "CPDR"; break;
                             case 186: C = "INDR"; break;
                             case 187: C = "OTDR"; break;
-                            default: C = "Ошибка, несуществующая команда [" + m[i - 1] + "][" + m[i] + "]"; break;
+                            default: C = Lang.errorCommandNotExist + " [" + m[i - 1] + "][" + m[i] + "]"; break;
                         }
                         break;
                     case 221: //После DD - Префикс IX
@@ -723,19 +723,13 @@ namespace Taper
                             case 229: C = "PUSH " + IX; break;
                             case 233: C = "JP (" + IX + ")"; break;
                             case 249: C = "LD SP, " + IX; break;
-                            default: C = "Ошибка, несуществующая команда [" + m[i - 1] + "][" + m[i] + "]"; break;
+                            default: C = Lang.errorCommandNotExist + " [" + m[i - 1] + "][" + m[i] + "]"; break;
                         }
                         break;
                 }
                 text += "    " + C + EOF;
                 Application.DoEvents();
             }
-
-            //for (int i = 49990; i < 65536; i++) text += i.ToString() + " - " + M[i].ToString()+ " - " + Labels[i] + (char)13 + (char)10; //Показывает метки
-            //textBox5.Text = text;
-            //OnProcess = false;
-
-
             return text;
         }
 
