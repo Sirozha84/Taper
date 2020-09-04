@@ -8,7 +8,7 @@
         public static string about;
         public static string allBytes;
         public static string audio;
-        public static string autor;
+        public static string author;
         public static string block;
         public static string blockCount;
         public static string blockList;
@@ -101,7 +101,7 @@
                     about = "О программе";
                     allBytes = "Размер данных";
                     audio = "Аудио";
-                    autor = "Автор";
+                    author = "Автор";
                     block = "Блок";
                     blockCount = "Количество блоков";
                     blockList = "Список блоков";
@@ -181,6 +181,96 @@
                     FilterWAV = "Звуковой файл (*.wav)|*.wav|Все файлы (*.*)|*.*";
 
                     break;
+
+                case "it-IT":
+
+                    langCode = "it";
+
+                    addBlock = "Aggiungi Blocchi";
+                    about = "Info";
+                    allBytes = "Dimensione";
+                    audio = "Audio";
+                    author = "Autore";
+                    block = "Blocco";
+                    blockCount = "Conta Blocchi";
+                    blockList = "Lista Blocchi";
+                    blocks = "Blocchi";
+                    bytes = "Bytes";
+                    cancel = "Annulla";
+                    clear = "Pulisci";
+                    close = "Chiudi";
+                    colored = "Colori";
+                    copy = "Copias";
+                    cut = "Taglia";
+                    dataBlock = "Blocco Dati";
+                    defaultDevices = "Periferiche Default";
+                    delete = "Cancella";
+                    edit = "Edita";
+                    exit = "Esci";
+                    expWAV = "Esporta in file .WAV";
+                    file = "File";
+                    fileList = "Lista File";
+                    fileView = "Esamina File";
+                    find = "Cerca";
+                    findDupl = "Cerca duplicati";
+                    fixCRC = "Ripara CRC";
+                    help = "Aiuto";
+                    impWAV = "Importa da file .WAV";
+                    language = "Lingua (Language)";
+                    lenght = "Lunghezza";
+                    loadedData = "Dati Caricati";
+                    loadTo = "Carica in";
+                    main = "Home";
+                    moveDown = "Muovi giu'";
+                    moveUp = "Muovi su'";
+                    name = "Nome";
+                    newFile = "Nuovo";
+                    olwaysCenter = "Sempre a centro schermo";
+                    open = "Apri";
+                    paste = "Incolla";
+                    play = "Esegui";
+                    position = "Posizione";
+                    properties = "Propprieta'";
+                    record = "Registra";
+                    redo = "Ripeti";
+                    rememberLastPosition = "Ricorda ultima posizione";
+                    rename = "Rinomina";
+                    save = "Salva";
+                    saveAs = "Salva con mone";
+                    saveImage = "Salva immagine";
+                    size = "Dimensione";
+                    soundSource = "Sorgente Suono";
+                    start = "Inizio";
+                    startPosition = "Posizione Iniziale";
+                    stop = "Ferma";
+                    time = "Tempo";
+                    tools = "Utilita'";
+                    typeF = "Tipo";
+                    version = "Versioni";
+                    versionHistory = "Storico Versione";
+                    view = "Vista";
+                    website = "Sito Web del programma";
+                    undo = "Annulla";
+                    unnamed = "Senza nome";
+
+                    msgAddBlocks = "Aggiungi blocchi al progetto? No - Apri File.";
+                    msgAllCRCsIsOK = "Tutti i CRCs sono OK.";
+                    msgCRCsFixed = "CRCs Corretti.";
+                    msgErrorLoad = "Errore apertura file o file non supportato.";
+                    msgErrorSave = "Errore Salvataggio File. File non salvato.";
+                    msgFoundDuplicatesSelected = "Trovati File duplicati e selezionati";
+                    msgNewVersions = "Puoi scaricare questo ed altri programmi dal sito Web.";
+                    msgOnlyRusVersion = "Scusa! Questo testo e' disponibile solo in lingua Russa :-(";
+                    msgPleaseWait = "Prego Attendi...";
+                    msgSaveChange = "Salva modifiche in file";
+
+                    FilterAll = "Immagine Tape (*.tap, *.tzx)|*.tap;*.tzx|All files (*.*)|*.*";
+                    FilterBMP = "Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*";
+                    FilterSel = "Immagine Tape TAP (*.tap)|*.tap|Tape image TZX (*.tzx)|*.tzx|All files (*.*)|*.*";
+                    FilterWAV = "File Audio (*.wav)|*.wav|All files (*.*)|*.*";
+
+                    break;
+
                 default:
 
                     langCode = "en";
@@ -189,7 +279,7 @@
                     about = "About";
                     allBytes = "Data size";
                     audio = "Audio";
-                    autor = "Autor";
+                    author = "Author";
                     block = "Block";
                     blockCount = "Blocks count";
                     blockList = "Block list";
