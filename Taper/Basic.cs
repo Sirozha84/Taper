@@ -12,17 +12,16 @@ namespace Taper
                             "","","","","","","","","","","","","","","","","","","","","","","","","","","","","","", //60-89
                             "","","","","","","","","","","","","","","","","","","","","","","","","","","","","","", //90-119
                             "","","","","","","","","","","","","","","","","","","","","","","","","","","","","","", //120-149
-                            "","","","","","","","","","","","","","",""," RND "," INKEY$ "," PI "," FN "," POINT ", //150-169
+                            "","","","","","","","","","","","","","",""," RND "," INKEY$"," PI "," FN "," POINT ", //150-169
                             " SCREEN$ "," ATTR "," AT "," TAB "," VAL$ "," CODE "," VAL "," LEN "," SIN "," COS ", //170-179
                             " TAN "," ASN "," ACS "," ATN "," LN "," EXP "," INT "," SQR "," SGN "," ABS ", //180-189
                             " PEEK "," IN "," USR "," STR$ "," CHR$ "," NOT "," BIN "," OR "," AND ","<=", //190-199
-                            ">=","<>"," LINE ","THEN "," TO "," STEP "," DEF FN "," CAT "," FORMAT ","", //200-209
+                            ">=","<>"," LINE "," THEN "," TO "," STEP "," DEF FN "," CAT "," FORMAT ","", //200-209
                             ""," OPEN# "," CLOSE# "," MARGE "," VERIFY "," BEEP "," CIRCLE "," INK "," PAPER "," FLASH ", //210-219
                             " BRIGHT "," INVERSE "," OVER "," OUT "," LPRINT "," LLIST "," STOP "," READ "," DATA "," RESTORE ", //220-229
                             " NEW "," BORDER "," CONTINUE "," DIM "," REM "," FOR "," GO TO "," GO SUB "," INPUT "," LOAD ", //230-239
                             " LIST "," LET "," PAUSE "," NEXT "," POKE "," PRINT "," PLOT "," RUN "," SAVE "," RANDOMIZE ", //240-249
-                            " IF "," CLS "," DRAW "," CLEAR "," RETURN "," COPY " //250-255
-                           };
+                            " IF "," CLS "," DRAW "," CLEAR "," RETURN "," COPY " }; //250-255
             
             string text = "";
             bool newstring = true;

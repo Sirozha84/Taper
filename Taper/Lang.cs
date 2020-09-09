@@ -221,7 +221,7 @@
                     defaultDevices = "Periferiche Default";
                     delete = "Cancella";
                     edit = "Edita";
-                    enterNewName = "Enter new name:";
+                    enterNewName = "Inserisci nuovo nome:";
                     exit = "Esci";
                     exportToWAV = "Esporta in file .WAV";
                     file = "File";
@@ -275,16 +275,16 @@
 
                     msgAddBlocks = "Aggiungi blocchi al progetto? No - Apri File.";
                     msgAllCRCsIsOK = "Tutti i CRCs sono OK.";
-                    msgAudioDeviceError = "Audio device error.";
+                    msgAudioDeviceError = "Errore dispositivo audio.";
                     msgCRCsFixed = "CRCs Corretti.";
-                    msgDuplicatesNotFound = "Duplicates not found.";
+                    msgDuplicatesNotFound = "Duplicati non trovati.";
                     msgFoundDuplicatesSelected = "Trovati File duplicati e selezionati.";
-                    msgNoDeviceIsFound = "No audio device is found.";
+                    msgNoDeviceIsFound = "Dispoditivo audio nono trovato.";
                     msgOnlyRusVersion = "Scusa! Questo testo e' disponibile solo in lingua Russa :-(";
                     msgPleaseWait = "Prego Attendi...";
-                    msgSelectionMustBeContinuous = "Selection must be continuous.";
+                    msgSelectionMustBeContinuous = "La Selezione deve essere continua.";
 
-                    errorCommandNotExist = "Error! Command Not Exist.";
+                    errorCommandNotExist = "Errore! Commando sconosciuto.";
                     errorLoad = "Errore apertura file o file non supportato.";
                     errorSave = "Errore Salvataggio File. File non salvato.";
 
