@@ -12,7 +12,7 @@ namespace Taper
 
 			Text = Lang.about;
 			tabPageAbout.Text = Lang.about;
-			labelVersion.Text = Lang.version + ": " + Application.ProductVersion;
+			labelVersion.Text = Lang.version + ": " + Application.ProductVersion + " BETA!";
 			labelName.Text = Application.ProductName;
 			labelAutor.Text = Lang.author + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
 			labelNewVersions.Text = Lang.newVersions;

@@ -214,7 +214,7 @@
                     clear = "Pulisci";
                     close = "Chiudi";
                     colored = "Colori";
-                    copy = "Copias";
+                    copy = "Copia";
                     cut = "Taglia";
                     dataBlock = "Blocco Dati";
                     dataSize = "Dimensione";
@@ -248,7 +248,7 @@
                     paste = "Incolla";
                     play = "Esegui";
                     position = "Posizione";
-                    properties = "Propprieta'";
+                    properties = "Proprieta'";
                     record = "Registra";
                     redo = "Ripeti";
                     rememberLastPosition = "Ricorda ultima posizione";
@@ -279,12 +279,12 @@
                     msgCRCsFixed = "CRCs Corretti.";
                     msgDuplicatesNotFound = "Duplicati non trovati.";
                     msgFoundDuplicatesSelected = "Trovati File duplicati e selezionati.";
-                    msgNoDeviceIsFound = "Dispoditivo audio nono trovato.";
+                    msgNoDeviceIsFound = "Dispositivo audio non trovato.";
                     msgOnlyRusVersion = "Scusa! Questo testo e' disponibile solo in lingua Russa :-(";
                     msgPleaseWait = "Prego Attendi...";
                     msgSelectionMustBeContinuous = "La Selezione deve essere continua.";
 
-                    errorCommandNotExist = "Errore! Commando sconosciuto.";
+                    errorCommandNotExist = "Errore! Comando sconosciuto.";
                     errorLoad = "Errore apertura file o file non supportato.";
                     errorSave = "Errore Salvataggio File. File non salvato.";
 
