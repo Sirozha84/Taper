@@ -26,16 +26,14 @@ namespace Taper
         public static void New()
         {
             TAP.Clear();
-            history.Clear();
-            hIndex = 0;
             name = "";
-            changed = false;
+            Change(true);
         }
 
-        public static void Open(string filename, bool add)
+        public static void Open(string filename, bool newProject)
         {
-            if (add) Change(); else New();
-            bool load = false;
+            if (newProject) New();
+            bool loaded = false;
             string ext = Path.GetExtension(filename).ToLower();
             try
             {
@@ -50,8 +48,8 @@ namespace Taper
                         Add(Bytes);
                     }
                     file.Close();
-                    if (!add) name = filename;
-                    load = true;
+                    if (newProject) name = filename;
+                    loaded = true;
                 }
                 if (ext == ".tzx")
                 {
@@ -66,12 +64,14 @@ namespace Taper
                         Add(Bytes);
                     }
                     file.Close();
-                    if (!add) name = filename;
-                    load = true;
+                    if (newProject) name = filename;
+                    loaded = true;
                 }
+                Change(newProject);
             }
-            catch {  }
-            if (!load)
+            catch { }
+
+            if (!loaded)
             {
                 Program.Error(Lang.errorLoad);
                 New();
@@ -150,18 +150,28 @@ namespace Taper
         }
 
         /// <summary>
-        /// Вызывается при изменениях в проекте. Меняет флаг и делает отмену
+        /// Создание точки отмены. Вызывается после изменения, загрузки или начала нового проекта.
         /// </summary>
-        public static void Change()
+        /// <param name="newProject">Это новый проект?</param>
+        public static void Change(bool newProject)
         {
+            //Если это новый или загруженный проект, сбрасываем историю изменений
+            if (newProject)
+            {
+                history.Clear();
+                hIndex = 0;
+                changed = false;
+            }
+
             //Если индекс истории меньше чем размер истории, удаляем последующие моменты
             while (hIndex < history.Count) history.RemoveAt(history.Count - 1);
+
+            //Создание точки отмены
             List<Block> temp = new List<Block>();
-            foreach (Block block in TAP)
-                temp.Add(block);
+            foreach (Block block in TAP) temp.Add(block);
             history.Add(temp);
             hIndex++;
-            changed = true;
+            changed = !newProject;
         }
 
         /// <summary>
@@ -219,11 +229,10 @@ namespace Taper
         /// </summary>
         public static void Undo()
         {
-            if (hIndex < 2) return;
+            if (hIndex == 0) return;
             hIndex--;
             TAP.Clear();
-            foreach (Block block in history[hIndex - 1])
-                TAP.Add(block);
+            foreach (Block block in history[hIndex]) TAP.Add(block);
             changed = true;
         }
 
@@ -232,11 +241,10 @@ namespace Taper
         /// </summary>
         public static void Redo()
         {
-            if (hIndex == history.Count) return;
+            if (hIndex == history.Count - 1) return;
             hIndex++;
             TAP.Clear();
-            foreach (Block block in history[Project.hIndex - 1])
-                TAP.Add(block);
+            foreach (Block block in history[hIndex]) TAP.Add(block);
             changed = true;
         }
 
@@ -247,12 +255,12 @@ namespace Taper
         public static void Cut(ListView.SelectedIndexCollection selected)
         {
             if (selected.Count == 0) return;
-            Change();
             Buffer.Clear();
             for (int i = 0; i < selected.Count; i++)
                 Buffer.Add(TAP[selected[i]]);
             for (int i = selected.Count - 1; i >= 0; i--)
                 TAP.RemoveAt(selected[i]);
+            Change(false);
         }
 
         /// <summary>
@@ -274,7 +282,6 @@ namespace Taper
         public static void Paste(ListView.SelectedIndexCollection selected)
         {
             if (Buffer.Count == 0) return;
-            Change();
             if (selected.Count == 0)
             {
                 foreach (Block block in Buffer)
@@ -290,8 +297,9 @@ namespace Taper
                 for (int i = 0; i < Buffer.Count; i++)
                     TAP[selected[0] + i] = Buffer[i];
             }
+            Change(false);
         }
-        
+
         /// <summary>
         /// Удаление
         /// </summary>
@@ -299,9 +307,9 @@ namespace Taper
         public static void Delete(ListView.SelectedIndexCollection selected)
         {
             if (selected.Count == 0) return;
-            Change();
             for (int i = selected.Count - 1; i >= 0; i--)
                 TAP.RemoveAt(selected[i]);
+            Change(false);
         }
 
         /// <summary>
@@ -315,7 +323,6 @@ namespace Taper
             rename = TAP[selected[0]].FileName;
             FormInput form = new FormInput();
             if (form.ShowDialog() != DialogResult.OK) return;
-            Change();
             //Тут доделать  //что доделать???
             if (rename.Length > 10) rename = rename.Substring(0, 10);
             char[] str = rename.ToCharArray();
@@ -329,6 +336,7 @@ namespace Taper
             TAP[currentblock].FileName = rename;
             //После переименования починим CRC
             TAP[selected[0]].CRCTest(0, true);
+            Change(false);
         }
         
         /// <summary>
@@ -345,14 +353,16 @@ namespace Taper
                 action |= block.FileTitle != null && !block.CRCTitle;
                 action |= block.FileData != null && !block.CRCData;
             }
-            if (action) Change(); else return false;
+            if (!action) return false;
+            
             //Ошибки есть, чиним
             foreach (Block block in TAP)
             {
                 if (block.FileTitle != null) block.CRCTest(0, true);
                 if (block.FileData != null) block.CRCTest(1, true);
             }
-            return true;
+            Change(false);
+            return action;
         }
 
         /// <summary>
@@ -364,7 +374,6 @@ namespace Taper
             //Сначала проверим, нормально ли выделено
             if (!NormalSelection(selected)) return false;
             if (selected[0] == 0) return false; //Двигаться некуда...
-            Change();
             RememberSelection(selected);
             //Теперь мы уверены, что выделено всё правильно, можно двигать
             //Запоминаем временный блок, который потом появится "снизу"
@@ -372,6 +381,7 @@ namespace Taper
             for (int i = 0; i < selected.Count; i++)
                 TAP[selected[i] - 1] = TAP[selected[i]];
             TAP[selected[selected.Count - 1]] = temp;
+            Change(false);
             return true;
         }
         
@@ -384,7 +394,6 @@ namespace Taper
             //Сначала проверим, нормально ли выделено
             if (!NormalSelection(selected)) return false;
             if (selected[selected.Count - 1] == TAP.Count - 1) return false; //Двигаться некуда...
-            Change();
             RememberSelection(selected);
             //Теперь мы уверены, что выделено всё правильно, можно двигать
             //Запоминаем временный блок, который потом появится "снизу"
@@ -392,6 +401,7 @@ namespace Taper
             for (int i = selected.Count - 1; i >= 0; i--)
                 TAP[selected[i] + 1] = TAP[selected[i]];
             TAP[selected[0]] = temp;
+            Change(false);
             return true;
         }
         /// <summary>
@@ -419,6 +429,7 @@ namespace Taper
             foreach (int i in selected)
                 lastSelect.Add(i);
         }
+
         /// <summary>
         /// Восстановление выделения
         /// </summary>

@@ -127,7 +127,7 @@ namespace Taper
             if (!SaveQuestion()) return;
             OpenFileDialog dialog = new OpenFileDialog() { Filter = Lang.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
-            Project.Open(dialog.FileName, false);
+            Project.Open(dialog.FileName, true);
             DrawProject();
         }
 
@@ -138,8 +138,7 @@ namespace Taper
         {
             OpenFileDialog dialog = new OpenFileDialog() { Filter = Lang.FilterAll };
             if (dialog.ShowDialog() != DialogResult.OK) return;
-            Project.Change();
-            Project.Open(dialog.FileName, true);
+            Project.Open(dialog.FileName, false);
             DrawProject();
         }
 
@@ -154,6 +153,7 @@ namespace Taper
             if (dialog.ShowDialog() != DialogResult.OK) return;
             FormWAVimport form = new FormWAVimport(dialog.FileName);
             form.ShowDialog();
+            Project.Change(false);
             DrawProject();
         }
 
@@ -285,6 +285,16 @@ namespace Taper
         }
 
         /// <summary>
+        /// Установка доступности кнопок
+        /// </summary>
+        void ButtonsEnable()
+        {
+            Text = Project.hIndex.ToString() + " / "+Project.history.Count();
+            toolUndo.Enabled = Project.hIndex > 1;
+            toolRedo.Enabled = Project.hIndex < Project.history.Count - 1;
+        }
+
+        /// <summary>
         /// Задание вопроса перед уничтожением файла
         /// </summary>
         bool SaveQuestion()
@@ -346,6 +356,7 @@ namespace Taper
             statusBlocks.Text = Lang.numberOfBlocks + ": " + blocks;
             statusSize.Text = Lang.dataSize + ": " + bytes.ToString();
             SetFormText();
+            ButtonsEnable();
         }
 
         private void listViewTAP_KeyDown(object sender, KeyEventArgs e) { if (e.KeyData == Keys.Enter) View(null, null); }

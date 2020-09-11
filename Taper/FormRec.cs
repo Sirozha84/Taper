@@ -146,12 +146,11 @@ namespace Taper
         {
             if (Listener.blocks.Count > 0)
             {
-                Project.Change();
                 foreach (byte[] block in Listener.blocks)
                     Project.Add(block);
+                Project.Change(false);
             }
             Close();
-
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

@@ -35,9 +35,9 @@ namespace Taper
         {
             if (Listener.blocks.Count > 0)
             {
-                Project.Change();
                 foreach (byte[] block in Listener.blocks)
                     Project.Add(block);
+                Project.Change(false);
             }
             Close(); 
         }
@@ -53,7 +53,6 @@ namespace Taper
             Listener.Init();
             for (int i = 0; i <= Len - partLen; i += partLen)
             {
-                
                 //По умолчанию будем считать что запись 8-и битная
                 byte[] part = new byte[partLen];
                 Array.Copy(WAV.wave, i, part, 0, partLen);
@@ -77,7 +76,6 @@ namespace Taper
             progressBar.Value = e.ProgressPercentage;
             string[] res = e.UserState.ToString().Split('☺');
             if (res[0] != "") listView.Items.Add(new ListViewItem(res));
-
         }
 
         void Complate(object sender, EventArgs e)
