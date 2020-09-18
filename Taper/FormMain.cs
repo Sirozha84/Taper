@@ -289,9 +289,11 @@ namespace Taper
         /// </summary>
         void ButtonsEnable()
         {
-            Text = Project.hIndex.ToString() + " / "+Project.history.Count();
-            toolUndo.Enabled = Project.hIndex > 1;
+            //Text = Project.hIndex.ToString() + " / " + Project.history.Count();
+            toolUndo.Enabled = Project.hIndex > 0;
+            menuUndo.Enabled = Project.hIndex > 0;
             toolRedo.Enabled = Project.hIndex < Project.history.Count - 1;
+            menuRedo.Enabled = Project.hIndex < Project.history.Count - 1;
         }
 
         /// <summary>

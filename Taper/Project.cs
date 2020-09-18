@@ -159,19 +159,42 @@ namespace Taper
             if (newProject)
             {
                 history.Clear();
-                hIndex = 0;
+                hIndex = -1;
                 changed = false;
             }
 
             //Если индекс истории меньше чем размер истории, удаляем последующие моменты
-            while (hIndex < history.Count) history.RemoveAt(history.Count - 1);
+            //while (history.Count > hIndex) history.RemoveAt(history.Count - 1);
+            history.RemoveRange(hIndex + 1, history.Count - hIndex - 1); // - Проверить
 
             //Создание точки отмены
             List<Block> temp = new List<Block>();
-            foreach (Block block in TAP) temp.Add(block);
+            foreach (Block block in TAP) temp.Add(block.Copy());
             history.Add(temp);
             hIndex++;
             changed = !newProject;
+        }
+
+        /// <summary>
+        /// Отменить
+        /// </summary>
+        public static void Undo()
+        {
+            hIndex--;
+            TAP.Clear();
+            foreach (Block block in history[hIndex]) TAP.Add(block.Copy());
+            changed = true;
+        }
+
+        /// <summary>
+        /// Вернуть
+        /// </summary>
+        public static void Redo()
+        {
+            hIndex++;
+            TAP.Clear();
+            foreach (Block block in history[hIndex]) TAP.Add(block.Copy());
+            changed = true;
         }
 
         /// <summary>
@@ -222,30 +245,6 @@ namespace Taper
                 if (block.FileData != null)
                     TAP.Add(new Block(block.FileData));
             }
-        }
-
-        /// <summary>
-        /// Отменить
-        /// </summary>
-        public static void Undo()
-        {
-            if (hIndex == 0) return;
-            hIndex--;
-            TAP.Clear();
-            foreach (Block block in history[hIndex]) TAP.Add(block);
-            changed = true;
-        }
-
-        /// <summary>
-        /// Вернуть
-        /// </summary>
-        public static void Redo()
-        {
-            if (hIndex == history.Count - 1) return;
-            hIndex++;
-            TAP.Clear();
-            foreach (Block block in history[hIndex]) TAP.Add(block);
-            changed = true;
         }
 
         /// <summary>

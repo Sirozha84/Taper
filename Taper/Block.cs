@@ -20,9 +20,31 @@ namespace Taper
         //Данные
         public byte[] FileTitle;
         public byte[] FileData;
+
+        public Block() { }
+
         public Block(byte[] Bytes)
         {
             AddBlock(Bytes);
+        }
+
+        /// <summary>
+        /// Делаем копию блока
+        /// </summary>
+        /// <returns></returns>
+        public Block Copy()
+        {
+            Block block = new Block();
+            block.FileType = FileType;
+            block.FileName = FileName;
+            block.Start = Start;
+            block.Len = Len;
+            block.Size = Size;
+            block.CRCTitle = CRCTitle;
+            block.CRCData = CRCData;
+            if (FileTitle != null) { block.FileTitle = new byte[FileTitle.Length]; FileTitle.CopyTo(block.FileTitle, 0); }
+            if (FileData != null) { block.FileData = new byte[FileData.Length]; FileData.CopyTo(block.FileData, 0); }
+            return block;
         }
 
         /// <summary>
