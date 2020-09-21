@@ -12,7 +12,7 @@ namespace Taper
 
 			Text = Lang.about;
 			tabPageAbout.Text = Lang.about;
-			labelVersion.Text = Lang.version + ": " + Application.ProductVersion + " BETA!";
+			labelVersion.Text = Lang.version + ": " + Application.ProductVersion; // + " BETA!";
 			labelName.Text = Application.ProductName;
 			labelAutor.Text = Lang.author + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
 			labelNewVersions.Text = Lang.newVersions;
@@ -60,9 +60,21 @@ namespace Taper
 			}
 
 			history.SelectionFont = fontB;
-			history.AppendText("Версия 3.0 Beta (19.08.2020)\n\n");
+			history.AppendText("Версия 3.0 (21.09.2020)\n\n");
 			history.SelectionFont = fontR;
-			history.AppendText("• Ещё в разработке\n\n");
+			history.AppendText("• Вопроизведение в реальном времени\n" +
+				"• Запись в реальном времени\n" +
+				"• Значительно ускорено распознавание WAV файлов, а интерфейс окна упрощён\n" +
+				"• Мультиязычность! В данный момент есть русский, английский и итальянский\n" +
+				"• Переосмыслено меню операций импорта/экспорта или добавления блоков\n" +
+				"• Новый просмотрщик файлов\n" +
+				"• В просмотре кода теперь отображаются ascii-символы\n" +
+				"• В просмотре Basic-программ убраны лишние пробелы между операторами и добавлена псевдографика\n" +
+				"• Добавлено окно с настройками\n" +
+				"• Новое окно о программе с историей и благодарностями\n" +
+				"• Заголовки длиннее 17-и байт теперь обрезаются\n" +
+				"• Исправлена отмена переименования\n" +
+				"• Прочие улучшения и исправления ошибок\n\n"); ;
 			history.SelectionFont = fontB;
 			history.AppendText("Версия 2.1 (09.06.2015)\n\n");
 			history.SelectionFont = fontR;
