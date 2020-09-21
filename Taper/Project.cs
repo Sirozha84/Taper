@@ -18,7 +18,7 @@ namespace Taper
         //Временно эти поля публичные, потом перенесу управление историей сюда
         public static List<List<Block>> history = new List<List<Block>>();  //История изменений проекта
         public static int hIndex;                           //Позиция в истории
-        static List<Block> Buffer = new List<Block>(); //Буфер обмена
+        public static List<Block> Buffer = new List<Block>(); //Буфер обмена
 
         /// <summary>
         /// Создание нового проекта, запускается так же и перед открытием файла
@@ -466,7 +466,7 @@ namespace Taper
                 }
             }
             if (find) Program.Message(Lang.msgFoundDuplicatesSelected);
-            else Program.Message(Lang.errorCommandNotExist);
+            else Program.Message(Lang.msgDuplicatesNotFound);
         }
     }
 }

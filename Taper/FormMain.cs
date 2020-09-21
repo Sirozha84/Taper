@@ -287,13 +287,36 @@ namespace Taper
         /// <summary>
         /// Установка доступности кнопок
         /// </summary>
-        void ButtonsEnable()
+        void RefreshButtons(object sender, EventArgs e)
         {
-            //Text = Project.hIndex.ToString() + " / " + Project.history.Count();
+            bool selected = listViewTAP.SelectedItems.Count > 0;
+            bool selectedOne = listViewTAP.SelectedItems.Count > 0;
+            toolCut.Enabled = selected;
+            menuCut.Enabled = selected;
+            cmenuCut.Enabled = selected;
+            toolCopy.Enabled = selected;
+            menuCopy.Enabled = selected;
+            cmenuCopy.Enabled = selected;
+            toolPaste.Enabled = Project.Buffer.Count > 0;
+            menuPaste.Enabled = Project.Buffer.Count > 0;
+            cmenuPaste.Enabled = Project.Buffer.Count > 0;
+            toolDelete.Enabled = selected;
+            menuDelete.Enabled = selected;
+            cmenuDelete.Enabled = selected;
             toolUndo.Enabled = Project.hIndex > 0;
             menuUndo.Enabled = Project.hIndex > 0;
             toolRedo.Enabled = Project.hIndex < Project.history.Count - 1;
             menuRedo.Enabled = Project.hIndex < Project.history.Count - 1;
+            menuRename.Enabled = selectedOne;
+            cmenuRename.Enabled = selectedOne;
+            toolMoveUp.Enabled = selected;
+            menuMoveUp.Enabled = selected;
+            toolMoveDown.Enabled = selected;
+            menuMoveDown.Enabled = selected;
+            menuViewFile.Enabled = selectedOne;
+            cmenuView.Enabled = selectedOne;
+            menuFixCRCs.Enabled = Project.TAP.Count > 0;
+            menuFindDuplicates.Enabled = Project.TAP.Count > 0;
         }
 
         /// <summary>
@@ -358,7 +381,7 @@ namespace Taper
             statusBlocks.Text = Lang.numberOfBlocks + ": " + blocks;
             statusSize.Text = Lang.dataSize + ": " + bytes.ToString();
             SetFormText();
-            ButtonsEnable();
+            RefreshButtons(null, null);
         }
 
         private void listViewTAP_KeyDown(object sender, KeyEventArgs e) { if (e.KeyData == Keys.Enter) View(null, null); }
