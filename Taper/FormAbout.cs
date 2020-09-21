@@ -16,6 +16,7 @@ namespace Taper
 			labelName.Text = Application.ProductName;
 			labelAutor.Text = Lang.author + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
 			labelNewVersions.Text = Lang.newVersions;
+			tabPageThanks.Text = Lang.thanks;
 			tabPageHistory.Text = Lang.versionHistory;
 			buttonClose.Text = Lang.close;
 
@@ -24,10 +25,38 @@ namespace Taper
 
 			if (Lang.langCode != "ru")
 			{
+				thanks.SelectionFont = fontB;
+				thanks.AppendText("Alexander Tsidaev\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• Help in programming\n\n");
+				thanks.SelectionFont = fontB; 
+				thanks.AppendText("Stanislav Zarubin\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• Testing.\n\n");
+				thanks.SelectionFont = fontB; 
+				thanks.AppendText("Domenico Marzano\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• Italian language");
+
 				history.SelectionFont = fontR;
 				history.SelectionAlignment = HorizontalAlignment.Center;
 				history.AppendText("\n\n\n\n\n\n" + Lang.msgOnlyRusVersion);
 				return;
+			}
+			else
+			{
+				thanks.SelectionFont = fontB;
+				thanks.AppendText("Александр Цидаев\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• помощь в программировании\n\n");
+				thanks.SelectionFont = fontB;
+				thanks.AppendText("Станислав Зарубин\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• Тестирование\n\n");
+				thanks.SelectionFont = fontB;
+				thanks.AppendText("Domenico Marzano\n\n");
+				thanks.SelectionFont = fontR;
+				thanks.AppendText("• Итальянский язык");
 			}
 
 			history.SelectionFont = fontB;

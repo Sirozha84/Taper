@@ -64,6 +64,7 @@
         public static string startPosition;
         public static string stop;
         public static string time;
+        public static string thanks;
         public static string tools;
         public static string typeF;
         public static string version;
@@ -165,6 +166,7 @@
                     startPosition = "Начальная позиция окна";
                     stop = "Стоп";
                     time = "Время";
+                    thanks = "Спасибо";
                     tools = "Инструменты";
                     typeF = "Тип";
                     version = "Версия";
@@ -262,6 +264,7 @@
                     startPosition = "Posizione Iniziale";
                     stop = "Ferma";
                     time = "Tempo";
+                    thanks = "Grazie";
                     tools = "Utilita'";
                     typeF = "Tipo";
                     version = "Versioni";
@@ -359,6 +362,7 @@
                     startPosition = "Start position";
                     stop = "Stop";
                     time = "Time";
+                    thanks = "Thanks";
                     tools = "Tools";
                     typeF = "Type";
                     version = "Version";

@@ -153,7 +153,6 @@ namespace Taper
             if (dialog.ShowDialog() != DialogResult.OK) return;
             FormWAVimport form = new FormWAVimport(dialog.FileName);
             form.ShowDialog();
-            Project.Change(false);
             DrawProject();
         }
 
