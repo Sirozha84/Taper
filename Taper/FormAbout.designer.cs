@@ -35,16 +35,16 @@
             this.labelAutor = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
+            this.tabPageThanks = new System.Windows.Forms.TabPage();
+            this.thanks = new System.Windows.Forms.RichTextBox();
             this.tabPageHistory = new System.Windows.Forms.TabPage();
             this.history = new System.Windows.Forms.RichTextBox();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.tabPageThanks = new System.Windows.Forms.TabPage();
-            this.thanks = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPageAbout.SuspendLayout();
-            this.tabPageHistory.SuspendLayout();
             this.tabPageThanks.SuspendLayout();
+            this.tabPageHistory.SuspendLayout();
             this.SuspendLayout();
             // 
             // logo
@@ -133,6 +133,29 @@
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Name";
             // 
+            // tabPageThanks
+            // 
+            this.tabPageThanks.Controls.Add(this.thanks);
+            this.tabPageThanks.Location = new System.Drawing.Point(4, 22);
+            this.tabPageThanks.Name = "tabPageThanks";
+            this.tabPageThanks.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageThanks.Size = new System.Drawing.Size(452, 182);
+            this.tabPageThanks.TabIndex = 2;
+            this.tabPageThanks.Text = "Благодарность";
+            this.tabPageThanks.UseVisualStyleBackColor = true;
+            // 
+            // thanks
+            // 
+            this.thanks.BackColor = System.Drawing.Color.White;
+            this.thanks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.thanks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thanks.Location = new System.Drawing.Point(3, 3);
+            this.thanks.Name = "thanks";
+            this.thanks.ReadOnly = true;
+            this.thanks.Size = new System.Drawing.Size(446, 176);
+            this.thanks.TabIndex = 1;
+            this.thanks.Text = "";
+            // 
             // tabPageHistory
             // 
             this.tabPageHistory.Controls.Add(this.history);
@@ -167,29 +190,6 @@
             this.buttonClose.Text = "Закрыть";
             this.buttonClose.UseVisualStyleBackColor = true;
             // 
-            // tabPageThanks
-            // 
-            this.tabPageThanks.Controls.Add(this.thanks);
-            this.tabPageThanks.Location = new System.Drawing.Point(4, 22);
-            this.tabPageThanks.Name = "tabPageThanks";
-            this.tabPageThanks.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageThanks.Size = new System.Drawing.Size(452, 182);
-            this.tabPageThanks.TabIndex = 2;
-            this.tabPageThanks.Text = "Благодарность";
-            this.tabPageThanks.UseVisualStyleBackColor = true;
-            // 
-            // thanks
-            // 
-            this.thanks.BackColor = System.Drawing.Color.White;
-            this.thanks.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.thanks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thanks.Location = new System.Drawing.Point(3, 3);
-            this.thanks.Name = "thanks";
-            this.thanks.ReadOnly = true;
-            this.thanks.Size = new System.Drawing.Size(446, 176);
-            this.thanks.TabIndex = 1;
-            this.thanks.Text = "";
-            // 
             // FormAbout
             // 
             this.AcceptButton = this.buttonClose;
@@ -209,8 +209,8 @@
             this.tabControl.ResumeLayout(false);
             this.tabPageAbout.ResumeLayout(false);
             this.tabPageAbout.PerformLayout();
-            this.tabPageHistory.ResumeLayout(false);
             this.tabPageThanks.ResumeLayout(false);
+            this.tabPageHistory.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

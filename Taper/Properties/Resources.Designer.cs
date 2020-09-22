@@ -65,7 +65,7 @@ namespace Taper.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _new {
             get {
-                object obj = ResourceManager.GetObject("new", resourceCulture);
+                object obj = ResourceManager.GetObject("_new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +216,16 @@ namespace Taper.Properties {
         internal static System.Drawing.Bitmap stop {
             get {
                 object obj = ResourceManager.GetObject("stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Taper {
+            get {
+                object obj = ResourceManager.GetObject("Taper", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
