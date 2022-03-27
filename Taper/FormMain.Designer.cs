@@ -112,6 +112,10 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusBlocks = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sep11 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuPlaySpeed1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPlaySpeed2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPlaySpeed4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
@@ -337,7 +341,11 @@
             this.menuAudio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuPlay,
             this.menuStop,
-            this.menuRec});
+            this.menuRec,
+            this.sep11,
+            this.menuPlaySpeed1,
+            this.menuPlaySpeed2,
+            this.menuPlaySpeed4});
             this.menuAudio.Name = "menuAudio";
             this.menuAudio.Size = new System.Drawing.Size(53, 20);
             this.menuAudio.Text = "Аудио";
@@ -346,7 +354,7 @@
             // 
             this.menuPlay.Image = global::Taper.Properties.Resources.play;
             this.menuPlay.Name = "menuPlay";
-            this.menuPlay.Size = new System.Drawing.Size(171, 22);
+            this.menuPlay.Size = new System.Drawing.Size(180, 22);
             this.menuPlay.Text = "Воспроизведение";
             this.menuPlay.Click += new System.EventHandler(this.Play);
             // 
@@ -354,7 +362,7 @@
             // 
             this.menuStop.Image = global::Taper.Properties.Resources.stop;
             this.menuStop.Name = "menuStop";
-            this.menuStop.Size = new System.Drawing.Size(171, 22);
+            this.menuStop.Size = new System.Drawing.Size(180, 22);
             this.menuStop.Text = "Стоп";
             this.menuStop.Click += new System.EventHandler(this.Stop);
             // 
@@ -362,7 +370,7 @@
             // 
             this.menuRec.Image = global::Taper.Properties.Resources.record;
             this.menuRec.Name = "menuRec";
-            this.menuRec.Size = new System.Drawing.Size(171, 22);
+            this.menuRec.Size = new System.Drawing.Size(180, 22);
             this.menuRec.Text = "Запись...";
             this.menuRec.Click += new System.EventHandler(this.Record);
             // 
@@ -409,34 +417,34 @@
             // 
             this.menuViewFile.Name = "menuViewFile";
             this.menuViewFile.ShortcutKeyDisplayString = "Enter";
-            this.menuViewFile.Size = new System.Drawing.Size(257, 22);
+            this.menuViewFile.Size = new System.Drawing.Size(258, 22);
             this.menuViewFile.Text = "Просмотр файла...";
             this.menuViewFile.Click += new System.EventHandler(this.View);
             // 
             // menuFixCRCs
             // 
             this.menuFixCRCs.Name = "menuFixCRCs";
-            this.menuFixCRCs.Size = new System.Drawing.Size(257, 22);
+            this.menuFixCRCs.Size = new System.Drawing.Size(258, 22);
             this.menuFixCRCs.Text = "Исправление контрольных сумм";
             this.menuFixCRCs.Click += new System.EventHandler(this.menuFixCRCs_Click);
             // 
             // menuFindDuplicates
             // 
             this.menuFindDuplicates.Name = "menuFindDuplicates";
-            this.menuFindDuplicates.Size = new System.Drawing.Size(257, 22);
+            this.menuFindDuplicates.Size = new System.Drawing.Size(258, 22);
             this.menuFindDuplicates.Text = "Поиск дубликатов";
             this.menuFindDuplicates.Click += new System.EventHandler(this.menuFindDuplicates_Click);
             // 
             // sep10
             // 
             this.sep10.Name = "sep10";
-            this.sep10.Size = new System.Drawing.Size(254, 6);
+            this.sep10.Size = new System.Drawing.Size(255, 6);
             // 
             // menuProperties
             // 
             this.menuProperties.Image = global::Taper.Properties.Resources.properties;
             this.menuProperties.Name = "menuProperties";
-            this.menuProperties.Size = new System.Drawing.Size(257, 22);
+            this.menuProperties.Size = new System.Drawing.Size(258, 22);
             this.menuProperties.Text = "Параметры...";
             this.menuProperties.Click += new System.EventHandler(this.properties);
             // 
@@ -842,6 +850,32 @@
             this.statusSize.Text = "   ";
             this.statusSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // sep11
+            // 
+            this.sep11.Name = "sep11";
+            this.sep11.Size = new System.Drawing.Size(177, 6);
+            // 
+            // menuPlaySpeed1
+            // 
+            this.menuPlaySpeed1.Name = "menuPlaySpeed1";
+            this.menuPlaySpeed1.Size = new System.Drawing.Size(193, 22);
+            this.menuPlaySpeed1.Text = "Скорость 1x (3.5 Mhz)";
+            this.menuPlaySpeed1.Click += new System.EventHandler(this.PlaySpeed1);
+            // 
+            // menuPlaySpeed2
+            // 
+            this.menuPlaySpeed2.Name = "menuPlaySpeed2";
+            this.menuPlaySpeed2.Size = new System.Drawing.Size(193, 22);
+            this.menuPlaySpeed2.Text = "Скорость 2x (7 MHz)";
+            this.menuPlaySpeed2.Click += new System.EventHandler(this.PlaySpeed2);
+            // 
+            // menuPlaySpeed4
+            // 
+            this.menuPlaySpeed4.Name = "menuPlaySpeed4";
+            this.menuPlaySpeed4.Size = new System.Drawing.Size(193, 22);
+            this.menuPlaySpeed4.Text = "Скорость 4x (14 MHz)";
+            this.menuPlaySpeed4.Click += new System.EventHandler(this.PlaySpeed4);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -955,6 +989,10 @@
         private System.Windows.Forms.ToolStripSeparator sep10;
         private System.Windows.Forms.ToolStripMenuItem menuProperties;
         private System.Windows.Forms.ToolStripButton toolProperties;
+        private System.Windows.Forms.ToolStripSeparator sep11;
+        private System.Windows.Forms.ToolStripMenuItem menuPlaySpeed1;
+        private System.Windows.Forms.ToolStripMenuItem menuPlaySpeed2;
+        private System.Windows.Forms.ToolStripMenuItem menuPlaySpeed4;
     }
 }
 

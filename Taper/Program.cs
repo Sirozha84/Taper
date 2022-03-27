@@ -5,6 +5,7 @@ namespace Taper
 {
     static class Program
     {
+        public static string version = "3.1 (27.03.2022)";
         public static FormMain mainform;
         
         /// <summary>

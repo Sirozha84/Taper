@@ -8,7 +8,7 @@ namespace Taper
         public static bool Plaing = false;
         public static WaveOut waveOut;
         public static Player player;
-        public const int SampleRate = 44100;    //Частота дискретизации
+        public static int SampleRate = 176400;// 44100;    //Частота дискретизации 44100
         public static int block;
         
         /// <summary>
@@ -91,7 +91,12 @@ namespace Taper
         {
             //Заполнение буфера звука
             for (int i = 0; i < sampleCount; i++)
-                if (s < c) buffer[i + offset] = WAVmaker.wav[s++] < 128 ? 0 : .2f; //0-1 - громкость
+            {
+                if (s < c)
+                    buffer[i + offset] = WAVmaker.wav[s++] < 128 ? 0 : .2f; //0-1 - громкость
+                else
+                    buffer[i + offset] = 0;
+            }
             
             //Если блок кончается переходим на следующий
             if (s >= c)

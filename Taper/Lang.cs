@@ -49,6 +49,9 @@
         public static string open;
         public static string paste;
         public static string play;
+        public static string playSpd1;
+        public static string playSpd2;
+        public static string playSpd4;
         public static string position;
         public static string properties;
         public static string record;
@@ -151,6 +154,9 @@
                     open = "Открыть";
                     paste = "Вставить";
                     play = "Вопроизведение";
+                    playSpd1 = "Скорость 1x (3.5MHz)";
+                    playSpd2 = "Скорость 2x (7MHz)";
+                    playSpd4 = "Скорость 4x (14MHz)";
                     position = "Позиция";
                     properties = "Параметры";
                     record = "Запись";
@@ -249,6 +255,9 @@
                     open = "Apri";
                     paste = "Incolla";
                     play = "Esegui";
+                    playSpd1 = "Velocità 1x (3.5MHz)";
+                    playSpd2 = "Velocità 2x (7MHz)";
+                    playSpd4 = "Velocità 4x (14MHz)";
                     position = "Posizione";
                     properties = "Proprieta'";
                     record = "Registra";
@@ -347,6 +356,9 @@
                     open = "Open";
                     paste = "Paste";
                     play = "Play";
+                    playSpd1 = "Speed 1x (3.5MHz)";
+                    playSpd2 = "Speed 2x (7MHz)";
+                    playSpd4 = "Speed 4x (14MHz)";
                     position = "Position";
                     properties = "Properties";
                     record = "Record";

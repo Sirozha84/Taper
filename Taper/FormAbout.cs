@@ -12,7 +12,7 @@ namespace Taper
 
 			Text = Lang.about;
 			tabPageAbout.Text = Lang.about;
-			labelVersion.Text = Lang.version + ": " + Application.ProductVersion; // + " BETA!";
+			labelVersion.Text = Lang.version + ": " + Program.version;
 			labelName.Text = Application.ProductName;
 			labelAutor.Text = Lang.author + (Lang.langCode == "ru" ? ": Сергей Гордеев" : ": Sergey Gordeev");
 			labelNewVersions.Text = Lang.newVersions;
@@ -59,6 +59,13 @@ namespace Taper
 				thanks.AppendText("• Итальянский язык");
 			}
 
+			history.SelectionFont = fontB;
+			history.AppendText("Версия 3.1 (27.03.2022)\n\n");
+			history.SelectionFont = fontR;
+			history.AppendText("• Возможность менять скорость воспроизведения\n" +
+				"• Небольшая правка плеера\n\n");
+
+			
 			history.SelectionFont = fontB;
 			history.AppendText("Версия 3.0 (21.09.2020)\n\n");
 			history.SelectionFont = fontR;

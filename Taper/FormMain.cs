@@ -25,6 +25,11 @@ namespace Taper
             }
             if (Properties.Settings.Default.Language == "")
                 Properties.Settings.Default.Language = System.Globalization.CultureInfo.CurrentCulture.Name;
+            bool set = false;
+            if (Properties.Settings.Default.PlayerSpeed == 1) { PlaySpeed1(null, null); set = true; }
+            if (Properties.Settings.Default.PlayerSpeed == 2) { PlaySpeed2(null, null); set = true; }
+            if (Properties.Settings.Default.PlayerSpeed == 4) { PlaySpeed4(null, null); set = true; }
+            if (!set) PlaySpeed1(null, null);
             InitLang();
         }
 
@@ -60,6 +65,9 @@ namespace Taper
             menuPlay.Text = Lang.play;
             menuStop.Text = Lang.stop;
             menuRec.Text = Lang.record + "...";
+            menuPlaySpeed1.Text = Lang.playSpd1;
+            menuPlaySpeed2.Text = Lang.playSpd2;
+            menuPlaySpeed4.Text = Lang.playSpd4;
 
             menuBlocks.Text = Lang.blocks;
             menuMoveUp.Text = Lang.moveUp;
@@ -231,13 +239,45 @@ namespace Taper
         /// <summary>
         /// Загрузка со внешнего источника звука
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void Record(object sender, EventArgs e)
         {
             FormRec form = new FormRec();
             form.ShowDialog();
             DrawProject();
+        }
+
+        /// <summary>
+        /// Скорость воспроизведения 1x (3.5MHz)
+        /// </summary>
+        void PlaySpeed1(object sender, EventArgs e)
+        {
+            menuPlaySpeed1.Checked = true;
+            menuPlaySpeed2.Checked = false;
+            menuPlaySpeed4.Checked = false;
+            Properties.Settings.Default.PlayerSpeed = 1;
+            Audio.SampleRate = 44100;
+        }
+        /// <summary>
+        /// Скорость воспроизведения 2x (7MHz)
+        /// </summary>
+        void PlaySpeed2(object sender, EventArgs e)
+        {
+            menuPlaySpeed1.Checked = false;
+            menuPlaySpeed2.Checked = true;
+            menuPlaySpeed4.Checked = false;
+            Properties.Settings.Default.PlayerSpeed = 2;
+            Audio.SampleRate = 88200;
+        }
+        /// <summary>
+        /// Скорость воспроизведения 4x (14MHz)
+        /// </summary>
+        void PlaySpeed4(object sender, EventArgs e)
+        {
+            menuPlaySpeed1.Checked = false;
+            menuPlaySpeed2.Checked = false;
+            menuPlaySpeed4.Checked = true;
+            Properties.Settings.Default.PlayerSpeed = 4;
+            Audio.SampleRate = 176400;
         }
         #endregion
 
