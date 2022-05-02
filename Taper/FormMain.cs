@@ -177,6 +177,7 @@ namespace Taper
                 else return;
             }
             else Project.Save(Project.name);
+            SetFormText();
         }
 
         /// <summary>
@@ -447,11 +448,11 @@ namespace Taper
             if (ext == ".tap" | ext == ".tzx")
             {
                 if (MessageBox.Show(Lang.msgAddBlocks, Application.ProductName, MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    Project.Open(file, true);
+                    Project.Open(file, false);
                 else
                 {
                     SaveQuestion();
-                    Project.Open(file, false);
+                    Project.Open(file, true);
                 }
                 DrawProject();
             }
@@ -468,7 +469,7 @@ namespace Taper
             string ext = Path.GetExtension(file).ToLower();
             if (ext == ".tap" | ext == ".tzx")
             {
-                Project.Open(file, false);
+                Project.Open(file, true);
                 DrawProject();
             }
             else Program.Error(Lang.errorLoad);

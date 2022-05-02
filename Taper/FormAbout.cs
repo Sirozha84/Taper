@@ -60,14 +60,16 @@ namespace Taper
 			}
 
 			history.SelectionFont = fontB;
-			history.AppendText("Версия 3.1 (27.03.2022)\n\n");
+			history.AppendText("Версия 3.1 (02.05.2022)\n\n");
 			history.SelectionFont = fontR;
 			history.AppendText("• Возможность менять скорость воспроизведения\n" +
-				"• Небольшая правка плеера\n\n");
+				"• Исправлены перепутанные действия открытия и добавления файлов\n" +
+				"• Исправлено обновление заголовка при сохранении\n" +
+                "• Небольшая правка плеера\n\n");
 
 			
 			history.SelectionFont = fontB;
-			history.AppendText("Версия 3.0 (21.09.2020)\n\n");
+			history.AppendText("Версия 3.0 (22.09.2020)\n\n");
 			history.SelectionFont = fontR;
 			history.AppendText("• Вопроизведение в реальном времени\n" +
 				"• Запись в реальном времени\n" +
