@@ -326,6 +326,20 @@ namespace Taper
             if (rename.Length > 10) rename = rename.Substring(0, 10);
             char[] str = rename.ToCharArray();
             int currentblock = selected[0];
+
+            // Добавим пустой заголовок Bytes: к блоку, если заголовка не было
+            if (TAP[currentblock].FileTitle == null)
+            {
+                TAP[currentblock].FileTitle = new byte[19];
+                TAP[currentblock].FileTitle[1] = 3;
+                TAP[currentblock].FileType = "Bytes";
+                TAP[currentblock].Start = "0";
+                TAP[currentblock].Len = TAP[currentblock].Size;
+                // -2 for flag and checksum
+                TAP[currentblock].FileTitle[12] = (byte)((TAP[currentblock].FileData.Length - 2) % 256);
+                TAP[currentblock].FileTitle[13] = (byte)((TAP[currentblock].FileData.Length - 2) / 256);
+            }
+            
             //Сначала сотрём то что было, чтоб не оставалось артефактов
             for (int i = 0; i < 10; i++)
                 TAP[currentblock].FileTitle[i + 2] = 32;
